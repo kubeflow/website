@@ -138,6 +138,86 @@ print(log_dict[f"{constants.NODE}-0"])
 
 After Trainer node completes the fine-tuning task, the fine-tuned model will be stored into the `/workspace/output ` directory, which can be shared across Pods through PVC mounting. You can find it in another Pod's `/<mountDir>/output` directory if you mount the PVC under `/<mountDir>`.
 
+## Parameters
+
+### Runtime
+
+For TorchTune LLM Trainer, you can just find the runtime you want in the [manifest folder](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune), and specify the `name` parameter.
+
+### Initializer
+
+#### Dataset Initializer
+
+#### Model Initializer
+
+### TorchTune LLM Trainer(`TorchTuneConfig`)
+
+#### Description
+
+The `TorchTuneConifg` class is used for configuring TorchTune LLM Trainer that already includes the fine-tuning logic.
+
+| **Parameters** | **Type** | **What is it?** |
+| - | - | - |
+| `dtype` | `Optional[DataType]` | The underlying data type used to represent the model and optimizer parameters. Currently, we only support `bf16` and `fp32`. |
+| `batch_size` | `Optional[int]` | The number of samples processed before updating model weights. |
+| `epochs` | `Optional[int]` | The number of samples processed before updating model weights. |
+| `loss` | `Optional[Loss]` | The loss algorithm we use to fine-tune the LLM, e.g. `torchtune.modules.loss.CEWithChunkedOutputLoss` |
+| `num_nodes` | `Optional[int]` | The number of PyTorch Nodes in training |
+| `dataset_preprocess_config` | `Optional[TorchTuneInstructDataset]` | Configuration for dataset preprocessing. |
+| `resource_per_node` | `Optional[Dict]` | The resource for each PyTorch Node |
+
+```python
+# Loss function for the TorchTune LLM Trainer.
+class Loss(Enum):
+    CEWithChunkedOutputLoss = "torchtune.modules.loss.CEWithChunkedOutputLoss"
+
+# Data type for the TorchTune LLM Trainer.
+class DataType(Enum):
+    BF16 = "bf16"
+    FP32 = "fp32"
+```
+
+The `TorchTuneInstructDataset` is a dataset class supported by TorchTune. It defines some dataset parameters which allows TorchTune preprocessing the Instruct Dataset for us automatically.
+
+| **Parameters** | **Type** | **What is it?** |
+| - | - | - |
+| `source` | `Optional[DataFormat]` | Data file type |
+| `split` | `Optional[str]` | The split of the dataset to use. You can use this argument to load a subset of a given split, e.g. split="train[:10%]". Default is `train`. |
+| `train_on_input` | `Optional[bool]` | Whether the model is trained on the user prompt or not. Default is False. |
+| `new_system_prompt` | `Optional[str]` | The new system prompt to use. If specified, prepend a system message. This can serve as instructions to guide the model response. Default is None. |
+| `column_map` | `Optional[Dict[str, str]]` | A mapping to change the expected "input" and "output" column names to the actual column names in the dataset. Keys should be "input" and "output" and values should be the actual column names. Default is None, keeping the default "input" and "output" column names. |
+
+```python
+# Data file type for the TorchTune LLM Trainer.
+class DataFormat(Enum):
+    JSON = "json"
+    CSV = "csv"
+    PARQUET = "parquet"
+    ARROW = "arrow"
+    TEXT = "text"
+    XML = "xml"
+```
+
+#### Example Usage
+
+```python
+torchtune_config = TorchTuneConfig(
+    dtype=DataType.BF16,
+    batch_size=10,
+    epochs=10,
+    loss=Loss.CEWithChunkedOutputLoss,
+    num_nodes=1,
+    dataset_preprocess_config=TorchTuneInstructDataset(
+        source=DataFormat.PARQUET,
+        split="train[:95%]",
+        train_on_input=True,
+        new_system_prompt="You are an AI assistant. ",
+        column_map={"input": "incorrect", "output": "correct"},
+    ),
+    resources_per_node={"gpu": 1},
+)
+```
+
 ## Next Steps
 
 - Run the example to [fine-tune the Llama-3.2-1B-Instruct LLM](https://github.com/kubeflow/trainer/blob/master/examples/torchtune/llama3_2/alpaca-trainjob-yaml.ipynb)
