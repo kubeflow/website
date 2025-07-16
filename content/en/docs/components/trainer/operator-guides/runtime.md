@@ -160,16 +160,21 @@ container image, commands, and resource requirements:
 
 ```YAML
 replicatedJobs:
-  - name: initializer
+  - name: model-initializer
     template:
+      metadata:
+        labels:
+          trainer.kubeflow.org/trainjob-ancestor-step: model-initializer
       spec:
         template:
           spec:
             containers:
-              - name: init-container
-                image: busybox
-                command: ["echo", "Initializing..."]
+              - name: model-initializer
+                image: ghcr.io/kubeflow/trainer/model-initializer
   - name: node
+    dependsOn:
+      - name: model-initializer
+        status: Complete
     template:
       spec:
         template:
@@ -220,6 +225,9 @@ spec:
                     - name: dataset-initializer
                       image: ghcr.io/kubeflow/trainer/dataset-initializer
         - name: model-initializer
+          dependsOn:
+            - name: dataset-initializer
+              status: Complete
           template:
             metadata:
               labels:
@@ -231,6 +239,9 @@ spec:
                     - name: model-initializer
                       image: ghcr.io/kubeflow/trainer/model-initializer
         - name: node
+          dependsOn:
+            - name: model-initializer
+              status: Complete
           template:
             metadata:
               labels:
