@@ -18,7 +18,7 @@ The key features introduced by KFP V2 are:
 
 ## Version Matrix
 
-The first version of [Kubeflow Platform](/docs/started/introduction/#what-is-kubeflow-platform) to include the Kubeflow Pipelines V2 backend was [Kubeflow 1.8](/docs/releases/kubeflow-1.8/).
+The first version of [Kubeflow Platform](/docs/started/introduction/#what-is-the-kubeflow-ai-reference-platform) to include the Kubeflow Pipelines V2 backend was [Kubeflow 1.8](/docs/releases/kubeflow-1.8/).
 
 The following table shows which versions of KFP backend are included in each version of Kubeflow Platform:
 
