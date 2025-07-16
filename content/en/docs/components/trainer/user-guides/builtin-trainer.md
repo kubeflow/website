@@ -6,13 +6,16 @@ weight = 10
 
 This page describes how to use a BuiltinTrainer in Kubeflow SDK that simplifies the ability to fine-tune LLMs with TorchTune.
 
-[BuiltinTrainer](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L140) is concept versus [CustomTrainer](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L26). They are both supported in [`train()` API from the Kubeflow SDK](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/api/trainer_client.py#L156). CustomTrainer is used to support custom training task and users will take the responsibility to define a self contained function that encapsulates the entire model training process. However, BuiltinTrainer is designed for **config-driven tasks with existing trainer**, which already includes the post-training logic and requires only parameter adjustments.
+[BuiltinTrainer](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L140) is a concept versus [CustomTrainer](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L26). They are both supported in [`train()` API from the Kubeflow SDK](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/api/trainer_client.py#L156). And their difference lies in:
+
+1. **CustomTrainer**: Used to support custom training task and users will take the responsibility to define a self contained function that encapsulates the entire model training process.
+2. **BuiltinTrainer**: Designed for **config-driven tasks with existing trainer**, which already includes the post-training logic and requires only parameter adjustments.
 
 Currently, Kubeflow SDK supports these BuiltinTrainer:
 
-- [**TorchTune LLM Trainer**](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L109): Leverage [TorchTune](https://github.com/pytorch/torchtune) to fine-tune LLMs.
+1. [**TorchTune LLM Trainer**](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L109): Leverage [TorchTune](https://github.com/pytorch/torchtune) to fine-tune LLMs.
 
-If you want to learn more about BuiltinTrainer in Kubeflow SDK, please refer to [KEP-2401](https://github.com/kubeflow/trainer/tree/master/docs/proposals/2401-llm-trainer-v2) in Kubeflow Trainer.
+If you want to learn more about BuiltinTrainer, please refer to [KEP-2401](https://github.com/kubeflow/trainer/tree/master/docs/proposals/2401-llm-trainer-v2) in Kubeflow Trainer.
 
 ## Prerequisites
 
@@ -38,14 +41,14 @@ Install the latest Kubeflow Python SDK version directly from the source reposito
 pip install git+https://github.com/kubeflow/sdk.git@main#subdirectory=python
 ```
 
-## How to use the TorchTune LLM Trainer in BuiltinTrainer?
+## Use TorchTune LLM Trainer in BuiltinTrainer
 
 ### Create PVCs for Models and Datasets
 
 {{% alert title="Note" color="info" %}}
-Currently, we do not support automatically orchestrate the volume claim in (Cluster)TrainingRuntime. That's because JobSet hasn't supported stateful mode up to now.
+Currently, we do not support automatically orchestrate the volume claim.
 
-To follow up this problem, please refer to [this issue](https://github.com/kubeflow/trainer/issues/2630).
+To follow up with this problem, please refer to [this issue](https://github.com/kubeflow/trainer/issues/2630).
 {{% /alert %}}
 
 We need to manually create PVCs for each models we want to fine-tune. Please note that **the PVC name must be equal to the ClusterTrainingRuntime name**. In this example, it's `torchtune-llama3.2-1b`.
@@ -140,17 +143,77 @@ After Trainer node completes the fine-tuning task, the fine-tuned model will be 
 
 ## Parameters
 
+We use `train()` API to launch fine-tuning jobs with TorchTune LLM Trainer.
+
+```python
+def train(
+    self,
+    runtime: types.Runtime = types.DEFAULT_RUNTIME,
+    initializer: Optional[types.Initializer] = None,
+    trainer: Optional[Union[types.CustomTrainer, types.BuiltinTrainer]] = None,
+) -> str:
+```
+
 ### Runtime
 
-For TorchTune LLM Trainer, you can just find the runtime you want in the [manifest folder](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune), and specify the `name` parameter.
+For TorchTune LLM Trainer, you can just find the runtime you want in the [manifest folder](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune), and just specify the `name` parameter. Like:
+
+```python
+runtime=Runtime(name="torchtune-llama3.2-1b")
+```
 
 ### Initializer
 
+We'll use parameters in Initializer to download dataset and model from remote storage.
+
+| **Parameters** | **Type** | **What is it?** |
+| - | - | - |
+| `dataset` | `Optional[HuggingFaceDatasetInitializer]` | The configuration for one of the supported dataset initializers. |
+| `model` | `Optional[HuggingFaceModelInitializer]` | The configuration for one of the supported model initializers. |
+
 #### Dataset Initializer
+
+Currenlty, we only support downloading datasets from HuggingFace by defining `HuggingFaceDatasetInitializer`:
+
+{{% alert title="Note" color="info" %}}
+For `storage_uri` in Dataset Initializer, you need to speficy **the exact path to data files**. That's to say, you need to set it to `hf://<org_id>/<repo_id>/path/to/data/files`.
+
+Currently, we support:
+
+1. Data Directory: Use all data files under this directory. For example, `hf://tatsu-lab/alpaca/data` uses all data files under the `/data` direcotry of `tatsu-lab/alpaca` repo in HuggingFace.
+2. Single Data File: Use the single data file given the path. For example, `hf://tatsu-lab/alpaca/data/xxx.parquet` uses the single `/data/xxx.parquet` data file of `tatsu-lab/alpaca` repo in HuggingFace.
+{{% /alert %}}
+
+| **Parameters** | **Type** | **What is it?** |
+| - | - | - |
+| `storage_uri` | `str` | Storage URI for dataset that begins with `hf://` |
+| `access_token` | `Optional[str]` | Token that verfies your access to the dataset if needed. |
 
 #### Model Initializer
 
-### TorchTune LLM Trainer(`TorchTuneConfig`)
+Currently, we only support downloading models from HuggingFace by defining `HuggingFaceModelInitializer`:
+
+| **Parameters** | **Type** | **What is it?** |
+| - | - | - |
+| `storage_uri` | `str` | Storage URI for model that begins with `hf://` |
+| `access_token` | `Optional[str]` | Token that verfies your access to the model if needed. |
+
+#### Example Usage
+
+```python
+initializer=Initializer(
+    dataset=HuggingFaceDatasetInitializer(
+        storage_uri="hf://tatsu-lab/alpaca/data",
+        access_token="<YOUR_HF_TOKEN>"  # Replace with your Hugging Face token
+    ),
+    model=HuggingFaceModelInitializer(
+        storage_uri="hf://meta-llama/Llama-3.2-1B-Instruct",
+        access_token="<YOUR_HF_TOKEN>"  # Replace with your Hugging Face token
+    )
+)
+```
+
+### TorchTune LLM Trainer
 
 #### Description
 
