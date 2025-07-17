@@ -1,6 +1,6 @@
 +++
-title = "Migrating to Kubeflow Trainer V2"
-description = "How to migrate to the new Kubeflow Trainer V2."
+title = "Migrating to Kubeflow Trainer v2"
+description = "How to migrate from the Training Operator v1"
 weight = 20
 +++
 
@@ -20,26 +20,31 @@ The key features introduced by Kubeflow Trainer are:
 - Custom dataset and model initializer: to streamline assets initialization across distributed
   training nodes and to reduce GPU cost by offloading I/O tasks to CPU workloads.
 
-- Enhanced MPI support: featuring MPI-Operator V2 features with SSH-based optimization to boost
+- Enhanced MPI support: featuring MPI-Operator v2 features with SSH-based optimization to boost
   MPI performance.
 
 ## Migration Paths
 
-Kubeflow Trainer v2 introduces new APIs that replace the older, framework-specific CRDs such as `PyTorchJob`, `TFJob`, and `MPIJob`. These new APIs—`TrainingRuntime`, `TrainJob`, and `ClusterTrainingRuntime`—offer a more flexible and unified interface for defining training jobs across frameworks.
+Kubeflow Trainer v2 introduces new APIs that replace the older, framework-specific CRDs such as
+`PyTorchJob`, `TFJob`, and `MPIJob`. These new APIs - `TrainJob`, `ClusterTrainingRuntime`,
+and `TrainingRuntime` — offer a more flexible and unified interface for defining training
+jobs across frameworks.
 
-This section shows how to migrate an existing PyTorchJob to the new API.
+Please see [the runtime guide](/docs/components/trainer/operator-guides/) to understand the concepts
+of `TrainJob` and `ClusterTrainingRuntime`.
 
-### Migrate PyTorchJob to TrainingRuntime
+### Migrate PyTorchJob to TrainJob
 
-The following example demonstrates how to migrate from a `PyTorchJob` (v1) to a `TrainingRuntime` (v2alpha1),  utilizing the default Torch runtime and overriding it with TrainJob.
+The following example demonstrates how to migrate from `PyTorchJob` to `TrainJob`, utilizing the
+default Torch runtime:
 
-### Old: PyTorchJob (v1)
+#### Old: PyTorchJob (v1)
+
 ```yaml
 apiVersion: kubeflow.org/v1
 kind: PyTorchJob
 metadata:
   name: pytorch-simple
-  namespace: kubeflow
 spec:
   pytorchReplicaSpecs:
     Master:
@@ -50,7 +55,10 @@ spec:
           containers:
             - name: pytorch
               image: docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727
-              command: ["python3", "/opt/pytorch-mnist/mnist.py", "--epochs=1"]
+              command:
+                - "python3"
+                - "/opt/pytorch-mnist/mnist.py"
+                - "--epochs=1"
     Worker:
       replicas: 1
       restartPolicy: OnFailure
@@ -59,46 +67,50 @@ spec:
           containers:
             - name: pytorch
               image: docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727
-              command: ["python3", "/opt/pytorch-mnist/mnist.py", "--epochs=1"]
+              command:
+                - "python3"
+                - "/opt/pytorch-mnist/mnist.py"
+                - "--epochs=1"
 ```
-### New: TrainingRuntime with TrainJob Override (v2alpha1)
+
+#### New: TrainJob (v2)
 
 ```yaml
-apiVersion: trainer.kubeflow.org/v2alpha1
+apiVersion: trainer.kubeflow.org/v1alpha1
 kind: TrainJob
 metadata:
   name: pytorch-simple
-  namespace: kubeflow
 spec:
   runtimeRef:
-    name: torch-distributed  
-  template:
-    spec:
-      containers:
-        - name: trainer
-          image: docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727
-          command: ["torchrun", "/opt/pytorch-mnist/mnist.py", "--epochs=1"]
-          env:
-            - name: MASTER_ADDR
-              value: "pytorch-simple-0"  
-            - name: MASTER_PORT
-              value: "29400"
-      replicas: 2
+    name: torch-distributed
+  trainer:
+    numNodes: 2
+    image: docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727
+    command:
+      - "python3"
+      - "/opt/pytorch-mnist/mnist.py"
+      - "--epochs=1"
 ```
 
-### Additional Notes:
+### Kubeflow Trainer Python SDK
 
+Kubeflow Trainer uses Kubeflow Python SDK to allow AI practitioners interact with Kubeflow Trainer
+APIs without dealing with YAMLs or `kubectl`.
 
-- The TrainingRuntime now leverages the default Torch runtime and is overridden with TrainJob to define the training configuration.
-
-- Kubeflow Trainer provides a Python SDK, enabling ML users to programmatically submit TrainJob instances without relying on kubectl, enhancing usability and integration with Kubeflow workflows.
+Check the [Getting Started](/docs/components/trainer/getting-started) guide to learn how
+to scale PyTorch code with `TrainJob` using Python SDK.
 
 ### Additional information
 
-- Trainer v2 does not use individual CRDs per framework. Instead, it abstracts functionality into a unified runtime specification.
-- You can use the `Kubeflow Python SDK` to generate and submit Trainer v2 workloads programmatically.
-- Initializer and multi-node coordination logic is managed by the system, reducing overhead on the training container.
-- Support for specifying `managedBy` fields and runtime API versions (via `runtimeRef.version`) is under consideration.
+- Kubeflow Trainer v2 does not use separate CRDs for each framework. Instead, it implements all
+  functionality within a single `TrainJob` CRD.
+- AI practitioners should use the Kubeflow Python SDK to convert their model training code into a
+  `TrainJob`.
+- Platform administrators can leverage the `ClusterTrainingRuntime` and `TrainingRuntime` CRDs
+  to configure reusable blueprints that enable AI practitioners to create `TrainJobs`.
+- For a detailed overview of Kubeflow Trainer v2, please see
+  [the announcement blog post](https://blog.kubeflow.org/trainer/intro/).
 
-You can find detailed proposals and discussion [in the Kubeflow Trainer GitHub repository](https://github.com/kubeflow/trainer/tree/master/docs/proposals/2170-kubeflow-trainer-v2).
+## Next Steps
 
+- Learn about [the Kubeflow Trainer runtimes](docs/components/trainer/operator-guides/runtime)
