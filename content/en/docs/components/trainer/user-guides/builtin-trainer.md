@@ -1,5 +1,5 @@
 +++
-title = "BuiltinTrainer Guide"
+title = "Built-in Trainer Guide"
 description = "How to use BuiltinTrainer in Kubeflow SDK"
 weight = 10
 +++
