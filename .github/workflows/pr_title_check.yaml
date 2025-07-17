@@ -4,10 +4,6 @@ on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
 
-
-permissions:
-  pull-requests: write 
-  
 jobs:
   validate-pr-title:
     runs-on: ubuntu-latest
