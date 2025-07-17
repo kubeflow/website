@@ -20,17 +20,15 @@ The Model Registry uses the ml-metadata project’s C++ server as-is to handle t
 - an OpenAPI interface to expose the Model Registry API to the clients
 
 ## Components
-- *[MLMD C++ Server](https://github.com/google/ml-metadata)*
-  
-  This is the metadata server from Google's ml-metadata project.  This component is hosted to communicate with a backend relational database that stores the actual metadata about the models. This server exposes a “gRPC” interface for its clients to communicate with. This server provides a very flexible schema model, where using this model one can define logical data models to fit the needs of different MLOps operations, for example, metadata during the training and experimentation, metadata about metrics or model versioning, etc. 
 
 - *[OpenAPI/REST Server](https://github.com/kubeflow/model-registry)*
   
-  This component exposes a higher-level REST API of the Model Registry. In contrast, the MLMD server exposes a lower level generic API over gRPC, whereas this REST server exposes a higher level API that is much closer to the domain model of Model Registry, like:
+  This component exposes a high-level REST API of the Model Registry.
+  The REST API offers end-user capabilities focused on the domain model of Model Registry, like:
     - Register a Model
     - Version a Model
     - Get a catalog of models
-    - Manage the deployment statutes of a model
+    - Manage the deployment statuses of a model
       
   The REST API server converts its requests into one or more underlying gRPC requests on the MLMD Server.
 
