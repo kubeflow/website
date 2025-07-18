@@ -6,7 +6,7 @@ weight: 110
 
 If you're using Kubeflow Notebooks and want to run big data or distributed machine learning jobs with PySpark, the option is now available.
 
-The Spark Operator streamlines the deployment of Apache Spark applications on Kubernetes. By integrating it with Jupyter Enterprise Gateway (JEG) and Kubeflow Notebooks, users can now run PySpark workloads at scale directly from a notebook interface, without worrying about the underlying Spark infrastructure.
+The Spark Operator streamlines the deployment of Apache Spark applications on Kubernetes. By integrating it with [Jupyter Enterprise Gateway (JEG)](https://github.com/jupyter-server/enterprise_gateway) and Kubeflow Notebooks, users can now run PySpark workloads at scale directly from a notebook interface, without worrying about the underlying Spark infrastructure.
 
 This integration enables a seamless workflow for data scientists and ML engineers, allowing users to write PySpark code in their notebooks, which is then executed remotely using Kubernetes resources via the Spark Operator and JEG.
 
