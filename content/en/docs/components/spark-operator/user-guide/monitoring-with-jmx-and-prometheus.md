@@ -1,7 +1,7 @@
 ---
 title: Monitoring Spark Applications with Prometheus and JMX Exporter
 description: Using the Spark operator to setup Java Metrics Exporter (JMX) and send metrics to Prometheus
-weight: 110
+weight: 120
 ---
 
 Spark Operator supports exporting Spark metrics in Prometheus format using the [JMX Prometheus Exporter](https://github.com/prometheus/jmx_exporter). This allows detailed monitoring of your Spark drivers and executors with tools like Prometheus and Grafana.
