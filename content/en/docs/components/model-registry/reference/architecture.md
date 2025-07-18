@@ -13,7 +13,7 @@ The Model Registry is a passive repository for metadata and is not meant to be a
 {{% /alert %}}
 
 
-Kubeflow Model Registry stores metadata in a backend RDBMS that leverages an extensible ER model inspired by the Google community project [ML-Metadata](https://github.com/google/ml-metadata). This provides a very extensible schema that, while being generic (similar to a key-value store), additionally allows for the creation of logical schemas that can be queried as if they were physical schemas.
+Kubeflow Model Registry stores metadata in a backend RDBMS that leverages an adaptable ER model inspired by the Google community project [ML-Metadata](https://github.com/google/ml-metadata). This provides a very extensible schema that, while being generic (similar to a key-value store), additionally allows for the creation of logical schemas that can be queried as if they were physical schemas.
 This schema is extended to provide the metadata management service capabilities specifically for the Model Registry, as explained in detail in the [logical model](https://github.com/kubeflow/model-registry/blob/main/docs/logical_model.md).
 
 Model Registry provides:
