@@ -13,24 +13,25 @@ The Model Registry is a passive repository for metadata and is not meant to be a
 {{% /alert %}}
 
 
-Kubeflow Model Registry makes use of the Google community project [ML-Metadata](https://github.com/google/ml-metadata) as one of its core component. ML-Metadata provides a very extensible schema that is generic, similar to a key-value store, but also allows for the creation of logical schemas that can be queried as if they were physical schemas. Those can be manipulated using their bindings in the Python library. This model is extended to provide the metadata management service capabilities for Model Registry.
+Kubeflow Model Registry stores metadata in a backend RDBMS that leverages an adaptable ER model inspired by the Google community project [ML-Metadata](https://github.com/google/ml-metadata). This provides a very extensible schema that, while being generic (similar to a key-value store), additionally allows for the creation of logical schemas that can be queried as if they were physical schemas.
+This schema is extended to provide the metadata management service capabilities specifically for the Model Registry, as explained in detail in the [logical model](https://github.com/kubeflow/model-registry/blob/main/docs/logical_model.md).
 
-The Model Registry uses the ml-metadata project’s C++ server as-is to handle the storing of the metadata, while domain-specific Model Registry features are added as extensions (microservices). As part of these extensions, Model Registry provides:
-- Python/Go extensions to support the Model Registry interaction
-- an OpenAPI interface to expose the Model Registry API to the clients
+Model Registry provides:
+- an OpenAPI interface to expose the Model Registry API to clients
+- Python/Go extensions to support Model Registry interactions
 
 ## Components
 
 - *[OpenAPI/REST Server](https://github.com/kubeflow/model-registry)*
   
   This component exposes a high-level REST API of the Model Registry.
-  The REST API offers end-user capabilities focused on the domain model of Model Registry, like:
+  The REST API offers end-user capabilities focused on the domain model of the Model Registry, such as:
     - Register a Model
     - Version a Model
     - Get a catalog of models
     - Manage the deployment statuses of a model
-      
-  The REST API server converts its requests into one or more underlying gRPC requests on the MLMD Server.
+
+  The REST API server converts its requests into one or more operations to the backend RDBMS.
 
 - *[CLI (Python client, SDK)](https://github.com/kubeflow/model-registry/tree/main/clients/python)*
   
@@ -40,4 +41,4 @@ The model registry provides logical mappings from the high level [logical model]
 
 ## See also
 
-- Model Registry [project documentation](https://github.com/kubeflow/model-registry?tab=readme-ov-file#pre-requisites).
+- Model Registry [project documentation](https://github.com/kubeflow/model-registry?tab=readme-ov-file#documentation-links).
