@@ -1,0 +1,11 @@
+[post_create_issue]
+other = "পৃষ্ঠা সম্পর্কে মতামত দিন"
+
+[post_create_project_issue]
+other = "প্রকল্প সংক্রান্ত সমস্যা তৈরি করুন"
+
+[print_entire_section]
+other = "এই অংশটি প্রিন্ট করুন"
+
+[ui_search]
+other = "অনুসন্ধান"
