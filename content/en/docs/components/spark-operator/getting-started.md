@@ -79,6 +79,12 @@ This removes all the Kubernetes resources associated with the chart and deletes 
 
 See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall) for command documentation.
 
+### Additional Steps to Integrate Jupyter Notebooks
+
+Integrating Jupyter Notebooks with the Spark Operator to run big data or distributed machine learning jobs with PySpark.
+
+See [Integration with Notebooks](../user-guide/notebooks-spark-operator) for further details.
+
 ## Running the Examples
 
 To run the Spark PI example, run the following command:
