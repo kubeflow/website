@@ -1,14 +1,14 @@
 ---
-title: Integration with Notebooks
-description: Integrating Jupyter Notebooks with the Spark Operator
+title: Integration with Kubeflow Notebooks
+description: Integrating Kubeflow Notebooks with the Spark Operator
 weight: 110
 ---
 
 If you're using Kubeflow Notebooks and want to run big data or distributed machine learning jobs with PySpark, the option is now available.
 
-The Spark Operator streamlines the deployment of Apache Spark applications on Kubernetes. By integrating it with [Jupyter Enterprise Gateway (JEG)](https://github.com/jupyter-server/enterprise_gateway) and Kubeflow Notebooks, users can now run PySpark workloads at scale directly from a notebook interface, without worrying about the underlying Spark infrastructure.
+The Spark Operator streamlines the deployment of Apache Spark applications on Kubernetes. By integrating it with [Jupyter Enterprise Gateway](https://github.com/jupyter-server/enterprise_gateway) and Kubeflow Notebooks, users can now run PySpark workloads at scale directly from a kubeflow notebook interface, without worrying about the underlying Spark infrastructure.
 
-This integration enables a seamless workflow for data scientists and ML engineers, allowing users to write PySpark code in their notebooks, which is then executed remotely using Kubernetes resources via the Spark Operator and JEG.
+This integration enables a seamless workflow for data scientists and ML engineers, allowing users to write PySpark code in their Kubeflow notebooks, which is then executed remotely using Kubernetes resources via the Spark Operator and Jupyter Enterprise Gateway.
 
 ## Architecture
 
@@ -23,12 +23,12 @@ The following diagram illustrates how the components work together:
 
 ## Overview
 
-In a typical Kubeflow setup, users access JupyterLab Notebooks through the central dashboard. These notebooks can now be configured to run PySpark code remotely through kernels managed by Jupyter Enterprise Gateway (JEG).
+In a typical Kubeflow setup, users access Kubeflow Notebooks through the central dashboard. These notebooks can now be configured to run PySpark code remotely through kernels managed by Jupyter Enterprise Gateway.
 
 Behind the scenes:
 
-1. JEG receives execution requests from notebooks.
-2. JEG creates and submits `SparkApplication` Custom Resources.
+1. Jupyter Enterprise Gateway receives execution requests from Kubeflow notebooks.
+2. Jupyter Enterprise Gateway creates and submits `SparkApplication` Custom Resources.
 3. The Spark Operator handles the lifecycle of Spark driver and executor pods in Kubernetes.
 
 This architecture enables scalable, elastic execution of big data or distributed ML workloads.
@@ -173,7 +173,7 @@ kubectl patch notebook <NOTEBOOK_NAME> \
 
 ```
 
-These variables configure JupyterLab to forward kernel execution to JEG, which then runs PySpark jobs via the Spark Operator.
+These variables configure JupyterLab to forward kernel execution to Jupyter Enterprise Gateway, which then runs PySpark jobs via the Spark Operator.
 
 ## What Happens Next
 
@@ -182,7 +182,7 @@ Once everything is set up:
 - Launch a notebook from the Kubeflow UI
 - Select the `pyspark` kernel
 - Write and run PySpark code
-- Your notebook submits Spark jobs via JEG → Spark Operator → Kubernetes
+- Your notebook submits Spark jobs via Jupyter Enterprise Gateway → Spark Operator → Kubernetes
 
 
 
