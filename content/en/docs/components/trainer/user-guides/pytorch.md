@@ -117,10 +117,10 @@ while True:
 
 
 print("Distributed PyTorch env on node-0")
-print(TrainerClient().get_job_logs(name=job_id, step="node", node_rank=0)["node-0"])
+print(TrainerClient().get_job_logs(name=job_id, node_rank=0)["node-0"])
 
 print("Distributed PyTorch env on node-1")
-print(TrainerClient().get_job_logs(name=job_id, step="node", node_rank=1)["node-1"])
+print(TrainerClient().get_job_logs(name=job_id, node_rank=1)["node-1"])
 ```
 
 You should see the distributed environment across the two training nodes as follows:
