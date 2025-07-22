@@ -33,7 +33,6 @@ pre-installed Python packages.
 Run the following command to get a list of the available packages:
 
 ```py
-# TODO(andreyvelich): This should be changed to the `get_runtime_packages()` API.
 from kubeflow.trainer import TrainerClient, Runtime, CustomTrainer
 import time
 
@@ -109,7 +108,6 @@ job_id = TrainerClient().train(
 )
 
 
-# TODO (andreyvelich): Change it to is_job_complete() API.
 while True:
     if TrainerClient().get_job(name=job_id).status == "Succeeded":
         break
