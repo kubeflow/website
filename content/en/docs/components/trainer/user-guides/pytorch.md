@@ -16,9 +16,9 @@ Trainer Python SDK to create your TrainJobs with
 [FSDP2](https://docs.pytorch.org/tutorials/intermediate/FSDP_tutorial.html),
 or any other parallelism algorithm supported by PyTorch.
 
-In the DDP training, each GPU holds a full copy of the model, and the dataset gets chopped and assigned
-across multiple GPUs. The gradients are calculated locally on each GPU and then synchronized globally
-to update the model parameters.
+In DDP training, the dataset is sharded across multiple GPUs, with each GPU holding one partition
+of the dataset and a full copy of the model. The gradients are calculated locally on each GPU and
+then synchronized globally to update the model parameters.
 
 In FSDP training, in addition to DDP, the model gets chopped into slices and assigned to the
 different GPUs. The model is split into shards, each hosted on a different GPU. Gradients and
