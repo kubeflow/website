@@ -4,7 +4,7 @@ description = "How to develop PyTorch models with Kubeflow Trainer"
 weight = 10
 +++
 
-This guide describes how to use TrainJob to train or fine-tune an AI models with [PyTorch](https://pytorch.org/).
+This guide describes how to use TrainJob to train or fine-tune AI models with [PyTorch](https://pytorch.org/).
 
 ## PyTorch Distributed Overview
 
