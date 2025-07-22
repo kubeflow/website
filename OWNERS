@@ -1,15 +1,16 @@
 approvers:
-  - andreyvelich
-  - franciscojavierarceo
-  - juliusvonkohout 
-  - johnugeorge
-  - terrytangyuan
-  - zijianjoy
+- andreyvelich
+- franciscojavierarceo
+- juliusvonkohout 
+- johnugeorge
+- terrytangyuan
+- zijianjoy
+- varodrig
 
 reviewers:
-  - varodrig
+- varodrig
 
 emeritus_approvers:
-  - james-jwu
-  - jbottum
+- james-jwu
+- jbottum
 
