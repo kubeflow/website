@@ -6,7 +6,7 @@ weight = 10
 
 This guide introduces Kubeflow projects how they fit in each stage of the AI lifecycle.
 
-Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow, Kubeflow
+Read [the introduction](/docs/started/introduction) to learn more about Kubeflow, Kubeflow
 projects, and Kubeflow AI reference platform.
 
 ## Kubeflow Ecosystem
