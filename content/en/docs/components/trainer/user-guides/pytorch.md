@@ -197,7 +197,7 @@ def fine_tune_qwen():
         boto3.upload_file()
 ```
 
-### Create TrainJob with `train()` API
+### Create a TrainJob
 
 After configuring the PyTorch training function, use the `train()` API to create TrainJob:
 
