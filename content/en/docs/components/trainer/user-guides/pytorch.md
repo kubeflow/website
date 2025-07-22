@@ -68,11 +68,11 @@ torchvision               0.22.1+cu128
 
 Kubeflow Trainer uses the [`torchrun` utility](https://docs.pytorch.org/docs/stable/elastic/run.html)
 to run PyTorch script on every training node. It automatically configures the appropriate distributed
-environment for PyTorch cluster:
+environment for PyTorch nodes:
 
-- `dist.get_world_size()` - Total number of processes (e.g., GPUs) in the PyTorch cluster
-- `dist.get_rank()` - Rank of the current process within the PyTorch cluster.
-- `os.environ["LOCAL_RANK"]` - Rank of the current process within a PyTorch training node.
+- `dist.get_world_size()` - Total number of processes (e.g., GPUs) across all PyTorch nodes.
+- `dist.get_rank()` - Rank of the current process across all PyTorch node.
+- `os.environ["LOCAL_RANK"]` - Rank of the current process within a single PyTorch training node.
 
 You can use these values to, for example, download the dataset only on the node with `local_rank=0`,
 or export your fine-tuned LLM only on the node with `rank=0` (e.g., the master node).
