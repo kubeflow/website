@@ -14,7 +14,7 @@ Trainer Python SDK to create your TrainJobs with
 [PyTorch Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html),
 [Fully Sharded Data Parallel (FSDP)](https://docs.pytorch.org/docs/stable/fsdp.html),
 [FSDP2](https://docs.pytorch.org/tutorials/intermediate/FSDP_tutorial.html),
-or any other distributed algorithm supported by PyTorch.
+or any other parallelism algorithm supported by PyTorch.
 
 In the DDP training, each GPU holds a full copy of the model, and the dataset gets chopped and assigned
 across multiple GPUs. The gradients are calculated locally on each GPU and then synchronized globally
