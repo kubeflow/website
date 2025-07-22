@@ -6,6 +6,11 @@ weight = 10
 
 This guide describes how to use TrainJob to train or fine-tune AI models with [PyTorch](https://pytorch.org/).
 
+## Prerequisites
+
+Before exploring this guide, make sure to follow [the Getting Started guide](/docs/components/trainer/getting-started/)
+to understand the basics of Kubeflow Trainer.
+
 ## PyTorch Distributed Overview
 
 PyTorch has the builtin [`torch.distributed` package](https://docs.pytorch.org/docs/stable/distributed.html)
