@@ -1,3 +1,6 @@
+labels:
+  - area/trainer
+
 approvers:
   - andreyvelich
   - ChanYiLin

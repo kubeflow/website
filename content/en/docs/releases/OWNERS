@@ -1,6 +1,10 @@
+labels:
+  - area/community
+
 approvers:
   - thesuperzapper
   - zijianjoy
+
 reviewers:
   - thesuperzapper
   - zijianjoy
