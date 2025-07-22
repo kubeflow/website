@@ -76,7 +76,6 @@ environment for PyTorch cluster:
 
 You can use these values to, for example, download the dataset only on the node with `local_rank=0`,
 or export your fine-tuned LLM only on the node with `rank=0` (e.g., the master node).
-nly on the node with local_rank=0, or export your fine-tuned LLM only on the node with rank=0 (e.g., the master node).
 
 You can access the distributed environment as follows:
 
