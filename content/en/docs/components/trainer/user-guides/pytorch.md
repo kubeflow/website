@@ -37,6 +37,8 @@ which comes with several pre-installed Python packages.
 
 Run the following command to get a list of the available packages:
 
+<!-- TODO (andreyvelich): Change it to wait_for_job_status() API. -->
+
 ```py
 from kubeflow.trainer import TrainerClient, Runtime, CustomTrainer
 import time
@@ -82,6 +84,8 @@ You can use these values to, for example, download the dataset only on the node 
 or export your fine-tuned LLM only on the node with `rank=0` (e.g., the master node).
 
 You can access the distributed environment as follows:
+
+<!-- TODO (andreyvelich): Change it to wait_for_job_status() API. -->
 
 ```py
 from kubeflow.trainer import TrainerClient, CustomTrainer
