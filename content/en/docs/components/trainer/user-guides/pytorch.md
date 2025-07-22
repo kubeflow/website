@@ -1,6 +1,6 @@
 +++
 title = "PyTorch Guide"
-description = "How to develop PyTorch models with Kubeflow Trainer"
+description = "How to run PyTorch on Kubernetes with Kubeflow Trainer"
 weight = 10
 +++
 
@@ -20,10 +20,10 @@ In the DDP training, each GPU holds a full copy of the model, and the dataset ge
 across multiple GPUs. The gradients are calculated locally on each GPU and then synchronized globally
 to update the model parameters.
 
-In FSDP training, both the dataset and the model gets chopped into slices and assigned to the
+In FSDP training, in addition to DDP, the model gets chopped into slices and assigned to the
 different GPUs. The model is split into shards, each hosted on a different GPU. Gradients and
-parameter updates are computed locally and synchronized globally.
-FSDP is particularly useful for training very large models that cannot fit into the memory of a single GPU.
+parameter updates are computed locally and synchronized globally. FSDP is particularly useful for
+training very large models that cannot fit into the memory of a single GPU.
 
 ## Get PyTorch Runtime Packages
 
