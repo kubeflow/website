@@ -10,7 +10,7 @@ This guide describes how to use TrainJob to train or fine-tune AI models with [P
 
 PyTorch has the builtin [`torch.distributed` package](https://docs.pytorch.org/docs/stable/distributed.html)
 to perform distributed training, including both data and model parallelism. You can use the Kubeflow
-Trainer Python SDK to create your TrainJobs with
+Python SDK to create your TrainJobs with
 [PyTorch Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html),
 [Fully Sharded Data Parallel (FSDP)](https://docs.pytorch.org/docs/stable/fsdp.html),
 [FSDP2](https://docs.pytorch.org/tutorials/intermediate/FSDP_tutorial.html),
@@ -27,8 +27,8 @@ training very large models that cannot fit into the memory of a single GPU.
 
 ## Get PyTorch Runtime Packages
 
-Kubeflow Trainer includes a PyTorch runtime called `torch-distributed`, which comes with several
-pre-installed Python packages.
+Kubeflow Trainer includes a PyTorch runtime called [`torch-distributed`](https://github.com/kubeflow/trainer/blob/master/manifests/base/runtimes/torch_distributed.yaml),
+which comes with several pre-installed Python packages.
 
 Run the following command to get a list of the available packages:
 
@@ -229,5 +229,4 @@ print(TrainerClient().get_job_logs(name=job_id)["node-0"])
 - Check out [the PyTorch MNIST example](https://github.com/kubeflow/trainer/blob/master/examples/pytorch/image-classification/mnist.ipynb).
 - Follow [the PyTorch fine-tuning example](https://github.com/kubeflow/trainer/blob/master/examples/pytorch/question-answering/fine-tune-distilbert.ipynb)
   using the pre-trained DistilBERT model.
-- Learn more about [the Kubeflow SDK APIs](https://github.com/kubeflow/sdk/blob/main/python/kubeflow/trainer/api/trainer_client.py)
-  for `TrainerClient()`.
+- Learn more about `TrainerClient()` APIs [in the Kubeflow SDK](https://github.com/kubeflow/sdk/blob/main/python/kubeflow/trainer/api/trainer_client.py).
