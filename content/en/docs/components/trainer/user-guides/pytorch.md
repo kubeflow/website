@@ -4,30 +4,33 @@ description = "How to develop PyTorch models with Kubeflow Trainer"
 weight = 10
 +++
 
-This guide describes how to use TrainJob for training a AI models with [PyTorch](https://pytorch.org/).
+This guide describes how to use TrainJob to train or fine-tune an AI models with [PyTorch](https://pytorch.org/).
 
 ## PyTorch Distributed Overview
 
-PyTorch has inbuilt [package `torch.distributed`](https://docs.pytorch.org/docs/stable/distributed.html)
-to perform distributed training including data and model parallelism. You can leverage Kubeflow
-Trainer Python SDK to create your TrainJobs with [PyTorch Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html),
-[Fully Sharded Data Parallel (FSDP)](https://docs.pytorch.org/docs/stable/fsdp.html), [FSDP2](https://docs.pytorch.org/tutorials/intermediate/FSDP_tutorial.html),
-or any other distributed algorithm that PyTorch supports.
+PyTorch has the builtin [`torch.distributed` package](https://docs.pytorch.org/docs/stable/distributed.html)
+to perform distributed training, including both data and model parallelism. You can use the Kubeflow
+Trainer Python SDK to create your TrainJobs with
+[PyTorch Distributed Data Parallel (DDP)](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html),
+[Fully Sharded Data Parallel (FSDP)](https://docs.pytorch.org/docs/stable/fsdp.html),
+[FSDP2](https://docs.pytorch.org/tutorials/intermediate/FSDP_tutorial.html),
+or any other distributed algorithm supported by PyTorch.
 
-In the DDP training each GPU has a copy of the same model, and the dataset gets chopped and assigned
-across multiple GPUs. The gradients are calculated locally, then synchronized globally to update
-the model parameters.
+In the DDP training, each GPU holds a full copy of the model, and the dataset gets chopped and assigned
+across multiple GPUs. The gradients are calculated locally on each GPU and then synchronized globally
+to update the model parameters.
 
-In FSDP training the dataset gets distributed and the model gets chopped into slices and assigned
-to the different GPUs. The gradients and model parameter updates are calculated locally,
-then synchronized globally. The FSDP is particular useful for training of very large models that
-cannot fit the memory of a single GPU.
+In FSDP training, both the dataset and the model gets chopped into slices and assigned to the
+different GPUs. The model is split into shards, each hosted on a different GPU. Gradients and
+parameter updates are computed locally and synchronized globally.
+FSDP is particularly useful for training very large models that cannot fit into the memory of a single GPU.
 
 ## Get PyTorch Runtime Packages
 
-Kubeflow Trainer has PyTorch runtime: `torch-distributed` with some pre-installed Python packages.
+Kubeflow Trainer includes a PyTorch runtime called `torch-distributed`, which comes with several
+pre-installed Python packages.
 
-Run the following command to get list of available packages:
+Run the following command to get a list of the available packages:
 
 ```py
 # TODO(andreyvelich): This should be changed to the `get_runtime_packages()` API.
@@ -59,23 +62,23 @@ torch                     2.7.1+cu128
 torchaudio                2.7.1+cu128
 torchelastic              0.2.2
 torchvision               0.22.1+cu128
-...
 ```
 
 ## PyTorch Distributed Environment
 
-Kubeflow Trainer uses [`torchrun` utility](https://docs.pytorch.org/docs/stable/elastic/run.html)
-to run PyTorch script on every training node. Kubeflow Trainer automatically configures the
-appropriate distributed environment for the PyTorch:
+Kubeflow Trainer uses the [`torchrun` utility](https://docs.pytorch.org/docs/stable/elastic/run.html)
+to run PyTorch script on every training node. It automatically configures the appropriate distributed
+environment for PyTorch cluster:
 
-- `dist.get_world_size()` - number of total processes (e.g. GPUs) in PyTorch cluster.
-- `dist.get_rank()` - rank of the current process within PyTorch cluster.
-- `os.environ["LOCAL_RANK"]` - rank of the current process within PyTorch training nodes.
+- `dist.get_world_size()` - Total number of processes (e.g., GPUs) in the PyTorch cluster
+- `dist.get_rank()` - Rank of the current process within the PyTorch cluster.
+- `os.environ["LOCAL_RANK"]` - Rank of the current process within a PyTorch training node.
 
-You can use the above values to download dataset only on node with `local_rank=0`, or export
-your fine-tuned LLM only on node with `rank=0` (e.g. master node).
+You can use these values to, for example, download the dataset only on the node with `local_rank=0`,
+or export your fine-tuned LLM only on the node with `rank=0` (e.g., the master node).
+nly on the node with local_rank=0, or export your fine-tuned LLM only on the node with rank=0 (e.g., the master node).
 
-You can the distributed env as follows:
+You can access the distributed environment as follows:
 
 ```py
 from kubeflow.trainer import TrainerClient, CustomTrainer
@@ -121,7 +124,7 @@ print("Distributed PyTorch env on node-1")
 print(TrainerClient().get_job_logs(name=job_id, step="node", node_rank=1)["node-1"])
 ```
 
-You should see the distributed env across two training nodes:
+You should see the distributed environment across the two training nodes as follows:
 
 ```shell
 Distributed PyTorch env on node-0
@@ -153,16 +156,16 @@ LOCAL_RANK: 1
 
 ### Configure PyTorch Training Function
 
-You can leverage the `CustomTrainer` to wrap your PyTorch code under the function
-and create the TrainJob. The function handles end-to-end model training or fine-tuning of pre-trained
-model.
+You can leverage the `CustomTrainer()` to wrap your PyTorch code inside a function and create a
+TrainJob. This function should handle the end-to-end model training or fine-tuning of a
+pre-trained model.
 
 {{% alert title="Note" color="info" %}}
-Imports must also be included in the function body, so TrainJob can recognize them on every
-training node.
+All necessary imports must be included inside the function body so that the TrainJob can recognize
+them on every training node.
 {{% /alert %}}
 
-Your training function might look as follows:
+Your training function might look like this:
 
 ```py
 def fine_tune_qwen():
@@ -172,20 +175,20 @@ def fine_tune_qwen():
     from transformers import AutoTokenizer, AutoModelForCausalLM
     import boto3
 
-    # Configure distributed Torch.
+    # Setup distributed Torch.
     device, backend = ("cuda", "nccl") if torch.cuda.is_available() else ("cpu", "gloo")
     dist.init_process_group(backend=backend)
 
-    # Configure dataset and dataloader.
+    # Configure the dataset and dataloader.
     dataset = ...
     train_loader = DataLoader(
         dataset, batch_size=128, sampler=DistributedSampler(dataset)
     )
-    # Configure pre-trained model and tokenizer.
+    # Configure the pre-trained model and tokenizer.
     tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-32B")
     model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-32B")
 
-    # Configure PyTorch training loop.
+    # Configure the PyTorch training loop.
     for epoch in range(10):
         for batch_idx, batch in enumerate(train_loader):
             output = model(...)
@@ -193,7 +196,7 @@ def fine_tune_qwen():
             model.step()
             ...
     if dist.get_rank() == 0:
-        # Export model to object storage (e.g. S3)
+        # Export your model to the object storage (e.g. S3)
         boto3.upload_file()
 ```
 
@@ -202,7 +205,7 @@ def fine_tune_qwen():
 After configuring the PyTorch training function, use the `train()` API to create TrainJob:
 
 ```python
-TrainerClient().train(
+job_id = TrainerClient().train(
     runtime=TrainerClient().get_runtime("torch-distributed"),
     trainer=CustomTrainer(
         func=fine_tune_qwen,
@@ -216,7 +219,18 @@ TrainerClient().train(
 )
 ```
 
+### Get the TrainJob Results
+
+You can use the `get_job_logs()` API to see your TrainJob logs:
+
+```py
+print(TrainerClient().get_job_logs(name=job_id)["node-0"])
+```
+
 ## Next Steps
 
-- Check [the PyTorch MNIST example](https://github.com/kubeflow/trainer/blob/master/examples/pytorch/image-classification/mnist.ipynb).
-- Follow [the PyTorch fine-tuning example](https://github.com/kubeflow/trainer/blob/master/examples/pytorch/question-answering/fine-tune-distilbert.ipynb) of pre-trained DistilBERT.
+- Check out [the PyTorch MNIST example](https://github.com/kubeflow/trainer/blob/master/examples/pytorch/image-classification/mnist.ipynb).
+- Follow [the PyTorch fine-tuning example](https://github.com/kubeflow/trainer/blob/master/examples/pytorch/question-answering/fine-tune-distilbert.ipynb)
+  using the pre-trained DistilBERT model.
+- Learn more about [the Kubeflow SDK APIs](https://github.com/kubeflow/sdk/blob/main/python/kubeflow/trainer/api/trainer_client.py)
+  for `TrainerClient()`.
