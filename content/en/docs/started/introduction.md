@@ -56,7 +56,7 @@ learn how Kubeflow projects fit in AI lifecycle.
 
 <img src="/docs/started/images/kubeflow-overview.drawio.svg" 
      alt="Kubeflow Overview Diagram"
-     class="mt-3 mb-3 border rounded p-3 bg-white">
+     class="mt-3 mb-3 border rounded bg-white">
 </img>
 
 ## Kubeflow Video Introduction
@@ -109,12 +109,14 @@ Kubeflow projects have individual roadmaps which established by project maintain
 To see what's coming up in future versions of Kubeflow AI reference platform, refer to the
 [Kubeflow AI reference platform](https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md).
 
-## Getting involved
+## Kubeflow Community
 
-There are many ways to contribute to Kubeflow, and we welcome contributions!
+Kubeflow is a community-led project maintained by the
+[Kubeflow Working Groups](/docs/about/governance/#4-working-groups)
+under the guidance of the [Kubeflow Steering Committee](/docs/about/governance/#2-kubeflow-steering-committee-ksc).
 
-Read the [contributor's guide](/docs/about/contributing/) to get started on the code, and learn about
-the community on the [community page](/docs/about/community/).
+We encourage you to learn about the [Kubeflow Community](/docs/about/community/)
+and how to [contribute](/docs/about/contributing/) to the project!
 
 ## Next Steps
 
