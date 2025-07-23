@@ -6,15 +6,18 @@ weight = 20
 
 ## What is BuiltinTrianer
 
-[BuiltinTrainer](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L140) is a concept versus [CustomTrainer](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L26). They are both supported in [`train()` API from the Kubeflow SDK](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/api/trainer_client.py#L156). And their difference lies in:
+The Kubeflow SDK [`train()`](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/api/trainer_client.py#L156) API supports two types of trainers: [`BuiltinTrainer()`](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L140) and [`CustomTrainer()`](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L26).
 
-1. **CustomTrainer**: Used to support custom training task and users will take the responsibility to define a self contained function that encapsulates the entire model training process.
-2. **BuiltinTrainer**: Designed for **config-driven tasks with existing trainer**, which already includes the post-training logic and requires only parameter adjustments.
+These options allow you to specify how you want to configure the TrainJob:
+
+1. **CustomTrainer**: Use this when you need full control over the training process. It requires you to define a self-contained Python function that includes the entire model training process. The `CustomTrainer` is ideal if you want to have full control over the training script.
+
+2. **BuiltinTrainer**: Designed for configuration-driven TrainJobs using a predefined training script, often tailored for tasks like LLMs fine-tuning. The training script contains entire post-training logic for LLMs fine-tuning, and it allows you to adjust the configurations for dataset, LoRA parameters, learning rates, etc. The `BuiltinTrainer` is ideal for fast iteration without modifying the training loop.
 
 Currently, Kubeflow SDK supports these configs for `BuiltinTrainer`:
 
-1. [**TorchTune LLM Trainer**](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L109): Leverage [TorchTune](https://github.com/pytorch/torchtune) to fine-tune LLMs.
+1. [**TorchTuneConfig**](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L109): Configurations for TorchTune LLM Trainer, leveraging [TorchTune](https://github.com/pytorch/torchtune) to fine-tune LLMs.
 
 ## Next Steps
 
-- Learn [how to use TorchTune LLM Trainer](./torchtune.md)
+- Learn [how to use TorchTune LLM Trainer](/docs/components/trainer/user-guides/builtin-trainer/torchtune.md)
