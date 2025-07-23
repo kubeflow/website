@@ -4,7 +4,7 @@ description = "How to use TorchTune LLM Trainer in BuiltinTrainer"
 weight = 20
 +++
 
-**TorchTune LLM Trainer** is one of the supported BuiltinTrainers in Kubeflow SDK. It leverages TorchTune to streamline and simplify LLM fine-tuning lifecycle on Kubernetes, while providing a simple yet efficient Python API for data scientists.
+**TorchTuneConfig**, configurations for **TorchTune LLM Trainer**, is one of the supported configs in `BuiltinTrainer`. It leverages TorchTune to streamline and simplify LLM fine-tuning lifecycle on Kubernetes, while providing a simple yet efficient Python API for data scientists.
 
 The supported model list can be seen in [this directory](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune). It's worth noticing that we do not support multi-node fine-tuning for now. Only one Pod will be launched for TorchTune LLM Trainer.
 
@@ -12,29 +12,20 @@ In this page, we'll show a simple example of fine-tuning LLMs with TorchTune LLM
 
 ## Prerequisites
 
-Ensure that you have access to a Kubernetes cluster with Kubeflow Trainer
-control plane installed. If it is not set up yet, follow
-[the installation guide](/docs/components/trainer/operator-guides/installation) to quickly deploy
-Kubeflow Trainer.
+Before exploring this guide, make sure to follow [the Getting Started guide](https://www.kubeflow.org/docs/components/trainer/getting-started/) to understand the basics of Kubeflow Trainer.
 
 ```Python
-# List all available Kubeflow Training Runtimes.
+# Get torchtune-llama3.2-1b Kubeflow Training Runtime.
 from kubeflow.trainer import *
 
 client = TrainerClient()
-for runtime in client.list_runtimes():
-    print(runtime)
-```
-
-### Installing the Kubeflow Python SDK
-
-Install the latest Kubeflow Python SDK version directly from the source repository:
-
-```bash
-pip install git+https://github.com/kubeflow/sdk.git@main#subdirectory=python
+runtime = client.get_runtime("torchtune-llama3.2-1b")
+print(runtime)
 ```
 
 ## Use TorchTune LLM Trainer in BuiltinTrainer
+
+The guides below shows how to fine-tune Llama-3.2-1B-Instruct with alpaca datset by BuiltinTrainer.
 
 ### Create PVCs for Models and Datasets
 
@@ -49,7 +40,6 @@ We need to manually create PVCs for each models we want to fine-tune. Please not
 ```Python
 # Create a PersistentVolumeClaim for the TorchTune Llama 3.2 1B model.
 client.core_api.create_namespaced_persistent_volume_claim(
-  namespace="default",
   body=client.V1PersistentVolumeClaim(
     api_version="v1",
     kind="PersistentVolumeClaim",
@@ -64,7 +54,7 @@ client.core_api.create_namespaced_persistent_volume_claim(
 )
 ```
 
-### Use TorchTune LLM Trainer with `train()` API
+### Use TorchTune LLM Trainer with train() API
 
 You need to provide the following parameters to use TorchTune LLM Trainer with `train()` API:
 
@@ -78,9 +68,7 @@ For example, you can use the `train()` API to fine-tune the Llama-3.2-1B-Instruc
 
 ```python
 job_name = client.train(
-    runtime=Runtime(
-        name="torchtune-llama3.2-1b"
-    ),
+    runtime=client.get_runtime("torchtune-llama3.2-1b"),
     initializer=Initializer(
         dataset=HuggingFaceDatasetInitializer(
             storage_uri="hf://tatsu-lab/alpaca/data"
