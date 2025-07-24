@@ -1,5 +1,6 @@
 +++
 title = "Community Guide"
-description = "How to get involved to Kubeflow Trainer community"
+manualLink = "https://github.com/kubeflow/trainer/tree/master?tab=readme-ov-file#community"
+icon = "fa-solid fa-arrow-up-right-from-square"
 weight = 20
 +++
