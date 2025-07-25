@@ -27,7 +27,14 @@ kind create cluster # or minikube start
 
 ## Installing the Kubeflow Trainer Controller Manager
 
-Run the following command to deploy the Kubeflow Trainer controller manager:
+Run the following command to deploy a released version of Kubeflow Trainer controller manager:
+
+```bash
+VERSION=v2.0.0
+kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/manager?ref=${VERSION}"
+```
+
+For the latest changes run:
 
 ```bash
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/manager?ref=master"
@@ -45,7 +52,13 @@ kubeflow-trainer-controller-manager-cc6468559-dblnw   1/1     Running   0       
 
 ## Installing the Kubeflow Training Runtimes
 
-Run the following command to deploy the Kubeflow Training Runtimes:
+Run the following command to deploy a released version of Kubeflow Training Runtimes:
+
+```bash
+kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/runtimes?ref=${VERSION}"
+```
+
+For the latest changes run:
 
 ```bash
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/runtimes?ref=master"
