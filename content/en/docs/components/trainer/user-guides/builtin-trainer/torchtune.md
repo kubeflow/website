@@ -208,7 +208,7 @@ The `TorchTuneConfig` class is used for configuring TorchTune LLM Trainer that a
 | `loss` | `Optional[Loss]` | The loss algorithm we use to fine-tune the LLM, e.g. `torchtune.modules.loss.CEWithChunkedOutputLoss` |
 | `num_nodes` | `Optional[int]` | The number of PyTorch Nodes in training |
 | `dataset_preprocess_config` | `Optional[TorchTuneInstructDataset]` | Configuration for dataset preprocessing. |
-| `resource_per_node` | `Optional[Dict]` | The resource for each PyTorch Node |
+| `resources_per_node` | `Optional[Dict]` | The resource for each PyTorch Node |
 
 ```python
 # Loss function for the TorchTune LLM Trainer.
