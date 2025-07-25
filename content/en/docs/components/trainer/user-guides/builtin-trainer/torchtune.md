@@ -4,7 +4,7 @@ description = "How to use TorchTune LLM Trainer in BuiltinTrainer"
 weight = 20
 +++
 
-**TorchTuneConfig**, configurations for **TorchTune LLM Trainer**, is one of the supported configs in `BuiltinTrainer`. It leverages TorchTune to streamline and simplify LLM fine-tuning lifecycle on Kubernetes, while providing a simple yet efficient Python API for data scientists.
+**TorchTuneConfig**, the configuration for **TorchTune LLM Trainer**, is one of the supported configs in `BuiltinTrainer`. It leverages TorchTune to streamline and simplify LLM fine-tuning lifecycle on Kubernetes, while providing a simple yet efficient Python API for data scientists.
 
 The supported model list can be seen in [this directory](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune). It's worth noticing that we do not support multi-node fine-tuning for now. Only one Pod will be launched for TorchTune LLM Trainer.
 
