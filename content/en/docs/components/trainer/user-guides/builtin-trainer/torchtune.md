@@ -198,7 +198,7 @@ initializer=Initializer(
 
 #### Description
 
-The `TorchTuneConifg` class is used for configuring TorchTune LLM Trainer that already includes the fine-tuning logic.
+The `TorchTuneConfig` class is used for configuring TorchTune LLM Trainer that already includes the fine-tuning logic.
 
 | **Parameters** | **Type** | **What is it?** |
 | - | - | - |
