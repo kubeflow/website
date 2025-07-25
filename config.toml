@@ -3,81 +3,25 @@ title = "Kubeflow"
 description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 
 enableRobotsTXT = true
+theme = "kubeflow"
 
-theme = ["docsy"]
-
-###############################################################################
-# Docsy
-###############################################################################
+# Language and Content Settings
 enableGitInfo = true
-
-# language settings
 contentDir = "content/en"
 defaultContentLanguage = "en"
-# tell Hugo not to include the /en/ element in the URL path for English docs
 defaultContentLanguageInSubdir = false
-# useful when translating
 enableMissingTranslationPlaceholders = true
-# disable taxonomies
 disableKinds = ["taxonomy"]
-# deprecated directories
 ignoreFiles = []
 
-# Override module mounts, mainly so that we can update fontawesome.
-# NOTE: this is based on docsy's config.yaml from v0.6.0, and must be updated if the docsy theme ever is.
-#       https://github.com/google/docsy/blob/v0.6.0/config.yaml#L24-L38
-[module]
-
-  [[module.mounts]]
-    source = "assets"
-    target = "assets"
-
-  [[module.mounts]]
-    source = "node_modules/bootstrap"
-    target = "assets/vendor/bootstrap"
-
-  [[module.mounts]]
-    source = "node_modules/@fortawesome/fontawesome-free"
-    target = "assets/vendor/Font-Awesome"
-
-  [[module.mounts]]
-    source = "i18n"
-    target = "i18n"
-
-  [[module.mounts]]
-    source = "layouts"
-    target = "layouts"
-
-  [[module.mounts]]
-    source = "static"
-    target = "static"
-
-  [[module.mounts]]
-    source = "node_modules/@fortawesome/fontawesome-free/webfonts"
-    target = "static/webfonts"
-
-###############################################################################
-# Hugo - Top-level navigation (horizontal)
-###############################################################################
+# Navigation Menu
 [menu]
   [[menu.main]]
-    name = "Kubeflow Summit"
+    name = "Kubeflow Virtual Symposium"
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
-    post = "<br><span class='badge badge-warning'>Nov 10th, 2025</span> <span class='badge badge-warning'>Atlanta, Georgia</span>"
-    url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/kubeflow-summit/"
-  [[menu.main]]
-    name = "Kubeflow Virtual Symposium"
-    weight = -950
-    pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
-    post = "<br><span class='badge badge-warning'>Jul 9th, 2025</span> <span class='badge badge-warning'>Virtual</span>"
-    url = "https://community.cncf.io/events/details/cncf-virtual-project-events-hosted-by-cncf-presents-kubeflow-virtual-planning-symposium-2025/"
-#  [[menu.main]]
-#    name = "GSoC 2025"
-#    weight = -900
-#    pre = "<i class='fas pr-2'><img src='/docs/images/logos/gsoc.svg' style='height: 1.22em;'></i>"
-#    post = "<br><span class='badge badge-success'>Ongoing</span>"
-#    url = "/events/gsoc-2025/"
+    post = "<br><span class='badge badge-warning'>July 9th, 2025</span>"
+    url = "https://community.cncf.io/events/details/cncf-kubeflow-community-presents-kubeflow-community-call-20241203/"
   [[menu.main]]
     name = "Docs"
     weight = -102
@@ -99,238 +43,334 @@ ignoreFiles = []
     pre = "<i class='fab fa-github pr-2'></i>"
     url = "https://github.com/kubeflow/"
 
-###############################################################################
-# Docsy - Output Formats
-###############################################################################
-[outputs]
-section = [ "HTML" ]
-
-###############################################################################
-# Docsy - Goldmark markdown parser
-###############################################################################
+# Markup Configuration
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-
-    # For MathJax
-    # https://gohugo.io/content-management/mathematics/#setup
     [markup.goldmark.extensions]
       [markup.goldmark.extensions.passthrough]
         enable = true
         [markup.goldmark.extensions.passthrough.delimiters]
           block = [['\[', '\]'], ['$$', '$$']]
           inline = [['\(', '\)']]
-
   [markup.highlight]
-    # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
     noClasses = false
     guessSyntax = "true"
+    style = "github-dark"
+    lineNos = true
+    codeFences = true
 
-###############################################################################
-# Docsy - DrawIO configuration
-###############################################################################
-[params.drawio]
-enable = true
-
-###############################################################################
-# Docsy - Image processing configuration
-###############################################################################
-[imaging]
-  resampleFilter = "CatmullRom"
-  quality = 75
-  anchor = "smart"
-
-###############################################################################
-# Docsy - Services configuration
-###############################################################################
+# Services
 [services]
   [services.googleAnalytics]
-  id = "G-Y2KDEK0998"
+    id = "G-Y2KDEK0998"
 
-###############################################################################
-# Docsy - Language configuration
-###############################################################################
+# Language Configuration
 [languages]
   [languages.en]
     title = "Kubeflow"
-    languageName ="English"
+    languageName = "English"
     weight = 1
-
     [languages.en.params]
       description = "Kubeflow makes deployment of ML Workflows on Kubernetes straightforward and automated"
 
-###############################################################################
-# Docsy - Site Parameters
-###############################################################################
+# Site Parameters
 [params]
   github_repo = "https://github.com/kubeflow/website"
   github_project_repo = "https://github.com/kubeflow/kubeflow"
 
+  # Theme-specific parameters
+  version = "v1.10"
+  github_stars = "15.2k"
+  active_users = "100k+"
+
   RSSLink = "/index.xml"
   author = "kubeflow.org"
   github = "kubeflow"
-
   copyright = "The Kubeflow Authors."
   privacy_policy = "https://policies.google.com/privacy"
   trademark = "https://www.linuxfoundation.org/trademark-usage/"
 
-  # Google Custom Search Engine ID.
-  gcs_engine_id = "007239566369470735695:624rglujm-w"
-
-  # The text label for the version menu in the top bar.
-  # The value depends on the branch:
-  #  - `master` -> "Version"
-  #  - `v1.0-branch` -> "v1.0"
+  # Version management
   version_menu = "Version"
-
-  # The version of the docs. This is used in the "version-banner" partial.
-  # The value depends on the branch:
-  #  - `master` -> "REPLACE_WITH_VERSION_ON_ARCHIVE"
-  #  - `v1.0-branch` -> "v1.0"
-  version = "REPLACE_WITH_VERSION_ON_ARCHIVE"
-
-  # If the "version-banner" partial should display at the top of each page.
-  # The value depends on the branch:
-  #  - `master` -> false
-  #  - `v*-branch` -> true
   archived_version = false
-
-  # The URL of the latest version of the docs.
-  # Used in the "version-banner" partial.
   url_latest_version = "https://www.kubeflow.org/docs/"
-
-  # The GitHub branch for the current version of the docs.
-  # Used to generate the "Edit this page" link.
-  # The value depends on the branch:
-  #  - `master` -> "master"
-  #  - `v1.0-branch` -> "v1.0-branch"
   github_branch = "master"
 
-  # Disable MathJax by default
-  # NOTE: enable it per-page with `mathjax: true` in front matter
-  mathjax = false
-
-  # Disable Swagger UI by default
-  # NOTE: enable it per-page with `swaggerui: true` in front matter
-  swaggerui = false
-
-  # Social media accounts
+  # Social media
   [params.social]
-
-    # Twitter account (used to set `twitter:site` in the SEO partial)
     twitter = "kubeflow"
 
-  # These entries appear in the drop-down menu at the top of the website.
+  # Version dropdown entries
   [[params.versions]]
     version = "master"
     githubbranch = "master"
     url = "https://master.kubeflow.org"
   [[params.versions]]
-    version = "v1.10"
-    githubbranch = "v1.10-branch"
-    url = "https://v1-10-branch.kubeflow.org"
-  [[params.versions]]
     version = "v1.9"
     githubbranch = "v1.9-branch"
-    url = "https://v1-9-branch.kubeflow.org"
+    url = "https://v1-9.kubeflow.org"
   [[params.versions]]
     version = "v1.8"
     githubbranch = "v1.8-branch"
-    url = "https://v1-8-branch.kubeflow.org"
+    url = "https://v1-8.kubeflow.org"
   [[params.versions]]
     version = "v1.7"
     githubbranch = "v1.7-branch"
-    url = "https://v1-7-branch.kubeflow.org"
+    url = "https://v1-7.kubeflow.org"
   [[params.versions]]
     version = "v1.6"
     githubbranch = "v1.6-branch"
-    url = "https://v1-6-branch.kubeflow.org"
+    url = "https://v1-6.kubeflow.org"
   [[params.versions]]
     version = "v1.5"
     githubbranch = "v1.5-branch"
-    url = "https://v1-5-branch.kubeflow.org"
+    url = "https://v1-5.kubeflow.org"
   [[params.versions]]
     version = "v1.4"
     githubbranch = "v1.4-branch"
-    url = "https://v1-4-branch.kubeflow.org"
+    url = "https://v1-4.kubeflow.org"
   [[params.versions]]
     version = "v1.3"
     githubbranch = "v1.3-branch"
-    url = "https://v1-3-branch.kubeflow.org"
+    url = "https://v1-3.kubeflow.org"
   [[params.versions]]
     version = "v1.2"
     githubbranch = "v1.2-branch"
-    url = "https://v1-2-branch.kubeflow.org"
+    url = "https://v1-2.kubeflow.org"
   [[params.versions]]
     version = "v1.1"
     githubbranch = "v1.1-branch"
-    url = "https://v1-1-branch.kubeflow.org"
+    url = "https://v1-1.kubeflow.org"
   [[params.versions]]
     version = "v1.0"
     githubbranch = "v1.0-branch"
-    url = "https://v1-0-branch.kubeflow.org"
+    url = "https://v1-0.kubeflow.org"
+  [[params.versions]]
+    version = "v0.7"
+    githubbranch = "v0.7-branch"
+    url = "https://v0-7.kubeflow.org"
 
-  # User interface configuration
+  # UI Configuration
   [params.ui]
-    # Enable the logo
     navbar_logo = true
-    # Enable to show the side bar menu in its compact state.
     sidebar_menu_compact = true
-    # Enable the search box in the side bar.
     sidebar_search_disable = false
-    # Set to true to disable breadcrumb navigation.
     breadcrumb_disable = false
-    # Show expand/collapse icon for sidebar sections
     sidebar_menu_foldable = true
-    # Disable about button in footer
     footer_about_disable = true
+    [params.ui.feedback]
+      enable = true
+      yes = ""
+      no = ""
 
-      # Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
-      # This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
-      # If you want this feature, but occasionally need to remove the "Feedback" section from a single page,
-      # add "hide_feedback: true" to the page's front matter.
-      [params.ui.feedback]
-        enable = true
-        # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-        # NOTE: the actual content of the responses is set in the "layouts/partials/feedback.html" file.
-        yes = ""
-        no = ""
-
-  # Links in footer
+  # Footer Social Links
   [params.links]
     [[params.links.user]]
       name = "X"
       url = "https://x.com/kubeflow/"
       icon = "fa-brands fa-x-twitter"
-      desc = "Follow us on X to get the latest news!"
-    [[params.links.user]]
-      name = "YouTube"
-      url = "https://www.youtube.com/@KubeflowCommunity"
-      icon = "fab fa-youtube"
-      desc = "Subscribe to our YouTube channel for the latest videos!"
+      desc = "Follow us on X"
     [[params.links.user]]
       name = "LinkedIn"
-      url = "https://www.linkedin.com/company/kubeflow"
+      url = "https://www.linkedin.com/company/kubeflow/"
       icon = "fab fa-linkedin"
-      desc = "Connect with us on LinkedIn for updates and networking!"
+      desc = "Connect with us on LinkedIn"
     [[params.links.user]]
-      name = "Kubeflow Slack"
-      url = "/docs/about/community/#kubeflow-slack-channels"
+      name = "YouTube"
+      url = "https://www.youtube.com/c/Kubeflow"
+      icon = "fab fa-youtube"
+      desc = "Subscribe to our YouTube channel"
+    [[params.links.user]]
+      name = "Slack"
+      url = "https://join.slack.com/t/kubeflow/shared_invite/zt-n73pfj05-l206djXlXk5qdQKs4o1Zkg"
       icon = "fab fa-slack"
-      desc = "Join the Kubeflow Slack Workspace!"
-    [[params.links.user]]
-      name = "Bluesky"
-      url = "https://bsky.app/profile/kubefloworg.bsky.social"
-      icon = "fa-brands fa-bluesky"
-      desc = "Follow us on Bluesky for the latest updates!"
-    [[params.links.user]]
-      name = "Kubeflow Mailing List"
-      url = "/docs/about/community/#kubeflow-mailing-list"
-      icon = "fa fa-envelope"
-      desc = "Join the Kubeflow Mailing List!"
-    [[params.links.user]]
-      name = "Kubeflow Community Calendars"
-      url = "/docs/about/community/#kubeflow-community-meetings"
-      icon = "fa fa-calendar-day"
-      desc = "View the Kubeflow Community Calendars!"
+      desc = "Join our Slack workspace"
+    [[params.links.developer]]
+      name = "GitHub"
+      url = "https://github.com/kubeflow/kubeflow"
+      icon = "fab fa-github"
+      desc = "Development happens here!"
+    [[params.links.developer]]
+      name = "Community"
+      url = "https://github.com/kubeflow/community"
+      icon = "fas fa-users"
+      desc = "Join our community"
+
+  # Homepage Content
+  [params.homepage]
+    [params.homepage.hero]
+      title = "Kubeflow"
+      subtitle = "The foundation of tools for AI Platforms on Kubernetes"
+
+    [params.homepage.features]
+      title = "What is Kubeflow?"
+      description = """
+      Kubeflow is the foundation of tools for AI Platforms on Kubernetes. AI platform teams can build on top of Kubeflow, deploy the entire reference platform, or use each project independently to meet their specific needs. The Kubeflow reference platform is composable, modular, portable, and scalable, backed by an <em>ecosystem</em> of <a href="https://kubernetes.io/" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">Kubernetes-native</a> <a href="/docs/started/architecture/#kubeflow-ecosystem" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">open source projects</a> for each stage of <a href="/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">the AI/ML Lifecycle</a>.
+      """
+      call_to_action = """<a href="/docs/started/installing-kubeflow/" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-semibold">Deploy Kubeflow</a> anywhere you run Kubernetes."""
+
+    [params.homepage.action_cards]
+      title = "Get Started with Kubeflow"
+      [[params.homepage.action_cards.cards]]
+        title = "Get Started"
+        icon = "fas fa-arrow-alt-circle-right"
+        color = "blue"
+        url = "/docs/started/"
+        description = "Learn how to install and deploy Kubeflow on your Kubernetes cluster with our comprehensive getting started guide."
+      [[params.homepage.action_cards.cards]]
+        title = "Contribute"
+        icon = "fas fa-pencil-alt"
+        color = "green"
+        url = "/docs/about/contributing/"
+        description = "Join our open-source community and help improve Kubeflow for everyone. Learn how to contribute code, documentation, or feedback."
+      [[params.homepage.action_cards.cards]]
+        title = "GenAI"
+        icon = "fas fa-brain"
+        color = "purple"
+        url = "/docs/genai/use-cases/"
+        description = "Explore how Kubeflow enables Generative AI workflows and discover use cases for large language models and AI applications."
+      [[params.homepage.action_cards.cards]]
+        title = "Documentation"
+        icon = "fas fa-book"
+        color = "orange"
+        url = "/docs/"
+        description = "Explore our comprehensive documentation to learn how to deploy and use Kubeflow for your machine learning workflows."
+        [[params.homepage.action_cards.cards.buttons]]
+          text = "View Docs"
+          url = "/docs/"
+          icon = "fas fa-book"
+          color = "orange"
+        [[params.homepage.action_cards.cards.buttons]]
+          text = "Install Guide"
+          url = "/docs/started/installing-kubeflow/"
+          icon = "fas fa-download"
+          color = "blue"
+        [[params.homepage.action_cards.cards.buttons]]
+          text = "Events"
+          url = "/events/"
+          icon = "fas fa-calendar"
+          color = "purple"
+
+    [params.homepage.components]
+      title = "Kubeflow Components"
+      [[params.homepage.components.items]]
+        name = "Pipelines"
+        logo = "/docs/images/logos/kubeflow.png"
+        url = "/docs/components/pipelines/overview/"
+        description = "Kubeflow Pipelines (KFP) is a platform for building then deploying portable and scalable machine learning workflows using Kubernetes."
+      [[params.homepage.components.items]]
+        name = "Notebooks"
+        logo = "/docs/images/logos/jupyter-vscode-rlang.png"
+        url = "/docs/components/notebooks/overview/"
+        description = "Kubeflow Notebooks lets you run web-based development environments on your Kubernetes cluster by running them inside Pods."
+      [[params.homepage.components.items]]
+        name = "Dashboard"
+        logo = "/docs/images/logos/dashboard.png"
+        url = "/docs/components/central-dash/overview/"
+        description = "Kubeflow Central Dashboard is our hub which connects the authenticated web interfaces of Kubeflow and other ecosystem components."
+      [[params.homepage.components.items]]
+        name = "Model Training"
+        logo = "/docs/images/logos/trainer.png"
+        url = "/docs/components/trainer/overview/"
+        description = "Kubeflow Trainer is a Kubernetes-native project for fine-tuning LLMs and model training. It enables scalable and distributed training with various frameworks including PyTorch, JAX, TensorFlow, and more."
+      [[params.homepage.components.items]]
+        name = "AutoML"
+        logo = "/docs/images/logos/katib.png"
+        url = "/docs/components/katib/overview/"
+        description = "Katib is a Kubernetes-native project for automated machine learning (AutoML) with support for hyperparameter tuning, early stopping and neural architecture search."
+      [[params.homepage.components.items]]
+        name = "Model Serving"
+        logo = "/docs/images/logos/kserve.png"
+        url = "/docs/external-add-ons/kserve/introduction/"
+        description = "KServe (previously <em>KFServing</em>) solves production model serving on Kubernetes. It delivers high-abstraction and performant interfaces for frameworks like Tensorflow, XGBoost, ScikitLearn, PyTorch, and ONNX."
+      [[params.homepage.components.items]]
+        name = "Model Registry"
+        logo = "/docs/images/logos/ModelRegistry.png"
+        url = "/docs/components/model-registry/overview/"
+        description = "Kubeflow Model Registry is a cloud-native component that provides a single pane of glass for ML model developers to index and manage models, versions, and ML artifacts metadata."
+
+    [params.homepage.community]
+      title = "Join our Community"
+      description = """We are an open and welcoming <a href="/docs/about/community/" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-800 dark:text-blue-400">community</a> of software developers, data scientists, and organizations! Check out the <a href="/docs/about/community/#list-of-available-meetings" class="text-blue-600 hover:text-blue-800 dark:text-blue-400">weekly community calls</a>, get involved in discussions on the <a href="/docs/about/community/#kubeflow-mailing-list" class="text-blue-600 hover:text-blue-800 dark:text-blue-400">mailing list</a> or chat with others on the <a href="/docs/about/community/#kubeflow-slack-channels" class="text-blue-600 hover:text-blue-800 dark:text-blue-400">Slack Workspace</a>!"""
+
+    [params.homepage.trusted_by]
+      title = "Trusted by"
+      adopters_link = "https://github.com/kubeflow/community/blob/master/ADOPTERS.md"
+      adopters_text = "see more adopters on"
+      [[params.homepage.trusted_by.logos]]
+        name = "RedHat"
+        light = "/docs/images/logos/redhat-light.svg"
+        dark = "/docs/images/logos/redhat-dark.svg"
+      [[params.homepage.trusted_by.logos]]
+        name = "AWS"
+        light = "/docs/images/logos/aws-light.svg"
+        dark = "/docs/images/logos/aws-dark.svg"
+
+    [params.homepage.cncf]
+      title = "We are a Cloud Native Computing Foundation project."
+      logo_light = "/docs/images/logos/cncf.svg"
+      logo_dark = "/docs/images/logos/cncf-white.svg"
+
+  # Documentation sections configuration for the main docs page
+  [params.docs]
+    title = "Documentation"
+    description = "Comprehensive guides and references for getting started with Kubeflow"
+
+    [[params.docs.sections]]
+      title = "Getting Started"
+      path = "/docs/started"
+      icon = "fas fa-arrow-alt-circle-right"
+      color = "green"
+      description = "Learn the basics of Kubeflow and get your first ML workflow running"
+      button_text = "Start learning"
+
+    [[params.docs.sections]]
+      title = "Components"
+      path = "/docs/components"
+      icon = "fas fa-cubes"
+      color = "blue"
+      description = "Explore Kubeflow's core components like Pipelines, Notebooks, and KServe"
+      button_text = "Explore components"
+
+    [[params.docs.sections]]
+      title = "External Add-ons"
+      path = "/docs/external-add-ons"
+      icon = "fas fa-puzzle-piece"
+      color = "purple"
+      description = "Integrate with ecosystem tools like Feast, Elyra, and KServe"
+      button_text = "View integrations"
+
+    [[params.docs.sections]]
+      title = "Generative AI"
+      path = "/docs/genai"
+      icon = "fas fa-brain"
+      color = "orange"
+      description = "Build and deploy generative AI applications with Kubeflow"
+      button_text = "Explore GenAI"
+
+    [[params.docs.sections]]
+      title = "Distributions"
+      path = "/docs/distributions"
+      icon = "fas fa-layer-group"
+      color = "cyan"
+      description = "Choose from various Kubeflow distributions and deployment options"
+      button_text = "View distributions"
+
+    [[params.docs.sections]]
+      title = "About Kubeflow"
+      path = "/docs/about"
+      icon = "fas fa-info-circle"
+      color = "gray"
+      description = "Learn about the project, community, and how to contribute"
+      button_text = "Learn more"
+
+  # Support and versioning policy
+  support_policy_url = "/docs/started/support/#application-status"
+
+  # Component versions - configure these to match your project's versions
+  [params.component_versions]
+    model_registry = "0.2.21"
+    pipelines = "2.4.0"
+    # Add other component versions as needed
