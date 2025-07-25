@@ -10,7 +10,7 @@ The Kubeflow SDK [`train()`](https://github.com/kubeflow/sdk/blob/e0657679993617
 
 These options allow you to specify how you want to configure the TrainJob:
 
-1. **CustomTrainer**: Use this when you need full control over the training process. It requires you to define a self-contained Python function that includes the entire model training process. The `CustomTrainer` is ideal if you want to have full control over the training script.
+1. **CustomTrainer**: Use this when you need full control over the training process. It requires you to define a self-contained Python function that includes the entire model training process. 
 
 2. **BuiltinTrainer**: Designed for configuration-driven TrainJobs using a predefined training script, often tailored for tasks like LLMs fine-tuning. The training script contains entire post-training logic for LLMs fine-tuning, and it allows you to adjust the configurations for dataset, LoRA parameters, learning rates, etc. The `BuiltinTrainer` is ideal for fast iteration without modifying the training loop.
 
