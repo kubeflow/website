@@ -1,6 +1,6 @@
 +++
-title = "TorchTune LLM Trainer"
-description = "How to use TorchTune LLM Trainer in BuiltinTrainer"
+title = "TorchTune BuiltinTrainer"
+description = "How to fine-tune LLMs with TorchTune BuiltinTrainer"
 weight = 20
 +++
 
