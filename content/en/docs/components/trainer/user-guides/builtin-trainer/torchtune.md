@@ -204,7 +204,7 @@ The `TorchTuneConfig` class is used for configuring TorchTune LLM Trainer that a
 | - | - | - |
 | `dtype` | `Optional[DataType]` | The underlying data type used to represent the model and optimizer parameters. Currently, we only support `bf16` and `fp32`. |
 | `batch_size` | `Optional[int]` | The number of samples processed before updating model weights. |
-| `epochs` | `Optional[int]` | The number of samples processed before updating model weights. |
+| `epochs` | `Optional[int]` | The number of times the entire dataset is processed during training. |
 | `loss` | `Optional[Loss]` | The loss algorithm we use to fine-tune the LLM, e.g. `torchtune.modules.loss.CEWithChunkedOutputLoss` |
 | `num_nodes` | `Optional[int]` | The number of PyTorch Nodes in training |
 | `dataset_preprocess_config` | `Optional[TorchTuneInstructDataset]` | Configuration for dataset preprocessing. |
