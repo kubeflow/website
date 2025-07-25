@@ -154,7 +154,7 @@ We'll use parameters in Initializer to download dataset and model from remote st
 
 #### Dataset Initializer
 
-Currenlty, we only support downloading datasets from HuggingFace by defining `HuggingFaceDatasetInitializer`:
+Currently, we only support downloading datasets from HuggingFace by defining `HuggingFaceDatasetInitializer`:
 
 {{% alert title="Note" color="info" %}}
 For `storage_uri` in Dataset Initializer, you need to speficy **the exact path to data files**. That's to say, you need to set it to `hf://<org_id>/<repo_id>/path/to/data/files`.
