@@ -4,7 +4,7 @@ description = "What is BuiltinTrainer"
 weight = 20
 +++
 
-## What is BuiltinTrianer
+## What is BuiltinTrainer
 
 The Kubeflow SDK [`train()`](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/api/trainer_client.py#L156) API supports two types of trainers: [`BuiltinTrainer()`](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L140) and [`CustomTrainer()`](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L26).
 
