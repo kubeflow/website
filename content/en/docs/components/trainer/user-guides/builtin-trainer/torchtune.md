@@ -25,7 +25,7 @@ print(runtime)
 
 ## Use TorchTune LLM Trainer in BuiltinTrainer
 
-The guides below shows how to fine-tune Llama-3.2-1B-Instruct with alpaca datset by BuiltinTrainer.
+The guide below shows how to fine-tune Llama-3.2-1B-Instruct with alpaca dataset by BuiltinTrainer.
 
 ### Create PVCs for Models and Datasets
 
