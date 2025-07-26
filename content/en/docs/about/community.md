@@ -86,7 +86,10 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Pipelines WG           | [Google Doc](http://bit.ly/kfp-meeting-notes)        |                                                                                              |
 | Kubeflow Release team call      | [Google Doc](https://bit.ly/kf-release-team-notes)   |                                                                                              |
 | Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
-| KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
+| KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                 |                  
+|            
+| Kubeflow Graduation Call | [Google Doc](https://docs.google.com/document/d/1Wdxt1xedAj7qF_Rjmxy1R0NRdfv7UWs-r2PItewxHpE) |
+| 
 
 </div>
 </div>
