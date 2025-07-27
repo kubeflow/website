@@ -87,7 +87,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Release team call      | [Google Doc](https://bit.ly/kf-release-team-notes)   |                                                                                              |
 | Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                 |                  
-| Kubeflow Graduation Call | [Google Doc](https://docs.google.com/documentd1Wdxt1xedAj7qF_Rjmxy1R0NRdfv7UWs-r2PItewxHpE) | [Youtube Playlist](https://youtu.be/a3ZHpSZ6F1o?list=PLmzRWLV1CK_wXzEuDqJZQVMhZaJVHTWfM) |
+| Kubeflow Graduation Call | [Google Doc](https://docs.google.com/document/d/1Wdxt1xedAj7qF_Rjmxy1R0NRdfv7UWs-r2PItewxHpE/edit) | [Youtube Playlist](https://youtu.be/a3ZHpSZ6F1o?list=PLmzRWLV1CK_wXzEuDqJZQVMhZaJVHTWfM) |
 
 </div>
 </div>
