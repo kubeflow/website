@@ -26,7 +26,7 @@ training or model serving.
 
 | Kubeflow Project                                                                    | Source Code                                                             |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [KServe](https://www.kubeflow.org/docs/external-add-ons/kserve/)                    | [`kserve/kserve`](https://github.com/kserve/kserve)                     |
+| [Kubeflow KServe](https://www.kubeflow.org/docs/components/kserve/)                 | [`kserve/kserve`](https://github.com/kserve/kserve)                     |
 | [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [`kubeflow/katib`](https://github.com/kubeflow/katib)                   |
 | [Kubeflow Model Registry](https://www.kubeflow.org/docs/components/model-registry/) | [`kubeflow/model-registry`](https://github.com/kubeflow/model-registry) |
 | [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | [`kubeflow/notebooks`](https://github.com/kubeflow/notebooks)           |
