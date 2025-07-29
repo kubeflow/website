@@ -366,3 +366,10 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/training/user-guides/pytorch/                /docs/components/trainer/legacy-v1/user-guides/pytorch/
 /docs/components/training/overview/                           /docs/components/trainer/legacy-v1/overview/
 /docs/components/training/getting-started/                    /docs/components/trainer/legacy-v1/getting-started/
+
+# Move KServe to Kubeflow Projects
+/docs/external-add-ons/kserve/                                 /docs/components/kserve/
+/docs/external-add-ons/kserve/github/                          /docs/components/kserve/github/
+/docs/external-add-ons/kserve/introduction/                    /docs/components/kserve/introduction/
+/docs/external-add-ons/kserve/webapp/                          /docs/components/kserve/webapp/
+/docs/external-add-ons/kserve/website/                         /docs/components/kserve/website/
