@@ -58,7 +58,7 @@ Watch the following KubeCon + CloudNativeCon 2024 talk which provides an overvie
 
 ## Why use Kubeflow Trainer
 
-The Kubeflow Trainer supports key phases on the [AI lifecycle](/docs/started/architecture/#kubeflow-components-in-the-ml-lifecycle),
+The Kubeflow Trainer supports key phases on the [AI lifecycle](/docs/started/architecture/#kubeflow-projects-in-the-ai-lifecycle),
 including model training and LLMs fine-tuning, as shown in the diagram below:
 
 <img src="/docs/components/trainer/images/ai-lifecycle-trainer.drawio.svg"
