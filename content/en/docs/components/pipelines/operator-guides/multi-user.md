@@ -7,7 +7,7 @@ weight = 3
 Multi-user isolation for Kubeflow Pipelines is part of Kubeflow's overall profile and namespace isolation strategy.
 
 {{% alert title="Tip" color="info" %}}
-Kubeflow Pipelines multi-user isolation is only supported in [Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-platform) deployments.
+Kubeflow Pipelines multi-user isolation is only supported in [Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-ai-reference-platform) deployments.
 Refer to [profiles and namespaces](/docs/components/central-dash/profiles/) for common operations like [managing profile contributors](/docs/components/central-dash/profiles/#manage-profile-contributors).
 {{% /alert %}}
 
