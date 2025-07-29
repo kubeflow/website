@@ -1,5 +1,5 @@
 ---
-title: Spark Operator
-description: Documentation for Spark Operator
-weight: 70
+title: Kubeflow Spark Operator
+description: Documentation for Kubeflow Spark Operator
+weight: 10
 ---
