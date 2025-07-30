@@ -373,3 +373,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/external-add-ons/kserve/introduction/                    /docs/components/kserve/introduction/
 /docs/external-add-ons/kserve/webapp/                          /docs/components/kserve/webapp/
 /docs/external-add-ons/kserve/website/                         /docs/components/kserve/website/
+
+# Move releases and distributions to kubeflow-platform
+/docs/releases/*                                               /docs/kubeflow-platform/releases/:splat
+/docs/distributions/*                                          /docs/kubeflow-platform/distributions/:splat
