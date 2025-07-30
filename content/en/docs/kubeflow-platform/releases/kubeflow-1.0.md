@@ -48,7 +48,7 @@ weight = 104
 </table>
 </div>
 
-## Kubeflow 1.0.1
+## Kubeflow AI reference platform 1.0.1
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -92,7 +92,7 @@ weight = 104
 </table>
 </div>
 
-## Kubeflow 1.0.0
+## Kubeflow AI reference platform 1.0.0
 
 <div class="table-responsive">
 <table class="table table-bordered">

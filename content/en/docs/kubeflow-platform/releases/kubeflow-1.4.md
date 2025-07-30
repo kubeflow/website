@@ -180,7 +180,7 @@ weight = 100
 </table>
 </div>
 
-## Kubeflow 1.4.0
+## Kubeflow AI reference platform 1.4.0
 
 <div class="table-responsive">
 <table class="table table-bordered">

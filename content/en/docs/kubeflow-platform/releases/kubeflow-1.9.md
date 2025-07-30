@@ -284,7 +284,7 @@ This information is only for the manifests found in the <a href="https://github.
 </table>
 </div>
 
-## Kubeflow 1.9.1
+## Kubeflow AI reference platform 1.9.1
 
 <div class="table-responsive">
 <table class="table table-bordered">
