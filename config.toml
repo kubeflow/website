@@ -66,12 +66,7 @@ ignoreFiles = []
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
     post = "<br><span class='badge badge-warning'>Nov 10th, 2025</span> <span class='badge badge-warning'>Atlanta, Georgia</span>"
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/kubeflow-summit/"
-  [[menu.main]]
-    name = "Kubeflow Virtual Symposium"
-    weight = -950
-    pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
-    post = "<br><span class='badge badge-warning'>Jul 9th, 2025</span> <span class='badge badge-warning'>Virtual</span>"
-    url = "https://community.cncf.io/events/details/cncf-virtual-project-events-hosted-by-cncf-presents-kubeflow-virtual-planning-symposium-2025/"
+  
 #  [[menu.main]]
 #    name = "GSoC 2025"
 #    weight = -900
