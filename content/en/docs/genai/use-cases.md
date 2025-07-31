@@ -16,14 +16,14 @@ Kubeflow’s modular, Kubernetes-native architecture makes building end-to-end G
 
 ## Table of Contents
 
-1. [Synthetic Data Generation](#synthetic-data-generation)  
-1. [Retrieval-Augmented Generation (RAG)](#retrieval-augmented-generation-rag)  
+1. [Synthetic Data Generation](#synthetic-data-generation)
+1. [Retrieval-Augmented Generation (RAG)](#retrieval-augmented-generation-rag)
 1. [Scaling RAG Data Transformation with Spark](#scaling-rag-data-transformation-with-spark)
-1. [Fine-Tuning LLMs](#fine-tuning-llms)  
-1. [Hyperparameter Optimization](#hyperparameter-optimization)  
-1. [Inference at Scale](#inference-at-scale)  
-1. [Model Evaluation](#model-evaluation)  
-1. [Beyond Core Use Cases](#beyond-core-use-cases)  
+1. [Fine-Tuning LLMs](#fine-tuning-llms)
+1. [Hyperparameter Optimization](#hyperparameter-optimization)
+1. [Inference at Scale](#inference-at-scale)
+1. [Model Evaluation](#model-evaluation)
+1. [Beyond Core Use Cases](#beyond-core-use-cases)
 
 ---
 
@@ -31,9 +31,9 @@ Kubeflow’s modular, Kubernetes-native architecture makes building end-to-end G
 
 When real data is scarce or sensitive, Kubeflow Pipelines automates the creation of high-fidelity synthetic datasets using techniques like [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), [VAEs](https://en.wikipedia.org/wiki/Variational_autoencoder), and [statistical copulas](https://gmd.copernicus.org/preprints/gmd-2020-427/gmd-2020-427.pdf). By defining parameterized pipeline components that:
 
-- Train synthesizer models  
-- Validate synthetic output against privacy/fidelity criteria  
-- Parallelize jobs across on-prem or cloud clusters  
+- Train synthesizer models
+- Validate synthetic output against privacy/fidelity criteria
+- Parallelize jobs across on-prem or cloud clusters
 
 teams can accelerate experimentation without compromising compliance. Learn more in the [Synthetic Data Generation with KFP guide](https://blog.kubeflow.org/kfp/2025/02/16/synthetic-data-using-kfp.html).
 
@@ -43,17 +43,17 @@ teams can accelerate experimentation without compromising compliance. Learn more
 
 RAG combines vector-based retrieval with generative models to produce contextually grounded outputs:
 
-1. **Indexing & Storage**  
-   - Ingest document embeddings into Feast’s vector store (e.g., Milvus)  
-2. **Retrieval at Inference**  
-   - Fetch top-k relevant chunks via Feast → Milvus  
-   - Concatenate retrieved context into the LLM prompt  
-3. **Tuning Retrieval Parameters**  
-   - Use Katib to sweep over `top_k`, `temperature`, etc., and optimize metrics like BLEU  
+1. **Indexing & Storage**
+   - Ingest document embeddings into Feast’s vector store (e.g., Milvus)
+2. **Retrieval at Inference**
+   - Fetch top-k relevant chunks via Feast → Milvus
+   - Concatenate retrieved context into the LLM prompt
+3. **Tuning Retrieval Parameters**
+   - Use Katib to sweep over `top_k`, `temperature`, etc., and optimize metrics like BLEU
 
 This workflow is detailed in the [Katib RAG blog post](https://blog.kubeflow.org/katib/rag/) and the [Feast + Docling RAG tutorial](https://docs.feast.dev/tutorials/rag-with-docling).
 
---- 
+---
 
 ## Scaling RAG Data Transformation with Spark
 
@@ -63,7 +63,6 @@ Preprocessing massive document collections for RAG pipelines—text cleaning, ch
 - Text Chunking: Normalize, tokenize, and split content into fixed-size passages with overlap.
 - Distributed Embedding: Call embedding services (e.g., OpenAI, HuggingFace) inside Spark UDFs or map operations to parallelize across executor pods.
 - Direct Write to Feature Store: Persist chunk embeddings and metadata back into Feast’s offline store or vector store without intermediate bottlenecks.
-
 
 ---
 
@@ -85,15 +84,15 @@ spec:
       template:
         spec:
           containers:
-          - name: pytorch
-            image: your-registry/llm-trainer:latest
-            command: ["python", "train.py", "--dataset", "/data/train"]
-            env:
-            - name: MODEL_URI
-              value: gs://models/your-llm
+            - name: pytorch
+              image: your-registry/llm-trainer:latest
+              command: ["python", "train.py", "--dataset", "/data/train"]
+              env:
+                - name: MODEL_URI
+                  value: gs://models/your-llm
 ```
-You can also invoke fine-tuning programmatically:
 
+You can also invoke fine-tuning programmatically:
 
 ```python
 from kubeflow.training import TrainingClient
@@ -107,9 +106,11 @@ client.train(
     lora_config={"rank": 8, "alpha": 32}
 )
 ```
+
 For details, see the [Kubeflow Trainer fine-tuning guide](https://www.kubeflow.org/docs/components/trainer/legacy-v1/user-guides/fine-tuning/).
 
 ## Hyperparameter Optimization
+
 Automated tuning is essential to maximize model performance:
 
 Katib Experiments let you define hyperparameter search spaces and optimization objectives (e.g., minimize loss, maximize BLEU).
@@ -117,7 +118,8 @@ Katib Experiments let you define hyperparameter search spaces and optimization o
 Katib allows you to effortlessly [optimize hyperparameters of LLMs using distributed PyTorchJobs](https://blog.kubeflow.org/gsoc-2024-project-4/).
 
 ## Inference at Scale
-After training and tuning, [KServe](docs/external-add-ons/kserve/introduction) delivers scalable, framework-agnostic inference:
+
+After training and tuning, [KServe](/docs/components/kserve/introduction) delivers scalable, framework-agnostic inference:
 
 - Expose models via Kubernetes Custom Resources
 
@@ -127,22 +129,23 @@ After training and tuning, [KServe](docs/external-add-ons/kserve/introduction) d
 
 Integrate KServe endpoints into Pipelines to orchestrate rollout strategies and ensure consistent low-latency GenAI services.
 
-
 ## Model Evaluation
+
 Rigorous evaluation guards against drift and degradation:
 
 - Pipeline-Embedded Eval Steps
-    - Statistical benchmarks for synthetic data
-    - Text metrics (BLEU, ROUGE) for generation quality
+
+  - Statistical benchmarks for synthetic data
+  - Text metrics (BLEU, ROUGE) for generation quality
 
 - [Early-Stopping & Tuning](docs/components/katib/user-guides/early-stopping/)
-    - Leverage Katib’s metric collector to enforce early-stop rules
-    - Close the loop: evaluation → tuning → retrain
+  - Leverage Katib’s metric collector to enforce early-stop rules
+  - Close the loop: evaluation → tuning → retrain
 
 By codifying evaluation in Pipelines, you maintain reproducibility and versioned lineage from data to model to metrics.
 
-
 ## Beyond Core Use Cases
+
 Kubeflow’s ecosystem continues to expand:
 
 - Notebooks UI for interactive development (Jupyter, VSCode)
@@ -154,5 +157,3 @@ Kubeflow’s ecosystem continues to expand:
 - Feast [supports vector similarity search](https://docs.feast.dev/tutorials/rag-with-docling) for RAG and other next-gen AI workloads
 
 - Each Kubeflow Project plugs seamlessly into Kubernetes, ensuring portability and consistency.
-
-

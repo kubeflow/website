@@ -1,10 +1,10 @@
 +++
-title = "Kubeflow 0.7"
-description = "Information about the Kubeflow 0.7 release"
+title = "Kubeflow AI reference platform 0.7"
+description = "Information about the Kubeflow AI reference platform 0.7 release"
 weight = 105
 +++
 
-## Kubeflow 0.7.0
+## Kubeflow AI reference platform 0.7.0
 
 <div class="table-responsive">
 <table class="table table-bordered">
