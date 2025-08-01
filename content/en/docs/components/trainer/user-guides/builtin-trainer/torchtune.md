@@ -4,7 +4,7 @@ description = "How to fine-tune LLMs with TorchTune BuiltinTrainer"
 weight = 20
 +++
 
-**TorchTuneConfig**, the configuration for **TorchTune LLM Trainer**, is one of the supported configs in `BuiltinTrainer`. It leverages TorchTune to streamline and simplify LLM fine-tuning lifecycle on Kubernetes, while providing a simple yet efficient Python API for data scientists.
+This guide describes how to fine-tune LLMs using `BuiltinTrainer` and `TorchTuneConfig`. `TorchTuneConfig` leverages [TorchTune](https://github.com/pytorch/torchtune) to streamline LLMs fine-tuning on Kubernetes. To understand the concept of `BuiltinTrainer`, see the [overview guide](/docs/components/trainer/user-guides/builtin-trainer/overview.md)
 
 The supported model list can be seen in [this directory](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune). It's worth noticing that we do not support multi-node fine-tuning for now. Only one Pod will be launched for TorchTune LLM Trainer.
 
@@ -21,6 +21,12 @@ from kubeflow.trainer import *
 client = TrainerClient()
 runtime = client.get_runtime("torchtune-llama3.2-1b")
 print(runtime)
+```
+
+Output:
+
+```sh
+Runtime(name='torchtune-llama3.2-1b', trainer=Trainer(trainer_type=<TrainerType.BUILTIN_TRAINER: 'BuiltinTrainer'>, framework=<Framework.TORCHTUNE: 'torchtune'>, entrypoint=['tune', 'run'], accelerator='Unknown', accelerator_count='2'), pretrained_model=None)
 ```
 
 ## Use TorchTune LLM Trainer in BuiltinTrainer
@@ -75,7 +81,7 @@ job_name = client.train(
         ),
         model=HuggingFaceModelInitializer(
             storage_uri="hf://meta-llama/Llama-3.2-1B-Instruct",
-            access_token="<YOUR_HF_TOKEN>"  # Replace with your Hugging Face token,
+            access_token="<YOUR_HF_TOKEN>"  # Replace with your Hugging Face token
         )
     ),
     trainer=BuiltinTrainer(
@@ -124,17 +130,6 @@ After Trainer node completes the fine-tuning task, the fine-tuned model will be 
 
 ## Parameters
 
-We use `train()` API to launch fine-tuning jobs with TorchTune LLM Trainer.
-
-```python
-def train(
-    self,
-    runtime: types.Runtime = types.DEFAULT_RUNTIME,
-    initializer: Optional[types.Initializer] = None,
-    trainer: Optional[Union[types.CustomTrainer, types.BuiltinTrainer]] = None,
-) -> str:
-```
-
 ### Runtime
 
 For TorchTune LLM Trainer, you can just find the runtime you want in the [manifest folder](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune), and just specify the `name` parameter. Like:
@@ -167,8 +162,8 @@ Currently, we support:
 
 | **Parameters** | **Type** | **What is it?** |
 | - | - | - |
-| `storage_uri` | `str` | Storage URI for dataset that begins with `hf://` |
 | `access_token` | `Optional[str]` | Token that verfies your access to the dataset if needed. |
+| `storage_uri` | `str` | Storage URI for dataset that begins with `hf://` |
 
 #### Model Initializer
 
@@ -176,8 +171,8 @@ Currently, we only support downloading models from HuggingFace by defining `Hugg
 
 | **Parameters** | **Type** | **What is it?** |
 | - | - | - |
-| `storage_uri` | `str` | Storage URI for model that begins with `hf://` |
 | `access_token` | `Optional[str]` | Token that verfies your access to the model if needed. |
+| `storage_uri` | `str` | Storage URI for model that begins with `hf://` |
 
 #### Example Usage
 
@@ -202,12 +197,12 @@ The `TorchTuneConfig` class is used for configuring TorchTune LLM Trainer that a
 
 | **Parameters** | **Type** | **What is it?** |
 | - | - | - |
-| `dtype` | `Optional[DataType]` | The underlying data type used to represent the model and optimizer parameters. Currently, we only support `bf16` and `fp32`. |
 | `batch_size` | `Optional[int]` | The number of samples processed before updating model weights. |
+| `dataset_preprocess_config` | `Optional[TorchTuneInstructDataset]` | Configuration for dataset preprocessing. |
+| `dtype` | `Optional[DataType]` | The underlying data type used to represent the model and optimizer parameters. Currently, we only support `bf16` and `fp32`. |
 | `epochs` | `Optional[int]` | The number of times the entire dataset is processed during training. |
 | `loss` | `Optional[Loss]` | The loss algorithm we use to fine-tune the LLM, e.g. `torchtune.modules.loss.CEWithChunkedOutputLoss` |
 | `num_nodes` | `Optional[int]` | The number of PyTorch Nodes in training |
-| `dataset_preprocess_config` | `Optional[TorchTuneInstructDataset]` | Configuration for dataset preprocessing. |
 | `resources_per_node` | `Optional[Dict]` | The resource for each PyTorch Node |
 
 ```python
@@ -225,11 +220,11 @@ The `TorchTuneInstructDataset` is a dataset class supported by TorchTune. It def
 
 | **Parameters** | **Type** | **What is it?** |
 | - | - | - |
+| `column_map` | `Optional[Dict[str, str]]` | A mapping to change the expected "input" and "output" column names to the actual column names in the dataset. Keys should be "input" and "output" and values should be the actual column names. Default is None, keeping the default "input" and "output" column names. |
+| `new_system_prompt` | `Optional[str]` | The new system prompt to use. If specified, prepend a system message. This can serve as instructions to guide the model response. Default is None. |
 | `source` | `Optional[DataFormat]` | Data file type |
 | `split` | `Optional[str]` | The split of the dataset to use. You can use this argument to load a subset of a given split, e.g. split="train[:10%]". Default is `train`. |
 | `train_on_input` | `Optional[bool]` | Whether the model is trained on the user prompt or not. Default is False. |
-| `new_system_prompt` | `Optional[str]` | The new system prompt to use. If specified, prepend a system message. This can serve as instructions to guide the model response. Default is None. |
-| `column_map` | `Optional[Dict[str, str]]` | A mapping to change the expected "input" and "output" column names to the actual column names in the dataset. Keys should be "input" and "output" and values should be the actual column names. Default is None, keeping the default "input" and "output" column names. |
 
 ```python
 # Data file type for the TorchTune LLM Trainer.
