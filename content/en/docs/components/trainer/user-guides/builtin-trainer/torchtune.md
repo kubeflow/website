@@ -193,49 +193,7 @@ initializer=Initializer(
 
 #### Description
 
-The `TorchTuneConfig` class is used for configuring TorchTune LLM Trainer that already includes the fine-tuning logic.
-
-| **Parameters** | **Type** | **What is it?** |
-| - | - | - |
-| `batch_size` | `Optional[int]` | The number of samples processed before updating model weights. |
-| `dataset_preprocess_config` | `Optional[TorchTuneInstructDataset]` | Configuration for dataset preprocessing. |
-| `dtype` | `Optional[DataType]` | The underlying data type used to represent the model and optimizer parameters. Currently, we only support `bf16` and `fp32`. |
-| `epochs` | `Optional[int]` | The number of times the entire dataset is processed during training. |
-| `loss` | `Optional[Loss]` | The loss algorithm we use to fine-tune the LLM, e.g. `torchtune.modules.loss.CEWithChunkedOutputLoss` |
-| `num_nodes` | `Optional[int]` | The number of PyTorch Nodes in training |
-| `resources_per_node` | `Optional[Dict]` | The resource for each PyTorch Node |
-
-```python
-# Loss function for the TorchTune LLM Trainer.
-class Loss(Enum):
-    CEWithChunkedOutputLoss = "torchtune.modules.loss.CEWithChunkedOutputLoss"
-
-# Data type for the TorchTune LLM Trainer.
-class DataType(Enum):
-    BF16 = "bf16"
-    FP32 = "fp32"
-```
-
-The `TorchTuneInstructDataset` is a dataset class supported by TorchTune. It defines some dataset parameters which allows TorchTune preprocessing the Instruct Dataset for us automatically.
-
-| **Parameters** | **Type** | **What is it?** |
-| - | - | - |
-| `column_map` | `Optional[Dict[str, str]]` | A mapping to change the expected "input" and "output" column names to the actual column names in the dataset. Keys should be "input" and "output" and values should be the actual column names. Default is None, keeping the default "input" and "output" column names. |
-| `new_system_prompt` | `Optional[str]` | The new system prompt to use. If specified, prepend a system message. This can serve as instructions to guide the model response. Default is None. |
-| `source` | `Optional[DataFormat]` | Data file type |
-| `split` | `Optional[str]` | The split of the dataset to use. You can use this argument to load a subset of a given split, e.g. split="train[:10%]". Default is `train`. |
-| `train_on_input` | `Optional[bool]` | Whether the model is trained on the user prompt or not. Default is False. |
-
-```python
-# Data file type for the TorchTune LLM Trainer.
-class DataFormat(Enum):
-    JSON = "json"
-    CSV = "csv"
-    PARQUET = "parquet"
-    ARROW = "arrow"
-    TEXT = "text"
-    XML = "xml"
-```
+The `TorchTuneConfig` class is used for configuring TorchTune LLM Trainer that already includes the fine-tuning logic. You can find the API definition [here](https://github.com/kubeflow/sdk/blob/main/python/kubeflow/trainer/types/types.py).
 
 #### Example Usage
 
