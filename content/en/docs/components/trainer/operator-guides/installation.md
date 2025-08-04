@@ -60,6 +60,7 @@ kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifest
 
 For the latest changes run:
 
+
 ```bash
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/runtimes?ref=master"
 ```
