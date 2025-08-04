@@ -1,7 +1,7 @@
 +++
 title = "ML Policy"
 description = "How to configure MLPolicy in Kubeflow Trainer Runtimes"
-weight = 40
+weight = 50
 +++
 
 This guide describes how to configure
@@ -13,20 +13,21 @@ to understand the basics of Kubeflow Trainer Runtimes.
 
 ## MLPolicy Overview
 
-The `MLPolicy` API defines how training jobs are configured - for example, the number of training nodes
-(e.g., Pods) to launch, and settings for distributed training using frameworks like PyTorch:
+The `MLPolicy` API defines the ML-specific configuration for the training jobs - for example,
+the number of training nodes (e.g., Pods) to launch, or PyTorch settings.
 
 ```YAML
 mlPolicy:
   numNodes: 3
   torch:
-    numProcPerNode: "gpu"
+    numProcPerNode: gpu
 ```
 
 ## Types of MLPolicy
 
-The `MLPolicy` API supports multiple types, referred to as `MLPolicySources`. Each type defines how
-the training job is launched and orchestrated.
+The `MLPolicy` API supports multiple types, known as `MLPolicySources`. Each type defines how
+the training job is launched and orchestrated. You can specify one of the supported sources in the
+`MLPolicy` API.
 
 ### Torch
 

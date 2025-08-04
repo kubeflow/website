@@ -7,7 +7,7 @@ weight = 10
 {{% alert title="Note" color="info" %}}
 If you are using Kubeflow Training Operator V1, refer [to this migration document](/docs/components/trainer/operator-guides/migration).
 
-For legacy Kubeflow Training Operator V1 documentation, check [these guides](/docs/components/trainer/legacy-v1)
+For legacy Kubeflow Training Operator V1 documentation, check [these guides](/docs/components/trainer/legacy-v1).
 {{% /alert %}}
 
 ## What is Kubeflow Trainer
