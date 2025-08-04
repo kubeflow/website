@@ -50,18 +50,33 @@ it is important to ensure that each job template includes the appropriate ancest
 These labels are used by the Kubeflow Trainer controller to inject values from the parent
 TrainJob into the corresponding `ReplicatedJob`:
 
-- `trainer.kubeflow.org/trainjob-ancestor-step: trainer`: Inject values from
-  [the TrainJob's `.spec.trainer`](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#Trainer)
-- `trainer.kubeflow.org/trainjob-ancestor-step: dataset-initializer`: Inject values from
-  [the TrainJob's `.spec.initializer.dataset](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#DatasetInitializer)
-- `trainer.kubeflow.org/trainjob-ancestor-step: model-initializer`: Inject values from
-  [the TrainJob's `.spec.initializer.model](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#ModelInitializer)
+- Values from [the TrainJob's `.spec.trainer`](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#Trainer)
+
+  ```yaml
+  trainer.kubeflow.org/trainjob-ancestor-step: trainer
+  ```
+
+- Values from [the TrainJob's `.spec.initializer.dataset`](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#DatasetInitializer)
+
+  ```yaml
+  trainer.kubeflow.org/trainjob-ancestor-step: dataset-initializer
+  ```
+
+- Values from [the TrainJob's `.spec.initializer.model`](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#ModelInitializer)
+
+  ```yaml
+  trainer.kubeflow.org/trainjob-ancestor-step: model-initializer
+  ```
+
+The complete example might look as follows:
 
 ```YAML
 apiVersion: trainer.kubeflow.org/v1alpha1
 kind: ClusterTrainingRuntime
 metadata:
   name: example-runtime
+  labels:
+    trainer.kubeflow.org/framework: mlx
 spec:
   template:
     spec:
@@ -91,7 +106,7 @@ spec:
                   containers:
                     - name: model-initializer
                       image: ghcr.io/kubeflow/trainer/model-initializer
-        - name: node
+        - name: launcher
           dependsOn:
             - name: model-initializer
               status: Complete
@@ -104,5 +119,27 @@ spec:
                 spec:
                   containers:
                     - name: node
-                      image: ghcr.io/kubeflow/trainer/torchtune-trainer
+                      image: ghcr.io/kubeflow/trainer/mlx-runtime
+                      securityContext:
+                        runAsUser: 1000
+        - name: node
+          template:
+            spec:
+              template:
+                spec:
+                  containers:
+                    - name: node
+                      image: ghcr.io/kubeflow/trainer/mlx-runtime
+                      securityContext:
+                        runAsUser: 1000
+                      command:
+                        - /usr/sbin/sshd
+                      args:
+                        - -De
+                        - -f
+                        - /home/mpiuser/.sshd_config
+                      readinessProbe:
+                        tcpSocket:
+                          port: 2222
+                        initialDelaySeconds: 5
 ```
