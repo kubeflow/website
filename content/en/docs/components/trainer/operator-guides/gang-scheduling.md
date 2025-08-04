@@ -12,7 +12,7 @@ You can enable gang scheduling by using
 [the `PodGroupPolicy` API](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#PodGroupPolicy)
 in the Kubeflow Trainer Runtimes.
 
-Before exploring this guide, make sure to follow [the Runtime guide](/docs/components/trainer/runtime)
+Before exploring this guide, make sure to follow [the Runtime guide](/docs/components/trainer/operator-guides/runtime)
 to understand the basics of Kubeflow Trainer Runtimes.
 
 ## PodGroupPolicy Overview

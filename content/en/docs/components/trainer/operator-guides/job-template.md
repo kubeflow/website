@@ -8,7 +8,7 @@ This guide describes how to configure
 [the `Template` API](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#JobSetTemplateSpec)
 in the Kubeflow Trainer Runtimes.
 
-Before exploring this guide, make sure to follow [the Runtime guide](/docs/components/trainer/runtime)
+Before exploring this guide, make sure to follow [the Runtime guide](/docs/components/trainer/operator-guides/runtime)
 to understand the basics of Kubeflow Trainer Runtimes.
 
 ### Template Overview
