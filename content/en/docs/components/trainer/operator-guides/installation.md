@@ -60,10 +60,16 @@ kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifest
 
 For the latest changes run:
 
-
 ```bash
-kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/runtimes?ref=master"
+kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/runtimes?ref=master" 
 ```
+```md
+
+>  above URL is for `kubectl` CLI use only.  
+> Opening it in a browser will show a 404 error.  
+> You can browse the manifests here:  
+> [Trainer Runtimes on GitHub](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes)
+
 
 ## Next Steps
 
