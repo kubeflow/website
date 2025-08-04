@@ -4,18 +4,17 @@ description = "How to manage Runtimes with Kubeflow Trainer"
 weight = 30
 +++
 
-This guide explains how cluster administrators can manage TrainingRuntime and ClusterTrainingRuntime.
-It describes how to configure `MLPolicy`, `PodGroupPolicy`, and `Template` APIs.
+This guide gives an overview for TrainingRuntime and ClusterTrainingRuntime.
 
-Runtimes are template configurations or blueprints that are used by TrainJob to run desired training
-job.
+Runtimes are template configurations or blueprints that managed by platform administrators and
+used by TrainJob to launch the desired training job.
 
 ## What is ClusterTrainingRuntime
 
-The ClusterTrainingRuntime is a cluster-scoped API in Kubeflow Trainer that allows platform
-administrators to manage templates for TrainJobs. Runtimes can be deployed across the entire
-Kubernetes cluster and reused by AI practitioners in their TrainJobs. It simplifies the process of
-running training jobs by providing standardized blueprints and ready-to-use environments.
+The ClusterTrainingRuntime is a cluster-scoped API that allows platform administrators to manage
+templates for TrainJobs. ClusterTrainingRuntime can be deployed across the entire Kubernetes cluster
+and reused by AI practitioners in their TrainJobs. It simplifies the process of running training
+jobs by providing standardized blueprints and ready-to-use environments.
 
 ### Example of ClusterTrainingRuntime
 
@@ -47,10 +46,10 @@ spec:
                       image: pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime
 ```
 
-In Kubeflow, a ClusterTrainingRuntime defines a reusable template for distributed training,
-specifying node count, processes, and scheduling policies. A TrainJob references this runtime
-via the `RuntimeRef` API, linking to its `APIGroup`, `Kind` and `Name`. This enables the TrainJob
-to use the runtime’s configuration for consistent and modular training setups.
+In the Runtime specification, platform administrators define a reusable template with the
+appropriate configuration for distributed training. A TrainJob references this runtime
+via the `RuntimeRef` API, which links to its `APIGroup`, `Kind` and `Name`. This allows the TrainJob
+to adopt the runtime’s configuration, enabling consistent and modular training setups.
 
 ```YAML
 apiVersion: trainer.kubeflow.org/v1alpha1
@@ -66,9 +65,10 @@ spec:
 
 ## What is TrainingRuntime
 
-The TrainingRuntime is a namespace-scoped API in Kubeflow Trainer that allows platform
-administrators to manage templates for TrainJobs per namespace. It is ideal for teams or projects
-that need their own customized training setups, offering flexibility for decentralized control.
+The TrainingRuntime is a namespace-scoped API that allows platform administrators to manage
+templates for TrainJobs per namespace. It is ideal for teams or projects that need their own
+customized training setups for each Kubernetes namespace, offering flexibility for
+decentralized control.
 
 ### Example of TrainingRuntime
 
@@ -106,7 +106,7 @@ When referencing TrainingRuntime, the Kubernetes namespace must be the same as t
 {{% /alert %}}
 
 ```YAML
-apiVersion: kubeflow.org/v2alpha1
+apiVersion: kubeflow.org/v1alpha1
 kind: TrainJob
 metadata:
   name: example-train-job
@@ -121,20 +121,21 @@ spec:
 ## Framework Label Requirement
 
 Every deployed Runtime must have the label `trainer.kubeflow.org/framework` to ensure that
-the Kubeflow SDK can recognize it. For example:
+the Kubeflow SDK can recognize it, for example:
 
 ```yaml
 trainer.kubeflow.org/framework: deepspeed
 ```
 
-The Kubeflow SDK uses this label to determine the appropriate configuration for supported BuiltinTrainers.
+The Kubeflow SDK uses this label to determine the appropriate configuration for the supported
+BuiltinTrainers.
 
 ## Supported Runtimes
 
 Kubeflow Trainer community maintains
 [several ClusterTrainingRuntime](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes)
-to help AI practitioners quickly experiment with Kubeflow Trainer, and to enable platform admins
-to extend these runtimes to fit their specific requirement.
+to help AI practitioners quickly experiment with Kubeflow Trainer, and to enable
+platform administrators to extend these runtimes to fit their specific requirement.
 
 The following runtimes are supported for CustomTrainer:
 
@@ -158,7 +159,7 @@ certain supported ClusterTrainingRuntimes. To avoid breaking existing users, we 
 policy for Runtimes that are slated to be removed.
 
 A supported ClusterTrainingRuntime may be marked as deprecated and is eligible for removal starting
-from two minor releases after its deprecation.
+from **two minor releases** after its deprecation.
 
 To ensure users are aware of Runtime deprecations, the following measures are taken:
 
