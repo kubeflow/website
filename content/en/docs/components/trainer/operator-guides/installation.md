@@ -67,4 +67,4 @@ kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifest
 ## Next Steps
 
 - How to [migrate from Kubeflow Training Operator v1](/docs/components/trainer/operator-guides/migration).
-- Explore [the Kubeflow Trainer Runtime guide](docs/components/trainer/operator-guides/runtime)
+- Explore [the Kubeflow Trainer Runtime guide](/docs/components/trainer/operator-guides/runtime).
