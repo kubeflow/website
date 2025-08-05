@@ -49,6 +49,9 @@ We will start be deploying Jupyter Enterpise Gateway with support for remote ker
 Save the following manifest as `enterprise-gateway-helm.yaml` which will be used as the basic configuration for the gateway.
 
 ```yaml
+global:
+  rbac: true
+
 image: elyra/enterprise-gateway:3.2.3
 imagePullPolicy: Always
 logLevel: DEBUG
@@ -95,6 +98,8 @@ env:
     value: http://enterprise-gateway.enterprise-gateway:8888
   - name: JUPYTER_GATEWAY_REQUEST_TIMEOUT
     value: "120"
+  - name: KERNEL_SERVICE_ACCOUNT_NAME
+    value: "enterprise-gateway-sa"
 
 ```
 
@@ -118,7 +123,11 @@ kubectl patch notebook <NOTEBOOK_NAME> \
         {
           "name": "JUPYTER_GATEWAY_REQUEST_TIMEOUT",
           "value": "120"
-        }
+        },
+        {
+          "name": "KERNEL_SERVICE_ACCOUNT_NAME",
+          "value": "enterprise-gateway-sa"
+        }
       ]
     }
   ]'
@@ -126,18 +135,6 @@ kubectl patch notebook <NOTEBOOK_NAME> \
 ```
 
 These variables configure JupyterLab to forward kernel execution to Jupyter Enterprise Gateway, which then runs PySpark jobs via the Spark Operator.
-
-## Step 3: Allow Enterpise Gateway Service Account to Manage Kernels
-
-The following command grants the default service account in the enterprise-gateway namespace cluster-wide edit permissions, allowing it to manage most Kubernetes resources—useful for enabling Spark drivers or the gateway to create and control pods and services.
-
-```yaml
-
-kubectl create clusterrolebinding eg-spark-edit \
-  --clusterrole=edit \
-  --serviceaccount=enterprise-gateway:default
-
-```
 
 ## What Happens Next
 
