@@ -135,9 +135,9 @@ Check [this guide](/docs/components/trainer/user-guides/builtin-trainer/overview
 ## Supported Runtimes
 
 Kubeflow Trainer community maintains
-[several ClusterTrainingRuntime](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes)
+[several ClusterTrainingRuntimes](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes)
 to help AI practitioners quickly experiment with Kubeflow Trainer, and to enable
-platform administrators to extend these runtimes to fit their specific requirement.
+platform administrators to extend these runtimes to fit their specific requirements.
 
 The following runtimes are supported for CustomTrainer:
 
