@@ -106,7 +106,7 @@ When referencing TrainingRuntime, the Kubernetes namespace must be the same as t
 {{% /alert %}}
 
 ```YAML
-apiVersion: kubeflow.org/v1alpha1
+apiVersion: trainer.kubeflow.org/v1alpha1
 kind: TrainJob
 metadata:
   name: example-train-job
