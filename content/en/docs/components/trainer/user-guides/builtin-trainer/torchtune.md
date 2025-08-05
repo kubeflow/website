@@ -113,7 +113,7 @@ print(log_dict[constants.DATASET_INITIALIZER])
 #### Model Initializer
 
 ```python
-log_dict = client.get_job_logs(job_name, follow=False, step=constants.MODEL_INITIALIZER)
+log_dict = client.get_job_logs(job_name, step=constants.MODEL_INITIALIZER)
 print(log_dict[constants.MODEL_INITIALIZER])
 ```
 
