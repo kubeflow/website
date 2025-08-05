@@ -117,7 +117,7 @@ log_dict = client.get_job_logs(job_name, follow=False, step=constants.MODEL_INIT
 print(log_dict[constants.MODEL_INITIALIZER])
 ```
 
-#### TorchTune LLM Trainer
+#### Training Node
 
 ```python
 log_dict = client.get_job_logs(job_name, follow=False)
