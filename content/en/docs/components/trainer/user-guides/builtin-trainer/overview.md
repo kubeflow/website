@@ -16,8 +16,8 @@ These options allow you to specify how you want to configure the TrainJob:
 
 Currently, Kubeflow SDK supports these configs for `BuiltinTrainer`:
 
-1. [**TorchTuneConfig**](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L109): Configuration for TorchTune LLM Trainer, leveraging [TorchTune](https://github.com/pytorch/torchtune) to fine-tune LLMs.
+1. [**TorchTuneConfig**](https://github.com/kubeflow/sdk/blob/e065767999361772758c0c12b2b154c3589d45ae/python/kubeflow/trainer/types/types.py#L109): Configuration to fine-tune LLMs with [TorchTune](https://github.com/pytorch/torchtune).
 
 ## Next Steps
 
-- Learn [how to use TorchTune LLM Trainer](/docs/components/trainer/user-guides/builtin-trainer/torchtune.md)
+- Learn [how to use TorchTune BuiltinTrainer](/docs/components/trainer/user-guides/builtin-trainer/torchtune.md)
