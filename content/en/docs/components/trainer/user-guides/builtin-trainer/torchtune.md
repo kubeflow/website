@@ -99,7 +99,7 @@ job_name = client.train(
 
 ### Watch the TrainJob Logs
 
-We can use the get_job_logs() API to get the TrainJob logs.
+We can use the `get_job_logs()` API to get the TrainJob logs.
 
 #### Dataset Initializer
 
