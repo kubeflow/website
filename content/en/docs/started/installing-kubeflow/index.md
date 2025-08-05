@@ -276,7 +276,8 @@ Kubeflow Manifests contain all Kubeflow projects, Kubeflow Central Dashboard, an
 applications that comprise the **Kubeflow AI reference platform**. This installation is helpful when you want to
 try out the end-to-end Kubeflow AI reference platform capabilities.
 
-If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases): 
+If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases):
+
 - [**Kubeflow 1.10:**](/docs/releases/kubeflow-1.10/)
   - [`v1.10.2`](https://github.com/kubeflow/manifests/tree/v1.10.2#installation)
 
