@@ -106,7 +106,7 @@ We can use the `get_job_logs()` API to get the TrainJob logs.
 ```python
 from kubeflow.trainer.constants import constants
 
-log_dict = client.get_job_logs(job_name, follow=False, step=constants.DATASET_INITIALIZER)
+log_dict = client.get_job_logs(job_name, step=constants.DATASET_INITIALIZER)
 print(log_dict[constants.DATASET_INITIALIZER])
 ```
 
