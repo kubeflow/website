@@ -1,42 +1,24 @@
 <!-- Add the component name to the PR's title. Example: pipelines: Fixed broken link in Getting Started with Kubeflow Pipelines -->
 
+### Description of Changes
 
-**Checklist:**
+<!-- Please include a summary of the changes and which issue is fixed. -->
+
+### Related Issues
+
+<!-- If this pull request RESOLVES an open issue, include it here with the prefix "Closes: #<issue number>"
+     This will automatically close the issue when the PR is merged. -->
+
+Closes: #<issue number>
+
+<!-- If this pull request is RELATED but does NOT resolve an open issue,
+     include it here with the prefix "Related: #<issue number>" -->
+
+Related: #<issue number>
+
+
+### Checklist
+
 - [ ] You have [signed off your commits](https://www.kubeflow.org/docs/about/contributing/#sign-off-your-commits)
-- [ ] Ensure you follow best practices from our guide. [Contributing](https://github.com/kubeflow/website/blob/master/content/en/docs/about/contributing.md). 
-- [ ] You have included screenshots when changing the website style or adding a new page.
-
-
-**Description of your changes:**
-
-
-### Issue
-
-<!--
- If this pull request resolves an open issue, please link the issue in the PR
- description so it will automatically close when the PR is merged.
-
- See the GitHub documentation for more details and other options:
-
- https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
--->
-
-Closes: #
-
-<!--Additional Information:-->
-### Labels
-<!-- Please include labels below by uncommenting them to help us better review PRs -->
-
-<!-- /area central-dashboard -->
-<!-- /area katib -->
-<!-- /area kserve -->
-<!-- /area model-registry -->
-<!-- /area notebooks -->
-<!-- /area pipelines -->
-<!-- /area spark-operator -->
-<!-- /area trainer -->
-<!-- /area gsoc -->
-<!-- /area website -->
-<!-- /area community -->
----
-
+- [ ] Ensure you follow best practices from our [contributing guide](https://github.com/kubeflow/website/blob/master/content/en/docs/about/contributing.md).
+- [ ] (for big changes) I will post screenshots of the changes in a PR comment

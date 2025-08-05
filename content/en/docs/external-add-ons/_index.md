@@ -1,7 +1,7 @@
 +++
 title = "External Add-Ons"
 description = "Externally developed projects that integrate with Kubeflow"
-weight = 30
+weight = 50
 +++
 
 {{% alert title="Ownership of External Add-Ons" color="info" %}}

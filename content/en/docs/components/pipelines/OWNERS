@@ -1,3 +1,6 @@
+labels:
+  - area/pipelines
+
 approvers:
   - chensun
   - rimolive

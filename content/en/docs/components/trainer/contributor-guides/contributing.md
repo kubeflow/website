@@ -1,7 +1,6 @@
 +++
 title = "Contributing Guide"
-description = "How to contribute to Kubeflow Trainer project"
+manualLink = "https://github.com/kubeflow/trainer/blob/master/CONTRIBUTING.md"
+icon = "fa-solid fa-arrow-up-right-from-square"
 weight = 10
 +++
-
-This doc is in progress...

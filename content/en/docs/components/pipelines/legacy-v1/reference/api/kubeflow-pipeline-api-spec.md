@@ -5,7 +5,7 @@ weight = 3
 +++
 
 {{% alert title="Old Version" color="warning" %}}
-This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
+This page is about **Kubeflow Pipelines V1**, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
 Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
@@ -15,7 +15,7 @@ This document describes the API specification for the `v1beta1` Kubeflow Pipelin
 
 ## About the REST API
 
-In most deployments of the [Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-platform), the Kubeflow Pipelines REST API is available under the `/pipeline/` HTTP path.
+In most deployments of the [Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-ai-reference-platform), the Kubeflow Pipelines REST API is available under the `/pipeline/` HTTP path.
 For example, if you host Kubeflow at `https://kubeflow.example.com`, the API will be available at `https://kubeflow.example.com/pipeline/`.
 
 {{% alert title="Tip" color="info" %}}
@@ -28,7 +28,7 @@ See the [Connect SDK to the API](/docs/components/pipelines/user-guides/core-fun
 How requests are authenticated and authorized will depend on the distribution you are using.
 Typically, you will need to provide a token or cookie in the request headers.
 
-Please refer to the documentation of your [Kubeflow distribution](/docs/started/installing-kubeflow/#kubeflow-platform) for more information.
+Please refer to the documentation of your [Kubeflow distribution](/docs/started/installing-kubeflow/#kubeflow-ai-reference-platform) for more information.
 
 ### Example Usage
 

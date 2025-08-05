@@ -8,7 +8,7 @@ This document describes the API specification for the `v1alpha3` Kubeflow Model 
 
 ## About the REST API
 
-In most deployments of the [Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-platform), the Kubeflow Model Registry REST API is available under the `/api/model_registry/` HTTP path.
+In most deployments of the [Kubeflow Platform](/docs/started/installing-kubeflow/#kubeflow-ai-reference-platform), the Kubeflow Model Registry REST API is available under the `/api/model_registry/` HTTP path.
 
 For example, if you host Kubeflow at `https://kubeflow.example.com`, the API will be available at `https://kubeflow.example.com/api/model_registry/`.
 
@@ -21,7 +21,7 @@ We recommend using the [Model Registry Python Client](python-client.md) as it pr
 How requests are authenticated and authorized will depend on the distribution you are using.
 Typically, you will need to provide a token or cookie in the request headers.
 
-Please refer to the documentation of your [Kubeflow distribution](/docs/started/installing-kubeflow/#kubeflow-platform) for more information.
+Please refer to the documentation of your [Kubeflow distribution](/docs/started/installing-kubeflow/#kubeflow-ai-reference-platform) for more information.
 
 ### Example Usage
 

@@ -8,7 +8,7 @@ weight = 10
 
 ## What is the Kubeflow Central Dashboard?
 
-The _Kubeflow Central Dashboard_ provides an authenticated web interface for Kubeflow and ecosystem components. 
+The _Kubeflow Central Dashboard_ provides an authenticated web interface for Kubeflow and ecosystem components.
 It acts as a hub for your machine learning platform and tools by exposing the UIs of components running in the cluster.
 
 Some core features of the central dashboard include:
@@ -55,7 +55,7 @@ The following sections are available when [Katib](/docs/components/katib/) is in
 
 ### KServe
 
-The following sections are available when [KServe](/docs/external-add-ons/kserve/) is installed:
+The following sections are available when [KServe](/docs/components/kserve/) is installed:
 
 - **KServe Endpoints**: manage deployed KServe model endpoints
 

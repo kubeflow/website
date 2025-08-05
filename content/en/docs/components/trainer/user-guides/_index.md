@@ -1,5 +1,5 @@
 +++
 title = "User Guides"
-description = "Documentation for ML users of Kubeflow Trainer"
+description = "Documentation for AI practitioners of Kubeflow Trainer"
 weight = 40
 +++

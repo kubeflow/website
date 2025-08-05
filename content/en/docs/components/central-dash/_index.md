@@ -1,5 +1,5 @@
 +++
-title = "Central Dashboard"
+title = "Kubeflow Dashboard"
 description = "The central user interface (UI) in Kubeflow"
-weight = 5
+weight = 70
 +++
