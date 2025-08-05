@@ -1,10 +1,10 @@
 +++
 title = "Gang Scheduling"
-description = "How to configure PodGroupPolicy in Kubeflow Trainer Runtimes"
+description = "How to enable gang scheduling with Kubeflow Trainer"
 weight = 40
 +++
 
-This guide describes how to integrate gang scheduling into TrainJobs. It ensures that a group of
+This guide describes how to enable gang scheduling with Kubeflow Trainer. It ensures that a group of
 related training nodes (e.g. Pods), only start when all required resources are available. Having
 this is crucial when working with expensive and limited GPU accelerators.
 
@@ -35,3 +35,6 @@ podGroupPolicy:
   coscheduling:
     scheduleTimeoutSeconds: 30
 ```
+
+You have [to install and enable the Coscheduling plugin](https://github.com/kubernetes-sigs/scheduler-plugins/blob/master/doc/install.md)
+in your Kubernetes cluster before using this policy.
