@@ -126,7 +126,7 @@ print(log_dict[f"{constants.NODE}-0"])
 
 ### Get the Fine-Tuned Model
 
-After Trainer node completes the fine-tuning task, the fine-tuned model will be stored into the `/workspace/output ` directory, which can be shared across Pods through PVC mounting. You can find it in another Pod's `/<mountDir>/output` directory if you mount the PVC under `/<mountDir>`.
+After TrainJob completes the fine-tuning task, the fine-tuned model will be stored into the `/workspace/output ` directory, which can be shared across Pods through PVC mounting. You can find it in another Pod's `/<mountDir>/output` directory if you mount the PVC under `/<mountDir>`.
 
 ## Parameters
 
