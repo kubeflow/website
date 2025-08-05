@@ -1,5 +1,5 @@
 +++
 title = "Builtin Trainer Guide"
-description = "How to use BuiltinTrainer in Kubeflow SDK"
+description = "How to fine-tune LLMs with BuiltinTrainer and Kubeflow SDK"
 weight = 20
 +++
