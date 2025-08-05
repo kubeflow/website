@@ -11,7 +11,7 @@ in the Kubeflow Trainer Runtimes.
 Before exploring this guide, make sure to follow [the Runtime guide](/docs/components/trainer/operator-guides/runtime)
 to understand the basics of Kubeflow Trainer Runtimes.
 
-### Template Overview
+## Template Overview
 
 The `Template` API defines [the JobSet template](https://jobset.sigs.k8s.io/docs/overview/) used
 to orchestrate resources for a TrainJob. Kubeflow Trainer controller
