@@ -29,7 +29,7 @@ Output:
 Runtime(name='torchtune-llama3.2-1b', trainer=Trainer(trainer_type=<TrainerType.BUILTIN_TRAINER: 'BuiltinTrainer'>, framework=<Framework.TORCHTUNE: 'torchtune'>, entrypoint=['tune', 'run'], accelerator='Unknown', accelerator_count='2'), pretrained_model=None)
 ```
 
-## Use TorchTune LLM Trainer in BuiltinTrainer
+## Fine-Tune LLM with TorchTuneConfig
 
 The guide below shows how to fine-tune Llama-3.2-1B-Instruct with alpaca dataset by BuiltinTrainer.
 
