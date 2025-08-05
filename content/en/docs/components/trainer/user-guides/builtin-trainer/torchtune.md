@@ -6,7 +6,7 @@ weight = 20
 
 This guide describes how to fine-tune LLMs using `BuiltinTrainer` and `TorchTuneConfig`. `TorchTuneConfig` leverages [TorchTune](https://github.com/pytorch/torchtune) to streamline LLMs fine-tuning on Kubernetes. To understand the concept of `BuiltinTrainer`, see the [overview guide](/docs/components/trainer/user-guides/builtin-trainer/overview.md).
 
-The supported model list can be seen in [this directory](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune). It's worth noticing that we do not support multi-node fine-tuning for now. Only one Pod will be launched for TorchTune LLM Trainer.
+The supported model list can be seen in [this directory](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune). It's worth noticing that we do not support multi-node fine-tuning with TorchTune.
 
 In this page, we'll show a simple example of fine-tuning LLMs with TorchTune LLM Trainer in Kubeflow SDK. If you want to learn more about TorchTune LLM Trainer, please refer to [KEP-2401](https://github.com/kubeflow/trainer/tree/master/docs/proposals/2401-llm-trainer-v2) in Kubeflow Trainer.
 
