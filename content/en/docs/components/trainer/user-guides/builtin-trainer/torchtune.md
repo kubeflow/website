@@ -36,7 +36,7 @@ The guide below shows how to fine-tune Llama-3.2-1B-Instruct with alpaca dataset
 ### Create PVCs for Models and Datasets
 
 {{% alert title="Note" color="info" %}}
-Currently, we do not support automatically orchestrate the volume claim.
+Currently, we do not support automatically orchestrating the volume claim.
 
 To follow up with this problem, please refer to [this issue](https://github.com/kubeflow/trainer/issues/2630).
 {{% /alert %}}
