@@ -6,7 +6,7 @@ weight = 30
 
 This guide gives an overview for TrainingRuntime and ClusterTrainingRuntime.
 
-Runtimes are template configurations or blueprints that managed by platform administrators and
+Runtimes are template configurations or blueprints that are managed by platform administrators and
 used by TrainJob to launch the desired training job.
 
 ## What is ClusterTrainingRuntime
