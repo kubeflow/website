@@ -156,7 +156,7 @@ For `storage_uri` in Dataset Initializer, you need to speficy **the exact path t
 
 Currently, we support:
 
-1. Data Directory: Use all data files under this directory. For example, `hf://tatsu-lab/alpaca/data` uses all data files under the `/data` direcotry of `tatsu-lab/alpaca` repo in HuggingFace.
+1. Data Directory: Use all data files under this directory. For example, `hf://tatsu-lab/alpaca/data` uses all data files under the `/data` directory of `tatsu-lab/alpaca` repo in HuggingFace.
 2. Single Data File: Use the single data file given the path. For example, `hf://tatsu-lab/alpaca/data/xxx.parquet` uses the single `/data/xxx.parquet` data file of `tatsu-lab/alpaca` repo in HuggingFace.
 {{% /alert %}}
 
