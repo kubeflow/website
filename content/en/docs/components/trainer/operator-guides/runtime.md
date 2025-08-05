@@ -130,6 +130,8 @@ trainer.kubeflow.org/framework: deepspeed
 The Kubeflow SDK uses this label to determine the appropriate configuration for the supported
 BuiltinTrainers.
 
+Check [this guide](/docs/components/trainer/user-guides/builtin-trainer/overview) to understand what is CustomTrainer and BuiltinTrainer.
+
 ## Supported Runtimes
 
 Kubeflow Trainer community maintains
@@ -165,12 +167,13 @@ To ensure users are aware of Runtime deprecations, the following measures are ta
 
 - Kubeflow Trainer release notes include the deprecation as a breaking change.
 - The ClusterTrainingRuntime YAML is updated with a deprecation comment.
-- If a deprecated Runtime is created, Kubeflow Trainer validation webhook prints a warning.
+- If a deprecated Runtime is deployed on Kubernetes cluster, Kubeflow Trainer validation webhook
+  prints a warning.
 - If a TrainJob references a deprecated Runtime, the validation webhook also prints a warning.
 - The Kubeflow SDK prints a warning when a deprecated Runtime is listed or referenced.
 
 ## Next Steps
 
-- Learn how to configure [gang scheduling for TrainJobs](/docs/components/trainer/operator-guides/gang-scheduling).
+- Learn how to configure [gang scheduling in Kubeflow Trainer](/docs/components/trainer/operator-guides/gang-scheduling).
 - Explore how to set up [MLPolicy in Runtimes](/docs/components/trainer/operator-guides/ml-policy).
 - See how to define [Job Template in Runtimes](/docs/components/trainer/operator-guides/job-template).
