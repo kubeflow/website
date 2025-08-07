@@ -219,36 +219,6 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          IBM Cloud
-        </td>
-        <td>
-          {{< kf-version-notice >}}{{% iks/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/IBM/manifests/releases">[release notes]</a></sup>
-        </td>
-        <td>
-          IBM Cloud Kubernetes Service (IKS)
-        </td>
-        <td>
-          <a href="https://ibm.github.io/manifests/">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Microsoft Azure
-        </td>
-        <td>
-          {{< kf-version-notice >}}{{% azure/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/Azure/kubeflow-aks/releases">[release notes]</a></sup>
-        </td>
-        <td>
-          Azure Kubernetes Service (AKS)
-        </td>
-        <td>
-          <a href="https://azure.github.io/kubeflow-aks/main">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
           Nutanix
         </td>
         <td>
@@ -310,6 +280,7 @@ If you want a stable / conservative experience we recommend to use the [latest s
 
 - [**Kubeflow 1.10:**](/docs/kubeflow-platform/releases/kubeflow-1.10/)
   - [`v1.10.1`](https://github.com/kubeflow/manifests/tree/v1.10.1#installation)
+  - [`v1.10.2`](https://github.com/kubeflow/manifests/tree/v1.10.2#installation)
 
 You can also install the master branch of [`kubeflow/manifests`](https://github.com/kubeflow/manifests) by following the instructions [here](https://github.com/kubeflow/manifests?tab=readme-ov-file#installation) and provide us feedback.
 
