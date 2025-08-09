@@ -1,0 +1,4 @@
+To install Kubeflow, run the following command:
+
+```bash
+kubectl apply -k "https://github.com/kubeflow/manifests/releases/download/v1.10.2/kustomize/"
