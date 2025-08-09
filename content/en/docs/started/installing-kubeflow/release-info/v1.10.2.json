@@ -1,4 +1,5 @@
 {
   "kubeflow_version": "1.10.2",
-  "description": "Kubeflow manifests version info"
+  "description": "Kubeflow manifests version info",
+  "install_command": "kubectl apply -k \"https://github.com/kubeflow/manifests/releases/download/v1.10.2/kustomize/\""
 }
