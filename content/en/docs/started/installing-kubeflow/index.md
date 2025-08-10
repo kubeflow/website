@@ -309,7 +309,7 @@ try out the end-to-end Kubeflow AI reference platform capabilities.
 If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases):
 
 - [**Kubeflow 1.10:**](/docs/kubeflow-platform/releases/kubeflow-1.10/)
-  - [`v1.10.1`](https://github.com/kubeflow/manifests/tree/v1.10.1#installation)
+  - [`v1.10.2`](https://github.com/kubeflow/manifests/tree/v1.10.2#installation)
 
 You can also install the master branch of [`kubeflow/manifests`](https://github.com/kubeflow/manifests) by following the instructions [here](https://github.com/kubeflow/manifests?tab=readme-ov-file#installation) and provide us feedback.
 
