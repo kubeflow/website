@@ -46,7 +46,7 @@ spec:
                       image: pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime
 ```
 
-In the Runtime specification, platform administrators define a reusable template with the
+In the runtime specification, platform administrators define a reusable template with the
 appropriate configuration for distributed training. A TrainJob references this runtime
 via the `RuntimeRef` API, which links to its `APIGroup`, `Kind` and `Name`. This allows the TrainJob
 to adopt the runtime’s configuration, enabling consistent and modular training setups.
@@ -120,7 +120,7 @@ spec:
 
 ## Framework Label Requirement
 
-Every deployed Runtime must have the label `trainer.kubeflow.org/framework` to ensure that
+Every deployed runtime must have the label `trainer.kubeflow.org/framework` to ensure that
 the Kubeflow SDK can recognize it, for example:
 
 ```yaml
@@ -156,24 +156,29 @@ The following runtimes are supported for TorchTune BuiltinTrainer:
 
 ### Runtime Deprecation Policy
 
-Since ML frameworks naturally evolve over time, Kubeflow community may decide to deprecate
+As ML frameworks evolve over time, the Kubeflow community may decide to deprecate
 certain supported ClusterTrainingRuntimes. To avoid breaking existing users, we follow a deprecation
-policy for Runtimes that are slated to be removed.
+policy before removing any runtime.
 
 A supported ClusterTrainingRuntime may be marked as deprecated and is eligible for removal starting
 from **two minor releases** after its deprecation.
 
-To ensure users are aware of Runtime deprecations, the following measures are taken:
+These measures are taken to inform users about runtime deprecation:
 
-- Kubeflow Trainer release notes include the deprecation as a breaking change.
-- The ClusterTrainingRuntime YAML is updated with a deprecation comment.
-- If a deprecated Runtime is deployed on Kubernetes cluster, Kubeflow Trainer validation webhook
-  prints a warning.
-- If a TrainJob references a deprecated Runtime, the validation webhook also prints a warning.
-- The Kubeflow SDK prints a warning when a deprecated Runtime is listed or referenced.
+- Add the following label to the deprecated runtime:
+
+  ```yaml
+  trainer.kubeflow.org/deprecated: "true"
+  ```
+
+- Document the deprecation as **a breaking change** in Kubeflow Trainer release notes.
+- Show a warning from the Kubeflow Trainer validation webhook when:
+  - A deprecated runtime is deployed on a Kubernetes cluster.
+  - A TrainJob is created which references a deprecated runtime.
+- Display a warning in the Kubeflow SDK when a deprecated runtime is listed or referenced.
 
 ## Next Steps
 
 - Learn how to configure [gang scheduling in Kubeflow Trainer](/docs/components/trainer/operator-guides/gang-scheduling).
-- Explore how to set up [MLPolicy in Runtimes](/docs/components/trainer/operator-guides/ml-policy).
-- See how to define [Job Template in Runtimes](/docs/components/trainer/operator-guides/job-template).
+- Explore how to set up [MLPolicy in runtime](/docs/components/trainer/operator-guides/ml-policy).
+- See how to define [Job Template in runtimes](/docs/components/trainer/operator-guides/job-template).
