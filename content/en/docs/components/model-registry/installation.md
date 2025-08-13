@@ -100,6 +100,41 @@ MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
 kubectl apply -n kubeflow -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/csi?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
+## TLS Configuration
+
+For local development with self-signed certificates, you may need to disable TLS verification in the Model Registry UI.
+
+### Option 1: Apply as a kustomize patch
+
+```yaml
+# kustomize patch for local development
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-registry-ui
+spec:
+  template:
+    spec:
+      containers:
+        - name: model-registry-ui
+          env:
+            - name: INSECURE_SKIP_VERIFY
+              value: "true"
+```
+
+### Option 2: Configure during installation
+
+For local installations, you can set the environment variable before applying the UI manifests:
+
+```bash
+# Set the environment variable in the UI deployment
+kubectl set env deployment/model-registry-ui INSECURE_SKIP_VERIFY=true -n $PROFILE_NAME
+```
+
+{{% alert title="Warning" color="warning" %}}
+Only use `INSECURE_SKIP_VERIFY=true` for local development. Never use this in production.
+{{% /alert %}}
+
 ## Check Model Registry setup
 
 {{% alert title="Note" color="warning" %}}
