@@ -30,7 +30,7 @@ kind create cluster # or minikube start
 Run the following command to deploy a released version of Kubeflow Trainer controller manager:
 
 ```bash
-VERSION=v2.0.0
+export VERSION=v2.0.0
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/manager?ref=${VERSION}"
 ```
 
