@@ -1,17 +1,17 @@
 +++
-title = "Trainer Pipeline Framework"
+title = "Kubeflow Trainer Extension Framework"
 description = "How to install Kubeflow Trainer control plane"
-weight = 30
+weight = 70
 +++
 
-This guide describes `Trainer Pipeline Framework` core concepts, including the startup phase, pre-execution phase, build phase, and post-execution phase for user.
+This guide describes `Kubeflow Trainer Extension Framework` core concepts, including the startup phase, pre-execution phase, build phase, and post-execution phase for user.
 
 ## Overview
 
-The **Kubeflow Trainer Pipeline Framework** is designed as an internal mechanism that allows for flexible expansion and integration of various **Runtimes** and **TrainJobs** in the Kubeflow ecosystem. The framework provides a streamlined approach for building, managing, and executing the training lifecycle on Kubernetes. It consists of four distinct phases: **Startup Phase**, **PreExecution Phase**, **Build Phase**, and **PostExecution Phase**. Each phase has specific actions that help automate and optimize the training process.
+The **Kubeflow Trainer Extension Framework** is designed as an internal mechanism that allows for flexible expansion and integration of various **Runtimes** and **TrainJobs** in the Kubeflow ecosystem. The framework provides a streamlined approach for building, managing, and executing the training lifecycle on Kubernetes. It consists of four distinct phases: **Startup Phase**, **PreExecution Phase**, **Build Phase**, and **PostExecution Phase**. Each phase has specific actions that help automate and optimize the training process.
 
 <img src="/docs/components/trainer/operator-guides/images/TrainerPipelineFrameworkOverview.drawio.svg"
-  alt="Trainer Pipeline Framework Overview"
+  alt="Kubeflow Trainer Extension Framework Overview"
   class="mt-3 mb-3">
 
 ## Core Concepts
@@ -32,7 +32,7 @@ In each phase, there are two types of components:
 2. **Extension Points**: These points are exposed to the user and allow for customization through plugins that can be added to the framework.
 
 <img src="/docs/components/trainer/operator-guides/images/TrainerPipelineFramework.drawio.svg"
-  alt="Kubeflow Trainer Pipeline Framework"
+  alt="Kubeflow Kubeflow Trainer Extension Framework"
   class="mt-3 mb-3">
 
 ## Phases Explained
