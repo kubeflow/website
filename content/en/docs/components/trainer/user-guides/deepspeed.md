@@ -26,15 +26,15 @@ efficient, and effective. DeepSpeed includes features such as:
 
 ZeRO has three stages:
 
-- **ZeRO Stage 0**: Disabled (equivalent to standard data parallel training)
-- **ZeRO Stage 1**: Partitions optimizer states across processes
-- **ZeRO Stage 2**: Partitions optimizer states and gradients across processes
-- **ZeRO Stage 3**: Partitions optimizer states, gradients, and model parameters across processes
+- **ZeRO Stage 0**: Disabled (equivalent to standard data parallel training).
+- **ZeRO Stage 1**: Partitions optimizer states across processes.
+- **ZeRO Stage 2**: Partitions optimizer states and gradients across processes.
+- **ZeRO Stage 3**: Partitions optimizer states, gradients, and model parameters across processes.
 
 ## Get DeepSpeed Runtime Packages
 
 Kubeflow Trainer includes a DeepSpeed runtime called [`deepspeed-distributed`](https://github.com/kubeflow/trainer/blob/master/manifests/base/runtimes/deepspeed_distributed.yaml),
-which comes with several pre-installed Python packages.
+which comes with the several pre-installed Python packages.
 
 Run the following command to get a list of the available packages:
 
@@ -64,7 +64,8 @@ dill               0.3.8
 
 Currently, Kubeflow Trainer does not support configuring DeepSpeed resources directly through a
 TrainJob specification. To adjust GPU allocations (and other container resource settings),
-you must manually patch the ClusterTrainingRuntime.
+you must manually patch the ClusterTrainingRuntime. Progress for native resource configuration in
+TrainJob is being tracked here: [kubeflow/trainer#2650](https://github.com/kubeflow/trainer/issues/2650)
 
 The following command allocates 2 GPUs per node across 2 training nodes, for a total of 4 GPUs per
 TrainJob:
@@ -91,14 +92,12 @@ kubectl patch clustertrainingruntime deepspeed-distributed \
   ]'
 ```
 
-Progress for native resource configuration in TrainJob is being tracked here:
-[kubeflow/trainer#2650](https://github.com/kubeflow/trainer/issues/2650)
-
 ## DeepSpeed Distributed Environment
 
 Kubeflow Trainer uses the MPI-based runtime and [`mpirun` launcher](https://www.deepspeed.ai/getting-started/#mpi-and-azureml-compatibility)
-to run DeepSpeed scripts on every training node. It automatically creates the MPI hostfile to ensure
-DeepSpeed can discover all distributed nodes and configures the appropriate distributed environment:
+to run DeepSpeed scripts on every training node. It automatically creates the OpenMPI hostfile
+to ensure DeepSpeed can discover all MPI nodes, starts the OpenSSH server on the worker nodes,
+and configures the distributed DeepSpeed environment:
 
 - `dist.get_world_size()` - Total number of processes (e.g., GPUs) across all DeepSpeed nodes.
 - `dist.get_rank()` - Rank of the current process across all DeepSpeed nodes.
@@ -111,7 +110,6 @@ You can access the distributed environment as follows:
 
 ```py
 from kubeflow.trainer import TrainerClient, CustomTrainer
-
 
 def get_deepspeed_dist():
     import os
@@ -138,7 +136,7 @@ job_id = TrainerClient().train(
 # Wait for TrainJob to complete.
 TrainerClient().wait_for_job_status(job_id)
 
-# Since we launch DeepSpeed with `mpirun`, all logs should be consumed from the node 0.
+# Since we launch DeepSpeed with `mpirun`, all logs should be consumed from the node-0.
 print("Distributed DeepSpeed environment")
 print(TrainerClient().get_job_logs(name=job_id, node_rank=0)["node-0"])
 ```
@@ -296,7 +294,7 @@ Since DeepSpeed training is launched via the `mpirun` command, all logs can be c
 
 DeepSpeed uses a JSON configuration file to specify training parameters, optimization settings,
 and memory management options. Learn more about it in
-[the DeepSpeed documentation](https://www.deepspeed.ai/docs/config-json/)
+[the DeepSpeed documentation](https://www.deepspeed.ai/docs/config-json/).
 
 Key configuration sections include:
 

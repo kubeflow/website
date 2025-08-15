@@ -48,16 +48,14 @@ TrainerClient().get_runtime_packages(
 You should see the installed packages, for example:
 
 ```sh
-Torch Distributed Runtime
---------------------------------------
-Torch Default Runtime Env
+Python: 3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]
 Package                   Version
 ------------------------- ------------
-...
 torch                     2.7.1+cu128
 torchaudio                2.7.1+cu128
 torchelastic              0.2.2
 torchvision               0.22.1+cu128
+...
 ```
 
 ## PyTorch Distributed Environment
