@@ -75,8 +75,6 @@ or export your fine-tuned LLM only on the node with `rank=0` (e.g., the master n
 
 You can access the distributed environment as follows:
 
-<!-- TODO (andreyvelich): Change it to wait_for_job_status() API. -->
-
 ```py
 from kubeflow.trainer import TrainerClient, CustomTrainer
 
@@ -106,12 +104,8 @@ job_id = TrainerClient().train(
     ),
 )
 
-
-while True:
-    if TrainerClient().get_job(name=job_id).status == "Succeeded":
-        break
-    time.sleep(1)
-
+# Wait for TrainJob to complete.
+TrainerClient().wait_for_job_status(job_id)
 
 print("Distributed PyTorch env on node-0")
 print(TrainerClient().get_job_logs(name=job_id, node_rank=0)["node-0"])
