@@ -37,22 +37,12 @@ which comes with several pre-installed Python packages.
 
 Run the following command to get a list of the available packages:
 
-<!-- TODO (andreyvelich): Change it to wait_for_job_status() API. -->
-
 ```py
-from kubeflow.trainer import TrainerClient, Runtime, CustomTrainer
-import time
+from kubeflow.trainer import TrainerClient
 
-job_id = TrainerClient().train(
-    runtime=TrainerClient().get_runtime("torch-distributed"),
+TrainerClient().get_runtime_packages(
+    runtime=TrainerClient().get_runtime("torch-distributed")
 )
-
-while True:
-    if TrainerClient().get_job(name=job_id).status == "Succeeded":
-        break
-    time.sleep(1)
-
-print(TrainerClient().get_job_logs(name=job_id)["node-0"])
 ```
 
 You should see the installed packages, for example:
@@ -104,7 +94,7 @@ def get_torch_dist():
     print(f"RANK: {dist.get_rank()}")
     print(f"LOCAL_RANK: {os.environ['LOCAL_RANK']}")
 
-
+# Create the TrainJob.
 job_id = TrainerClient().train(
     runtime=TrainerClient().get_runtime("torch-distributed"),
     trainer=CustomTrainer(
