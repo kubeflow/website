@@ -34,7 +34,7 @@ VERSION=v2.0.0
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/manager?ref=${VERSION}"
 ```
 
-For the latest changes run:
+### Latest Changes
 
 ```bash
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/manager?ref=master"
@@ -65,10 +65,10 @@ kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifest
 ```
 ```md
 
->  above URL is for `kubectl` CLI use only.  
-> Opening it in a browser will show a 404 error.  
-> You can browse the manifests here:  
-> [Trainer Runtimes on GitHub](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes)
+**Note**: The URL in the above command is intended for CLI use only.  
+Opening it in a browser may result in a 404 error.  
+You can view the manifests directly on GitHub here:  
+[Trainer Runtimes Manifests](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes)
 
 
 ## Next Steps
