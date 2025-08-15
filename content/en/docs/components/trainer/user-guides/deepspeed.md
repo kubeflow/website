@@ -190,6 +190,7 @@ Your training function might look like this:
 ```py
 def fine_tune_t5_deepspeed():
     import os
+    import torch.distributed as dist
     from torch.utils.data import DataLoader
     from torch.utils.data.distributed import DistributedSampler
     from transformers import T5Tokenizer, T5ForConditionalGeneration
@@ -199,7 +200,7 @@ def fine_tune_t5_deepspeed():
     # Initialize DeepSpeed distributed training
     deepspeed.init_distributed(dist_backend="nccl")
 
-    # DeepSpeed Configuration: https://www.deepspeed.ai/docs/config-json/
+    # DeepSpeed Configuration.
     ds_config = {
         # Train batch size = micro batch size * gradient steps * GPUs (e.g. 2 x 1 x 4 = 8).
         "train_micro_batch_size_per_gpu": 2,
@@ -286,8 +287,8 @@ print(TrainerClient().get_job_logs(name=job_id)["node-0"])
 ```
 
 {{% alert title="Note" color="info" %}}
-Since DeepSpeed training is launched via the `mpirun` command, all logs can be collected from
-`node-0`, which acts as the OpenMPI launcher.
+Since DeepSpeed training is launched via the mpirun command, all logs can be collected from
+node-0, which acts as the OpenMPI launcher.
 {{% /alert %}}
 
 ## DeepSpeed Configuration
