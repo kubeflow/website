@@ -137,7 +137,6 @@ job_id = TrainerClient().train(
 TrainerClient().wait_for_job_status(job_id)
 
 # Since we launch DeepSpeed with `mpirun`, all logs should be consumed from the node-0.
-print("Distributed DeepSpeed environment")
 print(TrainerClient().get_job_logs(name=job_id, node_rank=0)["node-0"])
 ```
 
@@ -268,6 +267,8 @@ def fine_tune_t5_deepspeed():
 After configuring the DeepSpeed training function, use the `train()` API to create TrainJob:
 
 ```python
+from kubeflow.trainer import TrainerClient, CustomTrainer
+
 job_id = TrainerClient().train(
     runtime=TrainerClient().get_runtime("deepspeed-distributed"),
     trainer=CustomTrainer(
