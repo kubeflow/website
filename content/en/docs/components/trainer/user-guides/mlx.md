@@ -191,7 +191,7 @@ def fine_tune_llama():
             setattr(args, k, v)
 
     # Load pre-trained model and dataset, set your HF token.
-    os.environ["HF_TOKEN"] = "hf_..."
+    os.environ["HF_TOKEN"] = "<YOUR_HF_TOKEN>"  # Replace with your Hugging Face token
     model, tokenizer = load(args.model)
     train_set, valid_set, _ = load_dataset(args, tokenizer)
 
