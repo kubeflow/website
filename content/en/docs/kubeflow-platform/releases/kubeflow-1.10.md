@@ -4,7 +4,7 @@ description = "Information about the Kubeflow AI reference platform 1.10 release
 weight = 95
 +++
 
-## Kubeflow AI reference platform 1.10.1
+## Kubeflow AI reference platform 1.10.2
 
 <div class="table-responsive">
 <table class="table table-bordered">
