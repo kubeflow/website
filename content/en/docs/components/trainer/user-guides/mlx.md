@@ -49,7 +49,7 @@ specification. To adjust GPU allocations or other container resource settings, y
 patch the ClusterTrainingRuntime. Native resource configuration support within TrainJob is being
 tracked in [kubeflow/trainer#2650](https://github.com/kubeflow/trainer/issues/2650)
 
-The following command allocates 1 GPUs per training node:
+The following command allocates 1 GPU per training node:
 
 ```sh
 kubectl patch clustertrainingruntime mlx-distributed \
