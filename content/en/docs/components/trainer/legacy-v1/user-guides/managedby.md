@@ -11,7 +11,7 @@ The `spec.runPolicy.managedBy` field is a new feature introduced for MultiKueue 
 
 ## Prerequisites
 
-1. Ensure that you have the version upto 1.9 of the Kubeflow Training Operator installed and version 0.11+ for kueue.
+1. Ensure that you have the version up to 1.9 of the Kubeflow Training Operator installed and version 0.11+ for kueue.
 2. Make sure Kueue is compiled against the new operator to leverage the `spec.runPolicy.managedBy` field.
 
 ## Usage

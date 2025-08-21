@@ -168,7 +168,7 @@ The `{inputPath: <Input name>}` placeholder is replaced by the (auto-generated) 
 ### Producing outputs
 
 The `{outputPath: <Output name>}` placeholder is replaced by a (generated) local file path where the component program is supposed to write the output data.
-The parent directories of the path may or may not not exist. Your
+The parent directories of the path may or may not exist. Your
 program must handle both cases without error.
 
 * In `component.yaml`:

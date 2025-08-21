@@ -168,8 +168,8 @@ be the user Kubeflow Profile namespace.
 To utilize a different object store provider entirely, you will need to add a new field `providers` to the KFP launcher configmap.
 How to configure this field depends on your object store provider. See below for details.
 
-Note that the provider is determined by the PipelineRoot value. If `PipelineRoot=s3://mlpipeline` then this is matched 
-with the `s3` provider. If `PipelineRoot=g3://mlpipeline` then this is atched with the `gs` provider (GCS) and so on.
+Note that the provider is determined by the PipelineRoot value. If `PipelineRoot=s3://mlpipeline` then this is matched
+with the `s3` provider. If `PipelineRoot=gs://mlpipeline` then this is matched with the `gs` provider (GCS) and so on.
 
 #### S3 and S3-compatible Provider
 
