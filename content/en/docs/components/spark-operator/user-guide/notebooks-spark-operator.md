@@ -78,7 +78,7 @@ Then deploy Enterprise Gateway using Helm:
 
 The command below uses a YAML file named enterprise-gateway-helm.yaml, which includes an example configuration shown above.
 
-```yaml
+```bash
 helm upgrade --install enterprise-gateway \
   https://github.com/jupyter-server/enterprise_gateway/releases/download/v3.2.3/jupyter_enterprise_gateway_helm-3.2.3.tar.gz \
   --namespace enterprise-gateway \
@@ -136,6 +136,66 @@ kubectl patch notebook <NOTEBOOK_NAME> \
 
 These variables configure JupyterLab to forward kernel execution to Jupyter Enterprise Gateway, which then runs PySpark jobs via the Spark Operator.
 
+## Additional Custimzation
+
+If you want to customize your kernel configuration or the CRD submitted to the Spark Operator, follow these steps:
+
+First, set up the storage resources, save the manifest below as `enterprise-gateway-storage.yaml`.
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: enterprise-gateway
+  labels:
+    app: enterprise-gateway
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-kernelspecs
+  labels:
+    app: enterprise-gateway
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/jupyter-gateway/kernelspecs"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-kernelspecs
+  namespace: enterprise-gateway
+spec:
+  storageClassName: standard
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+This will create a volume and expose the path `/jupyter-gateway/kernelspecs`.
+
+Apply it (Run the following command to create the resources:):
+
+```bash
+kubectl apply -f enterprise-gateway-storage.yaml
+```
+
+Next, add the kernelspecs to the mounted volume at `/jupyter-gateway/kernelspecs`.
+
+You can download and extract them with:
+```bash
+mkdir spark_python_operator && cd spark_python_operator && curl -sL https://github.com/jupyter-server/enterprise_gateway/releases/download/v3.2.3/jupyter_enterprise_gateway_kernelspecs_kubernetes-3.2.3.tar.gz | tar -xz --strip-components=1 "spark_python_operator/*" 
+```
+Once extracted, make any necessary customizations to the kernelspecs.
+
+To learn more about kernelspecs custimzation visit [Jupyter Enterprise Gateway Doucmentation](jupyter-enterprise-gateway.readthedocs.io/en/latest/)
+
 ## What Happens Next
 
 Once everything is set up:
@@ -143,7 +203,6 @@ Once everything is set up:
 - Launch a notebook from the Kubeflow UI
 - Select the `pyspark` kernel
 - Write and run PySpark code
-- Your notebook submits Spark jobs via Jupyter Enterprise Gateway → Spark Operator → Kubernetes
 
 
 
