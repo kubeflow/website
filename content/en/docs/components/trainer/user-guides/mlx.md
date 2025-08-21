@@ -13,7 +13,7 @@ to understand the basics of Kubeflow Trainer.
 
 ## MLX Distributed Overview
 
-MLX is NumPy-like array framework designed for efficient and flexible machine learning, created by
+MLX is a NumPy-like array framework designed for efficient and flexible machine learning, created by
 Apple machine learning researchers. The main differences between MLX and NumPy are:
 
 - **Composable function transformations:** MLX has composable function transformations for automatic
@@ -21,9 +21,9 @@ Apple machine learning researchers. The main differences between MLX and NumPy a
 
 - **Lazy computation:** Computations in MLX are lazy. Arrays are only materialized when needed.
 
-- **Multi-device:** Operations can run on any of the supported devices (CPU, GPU, …)
+- **Multi-device:** Operations can run on any of the supported devices (CPU, GPU, etc.)
 
-In Kubeflow Trainer, MLX distributed training is supported via MPI backend which enables:
+In Kubeflow Trainer, MLX distributed training is supported via the MPI backend which enables:
 
 - **Data Parallelism**: The dataset is sharded across multiple devices, with each device processing
   a partition of the data and maintaining a copy of the model.
@@ -35,7 +35,7 @@ In Kubeflow Trainer, MLX distributed training is supported via MPI backend which
 ## MLX with CUDA Backend
 
 Kubeflow Trainer includes an MLX runtime called [`mlx-distributed`](https://github.com/kubeflow/trainer/blob/master/manifests/base/runtimes/mlx_distributed.yaml).
-This runtime installs CUDA driver and `mlx[cuda]` package to enable MLX on distributed GPUs.
+This runtime installs the CUDA driver and `mlx[cuda]` package to enable MLX on distributed GPUs.
 Currently, you can't use this runtime for non-GPU TrainJobs.
 
 This setup is especially powerful: you can train or fine-tune models on a GPU cluster and then
@@ -151,15 +151,17 @@ RANK: 0
 Device: Device(gpu, 0)
 ```
 
-## Run TrainJob to Fine-Tune LLM with MLX
+## Fine-Tune LLM with MLX and TrainJob
+
+The following sections describe how to fine-tune Llama using MLX and Kubeflow Trainer.
 
 ### Configure MLX Training Function
 
-You can leverage [the `mlx-lm` library ](https://github.com/ml-explore/mlx-lm?tab=readme-ov-file) to
+You can leverage [the `mlx-lm` library](https://github.com/ml-explore/mlx-lm?tab=readme-ov-file) to
 fine-tune and evaluate LLMs. It provides builtin functions for rapid fine-tuning with Low-Rank
 Adaptation (LoRA) as well as full model fine-tuning, with support for quantized models.
 
-Wrap your MLX code inside a function and create TrainJob with the `CustomTrainer()`. You function
+Wrap your MLX code inside a function and create a TrainJob with the `CustomTrainer()`. Your function
 should handle the end-to-end MLX script including distributed fine-tuning and model evaluation.
 
 {{% alert title="Note" color="info" %}}
@@ -185,13 +187,13 @@ def fine_tune_llama():
     args.data = "mlx-community/WikiSQL"
     args.train = True
 
-    # Set defaults for other required parameters
+    # Set defaults for other required parameters.
     for k, v in CONFIG_DEFAULTS.items():
         if not hasattr(args, k):
             setattr(args, k, v)
 
     # Load pre-trained model and dataset, set your HF token.
-    os.environ["HF_TOKEN"] = "<YOUR_HF_TOKEN>"  # Replace with your Hugging Face token
+    os.environ["HF_TOKEN"] = "<YOUR_HF_TOKEN>"  # Replace with your Hugging Face token.
     model, tokenizer = load(args.model)
     train_set, valid_set, _ = load_dataset(args, tokenizer)
 
@@ -217,7 +219,7 @@ def fine_tune_llama():
 
 ### Create a TrainJob
 
-After configuring the MLX training function, use the `train()` API to create TrainJob:
+After configuring the MLX training function, use the `train()` API to create a TrainJob:
 
 ```python
 from kubeflow.trainer import TrainerClient, CustomTrainer
@@ -268,16 +270,16 @@ SQL (Structured Query Language) is a programming language designed for managing 
 MLX provides efficient gradient averaging utilities:
 
 ```py
-# Method 1: Using mx.distributed.all_sum directly
+# Method 1: Using mx.distributed.all_sum directly.
 averaged_grad = mx_dist.all_sum(gradient) / mx_dist.size()
 
-# Method 2: Using mlx.nn.average_gradients (recommended)
+# Method 2: Using mlx.nn.average_gradients (recommended).
 import mlx.nn as nn
 gradients = {"layer1": grad1, "layer2": grad2}
 averaged_gradients = nn.average_gradients(gradients)
 ```
 
-For more information check the [official MLX guides](https://ml-explore.github.io/mlx/build/html/usage/distributed.html#utilizing-nn-average-gradients).
+For more information, check the [official MLX guides](https://ml-explore.github.io/mlx/build/html/usage/distributed.html#utilizing-nn-average-gradients).
 
 ## Next Steps
 
