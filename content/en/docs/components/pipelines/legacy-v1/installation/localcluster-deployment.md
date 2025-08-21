@@ -166,7 +166,7 @@ enhancements:
   * Embedded service loadbalancer
   * Embedded network policy controller
 
-You can find the the official K3s installation script to install it as a service
+You can find the official K3s installation script to install it as a service
 on systemd- or openrc-based systems on the official
 [K3s website](https://get.k3s.io).
 

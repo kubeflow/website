@@ -110,11 +110,11 @@ In addition, those fields are passed to the PodGroup for the volcano or the cosc
 
 - `.spec.runPolicy.schedulingPolicy.minAvailable` defines the minimal number of members to run the PodGroup and is passed to `.spec.minMember`.
   When using this field, you must ensure the application supports resizing (e.g., Elastic Horovod).
-- `.spec.runPolicy.schedulingPolicy.queue` defines the queue name to allocate resource for the PodGroup. However, iff you use the volcano as a gang scheduler, this is passed to `.spec.queue`.
+- `.spec.runPolicy.schedulingPolicy.queue` defines the queue name to allocate resource for the PodGroup. However, if you use the volcano as a gang scheduler, this is passed to `.spec.queue`.
 - `.spec.runPolicy.schedulingPolicy.minResources` defines the minimal resources of members to run the PodGroup and is passed to `.spec.minResources`.
-- `.spec.runPolicy.schedulingPolicy.priorityClass` defines the PodGroup's PriorityClass. However, iff you use the volcano as a gang scheduler, this is passed to `.spec.priorityClassName`.
-- `.spec.runPolicy.schedulingPolicy.scheduleTimeutSeconds` defines the maximal time of members to wait before run the PodGroup.
-  However, iff you use the coscheduling plugin as a gang scheduler, this is passed to `.spec.scheduleTimeutSeconds`.
+- `.spec.runPolicy.schedulingPolicy.priorityClass` defines the PodGroup's PriorityClass. However, if you use the volcano as a gang scheduler, this is passed to `.spec.priorityClassName`.
+- `.spec.runPolicy.schedulingPolicy.scheduleTimeoutSeconds` defines the maximal time of members to wait before run the PodGroup.
+  However, if you use the coscheduling plugin as a gang scheduler, this is passed to `.spec.scheduleTimeoutSeconds`.
 
 Also, if you don't set the fields, the MPI Operator populates them based on the following:
 
