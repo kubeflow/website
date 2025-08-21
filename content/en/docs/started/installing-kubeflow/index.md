@@ -219,6 +219,21 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
+          Microsoft Azure
+        </td>
+        <td>
+          {{< kf-version-notice >}}{{% azure/latest-version %}}{{< /kf-version-notice >}}
+          <sup><a href="https://github.com/Azure/kubeflow-aks/releases">[release notes]</a></sup>
+        </td>
+        <td>
+          Azure Kubernetes Service (AKS)
+        </td>
+        <td>
+          <a href="https://azure.github.io/kubeflow-aks/main">Website</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
           Nutanix
         </td>
         <td>
