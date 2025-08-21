@@ -37,37 +37,25 @@ which comes with several pre-installed Python packages.
 
 Run the following command to get a list of the available packages:
 
-<!-- TODO (andreyvelich): Change it to wait_for_job_status() API. -->
-
 ```py
-from kubeflow.trainer import TrainerClient, Runtime, CustomTrainer
-import time
+from kubeflow.trainer import TrainerClient
 
-job_id = TrainerClient().train(
-    runtime=TrainerClient().get_runtime("torch-distributed"),
+TrainerClient().get_runtime_packages(
+    runtime=TrainerClient().get_runtime("torch-distributed")
 )
-
-while True:
-    if TrainerClient().get_job(name=job_id).status == "Succeeded":
-        break
-    time.sleep(1)
-
-print(TrainerClient().get_job_logs(name=job_id)["node-0"])
 ```
 
 You should see the installed packages, for example:
 
 ```sh
-Torch Distributed Runtime
---------------------------------------
-Torch Default Runtime Env
+Python: 3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]
 Package                   Version
 ------------------------- ------------
-...
 torch                     2.7.1+cu128
 torchaudio                2.7.1+cu128
 torchelastic              0.2.2
 torchvision               0.22.1+cu128
+...
 ```
 
 ## PyTorch Distributed Environment
@@ -84,8 +72,6 @@ You can use these values to, for example, download the dataset only on the node 
 or export your fine-tuned LLM only on the node with `rank=0` (e.g., the master node).
 
 You can access the distributed environment as follows:
-
-<!-- TODO (andreyvelich): Change it to wait_for_job_status() API. -->
 
 ```py
 from kubeflow.trainer import TrainerClient, CustomTrainer
@@ -104,7 +90,7 @@ def get_torch_dist():
     print(f"RANK: {dist.get_rank()}")
     print(f"LOCAL_RANK: {os.environ['LOCAL_RANK']}")
 
-
+# Create the TrainJob.
 job_id = TrainerClient().train(
     runtime=TrainerClient().get_runtime("torch-distributed"),
     trainer=CustomTrainer(
@@ -116,12 +102,8 @@ job_id = TrainerClient().train(
     ),
 )
 
-
-while True:
-    if TrainerClient().get_job(name=job_id).status == "Succeeded":
-        break
-    time.sleep(1)
-
+# Wait for TrainJob to complete.
+TrainerClient().wait_for_job_status(job_id)
 
 print("Distributed PyTorch env on node-0")
 print(TrainerClient().get_job_logs(name=job_id, node_rank=0)["node-0"])
@@ -238,4 +220,4 @@ print(TrainerClient().get_job_logs(name=job_id)["node-0"])
 - Check out [the PyTorch MNIST example](https://github.com/kubeflow/trainer/blob/master/examples/pytorch/image-classification/mnist.ipynb).
 - Follow [the PyTorch fine-tuning example](https://github.com/kubeflow/trainer/blob/master/examples/pytorch/question-answering/fine-tune-distilbert.ipynb)
   using the pre-trained DistilBERT model.
-- Learn more about `TrainerClient()` APIs [in the Kubeflow SDK](https://github.com/kubeflow/sdk/blob/main/python/kubeflow/trainer/api/trainer_client.py).
+- Learn more about `TrainerClient()` APIs [in the Kubeflow SDK](https://github.com/kubeflow/sdk/blob/main/kubeflow/trainer/api/trainer_client.py).

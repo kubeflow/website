@@ -113,4 +113,4 @@ to scale PyTorch code with `TrainJob` using Python SDK.
 
 ## Next Steps
 
-- Learn about [the Kubeflow Trainer runtimes](docs/components/trainer/operator-guides/runtime)
+- Learn about [the Kubeflow Trainer runtimes](/docs/components/trainer/operator-guides/runtime)
