@@ -219,21 +219,6 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          IBM Cloud
-        </td>
-        <td>
-          {{< kf-version-notice >}}{{% iks/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://github.com/IBM/manifests/releases">[release notes]</a></sup>
-        </td>
-        <td>
-          IBM Cloud Kubernetes Service (IKS)
-        </td>
-        <td>
-          <a href="https://ibm.github.io/manifests/">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
           Microsoft Azure
         </td>
         <td>
@@ -309,7 +294,8 @@ try out the end-to-end Kubeflow AI reference platform capabilities.
 If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases):
 
 - [**Kubeflow 1.10:**](/docs/kubeflow-platform/releases/kubeflow-1.10/)
-  - [`v1.10.2`](https://github.com/kubeflow/manifests/tree/v1.10.2#installations)
+  - [`v1.10.1`](https://github.com/kubeflow/manifests/tree/v1.10.1#installation)
+  - [`v1.10.2`](https://github.com/kubeflow/manifests/tree/v1.10.2#installation)
 
 You can also install the master branch of [`kubeflow/manifests`](https://github.com/kubeflow/manifests) by following the instructions [here](https://github.com/kubeflow/manifests?tab=readme-ov-file#installation) and provide us feedback.
 
