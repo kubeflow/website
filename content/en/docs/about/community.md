@@ -22,18 +22,19 @@ Please join the [Kubeflow channels](#slack-channels) to join the conversation an
 
 The following table lists official Kubeflow channels which are hosted on the **CNCF Slack**:
 
-| Description                             | Link                                                                              |
-| --------------------------------------- | --------------------------------------------------------------------------------- |
-| Announcements                           | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)     |
-| Contributors                            | [#kubeflow-contributors](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM) |
-| Katib                                   | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)             |
-| Model Registry                          | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)    |
-| Notebooks                               | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)         |
-| Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)         |
-| Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)          |
-| Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG)    |
-| Kubeflow Trainer and MPI Operator       | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)          |
-| KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                     |
+| Description                             | Link                                                                           |
+| --------------------------------------- | ------------------------------------------------------------------------------ |
+| Announcements                           | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)  |
+| Contributors                            | [#kubeflow-contributors](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM)   |
+| Katib                                   | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)          |
+| ML Experience                           | [#kubeflow-ml-experience](https://cloud-native.slack.com/archives/C08KJBVDH5H) |
+| Model Registry                          | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R) |
+| Notebooks                               | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)      |
+| Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)      |
+| Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)       |
+| Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG) |
+| Kubeflow Trainer and MPI Operator       | [#kubeflow-training](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)       |
+| KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                  |
 
 ## Kubeflow Mailing List
 
@@ -70,6 +71,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | ------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | Kubeflow community call         | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
 | Kubeflow AutoML and Training WG | [Google Doc](https://bit.ly/2PWVCkV)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
+| Kubeflow ML Experience          | [Google Doc](https://bit.ly/kf-ml-experience)        |                                                                                              |
 | Kubeflow Model Registry call    | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
 | Kubeflow Notebooks WG           | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   |                                                                                              |
 | Kubeflow Platform WG            | [Google Doc](https://bit.ly/kf-wg-manifests-notes)   |                                                                                              |
@@ -162,6 +164,17 @@ The following table outlines which components are maintained by each Working Gro
         </td>
         <td>
           <a href="https://github.com/kubeflow/manifests">Manifests Repository</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- ML Experience Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">
+          <a href="https://github.com/kubeflow/community/tree/master/wg-ml-experience">ML Experience</a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/sdk">Kubeflow SDK</a>
         </td>
       </tr>
       <!-- ======================= -->
