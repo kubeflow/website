@@ -1,24 +1,34 @@
 +++
 title = "Kubeflow Trainer Extension Framework"
-description = "How to install Kubeflow Trainer control plane"
+description = "Core concepts and architecture of the Kubeflow Trainer Extension Framework"
 weight = 70
 +++
 
-This guide describes `Kubeflow Trainer Extension Framework` core concepts, including the startup phase, pre-execution phase, build phase, and post-execution phase for user.
+This guide describes the Kubeflow Trainer Extension Framework's core concepts and its four execution phases: startup, pre-execution, build, and post-execution.
 
 ## Overview
 
-The **Kubeflow Trainer Extension Framework** is designed as an internal mechanism that allows for flexible expansion and integration of various **Runtimes** and **TrainJobs** in the Kubeflow ecosystem. The framework provides a streamlined approach for building, managing, and executing the training lifecycle on Kubernetes. It consists of four distinct phases: **Startup Phase**, **PreExecution Phase**, **Build Phase**, and **PostExecution Phase**. Each phase has specific actions that help automate and optimize the training process.
+The Kubeflow Trainer Extension Framework is an internal mechanism that enables flexible expansion of Runtime and TrainJob combinations in the Kubeflow ecosystem. The framework provides extension points and manages component lifecycle through four phases.
 
-<img src="/docs/components/trainer/operator-guides/images/TrainerPipelineFrameworkOverview.drawio.svg"
-  alt="Kubeflow Trainer Extension Framework Overview"
+<img src="/docs/components/trainer/operator-guides/images/KubeflowTrainerExtensionFrameworkOverview.drawio.svg"
+  alt="Kubeflow Trainer Extension Framework Architecture"
   class="mt-3 mb-3">
+
+### Purpose and Intended Users
+
+The primary purpose of the Kubeflow Trainer Extension Framework is to provide a flexible and extensible mechanism for managing and executing machine learning training jobs within the Kubeflow ecosystem. It is designed for developers and data scientists who need to customize and extend the training job lifecycle to fit their specific requirements.
+
+### Examples
+
+To illustrate how the framework can be used, consider the following scenarios:
+1. **Custom Validation**: A user wants to add specific validation logic to ensure that certain fields in the `TrainJob` are correctly configured before execution.
+2. **Dynamic Resource Deployment**: A user needs to deploy Kubernetes resources dynamically based on runtime-specific configurations.
 
 ## Core Concepts
 
 ### Phases
 
-The Kubeflow TrainerPipelineFramework follows a structured, step-by-step execution flow. Each phase represents a logical part of the workflow:
+The Kubeflow Trainer Extension Framework follows a structured, step-by-step execution flow. Each phase represents a logical part of the workflow:
 
 - **Startup Phase**: Executes once during the initialization of the `kubeflow-trainer-controller-manager`. This phase sets up necessary internal components.
 - **PreExecution Phase**: Triggered when a `TrainJob` is created or updated. This phase validates and prepares the job for execution.
@@ -31,18 +41,18 @@ In each phase, there are two types of components:
 1. **Internal APIs**: These APIs are used internally by the framework and cannot be extended or modified by the user.
 2. **Extension Points**: These points are exposed to the user and allow for customization through plugins that can be added to the framework.
 
-<img src="/docs/components/trainer/operator-guides/images/TrainerPipelineFramework.drawio.svg"
-  alt="Kubeflow Kubeflow Trainer Extension Framework"
+<img src="/docs/components/trainer/operator-guides/images/KubeflowTrainerExtensionFramework.drawio.svg"
+  alt="Kubeflow Trainer Extension Framework"
   class="mt-3 mb-3">
 
-## Phases Explained
+## Phase Details
 
 ### 1. **Startup Phase**
 
-**Purpose**: Initialize the TrainerPipelineFramework and set up necessary components for managing training jobs.
+**Purpose**: Initialize the Kubeflow Trainer Extension Framework and set up necessary components for managing training jobs.
 
 - **Internal APIs**:
-  - **Initialize Kubeflow TrainerFrameworkPipeline**: Sets up the entire Kubeflow TrainerPipelineFramework.
+  - **Initialize Kubeflow TrainerFrameworkPipeline**: Sets up the entire Kubeflow Trainer Extension Framework.
   - **TrainJobController**: Configures the TrainJob controller and registers it with the Manager.
   - **Built-in Webhook Servers**: Initializes Admission Webhook Servers that handle job creation and updates.
   - **Start Manager**: Starts the main management process.
