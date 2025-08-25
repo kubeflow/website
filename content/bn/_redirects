@@ -1,0 +1,368 @@
+# Redirects from what the browser requests to what we serve
+# Info: https://www.netlify.com/docs/redirects/
+
+/version/stable/gke/scripts/deploy.sh  https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.2/scripts/gke/deploy.sh
+/version/stable/scripts/deploy.sh      https://raw.githubusercontent.com/kubeflow/kubeflow/v0.2.2/scripts/deploy.sh
+/version/stable/source.tar.gz          https://github.com/kubeflow/kubeflow/archive/v0.2.2.tar.gz
+/blog/                                 https://blog.kubeflow.org
+/blog/why_kubeflow/                    https://medium.com/kubeflow/why-kubeflow-in-your-infrastructure-56b8fabf1f3e
+/blog/announcing_kubeflow_0.3/         https://medium.com/kubeflow/kubeflow-0-3-simplifies-setup-improves-ml-development-98b8ca10bd69
+/blog/blog_posts/                      https://medium.com/kubeflow/blog-posts-about-kubeflow-7068688359f3
+/blog/nvidia_tensorrt/                 https://medium.com/kubeflow/gpu-accelerated-inference-for-kubernetes-with-the-nvidia-tensorrt-inference-server-and-kubeflow-63061305fff2
+/blog/kaggle_on_kubeflow/              https://medium.com/kubeflow/kaggle-on-kubeflow-185a29e27c53
+/blog/announcing_kubeflow_0.2/         https://medium.com/kubeflow/kubeflow-0-2-offers-new-components-and-simplified-setup-735e4c56988d
+
+/docs/guides/components/components     /docs/components/
+/docs/guides/pipelines/deploy-pipelines-service/  /docs/components/pipelines/pipelines-quickstart/
+
+# https://github.com/kubeflow/website/pull/3786
+/docs/components/pipelines/legacy-v1/overview/multi-user    /docs/components/pipelines/operator-guides/multi-user
+
+# Merged duplicate page pipelines-samples.md into build-pipeline.md
+/docs/pipelines/pipelines-samples/	   /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
+
+# Removed redundant UI guide. Quickstart is a better destination.
+/docs/pipelines/pipelines-ui/	         /docs/components/pipelines/pipelines-quickstart/
+
+# Restructured the pipelines docs.
+/docs/pipelines/                                    /docs/components/pipelines
+/docs/pipelines/output-viewer/                      /docs/components/pipelines/legacy-v1/sdk/output-viewer/
+/docs/pipelines/pipelines-metrics/                  /docs/components/pipelines/legacy-v1/sdk/output-viewer/#v2-sdk-use-sdk-visualization-apis
+/docs/pipelines/build-component/                    /docs/components/pipelines/legacy-v1/sdk/component-development/
+/docs/pipelines/install-sdk/                        /docs/components/pipelines/legacy-v1/sdk/install-sdk/
+/docs/pipelines/lightweight-python-components/      /docs/components/pipelines/legacy-v1/sdk/python-function-components/
+/docs/pipelines/sdk/lightweight-python-components/  /docs/components/pipelines/legacy-v1/sdk/python-function-components/
+/docs/pipelines/build-pipeline/                     /docs/components/pipelines/legacy-v1/tutorials/build-pipeline/
+/docs/pipelines/pipelines-tutorial/                 /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
+/docs/pipelines/tutorials/pipelines-tutorial/       /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
+/docs/gke/pipelines-tutorial/                       /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
+/docs/gke/pipelines/pipelines-tutorial/             /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
+/docs/gke/authentication-pipelines/                 /docs/distributions/gke/pipelines/authentication-pipelines/
+
+/docs/pipelines/metrics/                            /docs/components/pipelines/legacy-v1/sdk/output-viewer/#v2-sdk-use-sdk-visualization-apis
+/docs/pipelines/metrics/pipelines-metrics/          /docs/components/pipelines/legacy-v1/sdk/output-viewer/#v2-sdk-use-sdk-visualization-apis
+/docs/pipelines/metrics/output-viewer/              /docs/components/pipelines/legacy-v1/sdk/output-viewer/
+/docs/pipelines/pipelines-overview/                 /docs/components/pipelines/overview/pipelines-overview/
+/docs/pipelines/enable-gpu-and-tpu/                 /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/enable-gpu-and-tpu/             /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/sdk/gcp/enable-gpu-and-tpu/         /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
+/docs/pipelines/preemptible/                        /docs/distributions/gke/pipelines/preemptible/
+/docs/pipelines/sdk/gcp/preemptible/                /docs/distributions/gke/pipelines/preemptible/
+/docs/pipelines/reusable-components/                /docs/examples/shared-resources/
+/docs/pipelines/sdk/reusable-components/            /docs/examples/shared-resources/
+/docs/pipelines/sdk/build-component/                /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
+/docs/components/pipelines/sdk/build-component/     /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
+/docs/components/pipelines/upgrade/                 /docs/components/pipelines/legacy-v1/installation/upgrade/
+
+# Moved the guide to monitoring GKE deployments.
+/docs/other-guides/monitoring/                 /docs/distributions/gke/monitoring/
+
+# Created a new section for pipeline concepts.
+/docs/pipelines/pipelines-concepts/            /docs/components/pipelines/concepts/
+
+# Replaces Pipelines DSL overview with SDK overview
+/docs/pipelines/sdk/dsl-overview/              /docs/components/pipelines/legacy-v1/sdk/sdk-overview/
+
+# Created a new section for pipelines installation.
+/docs/pipelines/standalone-deployment-gcp/    /docs/components/pipelines/operator-guides/installation/
+
+# Removed the downloads page from Reference to Getting Started with Kubeflow
+/docs/reference/downloads/                     /docs/started/getting-started/
+
+# Adding the content of Requirements to Getting Started and removing Requirements
+docs/started/requirements/                    /docs/started/getting-started/
+
+# Created a new components layout
+/docs/components/chainer                       /docs/components/training/chainer
+/docs/components/modeldb                       /docs/components/misc/modeldb
+/docs/components/mpi                           /docs/components/training/mpi
+/docs/components/mxnet                         /docs/components/training/mxnet
+/docs/components/pytorch                       /docs/components/training/pytorch
+/docs/components/nuclio                        /docs/components/misc/nuclio
+/docs/components/seldon                        /docs/external-add-ons/serving/seldon
+/docs/components/trtinferenceserver            /docs/external-add-ons/serving/tritoninferenceserver
+/docs/components/tfbatchpredict                /docs/external-add-ons/serving/tfbatchpredict
+/docs/components/tftraining                    /docs/components/training/user-guides/tensorflow
+/docs/components/training/pytorch              /docs/components/training/user-guides/pytorch
+/docs/components/training/mpi                  /docs/components/training/user-guides/mpi
+/docs/components/training/mxnet                /docs/components/training/user-guides/mxnet
+/docs/components/training/paddlepaddle         /docs/components/training/user-guides/paddle
+/docs/components/training/xgboost              /docs/components/training/user-guides/xgboost
+/docs/components/training/tftraining           /docs/components/training/user-guides/tensorflow
+/docs/components/tfserving_new                 /docs/external-add-ons/serving/tfserving_new
+
+# Deleted the PyTorch serving page
+/docs/components/pytorchserving/               /docs/external-add-ons/serving/overview/
+/docs/components/serving/pytorchserving/       /docs/external-add-ons/serving/overview/
+
+# Restructured the getting-started and other-guides sections.
+/docs/started/getting-started-k8s/             /docs/started/k8s/
+/docs/started/getting-started-minikube/                    /docs/started/distributions/kfctl/minikube/
+/docs/use-cases/kubeflow-on-multinode-cluster/ /docs/other-guides/kubeflow-on-multinode-cluster/
+/docs/use-cases/job-scheduling/                /docs/other-guides/job-scheduling/
+
+# Remove examples docs
+/docs/examples/*                                /docs/started/kubeflow-examples
+
+# Move the kustomize guide to the config section
+/docs/components/misc/kustomize/              /docs/distributions/kfctl/kustomize/
+
+# Merged the UIs page with the new central dashboard page
+/docs/other-guides/accessing-uis/             /docs/components/central-dash/overview/
+
+# Refactored multi-user docs
+/docs/other-guides/multi-user-overview/       /docs/components/multi-tenancy/
+
+# Rename TensorRT Inference Server to Triton Inference Server
+/docs/components/serving/trtinferenceserver   /docs/external-add-ons/serving/tritoninferenceserver
+
+# Kubeflow Operator move to under distributions
+/docs/operator                      /docs/distributions/operator
+/docs/operator/introduction         /docs/distributions/operator/introduction
+/docs/operator/install-operator     /docs/distributions/operator/install-operator
+/docs/operator/install-kubeflow     /docs/distributions/operator/install-kubeflow
+/docs/operator/uninstall-kubeflow   /docs/distributions/operator/uninstall-kubeflow
+/docs/operator/uninstall-operator   /docs/distributions/operator/uninstall-operator
+/docs/operator/troubleshooting      /docs/distributions/operator/troubleshooting
+
+# kfctl move to under distributions
+/docs/started/workstation/minikube-linux        /docs/distributions/kfctl/minikube
+/docs/other-guides/kustomize                    /docs/distributions/kfctl/kustomize
+/docs/started/k8s/kfctl-istio-dex               /docs/distributions/kfctl/multi-user
+/docs/started/k8s/kfctl-k8s-istio               /docs/distributions/kfctl/deployment
+
+# Moved Job scheduling under Training
+/docs/other-guides/job-scheduling/    /docs/components/training/job-scheduling/
+
+# Moved KFServing
+/docs/components/serving/kfserving/         /docs/components/kfserving
+
+# Moved KServe/KFserving Docs to External Addons
+/docs/components/kfserving/ /docs/external-add-ons/kserve
+/docs/components/kfserving/kfserving/ /docs/external-add-ons/kserve/kserve
+/docs/components/kfserving/webapp/ /docs/external-add-ons/kserve/webapp
+
+# Moved MicroK8s to distributions
+/docs/started/workstation/kubeflow-on-microk8s    /docs/distributions/microk8s/kubeflow-on-microk8s
+
+# Moved K8s deployment overview to under kfctl
+/docs/started/k8s/overview              /docs/distributions/kfctl/overview
+
+# Moved MiniKF to distributions
+/docs/started/workstation/getting-started-minikf        /docs/distributions/minikf/getting-started-minikf
+/docs/started/workstation/minikf-aws                    /docs/distributions/minikf/minikf-aws
+/docs/started/workstation/minikf-gcp                    /docs/distributions/minikf/minikf-gcp
+
+# Distinguish components from external add-ons
+/docs/components/fairing                       /docs/external-add-ons/fairing
+/docs/components/istio                         /docs/external-add-ons/istio
+/docs/components/feature-store                 /docs/external-add-ons/feature-store
+/docs/components/serving                       /docs/external-add-ons/serving
+/docs/components/metadata                      /docs
+
+# Rename Getting Started to Installing Kubeflow
+/docs/started/getting-started           /docs/started/installing-kubeflow
+
+# Remove Reference section
+/docs/reference/notebook/*         /docs/components/notebooks/api-reference
+/docs/reference/mpijob/*           /docs/components/training
+/docs/reference/pytorchjob/*       /docs/components/training
+/docs/reference/tfjob/*            /docs/components/training
+
+# Cleanup of Notebooks Docs
+/docs/components/notebooks/custom-notebook                /docs/components/notebooks/container-images
+/docs/components/notebooks/setup                          /docs/components/notebooks/quickstart-guide
+/docs/components/notebooks/troubleshoot                   /docs/components/notebooks/troubleshooting
+/docs/components/notebooks/why-use-jupyter-notebook       /docs/components/notebooks/overview
+
+# Refactor Pipelines section
+/docs/components/pipelines/caching                            /docs/components/pipelines/legacy-v1/overview/caching
+/docs/components/pipelines/caching-v2                         /docs/components/pipelines/user-guides/core-functions/caching
+/docs/components/pipelines/multi-user                         /docs/components/pipelines/operator-guides/multi-user
+/docs/components/pipelines/pipeline-root                      /docs/components/pipelines/concepts/pipeline-root
+/docs/components/pipelines/overview/pipelines-overview        /docs/components/pipelines/overview
+/docs/components/pipelines/pipelines-quickstart               /docs/components/pipelines/overview/quickstart
+
+# Restructure About section
+/docs/about/kubeflow             /docs/started/introduction
+/docs/started/kubeflow-overview  /docs/started/architecture
+
+# move istio from external-add-ons to multi-tenancy component
+/docs/external-add-ons/istio/*    /docs/components/multi-tenancy/istio
+
+# merge multi-tenancy/getting-started with profiles
+/docs/components/multi-tenancy/getting-started /docs/components/central-dash/profiles
+
+# move multi-tenancy to concepts
+/docs/components/multi-tenancy/design          /docs/concepts/multi-tenancy/design
+/docs/components/multi-tenancy/istio           /docs/concepts/multi-tenancy/istio
+/docs/components/multi-tenancy/overview        /docs/concepts/multi-tenancy/overview
+/docs/components/multi-tenancy                 /docs/concepts/multi-tenancy
+
+# remove registration-flow page
+/docs/components/central-dash/registration-flow /docs/components/central-dash/profiles
+
+# rename customize dashboard page
+/docs/components/central-dash/customizing-menu /docs/components/central-dash/customize
+
+# rename feature-store to feast
+/docs/external-add-ons/feature-store/overview/        /docs/external-add-ons/feast/introduction
+/docs/external-add-ons/feature-store/getting-started/ /docs/external-add-ons/feast/introduction
+/docs/external-add-ons/feature-store/                 /docs/external-add-ons/feast
+
+# rename kserve/kserve to kserve/introduction
+/docs/external-add-ons/kserve/kserve/ /docs/external-add-ons/kserve/introduction
+
+# redirect kserve pages to kserve website
+/docs/external-add-ons/kserve/first_isvc_kserve/ https://kserve.github.io/website/latest/get_started/first_isvc/
+/docs/external-add-ons/kserve/migration/         https://kserve.github.io/website/latest/admin/migration/
+
+# ===============
+# IMPORTANT NOTE:
+# Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
+# ===============
+/docs/guides/*                      /docs/:splat
+/docs/pipelines/concepts/*          /docs/components/pipelines/concepts
+/docs/pipelines/*                   /docs/components/pipelines
+/docs/aws/*                         /docs/distributions/aws/
+/docs/azure/*                       /docs/distributions/azure/:splat
+/docs/gke/*                         /docs/distributions/gke/:splat
+/docs/ibm/*                         /docs/distributions/ibm/:splat
+/docs/openshift/*                   /docs/distributions/openshift/:splat
+/docs/components/fairing/*          /docs/external-add-ons/fairing/:splat
+/docs/components/istio/*            /docs/external-add-ons/istio/:splat
+/docs/components/feature-store/*    /docs/external-add-ons/feature-store/:splat
+/docs/components/serving/*          /docs/external-add-ons/serving/:splat
+
+# redirect distribution pages to external websites
+/docs/distributions/aws/*           https://awslabs.github.io/kubeflow-manifests/
+/docs/distributions/azure/*         https://azure.github.io/kubeflow-aks/main/
+/docs/distributions/charmed/*       https://charmed-kubeflow.io/
+/docs/distributions/ekf/*           https://www.arrikto.com/enterprise-kubeflow/
+/docs/distributions/gke/*           https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/:splat
+/docs/distributions/ibm/*           https://ibm.github.io/manifests/
+/docs/distributions/nutanix/*       https://nutanix.github.io/kubeflow-manifests/
+
+# Refactor Katib docs
+/docs/components/hyperparameter                /docs/components/katib/overview
+/docs/components/katib/hyperparameter          /docs/components/katib/getting-started
+/docs/components/katib/experiment              /docs/components/katib/user-guides/hp-tuning/configure-experiment
+/docs/components/katib/early-stopping          /docs/components/katib/user-guides/early-stopping
+/docs/components/katib/resume-experiment       /docs/components/katib/user-guides/resume-experiment
+/docs/components/katib/trial-template          /docs/components/katib/user-guides/trial-template
+
+# Restructured the pipeline docs (https://github.com/kubeflow/website/issues/3716)
+/docs/components/pipelines/overview/quickstart/                             /docs/components/pipelines/overview/
+/docs/components/pipelines/v1/                                              /docs/components/pipelines/legacy-v1/
+/docs/components/pipelines/v1/concepts/                                     /docs/components/pipelines/concepts/
+/docs/components/pipelines/v1/concepts/component/                           /docs/components/pipelines/concepts/component/
+/docs/components/pipelines/v1/concepts/experiment/                          /docs/components/pipelines/concepts/experiment/
+/docs/components/pipelines/v1/concepts/graph/                               /docs/components/pipelines/concepts/graph/
+/docs/components/pipelines/v1/concepts/metadata/                            /docs/components/pipelines/concepts/metadata/
+/docs/components/pipelines/v1/concepts/output-artifact/                     /docs/components/pipelines/concepts/output-artifact/
+/docs/components/pipelines/v1/concepts/pipeline/                            /docs/components/pipelines/concepts/pipeline/
+/docs/components/pipelines/v1/concepts/run-trigger/                         /docs/components/pipelines/concepts/run-trigger/
+/docs/components/pipelines/v1/concepts/run/                                 /docs/components/pipelines/concepts/run/
+/docs/components/pipelines/v1/concepts/step/                                /docs/components/pipelines/concepts/step/
+/docs/components/pipelines/v1/installation/                                 /docs/components/pipelines/legacy-v1/installation/
+/docs/components/pipelines/v1/installation/choose-executor/                 /docs/components/pipelines/legacy-v1/installation/choose-executor/
+/docs/components/pipelines/v1/installation/compatibility-matrix/            /docs/components/pipelines/legacy-v1/installation/compatibility-matrix/
+/docs/components/pipelines/v1/installation/localcluster-deployment/         /docs/components/pipelines/legacy-v1/installation/localcluster-deployment/
+/docs/components/pipelines/v1/installation/overview/                        /docs/components/pipelines/legacy-v1/installation/overview/
+/docs/components/pipelines/v1/installation/standalone-deployment/           /docs/components/pipelines/legacy-v1/installation/standalone-deployment/
+/docs/components/pipelines/v1/installation/upgrade/                         /docs/components/pipelines/legacy-v1/installation/upgrade/
+/docs/components/pipelines/v1/introduction/                                 /docs/components/pipelines/legacy-v1/introduction/
+/docs/components/pipelines/v1/overview/                                     /docs/components/pipelines/legacy-v1/overview/
+/docs/components/pipelines/v1/overview/caching/                             /docs/components/pipelines/legacy-v1/overview/caching/
+/docs/components/pipelines/v1/overview/interfaces/                          /docs/components/pipelines/interfaces/
+/docs/components/pipelines/v1/overview/multi-user/                          /docs/components/pipelines/operator-guides/multi-user/
+/docs/components/pipelines/v1/overview/pipeline-root/                       /docs/components/pipelines/concepts/pipeline-root/
+/docs/components/pipelines/v1/overview/quickstart/                          /docs/components/pipelines/legacy-v1/overview/quickstart/
+/docs/components/pipelines/v1/reference/                                    /docs/components/pipelines/legacy-v1/reference/
+/docs/components/pipelines/v1/reference/api/kubeflow-pipeline-api-spec/     /docs/components/pipelines/legacy-v1/reference/api/kubeflow-pipeline-api-spec/
+/docs/components/pipelines/v1/reference/component-spec/                     /docs/components/pipelines/reference/component-spec/
+/docs/components/pipelines/v1/reference/sdk/                                /docs/components/pipelines/legacy-v1/reference/sdk/
+/docs/components/pipelines/v1/sdk/                                          /docs/components/pipelines/legacy-v1/sdk/
+/docs/components/pipelines/v1/sdk/best-practices/                           /docs/components/pipelines/legacy-v1/sdk/best-practices/
+/docs/components/pipelines/v1/sdk/build-pipeline/                           /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
+/docs/components/pipelines/v1/sdk/component-development/                    /docs/components/pipelines/legacy-v1/sdk/component-development/
+/docs/components/pipelines/v1/sdk/connect-api/                              /docs/components/pipelines/user-guides/core-functions/connect-api/
+/docs/components/pipelines/v1/sdk/dsl-recursion/                            /docs/components/pipelines/legacy-v1/sdk/dsl-recursion/
+/docs/components/pipelines/v1/sdk/enviroment_variables/                     /docs/components/pipelines/legacy-v1/sdk/enviroment_variables/
+/docs/components/pipelines/v1/sdk/gcp/                                      /docs/components/pipelines/legacy-v1/sdk/gcp/
+/docs/components/pipelines/v1/sdk/install-sdk/                              /docs/components/pipelines/legacy-v1/sdk/install-sdk/
+/docs/components/pipelines/v1/sdk/manipulate-resources/                     /docs/components/pipelines/legacy-v1/sdk/manipulate-resources/
+/docs/components/pipelines/v1/sdk/output-viewer/                            /docs/components/pipelines/legacy-v1/sdk/output-viewer/
+/docs/components/pipelines/v1/sdk/parameters/                               /docs/components/pipelines/legacy-v1/sdk/parameters/
+/docs/components/pipelines/v1/sdk/pipelines-with-tekton/                    /docs/components/pipelines/legacy-v1/sdk/pipelines-with-tekton/
+/docs/components/pipelines/v1/sdk/python-based-visualizations/              /docs/components/pipelines/legacy-v1/sdk/python-based-visualizations/
+/docs/components/pipelines/v1/sdk/python-function-components/               /docs/components/pipelines/legacy-v1/sdk/python-function-components/
+/docs/components/pipelines/v1/sdk/sdk-overview/                             /docs/components/pipelines/legacy-v1/sdk/sdk-overview/
+/docs/components/pipelines/v1/sdk/static-type-checking/                     /docs/components/pipelines/legacy-v1/sdk/static-type-checking/
+/docs/components/pipelines/v1/troubleshooting/                              /docs/components/pipelines/legacy-v1/troubleshooting/
+/docs/components/pipelines/v1/tutorials/                                    /docs/components/pipelines/legacy-v1/tutorials/
+/docs/components/pipelines/v1/tutorials/api-pipelines/                      /docs/components/pipelines/legacy-v1/tutorials/api-pipelines/
+/docs/components/pipelines/v1/tutorials/benchmark-examples/                 /docs/components/pipelines/legacy-v1/tutorials/benchmark-examples/
+/docs/components/pipelines/v1/tutorials/build-pipeline/                     /docs/components/pipelines/legacy-v1/tutorials/build-pipeline/
+/docs/components/pipelines/v1/tutorials/cloud-tutorials/                    /docs/components/pipelines/legacy-v1/tutorials/cloud-tutorials/
+/docs/components/pipelines/v1/tutorials/sdk-examples/                       /docs/components/pipelines/legacy-v1/tutorials/sdk-examples/
+/docs/components/pipelines/v2/                                              /docs/components/pipelines/
+/docs/components/pipelines/v2/administration/                               /docs/components/pipelines/operator-guides/
+/docs/components/pipelines/v2/administration/server-config/                 /docs/components/pipelines/operator-guides/server-config/
+/docs/components/pipelines/v2/caching/                                      /docs/components/pipelines/user-guides/core-functions/caching/
+/docs/components/pipelines/v2/cli/                                          /docs/components/pipelines/user-guides/core-functions/cli/
+/docs/components/pipelines/v2/community-and-support/                        /docs/components/pipelines/reference/community-and-support/
+/docs/components/pipelines/v2/compile-a-pipeline/                           /docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/
+/docs/components/pipelines/v2/components/                                   /docs/components/pipelines/user-guides/components/
+/docs/components/pipelines/v2/components/additional-functionality/          /docs/components/pipelines/user-guides/components/additional-functionality/
+/docs/components/pipelines/v2/components/container-components/              /docs/components/pipelines/user-guides/components/container-components/
+/docs/components/pipelines/v2/components/containerized-python-components/   /docs/components/pipelines/user-guides/components/containerized-python-components/
+/docs/components/pipelines/v2/components/importer-component/                /docs/components/pipelines/user-guides/components/importer-component/
+/docs/components/pipelines/v2/components/lightweight-python-components/     /docs/components/pipelines/user-guides/components/lightweight-python-components/
+/docs/components/pipelines/v2/data-types/                                   /docs/components/pipelines/user-guides/data-handling/data-types/
+/docs/components/pipelines/v2/data-types/artifacts/                         /docs/components/pipelines/user-guides/data-handling/artifacts/
+/docs/components/pipelines/v2/data-types/parameters/                        /docs/components/pipelines/user-guides/data-handling/parameters/
+/docs/components/pipelines/v2/hello-world/                                  /docs/components/pipelines/getting-started/
+/docs/components/pipelines/v2/installation/                                 /docs/components/pipelines/operator-guides/installation/
+/docs/components/pipelines/v2/installation/quickstart/                      /docs/components/pipelines/operator-guides/installation/
+/docs/components/pipelines/v2/introduction/                                 /docs/components/pipelines/overview/
+/docs/components/pipelines/v2/load-and-share-components/                    /docs/components/pipelines/user-guides/components/load-and-share-components/
+/docs/components/pipelines/v2/local-execution/                              /docs/components/pipelines/user-guides/core-functions/execute-kfp-pipelines-locally/
+/docs/components/pipelines/v2/migration/                                    /docs/components/pipelines/user-guides/migration/
+/docs/components/pipelines/v2/pipelines/                                    /docs/components/pipelines/user-guides/core-functions/
+/docs/components/pipelines/v2/pipelines/control-flow/                       /docs/components/pipelines/user-guides/core-functions/control-flow/
+/docs/components/pipelines/v2/pipelines/pipeline-basics/                    /docs/components/pipelines/user-guides/components/compose-components-into-pipelines/
+/docs/components/pipelines/v2/platform-specific-features/                   /docs/components/pipelines/user-guides/core-functions/platform-specific-features/
+/docs/components/pipelines/v2/reference/                                    /docs/components/pipelines/reference/
+/docs/components/pipelines/v2/reference/api/kubeflow-pipeline-api-spec/     /docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/
+/docs/components/pipelines/v2/reference/sdk/                                /docs/components/pipelines/reference/sdk/
+/docs/components/pipelines/v2/run-a-pipeline/                               /docs/components/pipelines/user-guides/core-functions/run-a-pipeline/
+/docs/components/pipelines/v2/version-compatibility/                        /docs/components/pipelines/reference/version-compatibility/
+
+# Remove Components / Multi-Tenancy section
+/docs/concepts/multi-tenancy/                /docs/components/central-dash/profiles/
+/docs/concepts/multi-tenancy/overview/       /docs/components/central-dash/profiles/
+/docs/concepts/multi-tenancy/design/         /docs/components/central-dash/profiles/
+/docs/concepts/multi-tenancy/istio/          /docs/components/central-dash/profiles/
+
+# Kubeflow Trainer V2 (https://github.com/kubeflow/trainer/issues/2214)
+/docs/components/training/installation/                       /docs/components/trainer/legacy-v1/installation/
+/docs/components/training/explanation/                        /docs/components/trainer/legacy-v1/explanation/
+/docs/components/training/explanation/fine-tuning/            /docs/components/trainer/legacy-v1/explanation/fine-tuning/
+/docs/components/training/reference/                          /docs/components/trainer/legacy-v1/reference/
+/docs/components/training/reference/architecture/             /docs/components/trainer/legacy-v1/reference/architecture/
+/docs/components/training/reference/distributed-training/     /docs/components/trainer/legacy-v1/reference/distributed-training/
+/docs/components/training/reference/fine-tuning/              /docs/components/trainer/legacy-v1/reference/fine-tuning/
+/docs/components/training/user-guides/                        /docs/components/trainer/legacy-v1/user-guides/
+/docs/components/training/user-guides/fine-tuning/            /docs/components/trainer/legacy-v1/user-guides/fine-tuning/
+/docs/components/training/user-guides/jax/                    /docs/components/trainer/legacy-v1/user-guides/jax/
+/docs/components/training/user-guides/job-scheduling/         /docs/components/trainer/legacy-v1/user-guides/job-scheduling/
+/docs/components/training/user-guides/mpi/                    /docs/components/trainer/legacy-v1/user-guides/mpi/
+/docs/components/training/user-guides/paddle/                 /docs/components/trainer/legacy-v1/user-guides/paddle/
+/docs/components/training/user-guides/prometheus/             /docs/components/trainer/legacy-v1/user-guides/prometheus/
+/docs/components/training/user-guides/tensorflow/             /docs/components/trainer/legacy-v1/user-guides/tensorflow/
+/docs/components/training/user-guides/xgboost/                /docs/components/trainer/legacy-v1/user-guides/xgboost/
+/docs/components/training/                                    /docs/components/trainer/
+/docs/components/training/user-guides/pytorch/                /docs/components/trainer/legacy-v1/user-guides/pytorch/
+/docs/components/training/overview/                           /docs/components/trainer/legacy-v1/overview/
+/docs/components/training/getting-started/                    /docs/components/trainer/legacy-v1/getting-started/
