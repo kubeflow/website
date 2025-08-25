@@ -81,14 +81,14 @@ The following list shows available Kubeflow community meetings with the correspo
 | ------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | Kubeflow community call         | [Google Doc](https://bit.ly/kf-meeting-notes)                                                      | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
 | Kubeflow AutoML and Training WG | [Google Doc](https://bit.ly/2PWVCkV)                                                               | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
-| Kubeflow SDK and ML Experience WG          | [Google Doc](https://bit.ly/kf-ml-experience)                                                      |                                                                                              |
+| Kubeflow SDK and ML Experience WG | [Google Doc](https://bit.ly/kf-ml-experience)                                                    |                                                                                              |
 | Kubeflow Model Registry call    | [Google Doc](https://bit.ly/kf-model-registry-notes)                                               | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
-| Kubeflow Notebooks WG           | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)                                                 |                                                                                              |
+| Kubeflow Notebooks WG           | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)                                                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
 | Kubeflow Platform WG            | [Google Doc](https://bit.ly/kf-wg-manifests-notes)                                                 |                                                                                              |
-| Kubeflow Pipelines WG           | [Google Doc](http://bit.ly/kfp-meeting-notes)                                                      |                                                                                              |
+| Kubeflow Pipelines WG           | [Google Doc](http://bit.ly/kfp-meeting-notes)                                                      | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
 | Kubeflow Release team call      | [Google Doc](https://bit.ly/kf-release-team-notes)                                                 |                                                                                              |
 | Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                                                               | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
-| KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                                                               |
+| KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                                                               |                                                                                              |
 | Kubeflow Graduation Call        | [Google Doc](https://docs.google.com/document/d/1Wdxt1xedAj7qF_Rjmxy1R0NRdfv7UWs-r2PItewxHpE/edit) | [YouTube playlist](https://youtu.be/a3ZHpSZ6F1o?list=PLmzRWLV1CK_wXzEuDqJZQVMhZaJVHTWfM)     |
 
 </div>
