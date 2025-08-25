@@ -26,6 +26,7 @@ Kubeflow Model Registry is available as an opt-in alpha component in Kubeflow Pl
 
 These instructions assume that you've installed Kubeflow from the [manifests](https://github.com/kubeflow/manifests/), if you're using a distribution consult its documentation instead.
 
+
 Clone the `model-registry` repository:
 
 ```sh
@@ -68,6 +69,23 @@ Finally, configure a Model Registry link in the Kubeflow Dashboard:
 ```sh
 kubectl get configmap centraldashboard-config -n kubeflow -o json | jq '.data.links |= (fromjson | .menuLinks += [{"icon": "assignment", "link": "/model-registry/", "text": "Model Registry", "type": "item"}] | tojson)' | kubectl apply -f - -n kubeflow
 ```
+
+### Installing via `kubectl apply`
+
+You can deploy Model Registry directly with a single command:
+
+```sh
+kubectl apply -k https://github.com/kubeflow/model-registry/manifests/kustomize/base?ref=v0.2.16
+```
+### Optional: Istio compatibility
+
+If your cluster uses Istio (and you’ve installed Kubeflow with Istio), enable compatibility:
+
+```sh
+kubectl apply -k \ https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=v0.2.16
+```
+
+Tip: Adjust ref= to the exact release tag (e.g. v0.2.16) so you’re always pulling in the matching manifests.
 
 ### Standalone installation
 
