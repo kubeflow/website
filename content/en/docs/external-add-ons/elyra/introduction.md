@@ -24,7 +24,7 @@ You may create a [custom Kubeflow Notebook image](/docs/components/notebooks/con
 The Elyra project has an [example in their documentation](https://elyra.readthedocs.io/en/stable/recipes/using-elyra-with-kubeflow-notebook-server.html) and a [`Dockerfile`](https://github.com/elyra-ai/elyra/blob/main/etc/docker/kubeflow/Dockerfile) that you can use as a reference.
 
 {{% alert title="Elyra and JupyterLab 4.0" color="warning" %}}
-Elyra [`3.15.0`](https://github.com/elyra-ai/elyra/releases/tag/v3.15.0) may not properly support JupyterLab 4.0, which has been included in the default Kubeflow Notebook images since Kubeflow 1.9.0.
+Elyra [`4.0.0`](https://github.com/elyra-ai/elyra/releases/tag/v4.0.0) is now compatible with JupyterLab 4.0, which has been included in the default Kubeflow Notebook images since Kubeflow 1.9.0.
 {{% /alert %}}
 
 ## Next steps
