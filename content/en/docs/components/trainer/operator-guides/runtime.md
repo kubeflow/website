@@ -168,7 +168,7 @@ These measures are taken to inform users about runtime deprecation:
 - Add the following label to the deprecated runtime:
 
   ```yaml
-  trainer.kubeflow.org/deprecated: "true"
+  trainer.kubeflow.org/support: "deprecated"
   ```
 
 - Document the deprecation as **a breaking change** in Kubeflow Trainer release notes.
