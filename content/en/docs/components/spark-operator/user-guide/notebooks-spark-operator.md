@@ -194,7 +194,7 @@ mkdir spark_python_operator && cd spark_python_operator && curl -sL https://gith
 ```
 Once extracted, make any necessary customizations to the kernelspecs.
 
-To learn more about kernelspecs custimzation visit [Jupyter Enterprise Gateway Doucmentation](jupyter-enterprise-gateway.readthedocs.io/en/latest/)
+To learn more about kernelspecs customization visit [Jupyter Enterprise Gateway Documentation](https://jupyter-enterprise-gateway.readthedocs.io/en/latest/)
 
 ## What Happens Next
 
