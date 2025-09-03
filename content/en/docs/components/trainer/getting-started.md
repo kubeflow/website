@@ -179,7 +179,8 @@ Step: node-3, Status: Succeeded, Devices: gpu x 1
 Finally, you can check the training logs from the master node:
 
 ```python
-print("\n".join(TrainerClient().get_job_logs(name=job_name)))
+for logline in TrainerClient().get_job_logs(job_name, follow=True):
+    print(logline)
 ```
 
 Since training was run on 4 GPUs, each PyTorch node processes 60,000 / 4 = 15,000 images
