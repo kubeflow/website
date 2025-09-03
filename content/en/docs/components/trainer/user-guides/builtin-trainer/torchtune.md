@@ -107,8 +107,7 @@ We can use the `get_job_logs()` API to get the TrainJob logs.
 ```python
 from kubeflow.trainer.constants import constants
 
-log_dict = client.get_job_logs(job_name, step=constants.DATASET_INITIALIZER)
-print(log_dict[constants.DATASET_INITIALIZER])
+print("\n".join(client.get_job_logs(job_name, step=constants.DATASET_INITIALIZER)))
 ```
 
 Output:
@@ -124,8 +123,7 @@ Fetching 3 files: 100%|██████████| 3/3 [00:01<00:00,  1.82it
 #### Model Initializer
 
 ```python
-log_dict = client.get_job_logs(job_name, step=constants.MODEL_INITIALIZER)
-print(log_dict[constants.MODEL_INITIALIZER])
+print("\n".join(client.get_job_logs(job_name, step=constants.MODEL_INITIALIZER)))
 ```
 
 Output:
@@ -141,8 +139,7 @@ Fetching 8 files: 100%|██████████| 8/8 [01:02<00:00,  7.87s/
 #### Training Node
 
 ```python
-log_dict = client.get_job_logs(job_name, follow=False)
-print(log_dict[f"{constants.NODE}-0"])
+print("\n".join(client.get_job_logs(job_name)))
 ```
 
 Output:
@@ -160,7 +157,7 @@ INFO:torchtune.utils._logging:Memory stats after model init:
 	GPU peak memory allocation: 2.33 GiB
 	GPU peak memory reserved: 2.34 GiB
 	GPU peak memory active: 2.33 GiB
-/opt/conda/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
+/opt/conda/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user.
   warnings.warn(  # warn only once
 INFO:torchtune.utils._logging:Optimizer is initialized.
 INFO:torchtune.utils._logging:Loss is initialized.
@@ -207,6 +204,7 @@ Currently, we support:
 
 1. Data Directory: Use all data files under this directory. For example, `hf://tatsu-lab/alpaca/data` uses all data files under the `/data` directory of `tatsu-lab/alpaca` repo in HuggingFace.
 2. Single Data File: Use the single data file given the path. For example, `hf://tatsu-lab/alpaca/data/xxx.parquet` uses the single `/data/xxx.parquet` data file of `tatsu-lab/alpaca` repo in HuggingFace.
+
 {{% /alert %}}
 
 #### Model Initializer

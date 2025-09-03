@@ -137,7 +137,7 @@ job_id = TrainerClient().train(
 TrainerClient().wait_for_job_status(job_id)
 
 # Since we launch DeepSpeed with `mpirun`, all logs should be consumed from the node-0.
-print(TrainerClient().get_job_logs(name=job_id, node_rank=0)["node-0"])
+print("\n".join(TrainerClient().get_job_logs(name=job_id)))
 ```
 
 You should see the distributed environment across the two training nodes as follows:
@@ -284,7 +284,7 @@ job_id = TrainerClient().train(
 You can use the `get_job_logs()` API to see your TrainJob logs:
 
 ```py
-print(TrainerClient().get_job_logs(name=job_id)["node-0"])
+print("\n".join(TrainerClient().get_job_logs(name=job_id)))
 ```
 
 {{% alert title="Note" color="info" %}}
