@@ -2,10 +2,12 @@ labels:
   - area/spark-operator
 
 approvers:
+  - andreyvelich
   - ChenYi015
-  - mwielgus
-  - yuchaoran2011
-  - vara-bonthu
-
-reviewers:
   - jacobsalway
+  - mwielgus
+  - vara-bonthu
+  - yuchaoran2011
+reviewers:
+  - ImpSy
+  - nabuskey
