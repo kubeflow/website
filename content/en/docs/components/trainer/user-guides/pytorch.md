@@ -106,10 +106,10 @@ job_id = TrainerClient().train(
 TrainerClient().wait_for_job_status(job_id)
 
 print("Distributed PyTorch env on node-0")
-print(TrainerClient().get_job_logs(name=job_id, node_rank=0)["node-0"])
+print("\n".join(TrainerClient().get_job_logs(name=job_id, step="node-0")))
 
 print("Distributed PyTorch env on node-1")
-print(TrainerClient().get_job_logs(name=job_id, node_rank=1)["node-1"])
+print("\n".join(TrainerClient().get_job_logs(name=job_id, step="node-1")))
 ```
 
 You should see the distributed environment across the two training nodes as follows:
@@ -212,7 +212,7 @@ job_id = TrainerClient().train(
 You can use the `get_job_logs()` API to see your TrainJob logs:
 
 ```py
-print(TrainerClient().get_job_logs(name=job_id)["node-0"])
+print("\n".join(TrainerClient().get_job_logs(name=job_id)))
 ```
 
 ## Next Steps
