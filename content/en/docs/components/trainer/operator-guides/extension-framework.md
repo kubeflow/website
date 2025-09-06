@@ -16,13 +16,13 @@ The Kubeflow Trainer Extension Framework is an internal mechanism that enables f
 
 ### Purpose and Intended Users
 
-The primary purpose of the Kubeflow Trainer Extension Framework is to provide a flexible and extensible mechanism for managing and executing machine learning training jobs within the Kubeflow ecosystem. It is designed for developers and data scientists who need to customize and extend the training job lifecycle to fit their specific requirements.
+The primary purpose of the Kubeflow Trainer Extension Framework is to provide a flexible and extensible mechanism for managing and executing machine learning training jobs within the Kubeflow Trainer. It is designed for platform administrators who need to extend Kubeflow Trainer with their custom plugins to fit their specific requirements.
 
 ### Examples
 
 To illustrate how the framework can be used, consider the following scenarios:
-1. **Custom Validation**: A user wants to add specific validation logic to ensure that certain fields in the `TrainJob` are correctly configured before execution.
-2. **Dynamic Resource Deployment**: A user needs to deploy Kubernetes resources dynamically based on runtime-specific configurations.
+1. **Custom Validation**: A user wants to add specific validation logic to ensure that certain fields in the TrainJob are correctly configured before execution.
+2. **Dynamic Resource Deployment**: A user needs to deploy Kubernetes resources dynamically based on ML framework specific requirements.
 
 ## Core Concepts
 
@@ -31,7 +31,7 @@ To illustrate how the framework can be used, consider the following scenarios:
 The Kubeflow Trainer Extension Framework follows a structured, step-by-step execution flow. Each phase represents a logical part of the workflow:
 
 - **Startup Phase**: Executes once during the initialization of the `kubeflow-trainer-controller-manager`. This phase sets up necessary internal components.
-- **PreExecution Phase**: Triggered when a `TrainJob` is created or updated. This phase validates and prepares the job for execution.
+- **PreExecution Phase**: Triggered when a TrainJob is created or updated. This phase validates and prepares the job for execution.
 - **Build Phase**: Builds and deploys the required Kubernetes resources for training jobs.
 - **PostExecution Phase**: Runs after the job has been built and executed, checking the status and applying relevant conditions to the job.
 
@@ -52,40 +52,33 @@ In each phase, there are two types of components:
 **Purpose**: Initialize the Kubeflow Trainer Extension Framework and set up necessary components for managing training jobs.
 
 - **Internal APIs**:
-  - **Initialize Kubeflow TrainerFrameworkPipeline**: Sets up the entire Kubeflow Trainer Extension Framework.
+  - **Initialize Kubeflow Trainer Extension Framework**: Sets up the entire Kubeflow Trainer Extension Framework.
   - **TrainJobController**: Configures the TrainJob controller and registers it with the Manager.
-  - **Built-in Webhook Servers**: Initializes Admission Webhook Servers that handle job creation and updates.
+  - **Built-in Webhook Servers**: Initializes Validation Webhook Servers that handle job creation and updates.
   - **Start Manager**: Starts the main management process.
 
 - **Extension Point**:
-  - **WatchExtension**: Registers custom reconciler builders that watch specific resources and trigger TrainJob reconciliations as necessary.
+  - **WatchExtension**: Registers custom reconciler builders that watch specific Kubernetes resources and trigger TrainJob reconciliations as necessary.
 
 ### 2. **PreExecution Phase**
 
-**Purpose**: Triggered when a `TrainJob` is created or updated, this phase validates the job and prepares it for execution.
+**Purpose**: Triggered when a TrainJob is created or updated, this phase validates the job and prepares it for execution.
 
 - **Extension Point**:
-  - **CustomValidation**: Registers custom validation logic to validate resources before a `TrainJob` is executed. This can include checking specific fields or configurations before proceeding.
+  - **CustomValidation**: Registers custom validation logic to validate resources before a TrainJob is executed. This can include checking specific fields or configurations before proceeding.
 
 ### 3. **Build Phase**
 
 **Purpose**: In this phase, the required Kubernetes resources are built and deployed to the cluster for execution.
 
 - **Internal API**:
-  - **ComponentDeployer**: Deploys the built components (Kubernetes resources) to the cluster as part of the reconciliation process.
+  - **TrainJobController**: Deploys the built components (Kubernetes resources) to the cluster as part of the reconciliation process.
 
 - **Extension Points**:
   - **EnforcePodGroupPolicy**: Configures pod-specific parameters, such as those specified in the `TrainingRuntime.spec.podGroupPolicy`, for any relevant resources (like PodSpecs).
   - **EnforceMLPolicy**: Configures Machine Learning-specific parameters from the `TrainingRuntime.spec.mlPolicy` to adjust the deployment of training resources.
-  - **ComponentBuilder**: Builds Kubernetes resources using the `RuntimeInfo` and `TrainJob` objects, allowing for a dynamic, runtime-specific deployment configuration.
+  - **ComponentBuilder**: Builds Kubernetes resources using the `RuntimeInfo` and TrainJob objects, allowing for a dynamic, runtime-specific deployment configuration.
 
 ### 4. **PostExecution Phase**
 
-**Purpose**: After the training job has been executed, the framework checks the state of the job and applies terminal conditions if necessary.
-
-- **Internal APIs**:
-  - **SuspendedCondition**: Checks if the `TrainJob` is in a suspended state and adds the `Suspended` condition.
-  - **CreatedCondition**: Verifies if the `TrainJob` has been created successfully and applies the `Created` condition.
-
-- **Extension Point**:
-  - **TerminalCondition**: Checks whether the `TrainJob` has terminated. If so, it applies the `Complete` condition and propagates any terminal reason or message from the child jobs to the `TrainJob`.
+**Purpose**: After the TrainJob has been executed, the framework checks the state of the job and applies terminal conditions if necessary.
