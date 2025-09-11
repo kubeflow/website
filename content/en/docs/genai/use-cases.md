@@ -7,7 +7,7 @@ aliases = ["/genai/use-cases/"]
 
 # Powering GenAI Use Cases with Kubeflow
 
-Kubeflow Projects are powered every stage of GenAI application lifecycle.
+Kubeflow Projects are powering every stage of the GenAI application lifecycle
 
 From generating synthetic data to retrieval-augmented generation (RAG), fine-tuning large language models (LLMs), hyperparameter optimization, inference at scale, and evaluation,
 Kubeflow’s modular, Kubernetes-native architecture makes building end-to-end GenAI pipelines both reproducible and production-ready.
@@ -68,46 +68,70 @@ Preprocessing massive document collections for RAG pipelines—text cleaning, ch
 
 ## Fine-Tuning LLMs
 
-Check out our [latest Fine-Tuning](https://github.com/kubeflow/trainer/blob/master/examples/deepspeed/text-summarization/T5-Fine-Tuning.ipynb) example with DeepSpeed and the Kubeflow Trainer v2!
+Kubeflow Trainer provides a seamless way to fine-tune large language models (LLMs) at scale using
+popular frameworks such as [PyTorch](https://pytorch.org/), [DeepSpeed](https://www.deepspeed.ai/),
+[MLX](https://ml-explore.github.io/mlx), and others.
 
-Domain-specific fine-tuning of pre-trained LLMs is streamlined by the [Kubeflow Training Operator’s legacy Trainer API](docs/components/trainer/legacy-v1/user-guides/fine-tuning/):
+With [the Kubeflow SDK](https://github.com/kubeflow/sdk) and the `train()` API, you can define
+custom fine-tuning scripts and scale them across thousands of GPUs. For detailed usage, see
+the Kubeflow Trainer documentation:
 
-```yaml
-apiVersion: kubeflow.org/v1
-kind: PyTorchJob
-metadata:
-  name: llm-fine-tune
-spec:
-  pytorchReplicaSpecs:
-    Worker:
-      replicas: 4
-      template:
-        spec:
-          containers:
-            - name: pytorch
-              image: your-registry/llm-trainer:latest
-              command: ["python", "train.py", "--dataset", "/data/train"]
-              env:
-                - name: MODEL_URI
-                  value: gs://models/your-llm
-```
+- [PyTorch: Qwen3-32B fine-tuning](/docs/components/trainer/user-guides/pytorch/#configure-pytorch-training-function).
+- [DeepSpeed: T5 fine-tuning](/docs/components/trainer/user-guides/deepspeed/#configure-deepspeed-training-function).
+- [MLX: LLama3.2 fine-tuning](/docs/components/trainer/user-guides/mlx/#fine-tune-llm-with-mlx-and-trainjob)
 
-You can also invoke fine-tuning programmatically:
+You can implement a wide range of advanced algorithms to fine-tune your LLMs such as
+supervised fine tuning (SFT), knowledge distillation, Direct Preference Optimization (DPO),
+Proximal Policy Optimization (PPO), Group Relative Policy Optimization (GRPO),
+quantization-aware training, and more.
+
+Kubeflow Trainer enables efficient distributed training with both data parallelism and
+model parallelism, ensuring optimal GPU utilization and reduced training time.
+
+For a faster start, you can use
+[the `BuiltinTrainers()`](/docs/components/trainer/user-guides/builtin-trainer/overview/), which
+provide pre-configured blueprints for LLMs fine-tuning.
+Simply specify the desired configuration to get started:
 
 ```python
-from kubeflow.training import TrainingClient
+from kubeflow.trainer import (
+    TrainerClient,
+    Initializer,
+    HuggingFaceModelInitializer,
+    BuiltinTrainer,
+    TorchTuneConfig,
+    TorchTuneInstructDataset,
+    DataFormat,
+    DataType,
+)
 
-client = TrainingClient()
-client.train(
-    model_uri="gs://models/your-llm",
-    dataset_uri="gs://datasets/domain-data",
-    trainer="pytorch",
-    worker_replicas=4,
-    lora_config={"rank": 8, "alpha": 32}
+TrainerClient().train(
+    runtime=TrainerClient().get_runtime("torchtune-llama3.2-1b"),
+    initializer=Initializer(
+        model=HuggingFaceModelInitializer(
+            storage_uri="hf://meta-llama/Llama-3.2-1B-Instruct",
+            access_token="<YOUR_HF_TOKEN>",  # Replace with your Hugging Face token
+        )
+    ),
+    trainer=BuiltinTrainer(
+        config=TorchTuneConfig(
+            dataset_preprocess_config=TorchTuneInstructDataset(
+                source=DataFormat.PARQUET,
+                split="train[:1000]",
+                new_system_prompt="You are an AI assistant. ",
+            ),
+            epochs=10,
+            dtype=DataType.BF16,
+            resources_per_node={
+                "memory": "200G",
+                "gpu": 4,
+            },
+        )
+    ),
 )
 ```
 
-For details, see the [Kubeflow Trainer fine-tuning guide](https://www.kubeflow.org/docs/components/trainer/legacy-v1/user-guides/fine-tuning/).
+For details, see the [Kubeflow Trainer TorchTune guide](/docs/components/trainer/user-guides/builtin-trainer/torchtune/).
 
 ## Hyperparameter Optimization
 
