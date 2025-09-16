@@ -9,6 +9,10 @@ aliases = ["/docs/community/"]
 
 If you are interested in learning more about how to participate in and contribute to the Kubeflow community, take a look at [Contributing](/docs/about/contributing/)!
 
+## Survey
+
+There is a [continues survey](https://docs.google.com/forms/d/e/1FAIpQLSd1HTLNH3KSVOHBkwwVobR3FaJqhCVmYrywaqsG6vaEGom6jA/viewform?usp=dialog) where users, customers and companies can provide feedback for the open source project.
+
 ## Kubeflow Slack Channels
 
 Kubeflow is part of the vibrant CNCF community, we use the [CNCF Slack](https://slack.cncf.io/) for informal discussions among users and contributors.
