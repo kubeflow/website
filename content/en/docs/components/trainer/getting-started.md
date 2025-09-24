@@ -16,7 +16,13 @@ Kubeflow Trainer.
 
 ### Installing the Kubeflow Python SDK
 
-Install the latest Kubeflow Python SDK version directly from the source repository:
+Install the latest stable version of Kubeflow Python SDK:
+
+```bash
+pip install -U kubeflow
+```
+
+For the latest changes of Kubeflow Python SDK, install from the source repository directly:
 
 ```bash
 pip install git+https://github.com/kubeflow/sdk.git@main

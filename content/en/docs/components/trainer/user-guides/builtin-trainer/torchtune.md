@@ -50,20 +50,25 @@ To follow up with this problem, please refer to [this issue](https://github.com/
 
 We need to manually create PVCs for each models we want to fine-tune. Please note that **the PVC name must be equal to the TorchTune runtime's name**. In this example, it's `torchtune-llama3.2-1b`.
 
-```Python
+```python
 # Create a PersistentVolumeClaim for the TorchTune Llama 3.2 1B model.
-client.core_api.create_namespaced_persistent_volume_claim(
-  body=client.V1PersistentVolumeClaim(
-    api_version="v1",
-    kind="PersistentVolumeClaim",
-    metadata=client.V1ObjectMeta(name="torchtune-llama3.2-1b"),
-    spec=client.V1PersistentVolumeClaimSpec(
-      access_modes=["ReadWriteOnce"],
-      resources=client.V1ResourceRequirements(
-        requests={"storage": "20Gi"}
-      ),
-    ),
-  ),
+client.backend.core_api.create_namespaced_persistent_volume_claim(
+    namespace=client.backend.namespace,
+    body=models.IoK8sApiCoreV1PersistentVolumeClaim(
+        apiVersion="v1",
+        kind="PersistentVolumeClaim",
+        metadata=models.IoK8sApimachineryPkgApisMetaV1ObjectMeta(
+            name="torchtune-llama3.2-1b"
+        ),
+        spec=models.IoK8sApiCoreV1PersistentVolumeClaimSpec(
+            accessModes=["ReadWriteOnce"],
+            resources=models.IoK8sApiCoreV1VolumeResourceRequirements(
+                requests={
+                    "storage": models.IoK8sApimachineryPkgApiResourceQuantity("20Gi")
+                }
+            ),
+        ),
+    ).to_dict(),
 )
 ```
 
@@ -255,3 +260,5 @@ torchtune_config = TorchTuneConfig(
 ## Next Steps
 
 - Run the example to [fine-tune the Llama-3.2-1B-Instruct LLM](https://github.com/kubeflow/trainer/blob/master/examples/torchtune/llama3_2/alpaca-trainjob-yaml.ipynb)
+
+- Check out the example to [fine-tune the Qwen-2.5-1.5B LLM](https://github.com/kubeflow/trainer/blob/master/examples/torchtune/qwen2_5/qwen2.5-1.5B-with-alpaca.ipynb)
