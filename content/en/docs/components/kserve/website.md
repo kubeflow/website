@@ -2,7 +2,7 @@
 title = "KServe Website"
 description = "LINK | KServe Documentation Website"
 weight = 998
-manualLink = "https://kserve.github.io/website/latest/"
+manualLink = "https://kserve.github.io/website/"
 icon = "fa-solid fa-arrow-up-right-from-square"
 +++
 
