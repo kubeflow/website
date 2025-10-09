@@ -38,3 +38,34 @@ podGroupPolicy:
 
 You have [to install and enable the Coscheduling plugin](https://github.com/kubernetes-sigs/scheduler-plugins/blob/master/doc/install.md)
 in your Kubernetes cluster before using this policy.
+
+### Volcano
+
+The `Volcano` policy integrates with the [Volcano Scheduler](https://volcano.sh/en/docs/) to provide advanced AI-specific
+scheduling capabilities, including priority scheduling, queue-based resource management, and
+network topology–aware scheduling.
+
+```yaml
+podGroupPolicy:
+  volcano:
+    networkTopology:
+      mode: hard
+      highestTierAllowed: 1
+```
+
+You have to [install Volcano](https://volcano.sh/en/docs/installation/) before using this policy.
+
+#### Using Queues for Priority Scheduling
+
+Volcano supports queue-based resource management, where multiple PodGroups are placed in queues
+and scheduled based on their priority and available capacity.
+
+First, you have to [create a custom queue](https://volcano.sh/en/docs/tutorials/#step-1-create-a-custom-queue).
+
+Then, reference this queue in the annotations of `TrainingRuntime` or `TrainJob`:
+
+```yaml
+metadata:
+  annotations:
+    scheduling.volcano.sh/queue-name: "high-priority-queue"
+```
