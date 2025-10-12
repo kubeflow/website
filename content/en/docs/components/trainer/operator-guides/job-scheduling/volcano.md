@@ -1,0 +1,49 @@
++++
+title = "Volcano"
+description = "Configure gang scheduling with Volcano"
+weight = 20
++++
+
+This guide describes how to enable **gang scheduling** and **advanced resource management** with
+the [Volcano Scheduler](https://volcano.sh/en/docs/) in Kubeflow Trainer.
+
+By integrating Volcano, you can ensure that all Pods of a training job start together (gang scheduling),
+and take advantage of advanced AI-specific scheduling capabilities like priority scheduling, queue-based resource management, and
+network topology–aware scheduling.
+
+## Prerequisites
+
+You have to [install Volcano](https://volcano.sh/en/docs/installation/) in your Kubernetes cluster before enabling the Volcano gang scheduling policy.
+
+## Enable Gang Scheduling with Volcano
+
+Volcano scheduling can be enabled through the `podGroupPolicy` field in your `TrainJob` specification.
+
+### Enable Volcano PodGroup Policy
+
+To enable gang scheduling, specify the `volcano` policy in your runtime:
+
+```yaml
+podGroupPolicy:
+  volcano:
+    networkTopology:
+      mode: hard
+      highestTierAllowed: 1
+```
+
+This configuration automatically creates Volcano `PodGroups` for your training job.
+
+### Using Queues for Priority Scheduling
+
+Volcano supports queue-based resource management, where multiple PodGroups are placed in queues
+and scheduled based on their priority and available capacity.
+
+First, you have to [create a custom queue](https://volcano.sh/en/docs/tutorials/#step-1-create-a-custom-queue).
+
+Then, reference this queue in the annotations of `TrainingRuntime` or `TrainJob`:
+
+```yaml
+metadata:
+  annotations:
+    scheduling.volcano.sh/queue-name: "high-priority-queue"
+```
