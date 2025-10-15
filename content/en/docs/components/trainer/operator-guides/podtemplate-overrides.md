@@ -33,9 +33,7 @@ podTemplateOverrides:
 
 The `PodTemplateOverrides` API supports various configuration options to customize Pod behavior.
 You can specify multiple overrides in the array, with later entries taking precedence over earlier ones.
-The overrides are applied in the following order: TrainingRuntime PodTemplate → PodTemplateOverrides 
-(in array order) → Job-specific configurations, where each subsequent override can modify or replace 
-previous settings.
+The overrides are applied in the following priority order: TrainJob (e.g. ML policy) > PodTemplateOverrides[n] > PodTemplateOverrides[n-1] > ... > PodTemplateOverrides[0] > TrainingRuntime, where n is the number of PodTemplateOverrides.
 
 ### TargetJobs
 
