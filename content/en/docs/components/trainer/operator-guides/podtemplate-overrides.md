@@ -1,12 +1,12 @@
 +++
 title = "PodTemplate Overrides"
-description = "How to configure PodTemplateOverrides in Kubeflow Trainer"
+description = "How to configure PodTemplateOverrides in Kubeflow TrainJob"
 weight = 60
 +++
 
 This guide describes how to configure
 [the `PodTemplateOverrides` API](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#PodTemplateOverrides)
-in the Kubeflow Trainer.
+in the Kubeflow TrainJob.
 
 Before exploring this guide, make sure to follow [the Runtime guide](/docs/components/trainer/operator-guides/runtime)
 to understand the basics of Kubeflow Trainer Runtimes.
@@ -16,6 +16,8 @@ to understand the basics of Kubeflow Trainer Runtimes.
 The `PodTemplateOverrides` API allows you to customize Pod templates for specific jobs in your
 TrainJob without modifying the TrainingRuntime. This is useful when you need to apply job-specific
 configurations such as custom service accounts, node selectors, tolerations, or additional volumes.
+Platform admins can also leverage custom admission mutating webhooks to configure TrainJob overrides
+by using this API.
 
 ```YAML
 podTemplateOverrides:
@@ -31,6 +33,9 @@ podTemplateOverrides:
 
 The `PodTemplateOverrides` API supports various configuration options to customize Pod behavior.
 You can specify multiple overrides in the array, with later entries taking precedence over earlier ones.
+The overrides are applied in the following order: TrainingRuntime PodTemplate → PodTemplateOverrides 
+(in array order) → Job-specific configurations, where each subsequent override can modify or replace 
+previous settings.
 
 ### TargetJobs
 
@@ -69,6 +74,8 @@ The `spec` field supports overriding various Pod specification fields including:
 - **imagePullSecrets** - Specify secrets for pulling private images
 
 ## Common Use Cases
+
+The following examples demonstrate practical scenarios where PodTemplateOverrides can be used to customize training job behavior for specific requirements.
 
 ### Custom Service Account and Node Selection
 
@@ -127,3 +134,5 @@ You cannot set environment variables for the following special containers using 
 - `model-initializer` - Use the `Initializer.Model` API instead
 
 For these containers, use the appropriate dedicated APIs in the TrainJob specification.
+
+Users also can't override `command`, `args`, `image`, and `resources` for the Trainer container in the `node` replicatedJob using `PodTemplateOverrides`.
