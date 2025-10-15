@@ -4,7 +4,7 @@ description = "How to configure PodTemplateOverrides in Kubeflow TrainJob"
 weight = 60
 +++
 
-This guide describes how to configure
+This guide describes how to use
 [the `PodTemplateOverrides` API](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#PodTemplateOverrides)
 in the Kubeflow TrainJob.
 
