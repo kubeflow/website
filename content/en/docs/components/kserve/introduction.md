@@ -12,7 +12,8 @@ To learn about migrating from KFServing to KServe, see the [migration guide](htt
 
 ## What is KServe?
 
-[KServe](https://kserve.github.io/website/latest/) is an [open-source](https://github.com/kserve/kserve) project that enables serverless inferencing on Kubernetes.
+[KServe](https://kserve.github.io/website/) is an [open-source](https://github.com/kserve/kserve) project that enables serverless inferencing on Kubernetes.
+
 KServe provides performant, high abstraction interfaces for common machine learning (ML) frameworks like TensorFlow, XGBoost, scikit-learn, PyTorch, and ONNX to solve production model serving use cases.
 
 The following diagram shows the architecture of KServe:
