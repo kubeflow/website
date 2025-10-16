@@ -24,3 +24,8 @@ The `PodGroupPolicy` API supports multiple policies, known as `PodGroupPolicySou
 represents plugin configuration to enable gang scheduling using that specific integration. You can
 specify one of the supported policies in the `PodGroupPolicy` API to enable gang scheduling with
 supported plugins.
+
+## Next Steps
+
+- Learn how to enable gang scheduling with the [Coscheduling plugin](/docs/components/trainer/operator-guides/job-scheduling/coscheduling).
+- Learn how to configure advanced scheduling with [Volcano Scheduler](/docs/components/trainer/operator-guides/job-scheduling/volcano).
