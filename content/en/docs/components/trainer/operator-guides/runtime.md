@@ -179,6 +179,6 @@ These measures are taken to inform users about runtime deprecation:
 
 ## Next Steps
 
-- Learn how to configure [gang scheduling in Kubeflow Trainer](/docs/components/trainer/operator-guides/gang-scheduling).
+- Learn how to configure [job scheduling in Kubeflow Trainer](/docs/components/trainer/operator-guides/job-scheduling/overview).
 - Explore how to set up [MLPolicy in runtime](/docs/components/trainer/operator-guides/ml-policy).
 - See how to define [Job Template in runtimes](/docs/components/trainer/operator-guides/job-template).
