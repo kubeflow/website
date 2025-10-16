@@ -15,13 +15,26 @@ network topology–aware scheduling.
 
 You have to [install Volcano](https://volcano.sh/en/docs/installation/) in your Kubernetes cluster before enabling the Volcano gang scheduling policy.
 
-## Enable Gang Scheduling with Volcano
+## Enable Volcano Plugin
 
 Volcano scheduling can be enabled through the `podGroupPolicy` field in your `TrainJob` specification.
 
-### Enable Volcano PodGroup Policy
+### Gang Scheduling
 
 To enable gang scheduling, specify the `volcano` policy in your runtime:
+
+```yaml
+podGroupPolicy:
+  volcano:
+    {}
+```
+This configuration automatically creates Volcano `PodGroups` for your training job.
+
+
+### Topology Aware Scheduling
+
+Volcano also supports **network topology–aware scheduling**, which helps place Pods close to each other
+to minimize communication latency in distributed training. You can configure this behavior under the volcano policy:
 
 ```yaml
 podGroupPolicy:
@@ -31,7 +44,6 @@ podGroupPolicy:
       highestTierAllowed: 1
 ```
 
-This configuration automatically creates Volcano `PodGroups` for your training job.
 
 ### Using Queues for Priority Scheduling
 
