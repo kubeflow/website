@@ -55,7 +55,7 @@ First, you have to [create a custom queue](https://volcano.sh/en/docs/tutorials/
 Then, reference this queue in the annotations of `TrainingRuntime` or `TrainJob`:
 
 ```yaml
-metadata:
+spec:
   annotations:
     scheduling.volcano.sh/queue-name: "high-priority-queue"
 ```
