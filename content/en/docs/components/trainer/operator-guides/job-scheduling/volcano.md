@@ -52,7 +52,7 @@ and scheduled based on their priority and available capacity.
 
 First, you have to [create a custom queue](https://volcano.sh/en/docs/tutorials/#step-1-create-a-custom-queue).
 
-Then, reference this queue in the annotations of `TrainingRuntime` or `TrainJob`:
+Then, reference this queue in the annotations of `TrainJob`:
 
 ```yaml
 spec:
