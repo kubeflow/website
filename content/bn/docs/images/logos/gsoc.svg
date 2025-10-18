@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+ <g id="Logo" transform="matrix(20.358 0 0 20.358 -36.441 -7.1252)">
+  <path class="starOuter" d="m10.68 21.82 3.68 3.68 3.69-3.68h5.2v-5.21l3.69-3.68-3.69-3.69v-5.24h-5.25l-3.64-3.65-2.89 2.89-0.79 0.76h-5.21v5.24l-3.68 3.69 3.68 3.68v5.21z" fill="#f9ab00"/>
+  <path class="starCenter" d="m21.63 12.93a7.27 7.27 0 1 1-7.27-7.27 7.26 7.26 0 0 1 7.27 7.25z" fill="#e37400"/>
+  <path class="starGlyphs" transform="rotate(-74.901,14.413,12.739)" d="m10.974 12.229h6.88v1.02h-6.88z" fill="#fff"/>
+  <path class="starGlyphs" d="m11.85 10.39 0.76 0.68-1.5 1.68 1.5 1.67-0.76 0.68-2.11-2.36zm5.03-0.01 2.12 2.35-2.11 2.35-0.76-0.68 1.5-1.67-1.5-1.67z" fill="#fff"/>
+ </g>
+</svg>
