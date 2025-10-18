@@ -44,7 +44,7 @@ corresponding [AI lifecycle stage](/docs/started/architecture/#kubeflow-projects
     <tbody>
       <tr>
         <td>
-         <a href="https://kserve.github.io/website/master/admin/serverless/serverless">
+         <a href="https://kserve.github.io/website/">
             KServe
           </a>
         </td>
