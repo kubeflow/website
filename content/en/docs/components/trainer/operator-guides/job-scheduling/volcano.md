@@ -59,3 +59,14 @@ spec:
   annotations:
     scheduling.volcano.sh/queue-name: "high-priority-queue"
 ```
+
+Alternatively, you can specify the queue in the annotations of **runtime** for multiple `TrainJobs`:
+```yaml
+spec:
+  podGroupPolicy:
+    volcano: {}
+  template:
+    metadata:
+      annotations:
+        scheduling.volcano.sh/queue-name: "high-priority-queue"
+```
