@@ -1,7 +1,7 @@
 +++
-title = "Gang Scheduling"
-description = "How to enable gang scheduling with Kubeflow Trainer"
-weight = 40
+title = "Overview"
+description = "Introduction to gang scheduling with Kubeflow Trainer"
+weight = 20
 +++
 
 This guide describes how to enable gang scheduling with Kubeflow Trainer. It ensures that a group of
@@ -10,6 +10,7 @@ this is crucial when working with expensive and limited GPU accelerators.
 
 Before exploring this guide, make sure to follow [the Runtime guide](/docs/components/trainer/operator-guides/runtime)
 to understand the basics of Kubeflow Trainer Runtimes.
+
 
 ## PodGroupPolicy Overview
 
@@ -24,17 +25,7 @@ represents plugin configuration to enable gang scheduling using that specific in
 specify one of the supported policies in the `PodGroupPolicy` API to enable gang scheduling with
 supported plugins.
 
-### Coscheduling
+## Next Steps
 
-[The `Coscheduling` policy](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#CoschedulingPodGroupPolicySource)
-configures gang scheduling with
-[Coscheduling plugin](https://github.com/kubernetes-sigs/scheduler-plugins/tree/master?tab=readme-ov-file#plugins)
-
-```YAML
-podGroupPolicy:
-  coscheduling:
-    scheduleTimeoutSeconds: 30
-```
-
-You have [to install and enable the Coscheduling plugin](https://github.com/kubernetes-sigs/scheduler-plugins/blob/master/doc/install.md)
-in your Kubernetes cluster before using this policy.
+- Learn how to enable gang scheduling with the [Coscheduling plugin](/docs/components/trainer/operator-guides/job-scheduling/coscheduling).
+- Learn how to configure advanced scheduling with [Volcano Scheduler](/docs/components/trainer/operator-guides/job-scheduling/volcano).
