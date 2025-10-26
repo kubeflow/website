@@ -33,7 +33,7 @@ Katib supports a lot of various AutoML algorithms, such as
 and many more. Additional algorithm support is coming soon.
 
 The [Katib project](https://github.com/kubeflow/katib) is open source.
-The [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
+The [developer guide](https://github.com/kubeflow/katib/blob/master/CONTRIBUTING.md)
 is a good starting point for developers who want to contribute to the project.
 
 <img src="/docs/components/katib/images/katib-overview.drawio.png"
