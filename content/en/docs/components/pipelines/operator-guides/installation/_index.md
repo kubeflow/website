@@ -22,11 +22,10 @@ You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
      kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
      kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
      kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION" 
-
-> **Note:** The placeholder `{{% pipelines/latest-version %}}` automatically resolves to the latest Kubeflow Pipelines release (e.g., `2.5.0`).  
-> Users don’t need to manually update this value each time a new release is published.
-
      ```
+
+> **Note:** The placeholder `{{% pipelines/latest-version %}}` automatically resolves to the latest Kubeflow Pipelines release (e.g., `2.5.0`).
+> Users don’t need to manually update this value each time a new release is published.
 
 > 💡 **Troubleshooting**: If you encounter persistent pod crashes (e.g., `proxy-agent`, `workflow-controller`) after applying the default config, you may try using the `platform-agnostic` configuration instead:
 >
