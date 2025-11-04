@@ -138,7 +138,7 @@ These variables configure JupyterLab to forward kernel execution to Jupyter Ente
 
 ## Additional Custimzation
 
-If you want to customize your kernel configuration or the CRD submitted to the Spark Operator, follow these steps:
+If you want to customize your kernel configuration or the custom resource submitted to the Spark Operator, follow these steps:
 
 First, set up the storage resources, save the manifest below as `enterprise-gateway-storage.yaml`.
 
