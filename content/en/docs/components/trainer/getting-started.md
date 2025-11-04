@@ -88,11 +88,19 @@ def train_pytorch():
     model.train()
     optimizer = torch.optim.SGD(model.parameters(), lr=0.1, momentum=0.9)
 
-    # [4] Get the Fashion-MNIST dataset and distributed it across all available devices.
+    # [4] Get the Fashion-MNIST dataset on local_rank=0 process.
+    if local_rank == 0:
+        dataset = datasets.FashionMNIST(
+            "./data",
+            train=True,
+            download=True,
+            transform=transforms.Compose([transforms.ToTensor()]),
+        )
+    dist.barrier()
     dataset = datasets.FashionMNIST(
         "./data",
         train=True,
-        download=True,
+        download=False,
         transform=transforms.Compose([transforms.ToTensor()]),
     )
     train_loader = DataLoader(
@@ -157,12 +165,11 @@ job_id = TrainerClient().train(
         func=train_pytorch,
         num_nodes=4,
         resources_per_node={
-            "cpu": 5,
+            "cpu": 3,
             "memory": "16Gi",
             "gpu": 1, # Comment this line if you don't have GPUs.
         },
-    ),
-    runtime=TrainerClient().get_runtime("torch-distributed"),
+    )
 )
 ```
 
@@ -185,7 +192,7 @@ Step: node-3, Status: Succeeded, Devices: gpu x 1
 Finally, you can check the training logs from the master node:
 
 ```python
-for logline in TrainerClient().get_job_logs(job_name, follow=True):
+for logline in TrainerClient().get_job_logs(job_id, follow=True):
     print(logline)
 ```
 
