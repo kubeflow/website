@@ -52,7 +52,7 @@ helm install kubeflow-trainer oci://ghcr.io/kubeflow/charts/kubeflow-trainer \
 ```
 
 For the latest changes run
-([where `48e7a93`](https://github.com/kubeflow/trainer/commit/48e7a93)is the desired commit):
+([where `48e7a93`](https://github.com/kubeflow/trainer/commit/48e7a93) is the desired commit):
 
 ```bash
 helm install kubeflow-trainer oci://ghcr.io/kubeflow/charts/kubeflow-trainer \

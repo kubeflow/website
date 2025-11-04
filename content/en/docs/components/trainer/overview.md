@@ -72,7 +72,7 @@ including model training and LLMs fine-tuning, as shown in the diagram below:
 - 🚀 **Simple, Scalable, and Built for LLM Fine-Tuning**
 
 Effortlessly scale from single-machine training to large, distributed Kubernetes clusters with
-Kubeflow’s Python APIs and supported Training Runtimes. Perfect for model AI workloads.
+Kubeflow’s Python APIs and supported Training Runtimes. Perfect for modern AI workloads.
 
 - 🔧 **Extensible and Portable**
 
@@ -81,8 +81,8 @@ frameworks—regardless of language or runtime—through a flexible, extensible 
 
 - ⚡️ **Distributed AI Data Caching**
 
-Powered by [Apache Arrow](https://arrow.apache.org/) and [Apache DataFusion](https://datafusion.apache.org/)
-Kubeflow Trainer streams tensors directly to GPU nodes via a distributed cache layer—enabling
+Powered by [Apache Arrow](https://arrow.apache.org/) and [Apache DataFusion](https://datafusion.apache.org/),
+Kubeflow Trainer streams tensors directly to GPU nodes via a distributed cache layer – enabling
 seamless access to large datasets, minimizing I/O overhead, and cutting GPU costs.
 
 - 🧠 **LLM Fine-Tuning Blueprints**
