@@ -72,7 +72,7 @@ including model training and LLMs fine-tuning, as shown in the diagram below:
 - 🚀 **Simple, Scalable, and Built for LLM Fine-Tuning**
 
 Effortlessly scale from single-machine training to large, distributed Kubernetes clusters with
-Kubeflow’s Python APIs and supported Training Runtimes. Perfect for modern AI workloads.
+Kubeflow's Python APIs and supported Training Runtimes. Perfect for modern AI workloads.
 
 - 🔧 **Extensible and Portable**
 
