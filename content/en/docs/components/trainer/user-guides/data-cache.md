@@ -44,18 +44,25 @@ The training workflow consists of two stages:
 
 ## Prerequisites
 
-Before exploring this guide, make sure to follow [the Getting Started guide](/docs/components/trainer/getting-started/)
-to understand the basics of Kubeflow Trainer and install controller manager.
+Follow these steps to install the data cache control plane.
 
 ### Install Data Cache Control Plane
 
 You need to install the following resources to use data cache:
 
+- Kubeflow Trainer controller manager
 - LeaderWorkerSet controller manager
 - ClusterTrainingRuntime with cache support: `torch-distributed-with-cache`
 - RBAC resources needed for initializer to bootstrap cache
 
 Run the following command to install the required resources:
+
+```bash
+export VERSION=v2.1.0
+kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/data-cache?ref=${VERSION}"
+```
+
+For the latest changes run:
 
 ```bash
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/data-cache?ref=master"
@@ -67,7 +74,7 @@ The above command will install RBAC in the `default` namespace. If you want to c
 in other Kubernetes namespace, run this:
 
 ```bash
-kubectl apply  --server-side -n <NAMESPACE> -k "https://github.com/kubeflow/trainer.git/manifests/base/runtimes/data_cache"
+kubectl apply  --server-side -n <NAMESPACE> -k "https://github.com/kubeflow/trainer.git/manifests/overlays/data-cache/namespace-rbac"
 ```
 
 {{% /alert %}}
