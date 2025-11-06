@@ -86,7 +86,7 @@ torch-distributed-with-cache   14h
 Check that RBAC is installed in your namespace:
 
 ```bash
-$ kubectl get sa,role,rolebinding -n default | grep cache-initializer
+$ kubectl get sa,rolebinding -n default | grep cache-initializer
 
 serviceaccount/kubeflow-trainer-cache-initializer
 rolebinding.rbac.authorization.k8s.io/kubeflow-trainer-cache-initializer
@@ -132,12 +132,15 @@ adjust settings for your storage configuration:
 
 ```python
 DataCacheInitializer(
-    storage_uri="cache://schema_name/table_name",        # Cache storage URI
-    num_data_nodes=4,                                    # Number of cache server replicas
-    metadata_loc="s3a://bucket/path/to/metadata.json",   # S3 path to Iceberg metadata
-    iam_role="arn:aws:iam::123456789012:role/test-role"  # IAM role to access Iceberg table.
+    storage_uri="cache://schema_name/table_name",      # Cache storage URI
+    metadata_loc="s3a://bucket/path/to/metadata.json", # S3 path to Iceberg metadata
+    iam_role="arn:aws:iam::123456:role/test-role"      # IAM role to access Iceberg table
+    num_data_nodes=4,                                  # Number of data cache nodes.
 )
 ```
+
+You can find all available configurations for `DataCacheInitializer` in
+[the Kubeflow SDK](https://github.com/kubeflow/sdk/blob/8ebd5ed1c30c3385687fe8d0043d9828c07b0cc2/kubeflow/trainer/types/types.py#L340).
 
 ## PyTorch Iterable Dataset
 
