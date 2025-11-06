@@ -21,7 +21,8 @@ Data cache automatically fetches data from object store and partitions it across
   class="mt-3 mb-3 border rounded p-3 bg-white"
   style="width: 100%; max-width: 30em">
 
-Multiple TrainJob can access data from the cache using Apache Arrow flight protocol:
+Multiple TrainJobs can access data from the cache using [the Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html)
+protocol:
 
 <img src="/docs/components/trainer/images/data-cache-trainjob-access.png"
   alt="Data Cache TrainJob"
@@ -66,10 +67,10 @@ kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifest
 {{% alert title="Note" color="info" %}}
 
 The above command will install RBAC in the `default` namespace. If you want to create TrainJobs
-in other Kubernetes namespace, update the RBAC resources and manually deploy it in your namespace:
+in other Kubernetes namespace, run this:
 
 ```bash
-https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/data_cache/rbac.yaml
+kubectl apply  --server-side -n <NAMESPACE> -k "https://github.com/kubeflow/trainer.git/manifests/base/runtimes/data_cache"
 ```
 
 {{% /alert %}}
@@ -100,8 +101,9 @@ rolebinding.rbac.authorization.k8s.io/kubeflow-trainer-cache-initializer
 - You'll need the metadata location (S3 path to `metadata.json`)
 - Define a storage URI for the cache
 
-You can use [the PyIceberg library](https://py.iceberg.apache.org/#write-a-pyarrow-dataframe) to
-prepare your Iceberg table in S3.
+You can use [the PyIceberg library](https://py.iceberg.apache.org/#write-a-pyarrow-dataframe) or
+distributed processing engine like [Apache Spark](https://spark.apache.org/documentation.html)
+to prepare your Iceberg table in S3.
 
 ## Running the Example
 
@@ -136,6 +138,7 @@ DataCacheInitializer(
     storage_uri="cache://schema_name/table_name",              # Cache storage URI
     num_data_nodes=4,                                          # Number of cache server replicas
     metadata_loc="s3a://bucket/path/to/metadata.json",         # S3 path to Iceberg metadata
+    iam_role="arn:aws:iam::123456789012:role/test-role"        # IAM role to access Iceberg table.
 )
 ```
 
@@ -146,8 +149,7 @@ The example uses a `DataCacheDataset` which is subclass of
 
 This dataset:
 
-- Connects to the cache service via [Arrow Flight](https://arrow.apache.org/docs/format/Flight.html)
-  protocol
+- Connects to the cache service via Arrow Flight protocol
 - Distributes data shards across training workers and nodes
 - Streams RecordBatches and converts them to PyTorch tensors
 - Supports custom preprocessing for your specific use case
