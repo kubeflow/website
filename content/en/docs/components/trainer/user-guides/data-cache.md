@@ -16,14 +16,14 @@ The data cache feature enables efficient data streaming for distributed training
 
 Data cache automatically fetches data from object store and partitions it across data nodes:
 
-<img src="/docs/components/trainer/images/data-cache-batch"
+<img src="/docs/components/trainer/images/data-cache-batch.png"
   alt="Data Cache Batch"
   class="mt-3 mb-3 border rounded p-3 bg-white"
   style="width: 100%; max-width: 30em">
 
 Multiple TrainJob can access data from the cache using Apache Arrow flight protocol:
 
-<img src="/docs/components/trainer/images/data-cache-trainjob-access"
+<img src="/docs/components/trainer/images/data-cache-trainjob-access.png"
   alt="Data Cache TrainJob"
   class="mt-3 mb-3 border rounded p-3 bg-white"
   style="width: 100%; max-width: 30em">
@@ -39,7 +39,7 @@ The training workflow consists of two stages:
 1. **Dataset Initializer**: Sets up a distributed cache cluster that preprocesses and serves the training data
 2. **Training Nodes**: Stream data from the cache and perform model training
 
-<img src="/docs/components/trainer/images/data-cache-init"
+<img src="/docs/components/trainer/images/data-cache-init.png"
   alt="Data Cache Init"
   class="mt-3 mb-3 border rounded p-3 bg-white"
   style="width: 100%; max-width: 30em">
