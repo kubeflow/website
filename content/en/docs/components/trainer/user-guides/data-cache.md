@@ -161,3 +161,4 @@ preprocessing for your model.
 
 - Dive deep into [the Kubeflow Data Cache proposal](https://github.com/kubeflow/community/tree/master/proposals/2655-kubeflow-data-cache)
 - Experiment with the [data cache cluster locally](https://github.com/kubeflow/trainer/tree/master/pkg/data_cache)
+- Learn more about this feature in [this KubeCon + CloudNativeCon talk](https://youtu.be/s4KAe7AtN7s)
