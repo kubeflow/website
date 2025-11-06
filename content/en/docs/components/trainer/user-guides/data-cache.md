@@ -18,16 +18,14 @@ Data cache automatically fetches data from object store and partitions it across
 
 <img src="/docs/components/trainer/images/data-cache-batch.png"
   alt="Data Cache Batch"
-  class="mt-3 mb-3 border rounded p-3 bg-white"
-  style="width: 100%; max-width: 30em">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 Multiple TrainJobs can access data from the cache using [the Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html)
 protocol:
 
 <img src="/docs/components/trainer/images/data-cache-trainjob-access.png"
   alt="Data Cache TrainJob"
-  class="mt-3 mb-3 border rounded p-3 bg-white"
-  style="width: 100%; max-width: 30em">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 The data cache is powered by [Apache Arrow](https://arrow.apache.org/) and [Apache DataFusion](https://datafusion.apache.org/)
 to effectively store data in-memory
@@ -42,8 +40,7 @@ The training workflow consists of two stages:
 
 <img src="/docs/components/trainer/images/data-cache-init.png"
   alt="Data Cache Init"
-  class="mt-3 mb-3 border rounded p-3 bg-white"
-  style="width: 100%; max-width: 30em">
+  class="mt-3 mb-3 border rounded p-3 bg-white">
 
 ## Prerequisites
 
