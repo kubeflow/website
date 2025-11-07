@@ -1,7 +1,7 @@
 +++
 title = "Overview"
 description = "Introduction to gang scheduling with Kubeflow Trainer"
-weight = 20
+weight = 10
 +++
 
 This guide describes how to enable gang scheduling with Kubeflow Trainer. It ensures that a group of
@@ -10,7 +10,6 @@ this is crucial when working with expensive and limited GPU accelerators.
 
 Before exploring this guide, make sure to follow [the Runtime guide](/docs/components/trainer/operator-guides/runtime)
 to understand the basics of Kubeflow Trainer Runtimes.
-
 
 ## PodGroupPolicy Overview
 

@@ -60,38 +60,6 @@ dill               0.3.8
 ...
 ```
 
-## Configuring GPU Resources for DeepSpeed
-
-Currently, Kubeflow Trainer does not support configuring DeepSpeed resources directly through a
-TrainJob specification. To adjust GPU allocations (and other container resource settings),
-you must manually patch the ClusterTrainingRuntime. Progress for native resource configuration in
-TrainJob is being tracked here: [kubeflow/trainer#2650](https://github.com/kubeflow/trainer/issues/2650)
-
-The following command allocates 2 GPUs per node across 2 training nodes, for a total of 4 GPUs per
-TrainJob:
-
-```sh
-kubectl patch clustertrainingruntime deepspeed-distributed \
-  --type='json' \
-  -p '[
-    {
-      "op": "replace",
-      "path": "/spec/mlPolicy/mpi/numProcPerNode",
-      "value": 2
-    },
-    {
-      "op": "add",
-      "path": "/spec/template/spec/replicatedJobs/0/template/spec/template/spec/containers/0/resources",
-      "value": { "limits": { "nvidia.com/gpu": "2" } }
-    },
-    {
-      "op": "add",
-      "path": "/spec/template/spec/replicatedJobs/1/template/spec/template/spec/containers/0/resources",
-      "value": { "limits": { "nvidia.com/gpu": "2" } }
-    }
-  ]'
-```
-
 ## DeepSpeed Distributed Environment
 
 Kubeflow Trainer uses the MPI-based runtime and [`mpirun` launcher](https://www.deepspeed.ai/getting-started/#mpi-and-azureml-compatibility)
@@ -275,6 +243,10 @@ job_id = TrainerClient().train(
         func=fine_tune_t5_deepspeed,
         # These packages will be installed on every training node.
         packages_to_install=["boto3"],
+        num_nodes=2,
+        resources_per_node={
+            "gpu": 2,
+        },
     )
 )
 ```

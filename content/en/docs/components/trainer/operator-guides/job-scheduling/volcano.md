@@ -1,7 +1,7 @@
 +++
 title = "Volcano"
 description = "Configure gang scheduling with Volcano"
-weight = 20
+weight = 30
 +++
 
 This guide describes how to enable **gang scheduling** and **advanced resource management** with
@@ -25,11 +25,10 @@ To enable gang scheduling, specify the `volcano` policy in your runtime:
 
 ```yaml
 podGroupPolicy:
-  volcano:
-    {}
+  volcano: {}
 ```
-This configuration automatically creates Volcano `PodGroups` for your training job.
 
+This configuration automatically creates Volcano `PodGroups` for your training job.
 
 ### Topology Aware Scheduling
 
@@ -43,7 +42,6 @@ podGroupPolicy:
       mode: hard
       highestTierAllowed: 1
 ```
-
 
 ### Using Queues for Priority Scheduling
 
@@ -61,6 +59,7 @@ spec:
 ```
 
 Alternatively, you can specify the queue in the annotations of **runtime** for multiple `TrainJobs`:
+
 ```yaml
 spec:
   podGroupPolicy:

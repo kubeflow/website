@@ -42,32 +42,6 @@ This setup is especially powerful: you can train or fine-tune models on a GPU cl
 seamlessly evaluate them locally on an Apple silicon machine like in
 [this MNIST example](https://github.com/kubeflow/trainer/tree/master/examples/mlx/image-classification/mnist.ipynb).
 
-### Configuring GPU Resources for MLX
-
-At the moment, Kubeflow Trainer does not allow configuring MLX resources directly in a TrainJob
-specification. To adjust GPU allocations or other container resource settings, you must manually
-patch the ClusterTrainingRuntime. Native resource configuration support within TrainJob is being
-tracked in [kubeflow/trainer#2650](https://github.com/kubeflow/trainer/issues/2650)
-
-The following command allocates 1 GPU per training node:
-
-```sh
-kubectl patch clustertrainingruntime mlx-distributed \
-  --type='json' \
-  -p '[
-    {
-      "op": "add",
-      "path": "/spec/template/spec/replicatedJobs/0/template/spec/template/spec/containers/0/resources",
-      "value": { "limits": { "nvidia.com/gpu": "1" } }
-    },
-    {
-      "op": "add",
-      "path": "/spec/template/spec/replicatedJobs/1/template/spec/template/spec/containers/0/resources",
-      "value": { "limits": { "nvidia.com/gpu": "1" } }
-    }
-  ]'
-```
-
 ## Get MLX Runtime Packages
 
 MLX runtime comes with several pre-installed Python packages.
@@ -131,6 +105,9 @@ job_id = TrainerClient().train(
     trainer=CustomTrainer(
         func=get_mlx_dist,
         num_nodes=3,
+        resources_per_node={
+            "gpu": 1,
+        },
     ),
 )
 
@@ -229,6 +206,9 @@ job_id = TrainerClient().train(
     trainer=CustomTrainer(
         func=fine_tune_llama,
         num_nodes=2,
+        resources_per_node={
+            "gpu": 1,
+        },
     ),
 )
 ```

@@ -12,16 +12,19 @@ For legacy Kubeflow Training Operator V1 documentation, check [these guides](/do
 
 ## What is Kubeflow Trainer
 
-Kubeflow Trainer is a Kubernetes-native project designed for
-large language models (LLMs) fine-tuning and enabling scalable, distributed training of
-machine learning (ML) models across various frameworks, including PyTorch, JAX, TensorFlow, and XGBoost.
+Kubeflow Trainer is a Kubernetes-native project for
+large language models (LLMs) fine-tuning and enabling scalable, distributed training across
+a wide range of AI frameworks, including [PyTorch](https://pytorch.org/),
+[HuggingFace](https://huggingface.co), [DeepSpeed](https://github.com/microsoft/DeepSpeed),
+[MLX](https://ml-explore.github.io/mlx/build/html/index.html#), [JAX](https://docs.jax.dev/en/latest/),
+[XGBoost](https://xgboost.readthedocs.io/en/stable/), and others.
 
-You can integrate other ML libraries such as [HuggingFace](https://huggingface.co),
-[DeepSpeed](https://github.com/microsoft/DeepSpeed), or [Megatron-LM](https://github.com/NVIDIA/Megatron-LM)
-with Kubeflow Trainer to orchestrate their ML training on Kubernetes.
+With the Kubeflow Python SDK, you can effortlessly develop and fine-tune LLMs while leveraging
+the Kubeflow Trainer APIs: TrainJob and Training Runtimes.
 
-Kubeflow Trainer allows you to effortlessly develop your LLMs with the Kubeflow Python SDK and
-build Kubernetes-native Training Runtimes with Kubernetes Custom Resources APIs.
+Kubeflow Trainer fully supports MPI-based distributed training, orchestrating multi-node,
+multi-GPU jobs efficiently. This ensures high-performance communication between processes, making
+it ideal for large-scale AI training that requires tight synchronization across GPUs and nodes.
 
 <img src="/docs/components/trainer/images/trainer-tech-stack.drawio.svg"
   alt="Kubeflow Trainer Tech Stack"
@@ -66,32 +69,39 @@ including model training and LLMs fine-tuning, as shown in the diagram below:
 
 ### Key Benefits
 
-- **Simple and Scalable for Distributed Training and LLMs Fine-Tuning**
+- 🚀 **Simple, Scalable, and Built for LLM Fine-Tuning**
 
-Effortlessly scale your model training from a single machine to large distributed Kubernetes
-clusters using Kubeflow Python APIs and supported Training Runtimes.
+Effortlessly scale from single-machine training to large, distributed Kubernetes clusters with
+Kubeflow's Python APIs and supported Training Runtimes. Perfect for modern AI workloads.
 
-- **Extensible and Portable**
+- 🔧 **Extensible and Portable**
 
-Deploy Kubeflow Trainer on any cloud platform with a Kubernetes cluster and integrate your own
-ML frameworks in any programming language.
+Run Kubeflow Trainer on any cloud or on-premises Kubernetes cluster. Easily integrate your own ML
+frameworks—regardless of language or runtime—through a flexible, extensible API layer.
 
-- **Blueprints for LLMs Fine-Tuning**
+- ⚡️ **Distributed AI Data Caching**
 
-Fine-tune the latest LLMs on Kubernetes with ready-to-use Kubeflow LLM blueprints.
+Powered by [Apache Arrow](https://arrow.apache.org/) and [Apache DataFusion](https://datafusion.apache.org/),
+Kubeflow Trainer streams tensors directly to GPU nodes via a distributed cache layer – enabling
+seamless access to large datasets, minimizing I/O overhead, and cutting GPU costs.
 
-- **Reduce GPU Cost**
+- 🧠 **LLM Fine-Tuning Blueprints**
 
-Kubeflow Trainer implements custom dataset and model initializers to reduce GPU cost by
-offloading I/O tasks to CPU workloads and to streamline assets initialization across distributed
-training nodes.
+Accelerate your generative AI use-cases with ready-to-use Kubeflow LLM blueprints designed for
+efficient fine-tuning and deployment of LLMs on Kubernetes.
 
-- **Seamless Kubernetes Integration**
+- 💰 **Optimized for GPU Efficiency**
 
-Optimize GPU utilization and gang-scheduling for ML workloads by leveraging Kubernetes projects like
+Reduce GPU costs through intelligent dataset streaming and model initialization. Kubeflow Trainer
+offloads data preprocessing and I/O to CPU workloads, ensuring GPUs stay focused on training.
+
+- ☸️ **Native Kubernetes Integrations**
+
+Achieve optimal GPU utilization and coordinated scheduling for large-scale AI workloads.
+Kubeflow Trainer seamlessly integrates with Kubernetes ecosystem projects like
 [Kueue](https://kueue.sigs.k8s.io/),
 [Coscheduling](https://github.com/kubernetes-sigs/scheduler-plugins/blob/master/pkg/coscheduling/README.md),
-[Volcano](https://volcano.sh/en/) or [YuniKorn](https://yunikorn.apache.org/docs/).
+[Volcano](https://volcano.sh/en/), or [YuniKorn](https://yunikorn.apache.org/docs/).
 
 ## Next steps
 
