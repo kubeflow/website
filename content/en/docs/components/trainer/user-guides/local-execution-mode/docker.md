@@ -1,16 +1,16 @@
 +++
 title = "Docker Backend"
-description = "Run distributed training jobs in Docker containers"
+description = "How to run TrainJobs with Docker containers"
 weight = 20
 +++
 
 ## Overview
 
-The Container Backend with Docker enables you to run distributed training jobs in isolated Docker containers on your local machine. This backend provides:
+The Container Backend with Docker enables you to run distributed TrainJobs in isolated Docker containers on your local machine. This backend provides:
 
-- **Full Container Isolation**: Each training process runs in its own Docker container with isolated filesystem, network, and resources
+- **Full Container Isolation**: Each TrainJob runs in its own Docker container with isolated filesystem, network, and resources
 - **Multi-Node Support**: Run distributed training across multiple containers with automatic networking
-- **Reproducibility**: Training runs in consistent containerized environments
+- **Reproducibility**: TrainJob runs in consistent containerized environments
 - **Flexible Configuration**: Customize image pulling policies, resource allocation, and container settings
 
 The Docker backend uses the adapter pattern to provide a unified interface, making it easy to switch between Docker and Podman without code changes.
@@ -25,7 +25,7 @@ The Docker backend uses the adapter pattern to provide a unified interface, maki
 - **Python 3.9+**
 - **Kubeflow SDK**: Install with Docker support:
   ```bash
-  pip install kubeflow[docker]
+  pip install "kubeflow[docker]"
   ```
 
 ### Verify Installation
@@ -44,8 +44,7 @@ docker ps
 Here's a simple example using the Docker Container Backend:
 
 ```python
-from kubeflow.trainer import CustomTrainer, TrainerClient
-from kubeflow.trainer.backends.container.types import ContainerBackendConfig
+from kubeflow.trainer import CustomTrainer, TrainerClient, ContainerBackendConfig
 
 def train_model():
     """Simple training function."""
@@ -90,17 +89,13 @@ trainer = CustomTrainer(
     num_nodes=2  # Run distributed training across 2 containers
 )
 
-# Start the training job
+# Start the TrainJob
 job_name = client.train(trainer=trainer)
-print(f"Training job started: {job_name}")
+print(f"TrainJob started: {job_name}")
 
 # Wait for completion
-from kubeflow.trainer.constants import constants
-
 job = client.wait_for_job_status(
     job_name,
-    status={constants.TRAINJOB_COMPLETE},
-    timeout=600
 )
 
 print(f"Job completed with status: {job.status}")
@@ -151,8 +146,7 @@ backend_config = ContainerBackendConfig(
 The Docker backend automatically sets up networking and environment variables for distributed training:
 
 ```python
-from kubeflow.trainer import CustomTrainer, TrainerClient
-from kubeflow.trainer.backends.container.types import ContainerBackendConfig
+from kubeflow.trainer import CustomTrainer, TrainerClient, ContainerBackendConfig
 
 def distributed_train():
     """PyTorch distributed training example."""
@@ -201,29 +195,7 @@ job_name = client.train(trainer=trainer)
 
 ## Job Management
 
-### Listing Jobs
-
-```python
-# List all jobs
-jobs = client.list_jobs()
-
-for job in jobs:
-    print(f"Job: {job.name}, Status: {job.status}")
-```
-
-### Viewing Logs
-
-```python
-# Stream logs from a specific node
-for log_line in client.get_job_logs(job_name, node_index=0, follow=True):
-    print(log_line, end='')
-
-# Get logs from all nodes
-for node_index in range(trainer.num_nodes):
-    print(f"\n=== Logs from node {node_index} ===")
-    for log_line in client.get_job_logs(job_name, node_index=node_index):
-        print(log_line, end='')
-```
+For common job management operations (listing jobs, viewing logs, deleting jobs), see the [Job Management section](./overview.md#job-management) in the overview.
 
 ### Inspecting Containers
 
@@ -244,92 +216,9 @@ docker start <job-name>-node-0
 docker exec -it <job-name>-node-0 /bin/bash
 ```
 
-### Deleting Jobs
+## Working with Runtimes
 
-```python
-# Delete job and clean up resources
-client.delete_job(job_name)
-```
-
-When `auto_remove=True` (default), this removes:
-- All containers for the job
-- The Docker network created for the job
-- Job metadata
-
-## Advanced Usage
-
-### Using Runtimes
-
-Runtimes provide pre-configured training environments with specific frameworks and settings:
-
-```python
-# List available runtimes
-runtimes = client.list_runtimes()
-for runtime in runtimes:
-    print(f"Runtime: {runtime.name}")
-
-# Get a specific runtime
-runtime = client.get_runtime("torch-distributed")
-
-# Train with the runtime
-job_name = client.train(
-    trainer=trainer,
-    runtime=runtime
-)
-```
-
-### Custom Runtime Sources
-
-By default, the Container Backend loads runtimes from:
-1. **GitHub** - `github://kubeflow/trainer` (official runtimes, cached for 24 hours)
-2. **Fallback** - Built-in default images (e.g., `pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime`)
-
-You can customize where runtimes are loaded from using the `runtime_source` configuration:
-
-```python
-from kubeflow.trainer import ContainerBackendConfig, TrainingRuntimeSource
-
-backend_config = ContainerBackendConfig(
-    container_runtime="docker",
-    runtime_source=TrainingRuntimeSource(sources=[
-        "github://kubeflow/trainer",                    # Official Kubeflow runtimes
-        "github://myorg/myrepo/path/to/runtimes",       # Custom GitHub repository
-        "https://example.com/custom-runtime.yaml",      # HTTP(S) endpoint
-        "file:///absolute/path/to/runtime.yaml",        # Local YAML file
-        "/absolute/path/to/runtime.yaml",               # Local YAML file (alternate)
-    ])
-)
-
-client = TrainerClient(backend_config=backend_config)
-```
-
-**Source Priority**: Sources are checked in order. If a runtime is not found in any source, the system falls back to the default image for the framework.
-
-**Runtime YAML Example**:
-```yaml
-apiVersion: trainer.kubeflow.org/v1alpha1
-kind: ClusterTrainingRuntime
-metadata:
-  name: torch-custom
-  labels:
-    trainer.kubeflow.org/framework: torch
-spec:
-  mlPolicy:
-    numNodes: 1
-    torch:
-      numProcPerNode: auto
-  template:
-    spec:
-      replicatedJobs:
-        - name: node
-          template:
-            spec:
-              template:
-                spec:
-                  containers:
-                    - name: node
-                      image: myregistry.com/pytorch-custom:latest
-```
+For information about using runtimes and custom runtime sources, see the [Working with Runtimes section](./overview.md#working-with-runtimes) in the overview.
 
 ## Troubleshooting
 
@@ -411,20 +300,8 @@ docker network rm <job-name>-net
 # client.delete_job(job_name)
 ```
 
-## Docker vs Podman Comparison
-
-| Feature | Docker | Podman |
-|---------|--------|--------|
-| **Architecture** | Client-server (daemon) | Daemonless |
-| **Root Requirement** | Requires root or docker group | Supports rootless mode |
-| **Security** | Daemon runs as root | Better security isolation |
-| **Compatibility** | Wide ecosystem support | Docker-compatible CLI |
-| **Setup Complexity** | Easy (Docker Desktop) | More complex initial setup |
-| **Best For** | General use, macOS/Windows | Security-focused, Linux servers |
-
-To use Podman instead, see the [Container Backend with Podman](./podman.md) guide.
-
 ## Next Steps
 
+- Try the [MNIST example notebook](https://github.com/kubeflow/trainer/blob/master/examples/local/local-container-mnist.ipynb) for a complete end-to-end example
 - Learn about the [Container Backend with Podman](./podman.md) for rootless containerized training
 - Learn about the [Local Process Backend](./local_process.md) for non-containerized local execution

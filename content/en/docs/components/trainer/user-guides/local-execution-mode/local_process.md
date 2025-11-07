@@ -1,28 +1,21 @@
 +++
 title = "Local Process Backend"
-description = "Run training jobs with native Python processes and virtual environments"
+description = "How to run TrainJobs with native Python processes and virtual environments"
 weight = 10
 +++
 
 ## Overview
 
-The Local Process Backend allows you to execute training jobs directly on your local machine using native Python processes and virtual environments. This backend is ideal for:
+The Local Process Backend allows you to execute TrainJobs directly on your local machine using native Python processes and virtual environments. This backend is ideal for:
 
 - Quick prototyping and development
 - Testing training scripts without container overhead
 - Environments where Docker/Podman is not available
 - Debugging training code locally
 
-The Local Process Backend creates isolated Python virtual environments for each training job, automatically installs required dependencies, and manages the lifecycle of training processes in background threads with real-time log streaming.
+The Local Process Backend creates isolated Python virtual environments for each TrainJob, automatically installs required dependencies, and manages the lifecycle of training processes in background threads with real-time log streaming.
 
-## Key Features
-
-- **Isolated Environments**: Each job runs in its own Python virtual environment
-- **Dependency Management**: Automatic installation and intelligent conflict resolution of Python packages
-- **Job Lifecycle**: Complete job management (create, monitor, logs, cancel, cleanup)
-- **Threaded Execution**: Non-blocking job execution with real-time log streaming
-- **Automatic Cleanup**: Optional cleanup of virtual environments after completion
-- **Fast Iteration**: Quick setup and teardown for rapid experimentation
+**Note:** Only single-node training is currently supported.
 
 ## Prerequisites
 
@@ -40,8 +33,7 @@ The Local Process Backend creates isolated Python virtual environments for each 
 Here's a simple example using the Local Process Backend:
 
 ```python
-from kubeflow.trainer import CustomTrainer, TrainerClient
-from kubeflow.trainer.backends.localprocess import LocalProcessBackendConfig
+from kubeflow.trainer import CustomTrainer, TrainerClient, LocalProcessBackendConfig
 
 # Define your training function
 def train_model():
@@ -82,17 +74,13 @@ trainer = CustomTrainer(
     num_nodes=1,  # Local process backend ignores this parameter
 )
 
-# Start the training job
+# Start the TrainJob
 job_name = client.train(trainer=trainer)
-print(f"Training job started: {job_name}")
+print(f"TrainJob started: {job_name}")
 
 # Wait for completion
-from kubeflow.trainer.constants import constants
-
 job = client.wait_for_job_status(
     job_name,
-    status={constants.TRAINJOB_COMPLETE},
-    timeout=300
 )
 
 print(f"Job completed with status: {job.status}")
@@ -111,7 +99,7 @@ The `LocalProcessBackendConfig` class provides configuration options for the Loc
 **Example:**
 
 ```python
-from kubeflow.trainer.backends.localprocess import LocalProcessBackendConfig
+from kubeflow.trainer import LocalProcessBackendConfig
 
 # Keep virtual environments for debugging
 backend_config = LocalProcessBackendConfig(
@@ -121,35 +109,9 @@ backend_config = LocalProcessBackendConfig(
 
 ## Working with Runtimes
 
-The Local Process Backend supports predefined runtimes that specify the training framework and required packages.
-
-### Listing Available Runtimes
-
-```python
-client = TrainerClient(backend_config=backend_config)
-runtimes = client.list_runtimes()
-
-for runtime in runtimes:
-    print(f"Runtime: {runtime.name}")
-    print(f"  Framework: {runtime.trainer.framework}")
-```
-
-### Using a Specific Runtime
-
-```python
-# Get a specific runtime
-runtime = client.get_runtime("torch-distributed")
-
-# Train with the runtime
-job_name = client.train(
-    trainer=trainer,
-    runtime=runtime
-)
-```
+The Local Process Backend has a fixed set of built-in runtimes (unlike Container Backends which load runtimes from external sources).
 
 ### Supported Runtimes
-
-Currently supported runtimes:
 
 | Runtime | Framework | Description | Packages |
 |---------|-----------|-------------|----------|
@@ -157,17 +119,11 @@ Currently supported runtimes:
 
 ## Job Management
 
-### Listing Jobs
-
-```python
-# List all jobs
-jobs = client.list_jobs()
-
-for job in jobs:
-    print(f"Job: {job.name}, Status: {job.status}")
-```
+For common job management operations (listing jobs, viewing logs, deleting jobs), see the [Job Management section](./overview.md#job-management) in the overview.
 
 ### Checking Job Status
+
+The Local Process Backend also supports checking detailed job status:
 
 ```python
 # Get job details
@@ -177,21 +133,6 @@ print(f"Created: {job.created}")
 print(f"Completed: {job.completed}")
 ```
 
-### Viewing Job Logs
-
-```python
-# Stream logs from a running or completed job
-for log_line in client.get_job_logs(job_name, follow=True):
-    print(log_line, end='')
-```
-
-### Deleting Jobs
-
-```python
-# Delete a job and clean up resources
-client.delete_job(job_name)
-```
-
 ## Advanced Usage
 
 ### Custom Training with Dependencies
@@ -199,8 +140,7 @@ client.delete_job(job_name)
 You can specify additional packages to install in the training environment:
 
 ```python
-from kubeflow.trainer import CustomTrainer, TrainerClient
-from kubeflow.trainer.backends.localprocess import LocalProcessBackendConfig
+from kubeflow.trainer import CustomTrainer, TrainerClient, LocalProcessBackendConfig
 
 def train_with_dependencies():
     import numpy as np
@@ -230,19 +170,9 @@ trainer = CustomTrainer(
 job_name = client.train(trainer=trainer)
 ```
 
-### CustomTrainer Options
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `func` | `Callable` | ✅ | Training function to execute |
-| `func_args` | `dict` | ❌ | Arguments to pass to training function |
-| `packages_to_install` | `list[str]` | ❌ | Additional Python packages to install |
-| `pip_index_urls` | `list[str]` | ❌ | PyPI URLs for package installation |
-| `env` | `dict[str, str]` | ❌ | Environment variables for the training process |
-
 ### Environment Variables
 
-Pass custom environment variables to your training job:
+Pass custom environment variables to your TrainJob:
 
 ```python
 trainer = CustomTrainer(
@@ -307,11 +237,27 @@ python -m ensurepip --upgrade --default-pip
 
 The backend implements intelligent package dependency management:
 
-**Rules:**
-1. **Trainer Override**: Trainer packages take precedence over runtime packages
+**Package Sources:**
+
+When you use a runtime (e.g., `torch-distributed`), the backend installs packages from two sources:
+
+1. **Runtime packages**: Built-in packages defined by the runtime itself
+   - For Local Process Backend, runtimes are hardcoded in the SDK (see [Supported Runtimes](#supported-runtimes))
+   - Example: The `torch-distributed` runtime automatically includes `torch`
+   - Note: Unlike Container Backends which load runtimes from external sources (GitHub/YAML files), Local Process Backend uses a fixed set of runtimes
+
+2. **Trainer packages**: Additional packages you specify in your `CustomTrainer`
+   - Specified via the `packages_to_install` parameter
+   - Example: `packages_to_install=["pandas", "scikit-learn"]`
+
+**Dependency Resolution Rules:**
+
+When packages from both sources are combined:
+
+1. **Trainer Override**: If you specify a package in `packages_to_install` that also exists in the runtime, your version takes precedence
 2. **Case-Insensitive Matching**: Package names are normalized (PEP 503)
 3. **Duplicate Detection**: Prevents duplicate packages in trainer dependencies
-4. **Order Preservation**: Maintains installation order for reproducibility
+4. **Order Preservation**: Runtime packages come first, then trainer packages (except where overridden)
 
 **Example:**
 ```python
@@ -354,46 +300,22 @@ When `cleanup_venv=True`:
 rm -rf /tmp/a1b2c3d4e5f_xyz/
 ```
 
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    LocalProcessBackend                         │
-├─────────────────────────────────────────────────────────────────┤
-│  ┌───────────────┐    ┌──────────────────┐                     │
-│  │ Training Job  │────│ Virtual Env      │                     │
-│  │ (LocalJob)    │    │ /tmp/xyz123...   │                     │
-│  │               │    │ ├── bin/python   │                     │
-│  │ - Threading   │    │ ├── lib/...      │                     │
-│  │ - Log Stream  │    │ └── train_xyz.py │                     │
-│  │ - Status Mgmt │    └──────────────────┘                     │
-│  └───────────────┘                                             │
-│                                                                 │
-│  ┌─────────────────────────────────────────────────────────────┤
-│  │ Package Management                                         │
-│  │ - Runtime dependencies (torch, etc.)                       │
-│  │ - Trainer dependencies (custom packages)                   │
-│  │ - Conflict resolution & merging                            │
-│  └─────────────────────────────────────────────────────────────┤
-└─────────────────────────────────────────────────────────────────┘
-```
-
 ## Best Practices
 
 ### ✅ Perfect For
 
 - **Local Development**: Developing and testing training code
 - **Experimentation**: Quick iteration on training algorithms
-- **CI/CD Pipelines**: Automated testing of training workflows
+- **CI/CD Pipelines**: Automated testing of TrainJobs
 - **Educational Use**: Learning distributed training concepts
 - **Prototyping**: Validating ideas before cluster deployment
 
 ### ❌ Not Suitable For
 
-- **Production Training**: Large-scale distributed training workloads
+- **Production Training**: Large-scale distributed TrainJobs
 - **Multi-Node Training**: Training across multiple machines
 - **Resource Management**: Fine-grained GPU/memory allocation
-- **Long-Running Jobs**: Training jobs that run for days/weeks
+- **Long-Running Jobs**: TrainJobs that run for days/weeks
 - **High Availability**: Mission-critical training pipelines
 
 ### General Best Practices
@@ -488,48 +410,12 @@ client = TrainerClient(backend_config=backend_config)
 - **Limited Scaling**: Not suitable for large-scale production training.
 - **System Dependencies**: Training code must be compatible with your local Python environment and operating system.
 
-## Comparison with Container Backend
+## Switching Between Backends
 
-| Feature | Local Process Backend | Container Backend |
-|---------|----------------------|-------------------|
-| **Setup** | No additional software required | Requires Docker or Podman |
-| **Isolation** | Python virtual environments | Full container isolation |
-| **Multi-node Training** | Not supported | Supported |
-| **Startup Time** | Fast (seconds) | Slower (image pull + container start) |
-| **Resource Isolation** | Limited (shared system) | Strong (cgroups, namespaces) |
-| **GPU Support** | Direct system access | NVIDIA Container Toolkit required |
-| **Best For** | Quick prototyping, development | Production, distributed training |
-
-## Migration Guide
-
-### From Kubernetes Backend
-
-The same training code works in both backends:
-
-```python
-# Before (Kubernetes)
-from kubeflow.trainer.backends.kubernetes import KubernetesBackendConfig
-backend_config = KubernetesBackendConfig(namespace="default")
-
-# After (Local Process)
-from kubeflow.trainer.backends.localprocess import LocalProcessBackendConfig
-backend_config = LocalProcessBackendConfig()
-
-# Same trainer, same train() call!
-client = TrainerClient(backend_config=backend_config)
-trainer = CustomTrainer(func=train_model)
-job_name = client.train(trainer=trainer)
-```
-
-### To Kubernetes Backend
-
-```python
-# Test locally first with LocalProcessBackend
-# Then deploy to cluster with KubernetesBackend
-# No code changes needed - same CustomTrainer works in both!
-```
+For information about switching between Local Process, Container (Docker/Podman), and Kubernetes backends, see the [Switching Between Backends section](./overview.md#switching-between-backends) in the overview.
 
 ## Next Steps
 
+- Try the [MNIST example notebook](https://github.com/kubeflow/trainer/blob/master/examples/local/local-training-mnist.ipynb) for a complete end-to-end example
 - Learn about the [Container Backend with Docker](./docker.md) for containerized training
 - Learn about the [Container Backend with Podman](./podman.md) for rootless containerized training
