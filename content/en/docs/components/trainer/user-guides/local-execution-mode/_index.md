@@ -1,6 +1,6 @@
 +++
-title = "Local Execution Mode"
-description = "Run training jobs locally with Docker, Podman, or native Python processes"
+title = "Execute TrainJobs Locally"
+description = "Run TrainJobs locally with native Python processes, Docker, or Podman"
 weight = 200
 +++
 
