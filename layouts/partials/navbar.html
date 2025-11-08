@@ -33,6 +33,24 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse ml-md-auto" id="main_navbar">
+
+    <!-- === New Wrapper to stack announcement and menu === -->
+    <div class="d-flex flex-column w-100">
+
+      <!-- =================================== -->
+      <!-- === ANNOUNCEMENT BAR START === -->
+      <!-- =================================== -->
+      <div class="text-center w-100 pt-3 pt-md-2 pb-2 pb-md-2"> <!-- Adjusted padding for desktop -->
+        <span class="px-3 py-1 rounded" style="background-color: rgba(255, 255, 255, 0.15); font-size: 0.9em; font-weight: 500;">
+          <!-- Link added here. Change href="#" to your desired URL -->
+          <a href="#" class="text-white" style="text-decoration: none;">
+            ✨ <strong>Announcement:</strong> <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSet_IAFQzMMDWolzFt5LI9lhzqOOStjIGHxgYqKBnVcRtDfrw/viewform?usp=dialog">Check out Kubeflow Unified SDK Survey!</a> ✨
+          </a>
+        </span>
+      </div>
+      <!-- =================================== -->
+      <!-- === ANNOUNCEMENT BAR END === -->
+      <!-- =================================== -->
     <ul class="navbar-nav ml-auto pt-4 pt-md-0 my-2 my-md-1">
       {{ $p := . -}}
       {{ $last := len .Site.Menus.main -}}
@@ -77,5 +95,6 @@
       {{ end -}}
     </ul>
   </div>
+    </div> <!-- === End of new wrapper === -->
 </div>
 </nav>
