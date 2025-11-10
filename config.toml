@@ -216,6 +216,21 @@ enable = true
     # Twitter account (used to set `twitter:site` in the SEO partial)
     twitter = "kubeflow"
 
+###############################################################################
+# Announcement configuration
+###############################################################################
+[params.announcement]
+  # Enable/disable the announcement bar
+  enable = true
+  # The announcement label text (displayed in bold, e.g., "Announcement:")
+  text = "Announcement: "
+  # The clickable link text
+  link_text = "Check out Kubeflow Unified SDK Survey!"
+  # The URL for the announcement link
+  url = "https://docs.google.com/forms/d/e/1FAIpQLSet_IAFQzMMDWolzFt5LI9lhzqOOStjIGHxgYqKBnVcRtDfrw/viewform?usp=dialog"
+  # Optional icon/emoji (e.g., "✨") - displayed before and after the announcement
+  icon = "✨"
+
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
     version = "master"
