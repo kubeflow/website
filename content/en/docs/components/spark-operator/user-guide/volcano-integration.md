@@ -24,7 +24,7 @@ helm repo add spark-operator https://kubeflow.github.io/spark-operator
 helm install my-release spark-operator/spark-operator \
     --namespace spark-operator \
     --set webhook.enable=true \
-    --set batchScheduler.enable=true
+    --set controller.batchScheduler.enable=true
 ```
 
 ## Run Spark Application with Volcano scheduler
