@@ -28,3 +28,4 @@ supported plugins.
 
 - Learn how to enable gang scheduling with the [Coscheduling plugin](/docs/components/trainer/operator-guides/job-scheduling/coscheduling).
 - Learn how to configure advanced scheduling with [Volcano Scheduler](/docs/components/trainer/operator-guides/job-scheduling/volcano).
+- Learn how to configure job queueing and resource management with [Kueue](/docs/components/trainer/operator-guides/job-scheduling/kueue).
