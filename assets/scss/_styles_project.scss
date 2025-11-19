@@ -597,6 +597,10 @@ nav.foldable-nav {
     padding: 4rem 0 4rem 0 !important;
   }
 
+  #overview {
+    padding: 3rem 0 3rem 0 !important;
+  }
+
   #overview p,
   #community p {
     font-size: 1.125em;
@@ -608,6 +612,75 @@ nav.foldable-nav {
 
   #adopters {
     border-bottom: 0.1rem solid $home-section-border-color;
+  }
+
+  #community-stats {
+    background-color: rgba($kf-blue, 0.05);
+    border-top: 0.1rem solid $home-section-border-color;
+    border-bottom: 0.1rem solid $home-section-border-color;
+    padding: 2.5rem 0 2.5rem 0 !important;
+
+    .section-head {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      color: $home-section-title-color;
+    }
+
+    .stat-card {
+      padding: 1.25rem 1rem;
+      border-radius: 0.5rem;
+      background: $home-card-body-bg;
+      border: 1px solid rgba($kf-blue, 0.3);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba($kf-blue, 0.2);
+        border-color: $kf-blue;
+      }
+
+      .stat-number {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: $white;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+
+        @include media-breakpoint-down(md) {
+          font-size: 2.2rem;
+        }
+      }
+
+      .stat-label {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: lighten($kf-blue, 15%);
+        margin-bottom: 0.2rem;
+
+        @include media-breakpoint-down(md) {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .stat-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+
+      &:hover {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      &:focus {
+        text-decoration: none;
+        color: inherit;
+        outline: 2px solid $kf-blue;
+        outline-offset: 2px;
+      }
+    }
   }
 
   #pageContent .container {
