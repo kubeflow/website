@@ -663,6 +663,24 @@ nav.foldable-nav {
         }
       }
     }
+
+    .stat-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+
+      &:hover {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      &:focus {
+        text-decoration: none;
+        color: inherit;
+        outline: 2px solid $kf-blue;
+        outline-offset: 2px;
+      }
+    }
   }
 
   #pageContent .container {
