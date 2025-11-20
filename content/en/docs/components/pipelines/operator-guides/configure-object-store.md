@@ -186,6 +186,7 @@ data:
         disableSSL: false
         region: us-east-2
         forcePathStyle: true
+        maxRetries: 5
         credentials:
           fromEnv: false
           secretRef:
@@ -217,6 +218,7 @@ data:
         disableSSL: false
         region: us-east-2
         forcePathStyle: true
+        maxRetries: 5
         credentials:
           fromEnv: true
 kind: ConfigMap
@@ -330,6 +332,7 @@ s3:
     disableSSL: true
     region: minio
     forcePathStyle: true
+    maxRetries: 5
     credentials:
       fromEnv: false
       secretRef:
