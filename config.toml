@@ -62,11 +62,13 @@ ignoreFiles = []
 [menu]
   [[menu.main]]
     # name = "Cloud Native AI + Kubeflow Day"
-    name = " " 
+    name = "" 
     weight = -1000
-    pre = "<i img src='/events/images/cloud-native-ai-2025.png' style='height:20px; vertical-align:middle; margin-right:6px;'></i>"
-    # pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
-    post = "<br><span class='badge badge-warning'>March 23rd, 2026</span> <span class='badge badge-warning'>Amsterdam, Netherlands</span>"
+    pre = "<span style='display:inline-flex; align-items:center;'><img src='/events/images/cloud-native-ai-2025.png' style='height:60px; width:auto; margin-right:8px;'><span style='display:flex; flex-direction:column; justify-content:center;'><span class='badge badge-warning' style='margin-bottom:4px;'>March 23rd, 2026</span><span class='badge badge-warning'>Amsterdam, Netherlands</span></span></span>"
+    post = ""
+    # post = "<span style='display:inline-block; width:300px;'><span class='badge badge-warning'>March 23rd, 2026</span><span class='badge badge-warning'>Amsterdam, Netherlands</span></span>"
+    # pre = "<i><img src='/events/images/cloud-native-ai-2025.png' style='height:28px; vertical-align:middle; margin-right:6px;'></i>"
+    # post = "<br><span class='badge badge-warning'>March 23rd, 2026</span> <span class='badge badge-warning'>Amsterdam, Netherlands</span>"
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/cloud-native-ai-kubeflow-day/"
   
 #  [[menu.main]]
