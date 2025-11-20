@@ -16,12 +16,6 @@ to understand the basics of Kubeflow Trainer Runtimes.
 The `MLPolicy` API defines the ML-specific configuration for the training jobs - for example,
 the number of training nodes (e.g., Pods) to launch, or PyTorch settings.
 
-```YAML
-mlPolicy:
-  numNodes: 3
-  torch:
-    numProcPerNode: gpu
-```
 
 ## Types of MLPolicy
 
@@ -31,14 +25,13 @@ the training job is launched and orchestrated. You can specify one of the suppor
 
 ### PlainML
 
-The `PlainML` policy configures training jobs without a specialized distributed framework. It simply uses the `numNodes` value to set the job’s parallelism (number of pods) and applies any training environment variables to each pod.
+The empty policy configures training jobs without a specialized distributed framework. It simply uses the `numNodes` value to set the job’s parallelism (number of pods) and applies any training environment variables to each pod. For empty policy, the PlainML plugin is activated in the extension framework.
 
 TrainJobs using this policy are launched as standard Kubernetes Jobs. The number of pods (parallelism) and completions is set based on the `numNodes` field in the `Trainer` spec, and environment variables from the TrainJob spec are added to the training containers.
 
 ```YAML
 mlPolicy:
   numNodes: 10
-  plain: {}
 ```
 
 ### Torch
@@ -49,6 +42,13 @@ configures distributed training for PyTorch.
 TrainJobs using this policy are launched via [the `torchrun` CLI](https://docs.pytorch.org/docs/stable/elastic/run.html).
 You can customize `torchrun` options such as `numProcPerNode` to define number of
 processes (e.g. GPUs) to launch per training node.
+
+```YAML
+mlPolicy:
+  numNodes: 3
+  torch:
+    numProcPerNode: gpu
+```
 
 ### MPI
 
@@ -67,4 +67,7 @@ mlPolicy:
   numNodes: 2
   mpi:
     numProcPerNode: 4
+    mpiImplementation: OpenMPI
+    sshAuthMountPath: /home/mpiuser/.ssh
+    runLauncherAsNode: true
 ```
