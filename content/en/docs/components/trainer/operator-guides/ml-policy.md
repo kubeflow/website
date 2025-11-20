@@ -49,3 +49,11 @@ MPI-based applications. This makes it compatible with frameworks like DeepSpeed 
 
 You can customize the `MPI` options such as `numProcPerNode` to define the number of slots per
 training node in the MPI hostfile.
+
+### PlainML
+
+PlainML
+
+The `PlainML` policy configures training jobs without a specialized distributed framework. It simply uses the `numNodes` value to set the job’s parallelism (number of pods) and applies any training environment variables to each pod.
+
+TrainJobs using this policy are launched as standard Kubernetes Jobs. The number of pods (parallelism) and completions is set based on the `numNodes` field in the `Trainer` spec, and environment variables from the TrainJob spec are added to the training containers.
