@@ -64,7 +64,7 @@ ignoreFiles = []
     # name = "Cloud Native AI + Kubeflow Day"
     name = " " 
     weight = -1000
-    pre = "<i img src='/events/images/kubeflow-logo.png' style='height:20px; vertical-align:middle; margin-right:6px;'></i>"
+    pre = "<i img src='/events/images/cloud-native-ai-2025.png' style='height:20px; vertical-align:middle; margin-right:6px;'></i>"
     # pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
     post = "<br><span class='badge badge-warning'>March 23rd, 2026</span> <span class='badge badge-warning'>Amsterdam, Netherlands</span>"
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/cloud-native-ai-kubeflow-day/"
