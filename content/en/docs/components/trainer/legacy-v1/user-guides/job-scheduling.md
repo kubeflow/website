@@ -12,13 +12,13 @@ Follow [this guide for migrating to Kubeflow Trainer V2](/docs/components/traine
 {{% /alert %}}
 
 This guide describes how to use [Kueue](https://kueue.sigs.k8s.io/),
-[Volcano Scheduler](https://github.com/volcano-sh/volcano) and
+[Volcano Scheduler](https://github.com/volcano-sh/volcano), [KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler) and
 [Scheduler Plugins with coscheduling](https://github.com/kubernetes-sigs/scheduler-plugins/blob/2502825c671063af5b2aa78a1d34b24917f2def4/pkg/coscheduling/README.md)
 to support gang-scheduling in Kubeflow, to allow jobs to run multiple pods at the same time.
 
 ## Running jobs with gang-scheduling
 
-The Training Operator and the MPI Operator support running jobs with gang-scheduling using Kueue, Volcano Scheduler,
+The Training Operator and the MPI Operator support running jobs with gang-scheduling using Kueue, Volcano Scheduler, KAI Scheduler
 and Scheduler Plugins with coscheduling.
 
 ### Using Kueue with Training Operator Jobs
@@ -204,9 +204,39 @@ spec:
           restartPolicy: OnFailure
 ```
 
+### KAI Scheduler
+
+Install KAI Scheduler in your cluster by following [the installation steps](https://github.com/NVIDIA/KAI-Scheduler/tree/main?tab=readme-ov-file#installation). Upon installation, KAI Scheduler automatically creates a default-queue for workload submission. KAI Scheduler's podgrouper component automatically detects Training Operator jobs and creates PodGroup resources for gang-scheduling.
+
+See the [batch workload guide](https://github.com/NVIDIA/KAI-Scheduler/blob/main/docs/batch/README.md#pytorchjob) for an example. Once you submit, KAI scheduler automatically;
+- Detects your jobs
+- Creates PodGroup resources
+- Assigns them to default-queue for gang-scheduling
+
+#### Optional: Custom Queues
+
+For advanced resource management with multiple queues:
+1. Create queues by following the [queue configuration guide](https://github.com/NVIDIA/KAI-Scheduler/blob/main/docs/queues/README.md)
+2. Assign jobs to specific queues by adding the kai.scheduler/queue label:
+
+```diff
+...
+    metadata:
+      name: my-training-job
+      labels:
++        kai.scheduler/queue: my-queue-name
+...
+```
+
+
+
+#### Elastic Training
+KAI Scheduler supports elastic workloads, where you can specify minimum (gang threshold) and maximum pod counts. If the number of running pods falls below the minimum threshold, the entire workload is evicted. KAI Scheduler intelligently manages pod roles, prioritizing eviction of non-leader pods when possible.
+For elastic training with PyTorchJob, see [the elastic training guide](https://github.com/NVIDIA/KAI-Scheduler/tree/main/docs/elastic).
+
 ## About gang-scheduling
 
-When using Volcano Scheduler or the Scheduler Plugins with coscheduling to apply gang-scheduling,
+When using Volcano Scheduler, KAI Scheduler or the Scheduler Plugins with coscheduling to apply gang-scheduling,
 a job can run only if there are enough resources for all the pods of the job.
 Otherwise, all of the pods will be in a pending state waiting for enough resources.
 For example, if a job requiring N pods is created and there are only enough resources to schedule N-2 pods,
