@@ -225,9 +225,9 @@ enable = true
   # The announcement label text (displayed in bold, e.g., "Announcement:")
   text = "Announcement: "
   # The clickable link text
-  link_text = "Check out Kubeflow Unified SDK Survey!"
+  link_text = "Join us at KubeCon Europe 2026 - Cloud Native AI & Kubeflow Day!"
   # The URL for the announcement link
-  url = "https://docs.google.com/forms/d/e/1FAIpQLSet_IAFQzMMDWolzFt5LI9lhzqOOStjIGHxgYqKBnVcRtDfrw/viewform?usp=dialog"
+  url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/cloud-native-ai-kubeflow-day/"
   # Optional icon/emoji (e.g., "✨") - displayed before and after the announcement
   icon = "✨"
 
