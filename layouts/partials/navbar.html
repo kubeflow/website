@@ -33,32 +33,6 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse ml-md-auto" id="main_navbar">
-
-    <!-- === New Wrapper to stack announcement and menu === -->
-    <div class="d-flex flex-column w-100">
-
-      <!-- =================================== -->
-      <!-- === ANNOUNCEMENT BAR START === -->
-      <!-- =================================== -->
-      {{- $announcementEnable := .Site.Params.announcement.enable | default false -}}
-      {{- if $announcementEnable -}}
-      <div class="text-center w-100 pt-3 pt-md-2 pb-2 pb-md-2"> <!-- Adjusted padding for desktop -->
-        <span class="px-3 py-1 rounded text-white" style="background-color: rgba(255, 255, 255, 0.15); font-size: 0.9em; font-weight: 500;">
-          {{- $icon := .Param "announcement.icon" | default "" -}}
-          {{- $text := .Param "announcement.text" | default "Announcement:" -}}
-          {{- $linkText := .Param "announcement.link_text" | default "" -}}
-          {{- $url := .Param "announcement.url" | default "#" -}}
-          {{- if $icon }}{{ $icon }} {{ end -}}<strong>{{ $text | safeHTML }}</strong>
-          {{- if and $linkText (ne $url "#") -}}
-            <a target="_blank" href="{{ $url }}" class="text-white" style="text-decoration: underline;">{{ $linkText | safeHTML }}</a>
-          {{- end -}}
-          {{- if $icon }} {{ $icon }}{{ end -}}
-        </span>
-      </div>
-      {{- end -}}
-      <!-- =================================== -->
-      <!-- === ANNOUNCEMENT BAR END === -->
-      <!-- =================================== -->
     <ul class="navbar-nav ml-auto pt-4 pt-md-0 my-2 my-md-1">
       {{ $p := . -}}
       {{ $last := len .Site.Menus.main -}}
@@ -103,6 +77,5 @@
       {{ end -}}
     </ul>
   </div>
-    </div> <!-- === End of new wrapper === -->
 </div>
 </nav>
