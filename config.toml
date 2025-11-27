@@ -61,12 +61,17 @@ ignoreFiles = []
 ###############################################################################
 [menu]
   [[menu.main]]
+    name = "Check out Kubeflow SDK Survey!"
+    weight = -1100
+    pre = "<i class='fas fa-poll pr-2' style='color: #FFC107'></i>"
+    url = "https://docs.google.com/forms/d/e/1FAIpQLSet_IAFQzMMDWolzFt5LI9lhzqOOStjIGHxgYqKBnVcRtDfrw/viewform?usp=dialog"
+  [[menu.main]]
     name = "Kubeflow Summit"
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
     post = "<br><span class='badge badge-warning'>Nov 10th, 2025</span> <span class='badge badge-warning'>Atlanta, Georgia</span>"
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/kubeflow-summit/"
-  
+
 #  [[menu.main]]
 #    name = "GSoC 2025"
 #    weight = -900
