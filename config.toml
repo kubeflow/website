@@ -61,12 +61,18 @@ ignoreFiles = []
 ###############################################################################
 [menu]
   [[menu.main]]
+    name = "Kubeflow SDK Survey"
+    weight = -1100
+    pre = "<i class='fas fa-bullhorn pr-2' style='color: #FFC107'></i>"
+    post = "<br><span class='badge badge-warning'>Share Your Feedback</span>"
+    url = "https://docs.google.com/forms/d/e/1FAIpQLSet_IAFQzMMDWolzFt5LI9lhzqOOStjIGHxgYqKBnVcRtDfrw/viewform?usp=dialog"
+  [[menu.main]]
     name = "Kubeflow Summit"
     weight = -1000
     pre = "<i class='fas fa-calendar pr-2' style='color: #FFC107'></i>"
     post = "<br><span class='badge badge-warning'>Nov 10th, 2025</span> <span class='badge badge-warning'>Atlanta, Georgia</span>"
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/co-located-events/kubeflow-summit/"
-  
+
 #  [[menu.main]]
 #    name = "GSoC 2025"
 #    weight = -900
@@ -215,21 +221,6 @@ enable = true
 
     # Twitter account (used to set `twitter:site` in the SEO partial)
     twitter = "kubeflow"
-
-###############################################################################
-# Announcement configuration
-###############################################################################
-[params.announcement]
-  # Enable/disable the announcement bar
-  enable = true
-  # The announcement label text (displayed in bold, e.g., "Announcement:")
-  text = "Announcement: "
-  # The clickable link text
-  link_text = "Check out Kubeflow Unified SDK Survey!"
-  # The URL for the announcement link
-  url = "https://docs.google.com/forms/d/e/1FAIpQLSet_IAFQzMMDWolzFt5LI9lhzqOOStjIGHxgYqKBnVcRtDfrw/viewform?usp=dialog"
-  # Optional icon/emoji (e.g., "✨") - displayed before and after the announcement
-  icon = "✨"
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
