@@ -70,6 +70,12 @@ ignoreFiles = []
     # pre = "<i><img src='/events/images/cloud-native-ai-2025.png' style='height:28px; vertical-align:middle; margin-right:6px;'></i>"
     # post = "<br><span class='badge badge-warning'>March 23rd, 2026</span> <span class='badge badge-warning'>Amsterdam, Netherlands</span>"
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/cloud-native-ai-kubeflow-day/"
+  [[menu.main]]
+    name = "Kubeflow SDK Survey"
+    weight = -1100
+    pre = "<i class='fas fa-bullhorn pr-2' style='color: #FFC107'></i>"
+    post = "<br><span class='badge badge-warning'>Share Your Feedback</span>"
+    url = "https://docs.google.com/forms/d/e/1FAIpQLSet_IAFQzMMDWolzFt5LI9lhzqOOStjIGHxgYqKBnVcRtDfrw/viewform?usp=dialog"
   
 #  [[menu.main]]
 #    name = "GSoC 2025"
@@ -219,21 +225,6 @@ enable = true
 
     # Twitter account (used to set `twitter:site` in the SEO partial)
     twitter = "kubeflow"
-
-###############################################################################
-# Announcement configuration
-###############################################################################
-[params.announcement]
-  # Enable/disable the announcement bar
-  enable = true
-  # The announcement label text (displayed in bold, e.g., "Announcement:")
-  text = "Announcement: "
-  # The clickable link text
-  link_text = "Check out Kubeflow Unified SDK Survey!"
-  # The URL for the announcement link
-  url = "https://docs.google.com/forms/d/e/1FAIpQLSet_IAFQzMMDWolzFt5LI9lhzqOOStjIGHxgYqKBnVcRtDfrw/viewform?usp=dialog"
-  # Optional icon/emoji (e.g., "✨") - displayed before and after the announcement
-  icon = "✨"
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
