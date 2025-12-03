@@ -32,7 +32,7 @@ Pipelines can perform, running a pipeline is arguably the most unpredictable and
 costly one. Other operations, such as creating a pipeline (version) or creating an
 experiment, usually induce a predictable and moderate cost. For example, creating a
 pipeline version will introduce a new row in the pipeline versions table and a new
-file in minio server. The new file's size depends on the pipeline version's
+file in SeaweedFS server. The new file's size depends on the pipeline version's
 manifest. If we exclude the rare case of an extremely large manifest and assume
 an average sized manifest for each created pipeline version, the total cost of
 creating a pipeline version grows linearly with the number of pipeline versions.
