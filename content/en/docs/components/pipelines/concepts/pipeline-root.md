@@ -6,7 +6,7 @@ weight = 15
 +++
 
 
-A *pipeline root* represents a path within an object store bucket (MinIO, S3, GCS) where Kubeflow Pipelines stores [artifacts][artifact] from pipeline runs. Pipeline roots can be set at the cluster, [pipeline][pipeline], and [run][run] level, with support for authentication and overrides for specific paths provided.
+A *pipeline root* represents a path within an object store bucket (SeaweedFS, S3, GCS) where Kubeflow Pipelines stores [artifacts][artifact] from pipeline runs. Pipeline roots can be set at the cluster, [pipeline][pipeline], and [run][run] level, with support for authentication and overrides for specific paths provided.
 
 {{% alert title="Note" color="info" %}}
 It's important to understand how pipeline roots fit in KFP's data ecosystem. Pipeline roots are KFP's way to store [artifacts][artifact] (user data files) from [runs][run] in particular. Metadata on these [artifacts][artifact] (including their storage paths) is stored in an SQL database. Independently--and not to be confused with pipeline roots--KFP uses another object storage specification (in `Deployment/ml-pipeline`) to support operations of the KFP API server; more information on this backend specification can be found [here][API Server Storage].
