@@ -19,7 +19,7 @@ While IR YAML is not intended to be easily human-readable, you can still inspect
 | [`pipeline_info`][pipeline-info-schema] <a id="kfp_iryaml_pipelineinfo"></a> | This section contains pipeline metadata, including the `pipelineInfo.name` field. This field contains the name of your pipeline template. When you upload your pipeline, a pipeline context name is created based on this template name. The pipeline context lets the backend and the dashboard associate artifacts and executions from pipeline runs using the pipeline template. You can use a pipeline context to determine the best model by comparing metrics and artifacts from multiple pipeline runs based on the same training pipeline. | [View on Github][pipeline-info-example]
 | [`sdk_version`][sdk-version-schema] | This section records the version of the KFP SDK used to compile the pipeline. | [View on Github][sdk-version-example]
 | [`schema_version`][schema-version-schema] | This section records the version of the `PipelineSpec` schema used for the IR YAML. | [View on Github][schema-version-example]
-| [`default_pipeline_root`][default-pipeline-root-schema] | This section records the remote storage root path, such as a MinIO URI or Google Cloud Storage URI, where the pipeline output is written. | [View on Github][default-pipeline-root-example]
+| [`default_pipeline_root`][default-pipeline-root-schema] | This section records the remote storage root path, such as a SeaweedFS URI or Google Cloud Storage URI, where the pipeline output is written. | [View on Github][default-pipeline-root-example]
 
 
 ## Next steps
