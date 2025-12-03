@@ -8,7 +8,7 @@ weight = 10
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
 Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
-For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
+For reference, the final release of the V1 SDK was [`kfp==1.8.23`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.23/).
 {{% /alert %}}
 
 Kubeflow Pipelines is a platform for building and deploying portable, 
@@ -260,10 +260,9 @@ At a high level, the execution of a pipeline proceeds as follows:
   * **Artifacts:** Pipeline packages, views, and large-scale metrics (time series).
     Use large-scale metrics to debug a pipeline run or investigate an individual run’s performance.
     Kubeflow Pipelines stores the artifacts in an artifact store like
-    [Minio server](https://docs.minio.io/) or
-    [Cloud Storage](https://cloud.google.com/storage/docs/).
+    SeaweedFS or [Cloud Storage](https://cloud.google.com/storage/docs/).
 
-    The MySQL database and the Minio server are both backed by the Kubernetes
+    The MySQL database and the SeaweedFS server are both backed by the Kubernetes
     [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
     subsystem.
 
