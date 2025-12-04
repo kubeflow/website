@@ -15,14 +15,14 @@ guide](/docs/components/pipelines/operator-guides/installation/) to deploy Kubef
 ## What is pipeline root?
 
 [Pipeline root](/docs/components/pipelines/concepts/pipeline-root) represents the path within an object store bucket where Kubeflow Pipelines stores a pipeline's artifacts.
-This feature supports MinIO, S3, GCS natively using [Go CDK](https://github.com/google/go-cloud). 
+This feature supports SeaweedFS, S3, GCS natively using [Go CDK](https://github.com/google/go-cloud). 
 
 Artifacts can be more accessible in S3 and GCS when integrating Kubeflow Pipelines with other systems.
 
 ## How to configure pipeline root authentication 
-#### MinIO
-You don't need to pass the authentication for MinIO.
-Kubeflow Pipelines is configured with the authentication of the MinIO instance deployed with itself.
+#### SeaweedFS
+You don't need to pass the authentication for SeaweedFS.
+Kubeflow Pipelines is configured with the authentication of the SeaweedFS instance deployed with itself.
 
 #### GCS
 If you want to specify the `pipeline root` to GCS, check [authentication-pipelines](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/pipelines/authentication-pipelines/)

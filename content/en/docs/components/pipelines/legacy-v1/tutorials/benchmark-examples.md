@@ -7,7 +7,7 @@ weight = 10
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
 Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
-For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
+For reference, the final release of the V1 SDK was [`kfp==1.8.23`](https://pypi.org/project/kfp/1.8.23/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.23/).
 {{% /alert %}}
 
 This guide explains the Kubeflow Pipelines [benchmark scripts](https://github.com/kubeflow/pipelines/tree/sdk/release-1.8/tools/benchmarks)
@@ -32,7 +32,7 @@ Pipelines can perform, running a pipeline is arguably the most unpredictable and
 costly one. Other operations, such as creating a pipeline (version) or creating an
 experiment, usually induce a predictable and moderate cost. For example, creating a
 pipeline version will introduce a new row in the pipeline versions table and a new
-file in minio server. The new file's size depends on the pipeline version's
+file in SeaweedFS server. The new file's size depends on the pipeline version's
 manifest. If we exclude the rare case of an extremely large manifest and assume
 an average sized manifest for each created pipeline version, the total cost of
 creating a pipeline version grows linearly with the number of pipeline versions.

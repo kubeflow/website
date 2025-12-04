@@ -73,7 +73,7 @@ Feast can be run on the same Kubernetes cluster as Kubeflow, and may be used to 
 - A Kubernetes cluster with [Kubeflow installed](/docs/started/installing-kubeflow/)
 - A database to use as an [offline store](https://docs.feast.dev/reference/offline-stores/overview) _(BigQuery, Snowflake, Redshift, etc.)_
 - A database to use as an [online store](https://docs.feast.dev/reference/online-stores/overview) _(Redis, Datastore, DynamoDB, etc.)_
-- A bucket _(S3, GCS, Minio, etc.)_ or SQL Database _(Postgres, MySQL, etc.)_ to use as the [feature registry](https://docs.feast.dev/getting-started/concepts/registry)
+- A bucket _(S3, GCS, SeaweedFS, etc.)_ or SQL Database _(Postgres, MySQL, etc.)_ to use as the [feature registry](https://docs.feast.dev/getting-started/concepts/registry)
 - A workflow engine _(Airflow, Kubeflow Pipelines, etc.)_ to [materialize data](https://docs.feast.dev/getting-started/concepts/data-ingestion) and run other Feast jobs
 
 ### Installation
