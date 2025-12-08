@@ -97,7 +97,6 @@ device's timezone.
 <div id="calendar-container"></div>
 <script type="text/javascript">
 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-let calender_src = calender_src_list.map(src => `&src=${src}&color=%23A79B8E`).join('');
 const html = `<iframe src="https://zoom-lfx.platform.linuxfoundation.org/meetings/kubeflow?view=week" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
 document.getElementById('calendar-container').innerHTML = html;
 </script>
