@@ -60,21 +60,6 @@ The official Kubeflow mailing list is a Google Group called [kubeflow-discuss](h
 The Kubeflow community holds various meetings to all users and contributors to discus
 issues/proposals and present demos/products.
 
-### Subscribe to the Kubeflow Calendar
-
-By joining the [`kubeflow-discuss`](#kubeflow-mailing-list) mailing list, you should automatically see all the Kubeflow community meetings in your Google calendar.
-
-If this does not work, [manually add](https://calendar.google.com/calendar/u/0/r/settings/addcalendar) the following name to your Google calendar:
-
-```text
-kubeflow.org_7l5vnbn8suj2se10sen81d9428@group.calendar.google.com
-```
-
-<img src="/docs/about/images/google-calendar.png"
-      alt="Google Calendar"
-      class="mt-3 mb-3 border rounded">
-</img>
-
 ### List of Available Meetings
 
 The following list shows available Kubeflow community meetings with the corresponding meeting notes and recordings.
@@ -82,27 +67,31 @@ The following list shows available Kubeflow community meetings with the correspo
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Meeting Name                    | Meeting Notes                                                                                      | Recordings                                                                                   |
-| ------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Kubeflow community call         | [Google Doc](https://bit.ly/kf-meeting-notes)                                                      | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
-| Kubeflow AutoML and Training WG | [Google Doc](https://bit.ly/2PWVCkV)                                                               | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
-| Kubeflow SDK and ML Experience WG | [Google Doc](https://bit.ly/kf-ml-experience)                                                    |                                                                                              |
-| Kubeflow Model Registry call    | [Google Doc](https://bit.ly/kf-model-registry-notes)                                               | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
-| Kubeflow Notebooks WG           | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)                                                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
-| Kubeflow Platform WG            | [Google Doc](https://bit.ly/kf-wg-manifests-notes)                                                 |                                                                                              |
-| Kubeflow Pipelines WG           | [Google Doc](http://bit.ly/kfp-meeting-notes)                                                      | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
-| Kubeflow Release team call      | [Google Doc](https://bit.ly/kf-release-team-notes)                                                 |                                                                                              |
-| Kubeflow Spark Operator call    | [Google Doc](https://bit.ly/3VGzP4n)                                                               | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
-| KServe call                     | [Google Doc](https://bit.ly/3NlKFb3)                                                               |                                                                                              |
-| Kubeflow Graduation Call        | [Google Doc](https://docs.google.com/document/d/1Wdxt1xedAj7qF_Rjmxy1R0NRdfv7UWs-r2PItewxHpE/edit) | [YouTube playlist](https://youtu.be/a3ZHpSZ6F1o?list=PLmzRWLV1CK_wXzEuDqJZQVMhZaJVHTWfM)     |
+| Meeting Name                      | Meeting Notes                                                                                      | Recordings                                                                                   |
+| --------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Kubeflow community call           | [Google Doc](https://bit.ly/kf-meeting-notes)                                                      | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
+| Kubeflow AutoML and Training WG   | [Google Doc](https://bit.ly/2PWVCkV)                                                               | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
+| Kubeflow SDK and ML Experience WG | [Google Doc](https://bit.ly/kf-ml-experience)                                                      |                                                                                              |
+| Kubeflow Model Registry call      | [Google Doc](https://bit.ly/kf-model-registry-notes)                                               | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
+| Kubeflow Notebooks WG             | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)                                                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
+| Kubeflow Platform WG              | [Google Doc](https://bit.ly/kf-wg-manifests-notes)                                                 |                                                                                              |
+| Kubeflow Pipelines WG             | [Google Doc](http://bit.ly/kfp-meeting-notes)                                                      | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
+| Kubeflow Release team call        | [Google Doc](https://bit.ly/kf-release-team-notes)                                                 |                                                                                              |
+| Kubeflow Spark Operator call      | [Google Doc](https://bit.ly/3VGzP4n)                                                               | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
+| KServe call                       | [Google Doc](https://bit.ly/3NlKFb3)                                                               |                                                                                              |
+| Kubeflow Graduation Call          | [Google Doc](https://docs.google.com/document/d/1Wdxt1xedAj7qF_Rjmxy1R0NRdfv7UWs-r2PItewxHpE/edit) | [YouTube playlist](https://youtu.be/a3ZHpSZ6F1o?list=PLmzRWLV1CK_wXzEuDqJZQVMhZaJVHTWfM)     |
 
 </div>
 </div>
+
+### Download Kubeflow Calendar iCall
+
+You can download [the iCall for the Kubeflow community calendar](https://webcal.prod.itx.linuxfoundation.org/lfx/a092M00001LkNgVQAV).
 
 ### Kubeflow Community Calendar
 
-This is an aggregated view of the Kubeflow community calendar and should be displayed in your
-device's timezone.
+This is an aggregated view of [the Kubeflow community calendar](https://zoom-lfx.platform.linuxfoundation.org/meetings/kubeflow)
+and should be displayed in your device's timezone.
 
 <style>
 #calendar-container {
@@ -112,13 +101,27 @@ device's timezone.
 <div id="calendar-container"></div>
 <script type="text/javascript">
 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const html = `<iframe src="https://zoom-lfx.platform.linuxfoundation.org/meetings/kubeflow?view=list" width="100%" height="600" frameborder="0" scrolling="no"></iframe>`;
+document.getElementById('calendar-container').innerHTML = html;
+</script>
+
+**(Legacy)** This is legacy Kubeflow Calendar and it will be removed once we fully migrate to the
+LFX calendar.
+
+<style>
+#calendar-container-legacy {
+   overflow: auto;
+}
+</style>
+<div id="calendar-container-legacy"></div>
+<script type="text/javascript">
 const calender_src_list = [
   // Kubeflow Community
   "kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com",
 ];
 let calender_src = calender_src_list.map(src => `&src=${src}&color=%23A79B8E`).join('');
-const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
-document.getElementById('calendar-container').innerHTML = html;
+const html_legacy = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
+document.getElementById('calendar-container-legacy').innerHTML = html_legacy;
 </script>
 
 ## Kubeflow on Social Media
