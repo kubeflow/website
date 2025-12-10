@@ -84,6 +84,10 @@ The following list shows available Kubeflow community meetings with the correspo
 </div>
 </div>
 
+### Download Kubeflow Calendar iCall
+
+You can download [the iCall for the Kubeflow community calendar](https://webcal.prod.itx.linuxfoundation.org/lfx/a092M00001LkNgVQAV).
+
 ### Kubeflow Community Calendar
 
 This is an aggregated view of the Kubeflow community calendar and should be displayed in your
@@ -101,9 +105,25 @@ const html = `<iframe src="https://zoom-lfx.platform.linuxfoundation.org/meeting
 document.getElementById('calendar-container').innerHTML = html;
 </script>
 
-### Download Kubeflow Calendar iCall
+**(Legacy)** This is legacy Kubeflow Calendar and it will be removed once we fully migrate to the
+LFX calendar.
 
-You can download [the iCall for Kubeflow Calendar](https://webcal.prod.itx.linuxfoundation.org/lfx/a092M00001LkNgVQAV)
+<style>
+#calendar-container {
+   overflow: auto;
+}
+</style>
+<div id="calendar-container"></div>
+<script type="text/javascript">
+const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const calender_src_list = [
+  // Kubeflow Community
+  "kubeflow.org_7l5vnbn8suj2se10sen81d9428%40group.calendar.google.com",
+];
+let calender_src = calender_src_list.map(src => `&src=${src}&color=%23A79B8E`).join('');
+const html = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
+document.getElementById('calendar-container').innerHTML = html;
+</script>
 
 ## Kubeflow on Social Media
 
