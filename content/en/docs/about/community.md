@@ -109,11 +109,11 @@ document.getElementById('calendar-container').innerHTML = html;
 LFX calendar.
 
 <style>
-#calendar-container {
+#calendar-container-legacy {
    overflow: auto;
 }
 </style>
-<div id="calendar-container"></div>
+<div id="calendar-container-legacy"></div>
 <script type="text/javascript">
 const calender_src_list = [
   // Kubeflow Community
@@ -121,7 +121,7 @@ const calender_src_list = [
 ];
 let calender_src = calender_src_list.map(src => `&src=${src}&color=%23A79B8E`).join('');
 const html_legacy = `<iframe src="https://calendar.google.com/calendar/embed?ctz=${timezone}&height=600&wkst=1&bgcolor=%23ffffff&showPrint=0&showDate=1&mode=AGENDA&showTitle=0${calender_src}" width="800" height="600" frameborder="0" scrolling="no"></iframe>`;
-document.getElementById('calendar-container').innerHTML = html_legacy;
+document.getElementById('calendar-container-legacy').innerHTML = html_legacy;
 </script>
 
 ## Kubeflow on Social Media
