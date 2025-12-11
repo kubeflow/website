@@ -7,7 +7,7 @@ weight = 20
 This guide describes how to fine-tune LLMs using `BuiltinTrainer` and `TorchTuneConfig`. `TorchTuneConfig` leverages [TorchTune](https://github.com/pytorch/torchtune) to streamline LLMs fine-tuning on Kubernetes. To understand the concept of `BuiltinTrainer`, see the [overview guide](/docs/components/trainer/user-guides/builtin-trainer/overview.md).
 
 {{% alert title="Note" color="info" %}}
-The supported model list can be seen in [this directory](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune). It's worth noticing that we do not support multi-node fine-tuning with TorchTune.
+The supported model list can be seen in [this directory](https://github.com/kubeflow/trainer/tree/master/manifests/base/runtimes/torchtune). It's worth noticing that we do not support multi-node fine-tuning with TorchTune. However, **LoRA (PEFT) fine-tuning is supported** starting from Kubeflow Trainer V2.1.0 and SDK v0.2.0.
 
 If you want to learn more about TorchTune BuiltinTrainer, please refer to [KEP-2401](https://github.com/kubeflow/trainer/tree/master/docs/proposals/2401-llm-trainer-v2) in Kubeflow Trainer.
 {{% /alert %}}
@@ -246,6 +246,11 @@ torchtune_config = TorchTuneConfig(
     epochs=10,
     loss=Loss.CEWithChunkedOutputLoss,
     num_nodes=1,
+    peft_config=LoraConfig(
+        lora_rank=8,
+        lora_alpha=16,
+        lora_dropout=0.1,
+    ),
     dataset_preprocess_config=TorchTuneInstructDataset(
         source=DataFormat.PARQUET,
         split="train[:95%]",
