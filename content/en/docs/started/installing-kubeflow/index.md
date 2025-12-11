@@ -204,21 +204,6 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
-          Google Cloud
-        </td>
-        <td>
-          {{< kf-version-notice >}}{{% gke/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/changelog/">[release notes]</a></sup>
-        </td>
-        <td>
-          Google Kubernetes Engine (GKE)
-        </td>
-        <td>
-          <a href="https://googlecloudplatform.github.io/kubeflow-gke-docs">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
           Microsoft Azure
         </td>
         <td>
