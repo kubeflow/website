@@ -40,7 +40,7 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Notebooks                               | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)      |
 | Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)      |
 | Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)       |
-| Spark Operator                          | [#kubeflow-spark-operator](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG) |
+| Spark on Kubernetes                     | [#kubeflow-spark-on-kubernetes](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG) |
 | Kubeflow Trainer and MPI Operator       | [#kubeflow-trainer](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)        |
 | KServe                                  | [#kserve](https://app.slack.com/client/T08PSQ7BQ/C06AH2C3K8B)                  |
 
