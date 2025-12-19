@@ -398,14 +398,18 @@ nav.foldable-nav {
   .vr {
     display: inline-block;
     width: 1px;
-    height: 100%;
-    background-color: white;
-    opacity: 0.15;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.3);
+    align-self: center;
+    margin: 0 0.5rem;
   }
 
   .navbar-brand {
     margin: 0;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .text-uppercase {
       display: none;
@@ -415,10 +419,11 @@ nav.foldable-nav {
       svg {
         display: inline-block;
         position: absolute;
+        border-radius: 5px;
         top: 0;
         z-index: 33;
         padding: 10px;
-        margin: 0;
+        margin: 10px;
         height: 95px;
         background: $navbar-logo-bg;
         border: 2px solid $navbar-logo-border;
@@ -455,6 +460,8 @@ nav.foldable-nav {
   .navbar-nav {
     // allow wrapping of navbar links
     white-space: normal;
+    display: flex;
+    align-items: center;
 
     .dropdown-toggle {
       white-space: normal;
