@@ -19,13 +19,13 @@ weight = 95
       <th class="table-light">Media</th>
       <td>
         <b>Blog:</b> 
-          To be pubçished
+          To be published
         <br>
         <b>Video:</b> 
-          To be pubçished
+          To be published
         <br>
         <b>Roadmap:</b>
-          To be pubçished
+          To be published
       </td>
     </tr>
     <tr>
