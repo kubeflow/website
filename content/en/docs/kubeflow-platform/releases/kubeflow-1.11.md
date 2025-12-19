@@ -137,7 +137,7 @@ weight = 95
         </td>
       </tr>
       <tr>
-        <td>Tensorboard Web App</td>
+        <td>Tensorboard Web Application</td>
         <td>
           <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/crud-web-apps/volumes">v1.10.0</a>
         </td>
