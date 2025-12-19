@@ -107,7 +107,7 @@ weight = 95
         </td>
       </tr>
       <tr>
-        <td>Jupyter Web App</td>
+        <td>Jupyter Web Application</td>
         <td>
           <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/crud-web-apps/jupyter">v1.10.0</a>
         </td>
