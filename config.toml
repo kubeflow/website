@@ -84,10 +84,10 @@ ignoreFiles = []
     pre = "<i class='fas fa-book pr-2'></i>"
     url = "/docs/"
   [[menu.main]]
-    name = "Events"
+    name = "Community"
     weight = -101
-    pre = "<i class='fas fa-calendar pr-2'></i>"
-    url = "/events/"
+    pre = "<i class='fas fa-users pr-2'></i>"
+    url = "/docs/about/community/"
   [[menu.main]]
     name = "Blog"
     weight = -100
