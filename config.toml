@@ -227,6 +227,10 @@ enable = true
     githubbranch = "master"
     url = "https://master.kubeflow.org"
   [[params.versions]]
+    version = "v1.11"
+    githubbranch = "v1.11-branch"
+    url = "https://v1-11-branch.kubeflow.org"
+  [[params.versions]]
     version = "v1.10"
     githubbranch = "v1.10-branch"
     url = "https://v1-10-branch.kubeflow.org"
