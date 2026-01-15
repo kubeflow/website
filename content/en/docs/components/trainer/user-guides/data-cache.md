@@ -68,6 +68,42 @@ For the latest changes run:
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/data-cache?ref=master"
 ```
 
+### Install with Helm Charts
+
+Alternatively, you can install the data cache resources using Helm charts:
+
+```bash
+helm install kubeflow-trainer oci://ghcr.io/kubeflow/charts/kubeflow-trainer \
+    --set dataCache.enabled=true \
+    --namespace kubeflow-system \
+    --create-namespace \
+    --version ${VERSION#v}
+```
+
+The following Helm values are available for configuring data cache:
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `dataCache.enabled` | Enable data cache resources (ClusterTrainingRuntime, RBAC) | `false` |
+| `dataCache.lws.install` | Install LeaderWorkerSet as a dependency | `true` |
+| `dataCache.lws.fullnameOverride` | Override LeaderWorkerSet release name | `lws` |
+| `dataCache.image.registry` | Data cache image registry | `ghcr.io` |
+| `dataCache.image.repository` | Data cache image repository | `kubeflow/trainer/data-cache` |
+| `dataCache.image.tag` | Data cache image tag | `latest` |
+| `dataCache.initializerImage.registry` | Dataset initializer image registry | `ghcr.io` |
+| `dataCache.initializerImage.repository` | Dataset initializer image repository | `kubeflow/trainer/dataset-initializer` |
+| `dataCache.initializerImage.tag` | Dataset initializer image tag | `latest` |
+| `dataCache.targetNamespace` | Namespace for ServiceAccount and RoleBinding | `default` |
+| `dataCache.serviceAccount.name` | ServiceAccount name for cache initializer | `kubeflow-trainer-cache-initializer` |
+
+{{% alert title="Note" color="info" %}}
+
+When `dataCache.lws.install` is set to `true` (the default), LeaderWorkerSet will be installed
+automatically. Set it to `false` if LeaderWorkerSet controller/webhook is already installed
+in your cluster.
+
+{{% /alert %}}
+
 {{% alert title="Note" color="info" %}}
 
 The above command will install RBAC in the `default` namespace. If you want to create TrainJobs
