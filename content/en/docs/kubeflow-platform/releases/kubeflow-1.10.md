@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow AI reference platform 1.10"
 description = "Information about the Kubeflow AI reference platform 1.10 release"
-weight = 95
+weight = 91
 +++
 
 ## Kubeflow AI reference platform 1.10.2
@@ -22,7 +22,7 @@ weight = 95
           <a href="https://blog.kubeflow.org/kubeflow-1.10-release/">Kubeflow 1.10 Release Announcement</a>
         <br>
         <b>Video:</b> 
-          To be pubçished
+          <a href="https://www.youtube.com/watch?v=lzvWJR3JuLQ">Kubeflow 1.10 Release Video</a>
         <br>
         <b>Roadmap:</b>
           <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-110-release-planned-for-release-mar-2025">Kubeflow 1.10 Features</a>
