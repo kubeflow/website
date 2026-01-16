@@ -83,6 +83,8 @@ def my_pipeline():
 This component provisions a 5GB PVC from the [StorageClass][storage-class] `'standard'` with the `ReadWriteMany` [access mode][access-mode].
 The PVC will be named after the underlying Argo workflow that creates it, concatenated with the suffix `-my-pvc`. The `CreatePVC` component returns this name as the output `'name'`.
 
+> **Note:** [KFP 2.15](https://github.com/kubeflow/pipelines/releases/tag/2.15.0) introduces an upgrade to Argo Workflows v3.7.3
+
 #### **Step 4:** Read and write data to the PVC
 
 Next, we'll use the `mount_pvc` task modifier with the `producer` and `consumer` components. 
