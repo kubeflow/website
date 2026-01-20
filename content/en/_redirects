@@ -217,9 +217,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/external-add-ons/kserve/first_isvc_kserve/ https://kserve.github.io/website/latest/get_started/first_isvc/
 /docs/external-add-ons/kserve/migration/         https://kserve.github.io/website/latest/admin/migration/
 
-# GSoC redirects
-/events/2025/gsoc-2025/                 /events/gsoc-2025/
-
 # ===============
 # IMPORTANT NOTE:
 # Catch-all redirects should be added at the end of this file as redirects happen from top to bottom
