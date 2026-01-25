@@ -53,6 +53,7 @@ Run distributed TrainJobs using Podman, a daemonless container engine with enhan
 | **Setup** | No additional software | Docker Desktop/Engine | Podman installation |
 | **Isolation** | Virtual environments | Full container isolation | Full container isolation |
 | **Multi-node** | Not supported | Supported | Supported |
+| **NVIDIAGPU Support** | Not supported | Linux/Windows (WSL2) | Linux/Windows (WSL2) |
 | **Root Required** | No | Docker group or root | Rootless supported |
 | **Startup Time** | Fast (seconds) | Medium (container start) | Medium (container start) |
 | **Best For** | Quick prototyping | General use, wide ecosystem | Security, Linux servers |
