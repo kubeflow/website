@@ -68,10 +68,33 @@ For the latest changes run:
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/data-cache?ref=master"
 ```
 
+### Install with Helm Charts
+
+Alternatively, you can install the data cache resources using Helm charts:
+
+```bash
+helm install kubeflow-trainer oci://ghcr.io/kubeflow/charts/kubeflow-trainer \
+    --set dataCache.enabled=true \
+    --namespace kubeflow-system \
+    --create-namespace \
+    --version ${VERSION#v}
+```
+
+For the available Helm values to configure data cache, see the
+[kubeflow-trainer Helm chart documentation](https://github.com/kubeflow/trainer/tree/master/charts/kubeflow-trainer).
+
 {{% alert title="Note" color="info" %}}
 
-The above command will install RBAC in the `default` namespace. If you want to create TrainJobs
-in other Kubernetes namespace, run this:
+When `dataCache.lws.install` is set to `true` (the default), LeaderWorkerSet will be installed
+automatically. Set it to `false` if LeaderWorkerSet controller/webhook is already installed
+in your cluster.
+
+{{% /alert %}}
+
+{{% alert title="Warning" color="warning" %}}
+
+Helm charts don't install RBAC in the user namespace. You have to deploy RBAC separately
+in each namespace where you want to create TrainJobs:
 
 ```bash
 kubectl apply  --server-side -n <NAMESPACE> -k "https://github.com/kubeflow/trainer.git/manifests/overlays/data-cache/namespace-rbac"
