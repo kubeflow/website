@@ -80,21 +80,8 @@ helm install kubeflow-trainer oci://ghcr.io/kubeflow/charts/kubeflow-trainer \
     --version ${VERSION#v}
 ```
 
-The following Helm values are available for configuring data cache:
-
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `dataCache.enabled` | Enable data cache resources (ClusterTrainingRuntime, RBAC) | `false` |
-| `dataCache.lws.install` | Install LeaderWorkerSet as a dependency | `true` |
-| `dataCache.lws.fullnameOverride` | Override LeaderWorkerSet release name | `lws` |
-| `dataCache.image.registry` | Data cache image registry | `ghcr.io` |
-| `dataCache.image.repository` | Data cache image repository | `kubeflow/trainer/data-cache` |
-| `dataCache.image.tag` | Data cache image tag | `latest` |
-| `dataCache.initializerImage.registry` | Dataset initializer image registry | `ghcr.io` |
-| `dataCache.initializerImage.repository` | Dataset initializer image repository | `kubeflow/trainer/dataset-initializer` |
-| `dataCache.initializerImage.tag` | Dataset initializer image tag | `latest` |
-| `dataCache.targetNamespace` | Namespace for ServiceAccount and RoleBinding | `default` |
-| `dataCache.serviceAccount.name` | ServiceAccount name for cache initializer | `kubeflow-trainer-cache-initializer` |
+For the available Helm values to configure data cache, see the
+[kubeflow-trainer Helm chart documentation](https://github.com/kubeflow/trainer/tree/master/charts/kubeflow-trainer).
 
 {{% alert title="Note" color="info" %}}
 
@@ -104,10 +91,10 @@ in your cluster.
 
 {{% /alert %}}
 
-{{% alert title="Note" color="info" %}}
+{{% alert title="Warning" color="warning" %}}
 
-The above command will install RBAC in the `default` namespace. If you want to create TrainJobs
-in other Kubernetes namespace, run this:
+Helm charts don't install RBAC in the user namespace. You have to deploy RBAC separately
+in each namespace where you want to create TrainJobs:
 
 ```bash
 kubectl apply  --server-side -n <NAMESPACE> -k "https://github.com/kubeflow/trainer.git/manifests/overlays/data-cache/namespace-rbac"
