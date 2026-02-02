@@ -44,6 +44,16 @@ namespace: `KatibClient(namespace="kubeflow-user-example-com")`.
 in other namespaces, you can attach this label following the instructions in the 
 [Metrics Collector](/docs/components/katib/user-guides/metrics-collector/#prerequisites).
 
+**Note**. If you are running Katib on a Kubernetes cluster with strict [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) (PSS) enabled (which is common in K8s v1.25+ or Kind environments), the Katib Controller might fail to create Suggestion pods or Trial pods due to security context violations.
+
+If your Experiment gets stuck in the Created state, check the controller logs. You may need to relax the security policy for your experiment's namespace by running:
+
+```bash
+# Allow Katib components to run with required privileges
+# In this example, the namespace is `kubeflow`
+kubectl label namespace <your-namespace> pod-security.kubernetes.io/enforce=privileged --overwrite
+```
+
 ```python
 # [1] Create an objective function.
 def objective(parameters):
