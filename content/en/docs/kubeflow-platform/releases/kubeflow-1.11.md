@@ -1,7 +1,7 @@
 +++
 title = "Kubeflow AI reference platform 1.11"
 description = "Information about the Kubeflow AI reference platform 1.11 release"
-weight = 95
+weight = 90
 +++
 
 ## Kubeflow AI reference platform 1.11

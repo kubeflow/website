@@ -105,11 +105,11 @@ spec:
     name: admin@example.com
 
   ## plugins extend the functionality of the profile
-  ## https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller#plugins
+  ## https://github.com/kubeflow/dashboard/tree/main/components/profile-controller#plugins
   plugins: []
   
   ## optionally create a ResourceQuota for the profile
-  ## https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller#resourcequotaspec
+  ## https://github.com/kubeflow/dashboard/tree/main/components/profile-controller#resourcequotaspec
   ## https://kubernetes.io/docs/reference/kubernetes-api/policy-resources/resource-quota-v1/#ResourceQuotaSpec
   resourceQuotaSpec: {}
 ```
