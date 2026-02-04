@@ -8,7 +8,7 @@ weight = 5
 
 ## What is Kubeflow Notebooks?
 
-Kubeflow Notebooks provides a way to run web-based development environments inside your Kubernetes cluster by running them inside Pods.
+Kubeflow Notebooks runs interactive development environments for AI, ML, and Data workloads on Kubernetes.
 
 Some key features include:
 - Native support for [JupyterLab](https://github.com/jupyterlab/jupyterlab), [RStudio](https://github.com/rstudio/rstudio), and [Visual Studio Code (code-server)](https://github.com/cdr/code-server).
