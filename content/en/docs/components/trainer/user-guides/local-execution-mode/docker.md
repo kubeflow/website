@@ -15,6 +15,29 @@ The Container Backend with Docker enables you to run distributed TrainJobs in is
 
 The Docker backend uses the adapter pattern to provide a unified interface, making it easy to switch between Docker and Podman without code changes.
 
+## Architecture
+
+The Container Backend with Docker uses a local orchestration layer to manage TrainJobs within Docker containers. This ensures environment parity between your local machine and production Kubernetes clusters.
+
+```mermaid
+graph LR
+    User([User Script]) -->|TrainerClient.train| SDK[Kubeflow SDK]
+    
+    SDK -->|1. Pull| Image[Docker Image]
+    SDK -->|2. Net| Net[Bridge Network]
+    SDK -->|3. Run| Daemon[Docker Daemon]
+    
+    subgraph DockerEnv [Local Docker Environment]
+        direction TB
+        Daemon -->|Spawn| C1[Node 0]
+        Daemon -->|Spawn| C2[Node 1]
+        C1 <-->|DDP| C2
+    end
+    
+    C1 -->|4. Logs| Logs[Stream Logs]
+    C1 -.->|5. Clean| Remove[Auto-Remove]
+```
+
 ## Prerequisites
 
 ### Required Software
