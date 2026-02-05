@@ -275,6 +275,78 @@ For a job with `num_nodes=3`, the Podman backend:
     
 This approach combines the benefits of DNS (hostname resolution) with the reliability of IP addresses for critical communication paths.
 
+## GPU Training
+
+The Podman backend supports GPU passthrough using the Container Device Interface (CDI) standard on Linux and Windows (via WSL2).
+
+### GPU Prerequisites
+
+1. **NVIDIA GPU** with compatible drivers installed
+   - Verify with: `nvidia-smi`
+
+2. **NVIDIA Container Toolkit v1.12.0+** - Includes CDI support by default
+   - Follow the [NVIDIA Container Toolkit installation guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+   - CDI is [configured automatically](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html) with toolkit v1.12.0+
+   - Verify CDI devices: `nvidia-ctk cdi list` (should show `nvidia.com/gpu=0`, etc.)
+
+3. **Platform Support**
+   - **Linux**: Full support
+   - **Windows**: Supported via WSL2 with [NVIDIA GPU drivers for WSL](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
+   - **macOS**: Not supported (GPU passthrough to linux containers is unavailable)
+
+### GPU Training Example
+
+```python
+from kubeflow.trainer import CustomTrainer, TrainerClient, ContainerBackendConfig
+
+def gpu_train():
+    import torch
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Training on: {device}")
+    print(f"GPU: {torch.cuda.get_device_name(0)}")
+
+    # Your GPU training code here
+    model = torch.nn.Linear(10, 1).to(device)
+    # ...
+
+backend_config = ContainerBackendConfig(container_runtime="podman")
+client = TrainerClient(backend_config=backend_config)
+
+trainer = CustomTrainer(
+    func=gpu_train,
+    num_nodes=1,
+    resources_per_node={"gpu": "1"}  # Request 1 GPU per node
+)
+
+job_name = client.train(trainer=trainer)
+```
+
+### GPU Troubleshooting
+
+#### GPU Not Detected
+
+**Error**: `RuntimeError: No CUDA GPUs are available`
+
+**Solution**:
+1. Verify NVIDIA drivers: `nvidia-smi`
+2. Verify CDI devices: `nvidia-ctk cdi list`
+3. Test manually: `podman run --device nvidia.com/gpu=0 docker.io/nvidia/cuda:11.8.0-base-ubuntu22.04 nvidia-smi`
+4. Ensure `resources_per_node={"gpu": "1"}` is set in your trainer
+
+#### CDI Device Not Found
+
+**Error**: `Error: CDI device ... not found`
+
+**Solution**:
+- Ensure NVIDIA Container Toolkit v1.12.0+ is installed
+- Generate CDI spec: `sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml`
+- See [CDI support documentation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html)
+
+#### SELinux Permission Errors (RHEL/Fedora)
+
+RHEL/Fedora users with SELinux enforcing may encounter `NVML: Insufficient Permissions` errors. This is a known limitation that requires system-level configuration. See the [NVIDIA Container Toolkit troubleshooting guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/troubleshooting.html) for solutions.
+
 ## Job Management
 
 For common job management operations (listing jobs, viewing logs, deleting jobs), see the [Job Management section](./overview.md#job-management) in the overview.

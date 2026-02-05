@@ -193,6 +193,68 @@ trainer = CustomTrainer(
 job_name = client.train(trainer=trainer)
 ```
 
+## GPU Training
+
+The Docker backend supports GPU passthrough for accelerated training on Linux and Windows (via WSL2).
+
+### GPU Prerequisites
+
+1. **NVIDIA GPU** with compatible drivers installed
+   - Verify with: `nvidia-smi`
+
+2. **NVIDIA Container Toolkit** - Required for GPU access in Docker containers
+   - Follow the [NVIDIA Container Toolkit installation guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+   - Configure Docker runtime: `sudo nvidia-ctk runtime configure --runtime=docker && sudo systemctl restart docker`
+   - Verify: `docker run --rm --gpus all nvidia/cuda:11.8.0-base-ubuntu22.04 nvidia-smi`
+
+3. **Platform Support**
+   - **Linux**: Full support
+   - **Windows**: Supported via WSL2 with [NVIDIA GPU drivers for WSL](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
+   - **macOS**: Not supported (GPU passthrough to linux containers is unavailable)
+
+### GPU Training Example
+
+```python
+from kubeflow.trainer import CustomTrainer, TrainerClient, ContainerBackendConfig
+
+def gpu_train():
+    import torch
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Training on: {device}")
+    print(f"GPU: {torch.cuda.get_device_name(0)}")
+
+    # Your GPU training code here
+    model = torch.nn.Linear(10, 1).to(device)
+    # ...
+
+backend_config = ContainerBackendConfig(container_runtime="docker")
+client = TrainerClient(backend_config=backend_config)
+
+trainer = CustomTrainer(
+    func=gpu_train,
+    num_nodes=1,
+    resources_per_node={"gpu": "1"}  # Request 1 GPU per node
+)
+
+job_name = client.train(trainer=trainer)
+```
+
+### GPU Troubleshooting
+
+#### GPU Not Detected
+
+**Error**: `RuntimeError: No CUDA GPUs are available`
+
+**Solution**:
+1. Verify NVIDIA drivers: `nvidia-smi`
+2. Verify NVIDIA Container Toolkit: `docker run --rm --gpus all nvidia/cuda:11.8.0-base-ubuntu22.04 nvidia-smi`
+3. Ensure `resources_per_node={"gpu": "1"}` is set in your trainer
+
+#### SELinux Permission Errors (RHEL/Fedora)
+
+RHEL/Fedora users with SELinux enforcing may encounter `NVML: Insufficient Permissions` errors. This is a known limitation that requires system-level configuration. See the [NVIDIA Container Toolkit troubleshooting guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/troubleshooting.html) for solutions.
+
 ## Job Management
 
 For common job management operations (listing jobs, viewing logs, deleting jobs), see the [Job Management section](./overview.md#job-management) in the overview.
@@ -247,25 +309,6 @@ sudo usermod -aG docker $USER
 
 # Log out and back in, or run
 newgrp docker
-```
-
-### GPU Not Available in Container
-
-**Error**: `RuntimeError: No CUDA GPUs are available`
-
-**Solution**:
-```bash
-# 1. Verify NVIDIA drivers on host
-nvidia-smi
-
-# 2. Verify NVIDIA Container Toolkit
-docker run --rm --gpus all nvidia/cuda:11.8.0-base-ubuntu22.04 nvidia-smi
-
-# 3. Request GPU in your trainer
-trainer = CustomTrainer(
-    func=train_model,
-    resources_per_node={"gpu": "1"}
-)
 ```
 
 ### Containers Not Removed
