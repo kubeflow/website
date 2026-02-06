@@ -115,7 +115,7 @@ def evaluate_model(input: int):
 This is useful when the component launches another Kubernetes resource (e.g. a Kubeflow Trainer job). Use `task_config_passthroughs` in conjunction with `dsl.TaskConfig`.
 
 [lightweight-python-components]: /docs/components/pipelines/user-guides/components/lightweight-python-components/
-[artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts.md
+[artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts/
 [requirements-txt]: https://pip.pypa.io/en/stable/reference/requirements-file-format/
 [pypi-org]: https://pypi.org/
 [pip-install]: https://pip.pypa.io/en/stable/cli/pip_install/

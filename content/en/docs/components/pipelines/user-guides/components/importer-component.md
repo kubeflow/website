@@ -63,9 +63,14 @@ You may also specify a boolean `reimport` argument. If `reimport` is `False`, KF
 
 ### Download Imported Artifacts to a Pipeline Run Workspace
 
+**⚠️ Version Requirement**: The Pipeline Run Workspace feature is available starting from Kubeflow Pipelines version 2.15.0.
+
 Set parameter `download_to_workspace=True` to download an imported artifact directly to a [Pipeline Run Workspace][pipeline-run-workspace], shown below.
 
 ```python
+from kfp import dsl
+from kfp.dsl import Output, importer
+
 @dsl.component()
 def train(dataset: dsl.Input[dsl.Dataset]):
     """Dummy Training step."""
@@ -95,7 +100,7 @@ def import_stage(file_uri: str):
         workspace=dsl.WorkspaceConfig(
             size='1Gi',
             kubernetes=dsl.KubernetesWorkspaceConfig(
-                pvcSpecPatch={'accessModes': ['ReadWriteOnce']}
+                pvcSpecPatch={'storageClassName': 'standard','accessModes': ['ReadWriteOnce']}
             ),
         ),
     ),
@@ -113,4 +118,4 @@ def pipeline_with_importer_workspace():
 [artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts
 [ml-metadata]: https://github.com/google/ml-metadata
 [model-car]: https://kserve.github.io/website/latest/modelserving/storage/oci/
-[pipeline-run-workspace]: /docs/components/pipelines/user-guides/data-handling/artifacts.md#pipeline-run-workspaces
+[pipeline-run-workspace]: /docs/components/pipelines/user-guides/data-handling/artifacts/#pipeline-run-workspaces

@@ -225,6 +225,8 @@ Both consuming an input list of artifacts and returning an output list of artifa
 
 ### Pipeline Run Workspaces
 
+**⚠️ Version Requirement**: The Pipeline Run Workspace feature is available starting from Kubeflow Pipelines version 2.15.0.
+
 While the traditional artifact authoring syntax is effective for passing smaller amounts of data between components at runtime,
 many pipelines require passing larger amounts of data between components. Doing so with artifact inputs and outputs introduces overhead and requires additional S3 storage.
 Pipeline Run Workspaces provide a way to pass data between components without this overhead - artifacts are stored in a PVC mounted on the component.
@@ -232,6 +234,11 @@ Pipeline Run Workspaces provide a way to pass data between components without th
 A Pipeline Run Workspace is configured with `dsl.WorkspaceConfig` through the `pipeline_config` parameter shown in the example below. `dsl.WorkspaceConfig` accepts the following parameters:
 - `size` (required): String representation of workspace size, including units.
 - `kubernetes` (optional): [`dsl.KubernetesWorkspaceConfig`][kubernetes-workspace]
+
+#### Using the workspace mount path
+When a pipeline is configured with a workspace, a PVC is automatically created and mounted into every task pod at a platform-defined mount path.
+To pass the workspace mount path into a component, use `dsl.WORKSPACE_PATH_PLACEHOLDER`. At runtime, the backend replaces this placeholder with the actual mount path of the workspace PVC (e.g., `/kfp-workspace`). This allows components to read and write shared data on the workspace volume without hard-coding mount paths.
+
 
 #### Kubernetes-specific Workspace Settings
 Specific settings are configured as a dictionary through the `pvcSpecPatch` parameter shown in the example below.
@@ -268,15 +275,16 @@ def train(model: dsl.Model, trained_model: dsl.Output[dsl.Model]):
 @dsl.pipeline(
     name="my-pipeline",
     pipeline_config=dsl.PipelineConfig(
-        workspace=dsl.WorkspaceConfig(size="250GB"),
-        kubernetes=dsl.KubernetesWorkspaceConfig(
-            pvcSpecPatch={
-                "storageClassName": "super-fast-storage",
-                "accessModes": ["ReadWriteMany"],
-            }
+        workspace=dsl.WorkspaceConfig(
+            size="250GB",
+            kubernetes=dsl.KubernetesWorkspaceConfig(
+                pvcSpecPatch={
+                    "storageClassName": "super-fast-storage",
+                    "accessModes": ["ReadWriteMany"],
+                }
+            ),
         ),
-    ),
-)
+    )
 def pipeline(repo: str, model_uri: str):
     clone_repo_task = clone_repo(
         workspacePath=dsl.WORKSPACE_PATH_PLACEHOLDER, repo=repo,
