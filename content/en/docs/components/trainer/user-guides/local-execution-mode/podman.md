@@ -170,34 +170,29 @@ backend_config = ContainerBackendConfig(
 
 ## Architecture
 
-The Container Backend with Docker uses a local orchestration layer to manage TrainJobs within Docker containers. This ensures environment parity between your local machine and production Kubernetes clusters.
+The Container Backend with Podman uses a local orchestration layer to manage TrainJobs within Podman containers. This ensures environment parity between your local machine and production Kubernetes clusters.
 
 ```mermaid
 graph LR
     User([User Script]) -->|TrainerClient.train| SDK[Kubeflow SDK]
     
-    SDK -->|1. Prep| PodConfig[Podman Config]
-    SDK -->|2. Mount| LocalDir[Local Dir Mounts]
-    SDK -->|3. Exec| Podman[Podman CLI/API]
+    SDK -->|1. Pull| Image[Podman Image]
+    SDK -->|2. Net| Net[DNS-Enabled Bridge Network]
+    SDK -->|3. Run| Podman[Podman Engine]
     
-    subgraph PodmanEnv [Podman Container - Rootless]
+    subgraph PodmanEnv [Local Podman Environment]
         direction TB
-        Podman --> Process[Training Process]
-        Process --> Security[User Namespace Isolation]
+        Podman -->|Spawn| C1[Node 0]
+        Podman -->|Spawn| C2[Node 1]
+        C1 <-->|DDP| C2
     end
     
-    Process -->|4. Logs| Logs[Stream Logs]
-    Process -->|5. Clean| Exit[Exit & Cleanup]
+    C1 -->|4. Logs| Logs[Stream Logs]
+    C2 -->|4. Logs| Logs
+    SDK -.->|"5. Cleanup (if auto_remove)"| Remove[Delete Containers & Network]
 ```
 
 
-
-### Workflow Detail
-1. **Image Management:** The SDK identifies the required training image. If `pull_policy` is set, it ensures the latest image is available.
-2. **Network Creation:** A dedicated Docker bridge network is created for the job to allow containers (nodes) to communicate via hostnames (e.g., `job-node-0`).
-3. **Container Spawning:** The SDK instructs the Docker Daemon to start containers. It injects environment variables like `MASTER_ADDR`, `MASTER_PORT`, `RANK`, and `WORLD_SIZE` to enable distributed frameworks (e.g., PyTorch DDP).
-4. **Log Streaming:** Logs are streamed from the containers back to the SDK's `TrainerClient`.
-5. **Lifecycle Management:** Once the training process exits, the SDK handles the removal of containers and the temporary network if `auto_remove=True`.
 
 ## Multi-Node Distributed Training
 

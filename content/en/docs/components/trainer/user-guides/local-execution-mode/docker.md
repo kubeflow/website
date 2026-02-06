@@ -35,7 +35,8 @@ graph LR
     end
     
     C1 -->|4. Logs| Logs[Stream Logs]
-    C1 -.->|5. Clean| Remove[Auto-Remove]
+    C2 -->|4. Logs| Logs
+    SDK -.->|"5. Cleanup (if auto_remove)"| Remove[Delete Containers & Network]
 ```
 
 ## Prerequisites

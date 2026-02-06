@@ -225,18 +225,17 @@ The Local Process Backend operates by orchestrating native OS processes. It bypa
 graph LR
     User([User Script]) -->|TrainerClient.train| SDK[Kubeflow SDK]
     
-    SDK -->|1. Create| Venv[Python Venv]
-    Venv -->|2. Install| Deps[Dependencies]
-    SDK -->|3. Extract| Script[Training Script .py]
+    SDK -->|1. Generate| Script[Bash Script]
     
-    subgraph LocalExec [Local Execution]
+    subgraph LocalExec ["Single Subprocess (bash -c)"]
         direction TB
-        Deps --> Process[Python Process]
-        Script --> Process
+        Script -->|2. Execute| Venv[Create Venv + pip]
+        Venv --> Deps[Install Dependencies]
+        Deps --> Train[Run Entrypoint]
+        Train -.-> Clean["Delete Venv (if cleanup_venv)"]
     end
     
-    Process -->|4. Logs| Logs[Stream Logs]
-    Process -.->|5. Clean| Cleanup[Delete Venv]
+    Train -->|3. Logs| Logs[Stream Logs]
 ```
 
 ## How It Works
