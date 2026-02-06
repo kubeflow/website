@@ -1,7 +1,7 @@
 +++
 title = "Additional Functionality"
 description = "More information about authoring KFP components"
-weight = 6
+weight = 7
 +++
 
 ### Component docstring format
