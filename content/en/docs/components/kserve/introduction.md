@@ -31,7 +31,7 @@ KServe provides the following functionality:
 
 ## How to use KServe with Kubeflow?
 
-Kubeflow provides Kustomize installation files [in the `kubeflow/manifests` repo](https://github.com/kubeflow/manifests) with each Kubeflow release.
+Kubeflow provides Kustomize installation files [in the `kubeflow/manifests` repository](https://github.com/kubeflow/manifests) with each Kubeflow release.
 For the officially tested and supported installation method, refer to the [KServe test workflow](https://github.com/kubeflow/manifests/blob/master/.github/workflows/kserve_test.yaml) in the Kubeflow manifests repository, which demonstrates the verified configuration for deploying KServe with Kubeflow.
 
 Kubeflow also provides the [models web application](/docs/components/kserve/webapp/) to manage your deployed model endpoints with a web interface.
