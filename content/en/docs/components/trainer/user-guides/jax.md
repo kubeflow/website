@@ -25,10 +25,6 @@ module and Single Program, Multiple Data (SPMD) primitives such as `pmap`, `pjit
 These APIs allow you to scale JAX workloads across multiple devices
 and multiple nodes.
 
-JAX follows an SPMD execution model:
-the same Python program runs on every process, while arrays are
-partitioned across devices and hosts.
-
 Kubeflow Trainer integrates with JAX by:
 - Launching one Pod per JAX process
 - Injecting the required JAX distributed environment variables
@@ -77,8 +73,9 @@ Run the following command to inspect the runtime packages:
 from kubeflow.trainer import TrainerClient
 
 TrainerClient().get_runtime_packages(
-    runtime=TrainerClient().get_runtime("jax")
+    runtime=TrainerClient().get_runtime("jax-distributed")
 )
+
 ```
 ## Creating a TrainJob with JAX Runtime
 
