@@ -126,6 +126,89 @@ By default, Python Components install `kfp` at runtime. This is required to defi
 
 Note that setting `install_kfp_package` to `False` is rarely necessary and is discouraged for the majority of use cases.
 
+#### additional_funcs
+
+`additional_funcs` is used to include a list of additional functions to include in the component.
+
+These functions will be available to the main function. This is useful for adding util functions that are shared across multiple components but are not packaged as an importable Python package.
+
+```python
+def add(input_one: int, input_two: int) -> int:
+    return input_one + input_two
+
+@dsl.component(
+    additional_funcs=[add])
+def quick_add(input_one: int, input_two: int):
+    return add(input_one, input_two)
+```
+
+#### embedded_artifact_path
+
+`embedded_artifact_path` is an optional path that can be used to embed a local directory or file into the component. At runtime the embedded content is extracted into a temporary
+directory and made available via parameters annotated as `dsl.EmbeddedInput[T]`. 
+
+For a directory, the injected artifact's `path` points to the extraction root (temp directory containing the directory's contents)
+
+For a single file, the injected artifact's `path` points to the extracted file.
+
+The extraction root is also prepended to `sys.path` to enable importing embedded Python modules.
+
+```python
+@dsl.component(embedded_artifact_path=tmpdir_path)
+def read_embedded_artifact_dir(artifact: dsl.EmbeddedInput[dsl.Dataset]):
+    import os
+
+    with open(os.path.join(artifact.path, "log.txt"), "r", encoding="utf-8") as f:
+        log = f.read()
+
+    return log
+```
+
+#### task_config_passthroughs
+
+`task_config_passthroughs` can be used to pass a list of one or more task configurations (e.g. resources, env, volumes etc.) through to the component.
+
+This is useful when the component launches another Kubernetes resource (e.g. a Kubeflow Trainer job). Use `task_config_passthroughs` in conjunction with `dsl.TaskConfig`.
+
+```python
+@dsl.component(
+    packages_to_install=["kubernetes"],
+    task_config_passthroughs=[
+        dsl.TaskConfigField.RESOURCES,
+        dsl.TaskConfigPassthrough(field=dsl.TaskConfigField.ENV, apply_to_task=True),
+    ],
+)
+def train(num_nodes: int, workspace_path: str, output_model: dsl.Output[dsl.Model], task_config: dsl.TaskConfig):
+    import os
+    import shutil
+    from kubernetes import client as k8s_client, config
+    config.load_incluster_config()
+    train_job = {
+        "apiVersion": "trainer.kubeflow.org/v1alpha1",
+        "kind": "TrainJob",
+        "metadata": {"name": f"kfp-train-job", "namespace": "sample-namespace"},
+        "spec": {
+            "runtimeRef": {"name": "torch-distributed"},
+            "trainer": {
+                "numNodes": num_nodes,
+                "resourcesPerNode": task_config.resources,
+                "env": task_config.env,
+                "command": ["python", "-c", "with open('/kfp-workspace/model', 'w') as f: f.write('hello')"],
+            },
+        },
+    }
+    api_client = k8s_client.ApiClient()
+    custom_objects_api = k8s_client.CustomObjectsApi(api_client)
+    response = custom_objects_api.create_namespaced_custom_object(
+        group="trainer.kubeflow.org",
+        version="v1alpha1",
+        namespace="sample-namespace",
+        plural="trainjobs",
+        body=train_job,
+    )
+    shutil.copy(os.path.join(workspace_path, "model"), output_model.path)
+```
+
 [hello-world-pipeline]: /docs/components/pipelines/getting-started
 [containerized-python-components]: /docs/components/pipelines/user-guides/components/containerized-python-components
 [dsl-component]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.component
