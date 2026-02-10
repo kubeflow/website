@@ -40,38 +40,6 @@ Runtime(name='torchtune-llama3.2-3b', trainer=Trainer(trainer_type=<TrainerType.
 
 The guide below shows how to fine-tune Llama-3.2-1B-Instruct with alpaca dataset by BuiltinTrainer.
 
-### Create PVCs for Models and Datasets
-
-{{% alert title="Note" color="info" %}}
-Currently, we do not support automatically orchestrating the volume claim.
-
-To follow up with this problem, please refer to [this issue](https://github.com/kubeflow/trainer/issues/2630).
-{{% /alert %}}
-
-We need to manually create PVCs for each models we want to fine-tune. Please note that **the PVC name must be equal to the TorchTune runtime's name**. In this example, it's `torchtune-llama3.2-1b`.
-
-```python
-# Create a PersistentVolumeClaim for the TorchTune Llama 3.2 1B model.
-client.backend.core_api.create_namespaced_persistent_volume_claim(
-    namespace=client.backend.namespace,
-    body=models.IoK8sApiCoreV1PersistentVolumeClaim(
-        apiVersion="v1",
-        kind="PersistentVolumeClaim",
-        metadata=models.IoK8sApimachineryPkgApisMetaV1ObjectMeta(
-            name="torchtune-llama3.2-1b"
-        ),
-        spec=models.IoK8sApiCoreV1PersistentVolumeClaimSpec(
-            accessModes=["ReadWriteOnce"],
-            resources=models.IoK8sApiCoreV1VolumeResourceRequirements(
-                requests={
-                    "storage": models.IoK8sApimachineryPkgApiResourceQuantity("20Gi")
-                }
-            ),
-        ),
-    ).to_dict(),
-)
-```
-
 ### Use TorchTune BuiltinTrainer with train() API
 
 You need to provide the following parameters to use TorchTune BuiltinTrainer with `train()` API:
@@ -182,7 +150,7 @@ Running with torchrun...
 
 ### Get the Fine-Tuned Model
 
-After TrainJob completes the fine-tuning task, the fine-tuned model will be stored into the `/workspace/output ` directory, which can be shared across Pods through PVC mounting. You can find it in another Pod's `/<mountDir>/output` directory if you mount the PVC under `/<mountDir>`.
+After TrainJob completes the fine-tuning task, the fine-tuned model will be stored into the `/workspace/output` directory. The TrainJob automatically creates and manages a PVC to store the model and dataset, which can be shared across Pods. You can access the fine-tuned model in another Pod by mounting the same PVC under `/<mountDir>`, where you'll find the output in `/<mountDir>/output`.
 
 ## Parameters
 
