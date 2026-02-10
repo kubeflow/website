@@ -25,8 +25,6 @@ client = TrainerClient()
 for r in TrainerClient().list_runtimes():
     if r.name.startswith("torchtune"):
         print(r)
-
-runtime = client.get_runtime("torchtune-llama3.2-1b")
 ```
 
 Output:
@@ -54,7 +52,7 @@ For example, you can use the `train()` API to fine-tune the Llama-3.2-1B-Instruc
 
 ```python
 job_name = client.train(
-    runtime=client.get_runtime("torchtune-llama3.2-1b"),
+    runtime="torchtune-llama3.2-1b",
     initializer=Initializer(
         model=HuggingFaceModelInitializer(
             storage_uri="hf://meta-llama/Llama-3.2-1B-Instruct",

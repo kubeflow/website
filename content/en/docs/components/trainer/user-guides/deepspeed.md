@@ -97,7 +97,7 @@ def get_deepspeed_dist():
 
 # Create the TrainJob.
 job_id = TrainerClient().train(
-    runtime=TrainerClient().get_runtime("deepspeed-distributed"),
+    runtime="deepspeed-distributed",
     trainer=CustomTrainer(func=get_deepspeed_dist),
 )
 
@@ -238,7 +238,7 @@ After configuring the DeepSpeed training function, use the `train()` API to crea
 from kubeflow.trainer import TrainerClient, CustomTrainer
 
 job_id = TrainerClient().train(
-    runtime=TrainerClient().get_runtime("deepspeed-distributed"),
+    runtime="deepspeed-distributed",
     trainer=CustomTrainer(
         func=fine_tune_t5_deepspeed,
         # These packages will be installed on every training node.

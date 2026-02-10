@@ -101,7 +101,7 @@ def get_mlx_dist():
 
 # Create the TrainJob on 3 nodes.
 job_id = TrainerClient().train(
-    runtime=TrainerClient().get_runtime("mlx-distributed"),
+    runtime="mlx-distributed",
     trainer=CustomTrainer(
         func=get_mlx_dist,
         num_nodes=3,
@@ -202,7 +202,7 @@ After configuring the MLX training function, use the `train()` API to create a T
 from kubeflow.trainer import TrainerClient, CustomTrainer
 
 job_id = TrainerClient().train(
-    runtime=TrainerClient().get_runtime("mlx-distributed"),
+    runtime="mlx-distributed",
     trainer=CustomTrainer(
         func=fine_tune_llama,
         num_nodes=2,
