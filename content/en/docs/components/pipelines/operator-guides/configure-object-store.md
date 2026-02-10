@@ -5,6 +5,7 @@ weight = 3
 
 {{% kfp-v2-keywords %}}
 
+> **Note**: As of [KFP 2.15](https://github.com/kubeflow/pipelines/releases/tag/2.15.0), the default object store deployment has been changed to SeaweedFS, replacing the previous deployment of MinIO. It is important to note that MinIO remains fully supported (as is any S3-compliant object store within KFP); only the default deployment configuration has been updated. Older MinIO manifests are still available [here](https://github.com/kubeflow/pipelines/blob/release-2.15/manifests/kustomize/env/platform-agnostic-minio/kustomization.yaml). These legacy manifests may be subject to removal in future releases.
 In Kubeflow Pipelines (KFP), there are two components that utilize Object store:
 
 * KFP API Server
