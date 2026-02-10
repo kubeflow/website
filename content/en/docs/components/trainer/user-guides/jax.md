@@ -12,7 +12,7 @@ This guide describes how to use TrainJob to train or fine-tune AI models with
 ## Prerequisites
 
 Before exploring this guide, make sure to follow
-[the Getting Started guide](/docs/components/trainer/getting-started/)
+[the Getting Started guide](https://www.kubeflow.org/docs/components/trainer/user-guides/)
 to understand the basics of Kubeflow Trainer.
 
 ---
@@ -77,6 +77,39 @@ TrainerClient().get_runtime_packages(
 )
 
 ```
+## Initializing the JAX Distributed Runtime
+
+Your training script must explicitly initialize the JAX distributed runtime before performing any JAX computation.
+
+### Example: train.py
+
+```python
+import os
+import jax
+import jax.distributed as dist
+
+def main():
+    dist.initialize(
+        num_processes=int(os.environ["JAX_NUM_PROCESSES"]),
+        process_id=int(os.environ["JAX_PROCESS_ID"]),
+        coordinator_address=os.environ["JAX_COORDINATOR_ADDRESS"],
+    )
+
+    print("Global devices:", jax.devices())
+    print("Local devices:", jax.local_devices())
+
+    # Training logic here
+
+if __name__ == "__main__":
+    main()
+```
+{{% alert title="Important" color="warning" %}}
+All processes must call **jax.distributed.initialize()** exactly once
+and before any JAX computation. Failure to do so may result in deadlocks.
+{{% /alert %}}
+
+---
+
 ## Creating a TrainJob with JAX Runtime
 
 To run a JAX workload, reference the `jax-distributed`
@@ -167,42 +200,6 @@ Kubeflow Trainer automatically injects the following environment variables into 
 | `JAX_NUM_PROCESSES` | Total number of JAX processes |
 | `JAX_PROCESS_ID` | Global process index (0-based) |
 | `JAX_COORDINATOR_ADDRESS` | Address of the coordinator (process 0) |
-
----
-
-## Initializing the JAX Distributed Runtime
-
-Your training script must explicitly initialize the JAX distributed runtime before performing any JAX computation.
-
-### Example: train.py
-
-```python
-import os
-import jax
-import jax.distributed as dist
-
-def main():
-    dist.initialize(
-        num_processes=int(os.environ["JAX_NUM_PROCESSES"]),
-        process_id=int(os.environ["JAX_PROCESS_ID"]),
-        coordinator_address=os.environ["JAX_COORDINATOR_ADDRESS"],
-    )
-
-    print("Global devices:", jax.devices())
-    print("Local devices:", jax.local_devices())
-
-    # Training logic here
-
-if __name__ == "__main__":
-    main()
-```
-{{% alert title="Important" color="warning" %}}
-All processes must call **jax.distributed.initialize()** exactly once
-and before any JAX computation. Failure to do so may result in deadlocks.
-{{% /alert %}}
-
-
-
 
 ---
 
