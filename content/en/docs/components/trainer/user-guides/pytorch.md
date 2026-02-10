@@ -92,7 +92,7 @@ def get_torch_dist():
 
 # Create the TrainJob.
 job_id = TrainerClient().train(
-    runtime=TrainerClient().get_runtime("torch-distributed"),
+    runtime="torch-distributed",
     trainer=CustomTrainer(
         func=get_torch_dist,
         num_nodes=3,
