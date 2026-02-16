@@ -16,6 +16,9 @@ Kubeflow SDK Benefits
 - Rapid Iteration: Reduced friction between development and production environments
 - Local Development: First-class support for local development without a Kubernetes cluster requiring only pip installation
 
+<img src="/docs/components/sdk/images/kubeflow-sdk.drawio.svg"
+  alt="Kubeflow SDK overview diagram">
+
 ## Next Steps
 
 - Follow [the installation guide](https://sdk.kubeflow.org/en/latest/getting-started/installation.html) for Kubeflow SDK.
