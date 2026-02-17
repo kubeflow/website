@@ -85,6 +85,34 @@ For the latest changes run:
 kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/runtimes?ref=master"
 ```
 
+### Install with Helm Charts
+
+You can also deploy ClusterTrainingRuntimes as part of the Helm installation.
+
+To enable all default runtimes (torch, deepspeed, mlx, jax, torchtune):
+
+```bash
+helm install kubeflow-trainer oci://ghcr.io/kubeflow/charts/kubeflow-trainer \
+    --namespace kubeflow-system \
+    --create-namespace \
+    --version ${VERSION#v} \
+    --set runtimes.defaultEnabled=true
+```
+
+To enable specific runtimes:
+
+```bash
+helm install kubeflow-trainer oci://ghcr.io/kubeflow/charts/kubeflow-trainer \
+    --namespace kubeflow-system \
+    --create-namespace \
+    --version ${VERSION#v} \
+    --set runtimes.torchDistributed.enabled=true \
+    --set runtimes.deepspeedDistributed.enabled=true
+```
+
+For the available Helm values to configure runtimes, see the
+[kubeflow-trainer Helm chart documentation](https://github.com/kubeflow/trainer/tree/master/charts/kubeflow-trainer).
+
 ## Next Steps
 
 - How to [migrate from Kubeflow Training Operator v1](/docs/components/trainer/operator-guides/migration).
