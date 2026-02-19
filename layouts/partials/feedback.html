@@ -12,7 +12,7 @@
       {{- if .File }}
       {{- $gh_repo := ($.Param "github_repo") }}
       {{- $issuesURL := printf "%s/issues/new?title=[Feedback]+%s" $gh_repo (safeURL .File.Path) }}
-      If you have a moment, please <a href="{{ $issuesURL }}" target="_blank">share your feedback</a> so we can improve.
+      If you have a moment, please <a href="{{ $issuesURL }}" target="_blank" rel="noopener noreferrer">share your feedback</a> so we can improve.
       {{- end }}
     </p>
   </div>
