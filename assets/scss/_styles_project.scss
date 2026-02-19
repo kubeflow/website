@@ -895,6 +895,55 @@ nav.foldable-nav {
   a > code {
     color: unset;
   }
+
+  // a11y: links distinguishable without color alone (underline, focus)
+  a:not(.btn) {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// a11y: same for homepage content sections (links not relying on color only)
+#overview a:not(.btn),
+#community a:not(.btn),
+#pageContent a:not(.btn) {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+// --------------------------------------------------
+// a11y: sufficient contrast for navbar badges and adopters button
+// --------------------------------------------------
+.td-navbar .badge-warning {
+  background-color: #b38600;
+  color: #fff;
+}
+
+#adopters .btn-outline-primary {
+  color: $primary;
+  border-color: $primary;
+  font-weight: 500;
+
+  &:hover {
+    color: #fff;
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
 }
 
 // --------------------------------------------------
