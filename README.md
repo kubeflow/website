@@ -1,280 +1,292 @@
-# Kubeflow Website
+[bep]: https://github.com/bep
+[bugs]: https://github.com/gohugoio/hugo/issues?q=is%3Aopen+is%3Aissue+label%3ABug
+[contributing]: CONTRIBUTING.md
+[create a proposal]: https://github.com/gohugoio/hugo/issues/new?labels=Proposal%2C+NeedsTriage&template=feature_request.md
+[documentation repository]: https://github.com/gohugoio/hugoDocs
+[documentation]: https://gohugo.io/documentation
+[dragonfly bsd, freebsd, netbsd, and openbsd]: https://gohugo.io/installation/bsd
+[forum]: https://discourse.gohugo.io
+[friends]: https://github.com/gohugoio/hugo/graphs/contributors
+[go]: https://go.dev/
+[hugo modules]: https://gohugo.io/hugo-modules/
+[installation]: https://gohugo.io/installation
+[issue queue]: https://github.com/gohugoio/hugo/issues
+[linux]: https://gohugo.io/installation/linux
+[macos]: https://gohugo.io/installation/macos
+[prebuilt binary]: https://github.com/gohugoio/hugo/releases/latest
+[requesting help]: https://discourse.gohugo.io/t/requesting-help/9132
+[spf13]: https://github.com/spf13
+[static site generator]: https://en.wikipedia.org/wiki/Static_site_generator
+[support]: https://discourse.gohugo.io
+[themes]: https://themes.gohugo.io/
+[twitter]: https://twitter.com/gohugoio
+[website]: https://gohugo.io
+[windows]: https://gohugo.io/installation/windows
 
-<h4 align="center">
+<a href="https://gohugo.io/"><img src="https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/static/images/hugo-logo-wide.svg?sanitize=true" alt="Hugo" width="565"></a>
 
-  [![Netlify Status](https://api.netlify.com/api/v1/badges/80644d22-0685-44d0-83bd-187d55464321/deploy-status)](https://app.netlify.com/sites/competent-brattain-de2d6d/deploys)
-  <a href="https://landscape.cncf.io/?item=orchestration-management--scheduling-orchestration--kubeflow">
-    <img src="https://img.shields.io/badge/CNCF%20Landscape-5699C6?logo=cncf&style=social" alt="KubeFlow CNCF Landscape" />
-  </a>
+A fast and flexible static site generator built with love by [bep], [spf13], and [friends] in [Go].
 
-  [![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)]((https://www.kubeflow.org/docs/about/community/#kubeflow-slack-channels))
-  [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/kubeflow)
-  [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/kubeflow)
-  [![X](https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=X&logoColor=white)](https://x.com/kubeflow/)
+---
 
-</h4>
+[![GoDoc](https://godoc.org/github.com/gohugoio/hugo?status.svg)](https://godoc.org/github.com/gohugoio/hugo)
+[![Tests on Linux, MacOS and Windows](https://github.com/gohugoio/hugo/workflows/Test/badge.svg)](https://github.com/gohugoio/hugo/actions?query=workflow%3ATest)
+[![Go Report Card](https://goreportcard.com/badge/github.com/gohugoio/hugo)](https://goreportcard.com/report/github.com/gohugoio/hugo)
 
-Welcome to the GitHub repository for Kubeflow's public website!
+[Website] | [Installation] | [Documentation] | [Support] | [Contributing] | <a rel="me" href="https://fosstodon.org/@gohugoio">Mastodon</a>
 
-The docs website is hosted at https://www.kubeflow.org.
+## Overview
 
-We use [Hugo](https://gohugo.io/) with the [google/docsy](https://github.com/google/docsy)
-theme for styling and site structure, and [Netlify](https://www.netlify.com/) to manage the deployment of the site.
+Hugo is a [static site generator] written in [Go], optimized for speed and designed for flexibility. With its advanced templating system and fast asset pipelines, Hugo renders a complete site in seconds, often less.
 
-## Quickstart
+Due to its flexible framework, multilingual support, and powerful taxonomy system, Hugo is widely used to create:
 
-Here's a quick guide to updating the docs:
+- Corporate, government, nonprofit, education, news, event, and project sites
+- Documentation sites
+- Image portfolios
+- Landing pages
+- Business, professional, and personal blogs
+- Resumes and CVs
 
-1. Fork the [kubeflow/website repository](https://github.com/kubeflow/website) on GitHub.
+Use Hugo's embedded web server during development to instantly see changes to content, structure, behavior, and presentation. Then deploy the site to your host, or push changes to your Git provider for automated builds and deployment.
 
-2. Make your changes and send a pull request (PR).
+Hugo's fast asset pipelines include:
 
-3. If you're not yet ready for a review, add "WIP" to the PR name to indicate it's a work in progress.
-   Alternatively, you use the `/hold` [prow command](https://prow.k8s.io/command-help) in a comment to mark the PR as not ready for merge.
+- CSS bundling &ndash; transpilation (Sass), tree shaking, minification, source maps, SRI hashing, and PostCSS integration
+- JavaScript bundling &ndash; transpilation (TypeScript, JSX), tree shaking, minification, source maps, and SRI hashing
+- Image processing &ndash; convert, resize, crop, rotate,  adjust colors, apply filters, overlay text and images, and extract EXIF data
 
-4. Wait for the automated PR workflow to do some checks.
-   When it's ready, you should see a comment like this: `deploy/netlify — Deploy preview ready!`
+And with [Hugo Modules], you can share content, assets, data, translations, themes, templates, and configuration with other projects via public or private Git repositories.
 
-5. Click **Details** to the right of "Deploy preview ready" to see a preview of your updates.
+## Sponsors
 
-6. Continue updating your doc and pushing your changes until you're happy with the content.
+<p>&nbsp;</p>
+<p float="left">
+  <a href="https://www.linode.com/?utm_campaign=hugosponsor&utm_medium=banner&utm_source=hugogithub" target="_blank"><img src="https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/assets/images/sponsors/linode-logo_standard_light_medium.png" width="200" alt="Linode"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://cloudcannon.com/hugo-cms/?utm_campaign=HugoSponsorship&utm_source=sponsor&utm_content=gohugo" target="_blank"><img src="https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/assets/images/sponsors/cloudcannon-blue.svg" width="220" alt="CloudCannon"></a>
+<p>&nbsp;</p>
 
-7. When you're ready for a review, add a comment to the PR, remove any holds or "WIP" markers, and assign a reviewer/approver.
-   See the [Kubeflow contributor guide](https://www.kubeflow.org/docs/about/contributing/).
+## Installation
 
-If you need more help with the GitHub workflow, follow
-this [guide to a standard GitHub workflow](https://github.com/kubeflow/website/blob/master/quick-github-guide.md).
+Install Hugo from a [prebuilt binary], package manager, or package repository. Please see the installation instructions for your operating system:
 
-## Local development
+- [macOS]
+- [Linux]
+- [Windows]
+- [DragonFly BSD, FreeBSD, NetBSD, and OpenBSD]
 
-This section will show you how to develop the website locally, by running a local Hugo server.
+## Build from source
 
-### Install Hugo
+Hugo is available in two editions: standard and extended. With the extended edition you can:
 
-To install Hugo, follow the [instructions for your system type](https://gohugo.io/getting-started/installing/).
+- Encode to the WebP format when processing images. You can decode WebP images with either edition.
+- Transpile Sass to CSS using the embedded LibSass transpiler. The extended edition is not required to use the Dart Sass transpiler.
 
-**NOTE:** we recommend that you use Hugo version `0.124.1`, as this is currently the version we deploy to Netlify.
+Prerequisites to build Hugo from source:
 
-For example, using homebrew to install hugo on macOS or linux:
+- Standard edition: Go 1.20 or later
+- Extended edition: Go 1.20 or later, and GCC
 
-```bash
-# WARNING: using `brew install hugo` will install the latest version of hugo
-#          which may not be compatible with the website
+Build the standard edition:
 
-# TIP: to install hugo run the following commands
-HOMEBREW_COMMIT="9d025105a8be086b2eeb3b1b2697974f848dbaac" # 0.124.1
-curl -fL -o "hugo.rb" "https://raw.githubusercontent.com/Homebrew/homebrew-core/${HOMEBREW_COMMIT}/Formula/h/hugo.rb"
-brew install ./hugo.rb
-brew pin hugo
+```text
+go install github.com/gohugoio/hugo@latest
 ```
 
-### Install Node Packages
+Build the extended edition:
 
-If you plan to make changes to the site styling, you need to install some **node libraries** as well.
-(See the [Docsy setup guide](https://www.docsy.dev/docs/getting-started/#install-postcss) for more information)
-
-You can install the same versions we use in Netlify (defined in `package.json`) with the following command:
-
-```bash
-npm install -D
+```text
+CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
 ```
 
-### Run local hugo server
+## Documentation
 
-Follow the usual GitHub workflow of forking the repository on GitHub and then cloning your fork to your local machine.
+Hugo's [documentation] includes installation instructions, a quick start guide, conceptual explanations, reference information, and examples.
 
-1. **Fork** the [kubeflow/website repository](https://github.com/kubeflow/website) in the GitHub UI.
+Please submit documentation issues and pull requests to the [documentation repository].
 
-2. Clone your fork locally:
+## Support
 
-   ```bash
-   git clone git@github.com:<your-github-username>/website.git
-   cd website/
-   ```
+Please **do not use the issue queue** for questions or troubleshooting. Unless you are certain that your issue is a software defect, use the [forum].
 
-3. Initialize the Docsy submodule:
+Hugo’s [forum] is an active community of users and developers who answer questions, share knowledge, and provide examples. A quick search of over 20,000 topics will often answer your question. Please be sure to read about [requesting help] before asking your first question.
 
-   ```bash
-   git submodule update --init --recursive
-   ```
+## Contributing
 
-4. Install Docsy dependencies:
+You can contribute to the Hugo project by:
 
-   ```bash
-   # install the node packages (at the root of the repo)
-   # NOTE: ensure you have node 18 installed
-   npm install
-   ```
+- Answering questions on the [forum]
+- Improving the [documentation]
+- Monitoring the [issue queue]
+- Creating or improving [themes]
+- Squashing [bugs]
 
-5. Start your local Hugo server:
+Please submit documentation issues and pull requests to the [documentation repository].
 
-   ```bash
-   # NOTE: You should ensure that you are in the root directory of the repository.
-   hugo server -D
-   ```
+If you have an idea for an enhancement or new feature, create a new topic on the [forum] in the "Feature" category. This will help you to:
 
-6. You can access your website at [http://localhost:1313/](http://localhost:1313/)
+- Determine if the capability already exists
+- Measure interest
+- Refine the concept
 
-### Useful docs
+If there is sufficient interest, [create a proposal]. Do not submit a pull request until the project lead accepts the proposal.
 
-- [User guide for the Docsy theme](https://www.docsy.dev/docs/getting-started/)
-- [Hugo installation guide](https://gohugo.io/getting-started/installing/)
-- [Hugo basic usage](https://gohugo.io/getting-started/usage/)
-- [Hugo site directory structure](https://gohugo.io/getting-started/directory-structure/)
-- [hugo server reference](https://gohugo.io/commands/hugo_server/)
+For a complete guide to contributing to Hugo, see the [Contribution Guide](CONTRIBUTING.md).
 
-## Menu structure
+## Dependencies
 
-The site theme has one Hugo menu (`main`), which defines the top navigation bar. You can find and adjust the definition
-of the menu in the [site configuration file](https://github.com/kubeflow/website/blob/master/config.toml).
+Hugo stands on the shoulders of great open source libraries. Run `hugo env --logLevel info` to display a list of dependencies.
 
-The left-hand navigation panel is defined by the directory structure under the [`docs` directory](https://github.com/kubeflow/website/tree/master/content/en/docs).
+<details>
+<summary>See current dependencies</summary>
 
-A `weight` property in the _front matter_ of each page determines the position of the page relative to the others in the same directory.
-The lower the weight, the earlier the page appears in the section.
-
-Here is an example `_index.md` file:
-
-```md
-+++
-title = "Getting Started with Kubeflow"
-description = "Overview"
-weight = 1
-+++
+```text
+cloud.google.com/go/compute/metadata="v0.2.3"
+cloud.google.com/go/iam="v1.1.3"
+cloud.google.com/go/storage="v1.31.0"
+cloud.google.com/go="v0.110.8"
+github.com/Azure/azure-sdk-for-go/sdk/azcore="v1.7.0"
+github.com/Azure/azure-sdk-for-go/sdk/azidentity="v1.3.0"
+github.com/Azure/azure-sdk-for-go/sdk/internal="v1.3.0"
+github.com/Azure/azure-sdk-for-go/sdk/storage/azblob="v1.1.0"
+github.com/Azure/go-autorest/autorest/to="v0.4.0"
+github.com/AzureAD/microsoft-authentication-library-for-go="v1.0.0"
+github.com/BurntSushi/locker="v0.0.0-20171006230638-a6e239ea1c69"
+github.com/PuerkitoBio/purell="v1.1.1"
+github.com/PuerkitoBio/urlesc="v0.0.0-20170810143723-de5bf2ad4578"
+github.com/alecthomas/chroma/v2="v2.11.1"
+github.com/armon/go-radix="v1.0.0"
+github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream="v1.4.11"
+github.com/aws/aws-sdk-go-v2/config="v1.18.32"
+github.com/aws/aws-sdk-go-v2/credentials="v1.13.31"
+github.com/aws/aws-sdk-go-v2/feature/ec2/imds="v1.13.7"
+github.com/aws/aws-sdk-go-v2/feature/s3/manager="v1.11.76"
+github.com/aws/aws-sdk-go-v2/internal/configsources="v1.1.37"
+github.com/aws/aws-sdk-go-v2/internal/endpoints/v2="v2.4.31"
+github.com/aws/aws-sdk-go-v2/internal/ini="v1.3.38"
+github.com/aws/aws-sdk-go-v2/internal/v4a="v1.1.0"
+github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding="v1.9.12"
+github.com/aws/aws-sdk-go-v2/service/internal/checksum="v1.1.32"
+github.com/aws/aws-sdk-go-v2/service/internal/presigned-url="v1.9.31"
+github.com/aws/aws-sdk-go-v2/service/internal/s3shared="v1.15.0"
+github.com/aws/aws-sdk-go-v2/service/s3="v1.38.1"
+github.com/aws/aws-sdk-go-v2/service/sso="v1.13.1"
+github.com/aws/aws-sdk-go-v2/service/ssooidc="v1.15.1"
+github.com/aws/aws-sdk-go-v2/service/sts="v1.21.1"
+github.com/aws/aws-sdk-go-v2="v1.20.0"
+github.com/aws/aws-sdk-go="v1.48.2"
+github.com/aws/smithy-go="v1.14.0"
+github.com/bep/clocks="v0.5.0"
+github.com/bep/debounce="v1.2.0"
+github.com/bep/gitmap="v1.1.2"
+github.com/bep/goat="v0.5.0"
+github.com/bep/godartsass/v2="v2.0.0"
+github.com/bep/godartsass="v1.2.0"
+github.com/bep/golibsass="v1.1.1"
+github.com/bep/gowebp="v0.3.0"
+github.com/bep/lazycache="v0.2.0"
+github.com/bep/logg="v0.3.0"
+github.com/bep/mclib="v1.20400.20402"
+github.com/bep/overlayfs="v0.6.0"
+github.com/bep/simplecobra="v0.3.2"
+github.com/bep/tmc="v0.5.1"
+github.com/clbanning/mxj/v2="v2.7.0"
+github.com/cli/safeexec="v1.0.1"
+github.com/cpuguy83/go-md2man/v2="v2.0.2"
+github.com/disintegration/gift="v1.2.1"
+github.com/dlclark/regexp2="v1.10.0"
+github.com/dustin/go-humanize="v1.0.1"
+github.com/evanw/esbuild="v0.19.7"
+github.com/fatih/color="v1.16.0"
+github.com/frankban/quicktest="v1.14.6"
+github.com/fsnotify/fsnotify="v1.7.0"
+github.com/getkin/kin-openapi="v0.120.0"
+github.com/ghodss/yaml="v1.0.0"
+github.com/go-openapi/jsonpointer="v0.19.6"
+github.com/go-openapi/swag="v0.22.4"
+github.com/gobuffalo/flect="v1.0.2"
+github.com/gobwas/glob="v0.2.3"
+github.com/gohugoio/go-i18n/v2="v2.1.3-0.20230805085216-e63c13218d0e"
+github.com/gohugoio/locales="v0.14.0"
+github.com/gohugoio/localescompressed="v1.0.1"
+github.com/golang-jwt/jwt/v4="v4.5.0"
+github.com/golang/groupcache="v0.0.0-20210331224755-41bb18bfe9da"
+github.com/golang/protobuf="v1.5.3"
+github.com/google/go-cmp="v0.6.0"
+github.com/google/s2a-go="v0.1.7"
+github.com/google/uuid="v1.4.0"
+github.com/google/wire="v0.5.0"
+github.com/googleapis/enterprise-certificate-proxy="v0.3.2"
+github.com/googleapis/gax-go/v2="v2.12.0"
+github.com/gorilla/websocket="v1.5.1"
+github.com/hairyhenderson/go-codeowners="v0.4.0"
+github.com/hashicorp/golang-lru/v2="v2.0.1"
+github.com/invopop/yaml="v0.2.0"
+github.com/jdkato/prose="v1.2.1"
+github.com/jmespath/go-jmespath="v0.4.0"
+github.com/josharian/intern="v1.0.0"
+github.com/kr/pretty="v0.3.1"
+github.com/kr/text="v0.2.0"
+github.com/kylelemons/godebug="v1.1.0"
+github.com/kyokomi/emoji/v2="v2.2.12"
+github.com/mailru/easyjson="v0.7.7"
+github.com/marekm4/color-extractor="v1.2.1"
+github.com/mattn/go-colorable="v0.1.13"
+github.com/mattn/go-isatty="v0.0.20"
+github.com/mattn/go-runewidth="v0.0.9"
+github.com/mitchellh/hashstructure="v1.1.0"
+github.com/mitchellh/mapstructure="v1.5.0"
+github.com/mohae/deepcopy="v0.0.0-20170929034955-c48cc78d4826"
+github.com/muesli/smartcrop="v0.3.0"
+github.com/niklasfasching/go-org="v1.7.0"
+github.com/olekukonko/tablewriter="v0.0.5"
+github.com/pelletier/go-toml/v2="v2.1.0"
+github.com/perimeterx/marshmallow="v1.1.5"
+github.com/pkg/browser="v0.0.0-20210911075715-681adbf594b8"
+github.com/pkg/errors="v0.9.1"
+github.com/rogpeppe/go-internal="v1.11.0"
+github.com/russross/blackfriday/v2="v2.1.0"
+github.com/rwcarlsen/goexif="v0.0.0-20190401172101-9e8deecbddbd"
+github.com/sanity-io/litter="v1.5.5"
+github.com/sass/dart-sass/compiler="1.63.2"
+github.com/sass/dart-sass/implementation="1.63.2"
+github.com/sass/dart-sass/protocol="2.0.0"
+github.com/sass/libsass="3.6.5"
+github.com/spf13/afero="v1.10.0"
+github.com/spf13/cast="v1.5.1"
+github.com/spf13/cobra="v1.7.0"
+github.com/spf13/fsync="v0.9.0"
+github.com/spf13/pflag="v1.0.5"
+github.com/tdewolff/minify/v2="v2.20.7"
+github.com/tdewolff/parse/v2="v2.7.5"
+github.com/webmproject/libwebp="v1.3.2"
+github.com/yuin/goldmark-emoji="v1.0.2"
+github.com/yuin/goldmark="v1.6.0"
+go.opencensus.io="v0.24.0"
+go.uber.org/atomic="v1.11.0"
+go.uber.org/automaxprocs="v1.5.3"
+gocloud.dev="v0.34.0"
+golang.org/x/crypto="v0.15.0"
+golang.org/x/exp="v0.0.0-20221031165847-c99f073a8326"
+golang.org/x/image="v0.13.0"
+golang.org/x/mod="v0.14.0"
+golang.org/x/net="v0.18.0"
+golang.org/x/oauth2="v0.13.0"
+golang.org/x/sync="v0.5.0"
+golang.org/x/sys="v0.14.0"
+golang.org/x/text="v0.14.0"
+golang.org/x/time="v0.3.0"
+golang.org/x/tools="v0.15.0"
+golang.org/x/xerrors="v0.0.0-20220907171357-04be3eba64a2"
+google.golang.org/api="v0.151.0"
+google.golang.org/genproto/googleapis/api="v0.0.0-20231016165738-49dd2c1f3d0b"
+google.golang.org/genproto/googleapis/rpc="v0.0.0-20231030173426-d783a09b4405"
+google.golang.org/genproto="v0.0.0-20231016165738-49dd2c1f3d0b"
+google.golang.org/grpc="v1.59.0"
+google.golang.org/protobuf="v1.31.0"
+gopkg.in/yaml.v2="v2.4.0"
+gopkg.in/yaml.v3="v3.0.1"
+howett.net/plist="v1.0.0"
+software.sslmate.com/src/go-pkcs12="v0.2.0"
 ```
-
-## Docsy Theme
-
-We use the [Docsy](https://www.docsy.dev/) theme for the website.
-The theme files are managed with a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) in the `themes/docsy` directory.
-
-**Do not change these files**, they are not actually inside this repo, but are part of the [google/docsy](https://github.com/google/docsy) repo.
-
-To update referenced docsy commit, run the following command at the root of the repo:
-
-```bash
-# for example, to update docsy to v0.6.0
-# WARNING: updating the docsy version will require you to update our overrides
-#          check under: `layouts/partials` and `assets/scss`
-#          also, we have [[module.mounts]] in `config.toml` that must align with the `config.yaml` from docsy
-git -C themes/docsy fetch --tags
-git -C themes/docsy checkout tags/v0.6.0
-```
-
-## Documentation style guide
-
-For guidance on writing effective documentation, see
-the [style guide for the Kubeflow docs](https://kubeflow.org/docs/about/style-guide/).
-
-## Styling your content
-
-The theme holds its styles in the [`assets/scss` directory](https://github.com/kubeflow/website/tree/master/themes/docsy/assets/scss).
-
-**Do not change these files**, they are not actually inside this repo, but are part of the [google/docsy](https://github.com/google/docsy) repo.
-
-You can override the default styles and add new ones:
-
-- In general, put your files in the project directory structure under `website` rather than in the theme directory.
-  Use the same file name as the theme does, and put the file in the same relative position.
-  Hugo looks first at the file in the main project directories, if present, then at the files under the theme directory.
-  For example, the Kubeflow website's [`layouts/partials/navbar.html`](https://github.com/kubeflow/website/blob/master/layouts/partials/navbar.html)
-  overrides the theme's [`layouts/partials/navbar.html`](https://github.com/kubeflow/website/blob/master/themes/docsy/layouts/partials/navbar.html)
-
-- You can update the Kubeflow website's project variables in the [`_variables_project.scss` file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
-  Values in that file override the [Docsy variables](https://github.com/kubeflow/website/blob/master/themes/docsy/assets/scss/_variables.scss).
-  You can also use `_variables_project.scss` to specify your own values for any of the default [Bootstrap 4 variables](https://getbootstrap.com/docs/4.0/getting-started/theming/).
-
-- Custom styles [`_styles_project` file](https://github.com/kubeflow/website/blob/master/assets/scss/_styles_project.scss)
-
-Styling of images:
-
-- To see some examples of styled images, take a look at the [OAuth setup page](https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/oauth-setup/) in the Kubeflow docs.
-  Search for `.png` in the [page source](https://raw.githubusercontent.com/GoogleCloudPlatform/kubeflow-gke-docs/main/content/en/docs/deploy/oauth-setup.md).
-
-- For more help, see the guide to
-  [Bootstrap image styling](https://getbootstrap.com/docs/4.0/content/images/).
-
-- Also see the Bootstrap utilities, such as
-  [borders](https://getbootstrap.com/docs/4.0/utilities/borders/).
-
-The site's [front page](https://www.kubeflow.org/):
-
-- See the [page source](https://github.com/kubeflow/website/blob/master/content/en/_index.html).
-
-- The CSS styles are in the [project variables file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
-
-- The page uses the [cover block](https://www.docsy.dev/docs/adding-content/shortcodes/#blocks-cover) defined by the theme.
-
-- The page also uses the [linkdown block](https://www.docsy.dev/docs/adding-content/shortcodes/#blocks-link-down).
-
-## Using Hugo shortcodes
-
-Sometimes it's useful to define a snippet of information in one place and reuse it wherever we need it.
-For example, we want to be able to refer to the minimum version of various frameworks/libraries throughout the docs,
-without causing a maintenance nightmare.
-
-For this purpose, we use Hugo's "shortcodes".
-Shortcodes are similar to Django variables. You define a shortcode in a file, then use a specific markup
-to invoke the shortcode in the docs. That markup is replaced by the content of the shortcode file when the page is built.
-
-To create a shortcode:
-
-1. Add an HTML file in the `/website/layouts/shortcodes/` directory.
-   The file name must be short and meaningful, as it determines the shortcode you and others use in the docs.
-
-2. For the file content, add the text and HTML markup that should replace the shortcode markup when the web page is built.
-
-To use a shortcode in a document, wrap the name of the shortcode in braces and percent signs like this:
-
-```
-{{% shortcode-name %}}
-```
-
-The shortcode name is the file name minus the `.html` file extension.
-
-**Example:** The following shortcode defines the minimum required version of Kubernetes:
-
-- File name of the shortcode:
-
-  ```
-  kubernetes-min-version.html
-  ```
-
-- Content of the shortcode:
-
-  ```
-  1.8
-  ```
-
-- Usage in a document:
-
-  ```
-  You need Kubernetes version {{% kubernetes-min-version %}} or later.
-  ```
-
-Useful Hugo docs:
-
-- [Shortcode templates](https://gohugo.io/templates/shortcode-templates/)
-- [Shortcodes](https://gohugo.io/content-management/shortcodes/)
-
-## Versioning of the docs
-
-For each stable release, we create a new branch for the relevant documentation.
-For example, the documentation for the v0.2 stable release is maintained in the [v0.2-branch](https://github.com/kubeflow/website/tree/v0.2-branch).
-Each branch has a corresponding Netlify website that automatically syncs each merged PR.
-
-The versioned sites follow this convention:
-
-- `www.kubeflow.org` always points to the current _master branch_
-- `master.kubeflow.org` always points to GitHub head
-- `vXXX-YYY.kubeflow.org` points to the release at vXXX.YYY-branch
-
-We also hook up each version to the dropdown on the website menu bar.
-
-Whenever any documents reference any source code, you should use the version shortcode in the links, like so:
-
-```
-https://github.com/kubeflow/kubeflow/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
-```
-
-This ensures that all the links in a versioned webpage point to the correct branch.
+</details>
