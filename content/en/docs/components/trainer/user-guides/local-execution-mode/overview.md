@@ -18,6 +18,7 @@ The Kubeflow SDK allows you to run TrainJobs on your local machine without deplo
 Run TrainJobs directly using native Python processes and virtual environments. This is the fastest option for simple, single-node training.
 
 **Best for:**
+
 - Quick prototyping and development
 - Testing training scripts without container overhead
 - Environments where Docker/Podman is not available
@@ -29,6 +30,7 @@ Run TrainJobs directly using native Python processes and virtual environments. T
 Run distributed TrainJobs in isolated Docker containers with full multi-node support.
 
 **Best for:**
+
 - General use cases, especially on macOS/Windows
 - Distributed training with multiple containers
 - Reproducible containerized environments
@@ -40,6 +42,7 @@ Run distributed TrainJobs in isolated Docker containers with full multi-node sup
 Run distributed TrainJobs using Podman, a daemonless container engine with enhanced security.
 
 **Best for:**
+
 - Security-focused environments
 - Rootless containerized training
 - Linux servers with systemd integration
@@ -48,14 +51,14 @@ Run distributed TrainJobs using Podman, a daemonless container engine with enhan
 
 ## Backend Comparison
 
-| Feature | Local Process | Docker | Podman |
-|---------|--------------|--------|--------|
-| **Setup** | No additional software | Docker Desktop/Engine | Podman installation |
-| **Isolation** | Virtual environments | Full container isolation | Full container isolation |
-| **Multi-node** | Not supported | Supported | Supported |
-| **Root Required** | No | Docker group or root | Rootless supported |
-| **Startup Time** | Fast (seconds) | Medium (container start) | Medium (container start) |
-| **Best For** | Quick prototyping | General use, wide ecosystem | Security, Linux servers |
+| Feature           | Local Process          | Docker                      | Podman                   |
+| ----------------- | ---------------------- | --------------------------- | ------------------------ |
+| **Setup**         | No additional software | Docker Desktop/Engine       | Podman installation      |
+| **Isolation**     | Virtual environments   | Full container isolation    | Full container isolation |
+| **Multi-node**    | Not supported          | Supported                   | Supported                |
+| **Root Required** | No                     | Docker group or root        | Rootless supported       |
+| **Startup Time**  | Fast (seconds)         | Medium (container start)    | Medium (container start) |
+| **Best For**      | Quick prototyping      | General use, wide ecosystem | Security, Linux servers  |
 
 ## Switching Between Backends
 
@@ -109,7 +112,6 @@ trainer = CustomTrainer(func=train_model, num_nodes=4)
 job_name = client.train(trainer=trainer)
 ```
 
-
 ## Job Management
 
 All backends support the same job management operations through the `TrainerClient` interface using the same set of APIs.
@@ -161,6 +163,7 @@ client.delete_job(job_name)
 ```
 
 This removes:
+
 - All containers/processes for the job
 - Networks created for the job (Container backends)
 - Job metadata
@@ -181,19 +184,17 @@ for runtime in runtimes:
 ### Using a Specific Runtime
 
 ```python
-# Get a specific runtime
-runtime = client.get_runtime("torch-distributed")
-
 # Train with the runtime
 job_name = client.train(
     trainer=trainer,
-    runtime=runtime
+    runtime="torch-distributed"
 )
 ```
 
 ### Custom Runtime Sources (Container Backends)
 
 By default, the Container Backends load runtimes from:
+
 1. **GitHub** - `github://kubeflow/trainer` (official runtimes, cached for 24 hours)
 2. **Fallback** - Built-in default images (e.g., `pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime`)
 
@@ -219,6 +220,7 @@ client = TrainerClient(backend_config=backend_config)
 **Source Priority**: Sources are checked in order. If a runtime is not found in any source, the system falls back to the default image for the framework.
 
 **Runtime YAML Example**:
+
 ```yaml
 apiVersion: trainer.kubeflow.org/v1alpha1
 kind: ClusterTrainingRuntime
@@ -266,6 +268,7 @@ backend_config = ContainerBackendConfig(
 ```
 
 **Key Points:**
+
 - Your training function (`func=train_model`) doesn't change
 - Job management operations (`list_jobs()`, `get_job_logs()`, `delete_job()`) work the same across all backends
 - Only the backend configuration import and instantiation changes

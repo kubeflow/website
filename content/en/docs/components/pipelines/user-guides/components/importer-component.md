@@ -1,7 +1,7 @@
 +++
 title = "Special Case: Importer Components"
 description = "Import artifacts from outside your pipeline"
-weight = 5
+weight = 6
 +++
 
 {{% kfp-v2-keywords %}}
@@ -61,8 +61,61 @@ The `importer` component permits setting artifact metadata via the `metadata` ar
 
 You may also specify a boolean `reimport` argument. If `reimport` is `False`, KFP will check to see if the artifact has already been imported to ML Metadata and, if so, use it. This is useful for avoiding duplicative artifact entries in ML Metadata when multiple pipeline runs import the same artifact. If `reimport` is `True`, KFP will reimport the artifact as a new artifact in ML Metadata regardless of whether it was previously imported.
 
+### Download Imported Artifacts to a Pipeline Run Workspace
+
+**⚠️ Version Requirement**: The Pipeline Run Workspace feature is available starting from Kubeflow Pipelines version 2.15.0.
+
+Set parameter `download_to_workspace=True` to download an imported artifact directly to a [Pipeline Run Workspace][pipeline-run-workspace], shown below.
+
+```python
+from kfp import dsl
+from kfp.dsl import Output, importer
+
+@dsl.component()
+def train(dataset: dsl.Input[dsl.Dataset]):
+    """Dummy Training step."""
+    with open(dataset.path, encoding="utf-8") as f:
+        data = f.read()
+
+@dsl.component()
+def write_file_artifact(out_ds: Output[dsl.Dataset]):
+    import os
+    os.makedirs(os.path.dirname(out_ds.path), exist_ok=True)
+    with open(out_ds.path, "w", encoding="utf-8") as f:
+        f.write("Hello from producer file\n")
+
+@dsl.pipeline()
+def import_stage(file_uri: str):
+    """Nested stage that imports by URI and runs consumers."""
+    importer1 = importer(
+        artifact_uri=file_uri,
+        artifact_class=dsl.Dataset,
+        download_to_workspace=True,
+    )
+
+    return train(dataset=importer1.output)
+
+@dsl.pipeline(
+    pipeline_config=dsl.PipelineConfig(
+        workspace=dsl.WorkspaceConfig(
+            size='1Gi',
+            kubernetes=dsl.KubernetesWorkspaceConfig(
+                pvcSpecPatch={'storageClassName': 'standard','accessModes': ['ReadWriteOnce']}
+            ),
+        ),
+    ),
+)
+def pipeline_with_importer_workspace():
+    # Produce a file artifact and compute its runtime URI
+    file_writer = write_file_artifact()
+
+    # Import and consume inside a nested sub-pipeline
+    stage = import_stage(file_uri=file_writer.outputs["out_ds"].uri)
+```
+
 [pipeline-basics]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines
 [dsl-importer]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.importer
 [artifacts]: /docs/components/pipelines/user-guides/data-handling/artifacts
 [ml-metadata]: https://github.com/google/ml-metadata
 [model-car]: https://kserve.github.io/website/latest/modelserving/storage/oci/
+[pipeline-run-workspace]: /docs/components/pipelines/user-guides/data-handling/artifacts/#pipeline-run-workspaces

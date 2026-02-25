@@ -5,6 +5,8 @@ weight = 90
                     
 +++
 
+> **Note:** [KFP 2.15](https://github.com/kubeflow/pipelines/releases/tag/2.15.0) includes a major upgrade to the underlying Gorm backend, necessitating an automated database index migration for users upgrading from versions prior to 2.15.0 (the migration logic can be reviewed [here](https://github.com/kubeflow/pipelines/blob/release-2.15/backend/src/apiserver/client_manager/client_manager.go#L367)). Given that this migration does not support rollback functionality, it is strongly advised that production databases be backed up before initiating the upgrade process.
+
 **Note:** Kubeflow Pipelines has moved from using [kubeflow/metadata](https://github.com/kubeflow/metadata)
 to using [google/ml-metadata](https://github.com/google/ml-metadata) for Metadata dependency.
 

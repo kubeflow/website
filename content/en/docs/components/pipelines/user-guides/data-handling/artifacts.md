@@ -172,6 +172,23 @@ def train_multiple_models(
 
 {{% oss-be-unsupported feature_name="The Pythonic artifact authoring syntax" %}}
 
+### Embedded artifacts
+Embedded artifacts allow Python-function components to embed files or directories directly into a lightweight component.
+At compile time, the file/dir is archived (tar + gzip) and base64-embedded into the ephemeral module.
+At runtime, the embedded artifact is made available by extracting to a temporary location, and the EmbeddedInput[...] parameter is injected as an artifact with .path pointing to the extracted file/dir in a temporary directory. The extracted root is also added to sys.path for Python module resolution if it's a directory.
+This feature is similar to notebook components in that it allows users to embed files into a lightweight component.
+
+```python
+@dsl.component(embedded_artifact_path=tmpdir_path)
+def read_embedded_artifact_dir(artifact: dsl.EmbeddedInput[dsl.Dataset]):
+    import os
+
+    with open(os.path.join(artifact.path, "log.txt"), "r", encoding="utf-8") as f:
+        log = f.read()
+
+    return log
+```
+
 ### Artifacts in pipelines
 
 Irrespective of whether your components use the Pythonic or traditional artifact authoring syntax, pipelines that use artifacts should be annotated with the [Pythonic artifact syntax][pythonic-artifact-syntax]:
@@ -206,6 +223,78 @@ Pipelines can also return an output list of artifacts by using a `-> List[Artifa
 
 Both consuming an input list of artifacts and returning an output list of artifacts from a pipeline are described in [Pipeline Control Flow: Parallel looping][parallel-looping]. Creating output lists of artifacts from a single-step component is not currently supported.
 
+### Pipeline Run Workspaces
+
+**⚠️ Version Requirement**: The Pipeline Run Workspace feature is available starting from Kubeflow Pipelines version 2.15.0.
+
+While the traditional artifact authoring syntax is effective for passing smaller amounts of data between components at runtime,
+many pipelines require passing larger amounts of data between components. Doing so with artifact inputs and outputs introduces overhead and requires additional S3 storage.
+Pipeline Run Workspaces provide a way to pass data between components without this overhead - artifacts are stored in a PVC mounted on the component.
+
+A Pipeline Run Workspace is configured with `dsl.WorkspaceConfig` through the `pipeline_config` parameter shown in the example below. `dsl.WorkspaceConfig` accepts the following parameters:
+- `size` (required): String representation of workspace size, including units.
+- `kubernetes` (optional): [`dsl.KubernetesWorkspaceConfig`][kubernetes-workspace]
+
+#### Using the workspace mount path
+When a pipeline is configured with a workspace, a PVC is automatically created and mounted into every task pod at a platform-defined mount path.
+To pass the workspace mount path into a component, use `dsl.WORKSPACE_PATH_PLACEHOLDER`. At runtime, the backend replaces this placeholder with the actual mount path of the workspace PVC (e.g., `/kfp-workspace`). This allows components to read and write shared data on the workspace volume without hard-coding mount paths.
+
+
+#### Kubernetes-specific Workspace Settings
+Specific settings are configured as a dictionary through the `pvcSpecPatch` parameter shown in the example below.
+
+```python
+from kfp import dsl
+from kfp import compiler
+
+
+@dsl.component()
+def clone_repo(workspacePath: str, repo: str) -> str:
+    import os
+    import subprocess
+
+    clone_path = os.path.join(workspacePath, "repo")
+    subprocess.call(["git", "clone", repo, clone_path])
+
+    return clone_path
+
+
+@dsl.component()
+def process_data(repo_path: str):
+    print("Processing the data at " + repo_path)
+
+
+@dsl.component()
+def train(model: dsl.Model, trained_model: dsl.Output[dsl.Model]):
+    with open(model.path, "r") as model_file:
+        print("Training the model")
+
+    # Upload the model to S3 and register it in MLMD
+    trained_model.set_path(model.path) # or trained_model.custom_path = model.path
+    
+@dsl.pipeline(
+    name="my-pipeline",
+    pipeline_config=dsl.PipelineConfig(
+        workspace=dsl.WorkspaceConfig(
+            size="250GB",
+            kubernetes=dsl.KubernetesWorkspaceConfig(
+                pvcSpecPatch={
+                    "storageClassName": "super-fast-storage",
+                    "accessModes": ["ReadWriteMany"],
+                }
+            ),
+        ),
+    )
+def pipeline(repo: str, model_uri: str):
+    clone_repo_task = clone_repo(
+        workspacePath=dsl.WORKSPACE_PATH_PLACEHOLDER, repo=repo,
+    )
+    process_data_task = process_data(repo_path=clone_repo_task.output)
+    import_base_model_task = dsl.importer(
+        artifact_class=dsl.Model, artifact_uri=model_uri, download_to_workspace=True,
+    )
+    train(model=import_base_model_task.output).after(process_data_task)
+```
 
 ### Artifact types
 
@@ -246,6 +335,7 @@ On the [KFP open source][oss-be] UI, `ClassificationMetrics`, `SlicedClassificat
 [dsl-parallelfor]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.ParallelFor
 [dsl-collected]: https://kubeflow-pipelines.readthedocs.io/en/latest/source/dsl.html#kfp.dsl.Collected
 [parallel-looping]: /docs/components/pipelines/user-guides/core-functions/control-flow/#dslparallelfor
+[kubernetes-workspace]: /docs/components/pipelines/user-guides/data-handling/artifacts/#kubernetes-specific-workspace-settings
 [traditional-artifact-syntax]: /docs/components/pipelines/user-guides/data-handling/artifacts/#traditional-artifact-syntax
 [multiple-outputs]: /docs/components/pipelines/user-guides/data-handling/parameters/#multiple-output-parameters
 [pythonic-artifact-syntax]: /docs/components/pipelines/user-guides/data-handling/artifacts/#new-pythonic-artifact-syntax
