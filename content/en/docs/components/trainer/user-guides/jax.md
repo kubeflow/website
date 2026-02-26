@@ -1,7 +1,7 @@
 +++
 title = "JAX Guide"
-description = "How to run JAX training on Kubernetes with Kubeflow Trainer"
-weight = 10
+description = "How to run JAX on Kubernetes with Kubeflow Trainer"
+weight = 15
 +++
 
 This guide describes how to use TrainJob to train or fine-tune AI models with
@@ -77,7 +77,20 @@ TrainerClient().get_runtime_packages(
 )
 
 ```
-## Initializing the JAX Distributed Runtime
+You should see the installed packages, for example:
+
+```sh
+Python: 3.10.12 (main, Feb 25 2026, 20:34:29) [GCC 11.4.0]
+
+Package            Version
+------------------ -----------
+...
+Flax                 0.11.2
+jax                  0.7.2
+optax                0.2.4
+...
+```
+## JAX Distributed Environment 
 
 Your training script must explicitly initialize the JAX distributed runtime before performing any JAX computation.
 
@@ -98,98 +111,21 @@ def main():
     print("Global devices:", jax.devices())
     print("Local devices:", jax.local_devices())
 
-    # Training logic here
+    # Create the TrainJob.
+    job_id = TrainerClient().train(
+        runtime=TrainerClient().get_runtime("jax-distributed"),
+        trainer=CustomTrainer(func=get_jax_dist),
+    )
+
+# Wait for TrainJob to complete.
+    TrainerClient().wait_for_job_status(job_id)
+
+    # print Jax training logs 
+    print("\n".join(TrainerClient().get_job_logs(name=job_id, step="node-0")))
 
 if __name__ == "__main__":
     main()
 ```
-{{% alert title="Important" color="warning" %}}
-All processes must call **jax.distributed.initialize()** exactly once
-and before any JAX computation. Failure to do so may result in deadlocks.
-{{% /alert %}}
-
----
-
-## Creating a TrainJob with JAX Runtime
-
-To run a JAX workload, reference the `jax-distributed`
-`ClusterTrainingRuntime` in your TrainJob.
-
-### Minimal TrainJob Example
-
-```yaml
-apiVersion: trainer.kubeflow.org/v1alpha1
-kind: TrainJob
-metadata:
-  name: jax-example
-spec:
-  runtimeRef:
-    apiVersion: trainer.kubeflow.org/v1alpha1
-    kind: ClusterTrainingRuntime
-    name: jax-distributed
-  trainer:
-    numNodes: 2
-    container:
-      image: nvcr.io/nvidia/jax:25.10-py3
-      command: ["python", "train.py"]
-```
-
-This configuration:
-
-- Creates 2 Pods
-- Runs the same `train.py` script in each Pod
-- Forms a single distributed JAX execution
-
----
-
-## Scaling Semantics
-
-In the JAX runtime:
-
-- `spec.trainer.numNodes` controls the number of JAX processes
-- Each process corresponds to one Pod
-- All Pods run identical code
-
-```yaml
-spec:
-  trainer:
-    numNodes: 4
-```
-Results:
-
-- 4 Pods
-- 4 JAX processes
-- One global SPMD program
-
-If each Pod has multiple GPUs, JAX will automatically detect and use them as local devices.
-
----
-## Creating a TrainJob with the Python SDK
-
-Kubeflow Trainer also provides a Python SDK that allows you to
-programmatically create and submit TrainJobs without writing YAML.
-
-```python 
-
-from kubeflow.trainer import TrainerClient, TrainJob
-
-client = TrainerClient()
-
-job = TrainJob(
-    name="jax-sdk-example",
-    runtime="jax-distributed",
-    num_nodes=2,
-    container={
-        "image": "nvcr.io/nvidia/jax:25.10-py3",
-        "command": ["python", "train.py"],
-    },
-)
-
-client.create_trainjob(job)
-``` 
-
-
-
 
 ## Environment Variables Injected by the JAX Runtime
 
@@ -213,19 +149,110 @@ Once initialized, you can use JAX SPMD primitives normally:
 
 Kubeflow Trainer does not alter JAX semantics, it only provides the distributed execution environment.
 
----
-
-## Limitations
-
-Current limitations of the JAX runtime include:
-
-- No TPU support
-- No elastic or dynamic scaling
-- Homogeneous node and device configurations are assumed
-- All processes must start and finish together
+{{% alert title="Important" color="warning" %}}
+All processes must call **jax.distributed.initialize()** exactly once
+and before any JAX computation. Failure to do so may result in deadlocks.
+{{% /alert %}}
 
 ---
+
+## Creating a TrainJob with JAX Runtime
+
+To run a JAX workload, reference the `jax-distributed`
+`ClusterTrainingRuntime` in your TrainJob.
+
+
+## Minimal TrainJob Example with the Python SDK
+
+Kubeflow Trainer also provides a Python SDK that allows you to
+programmatically create and submit TrainJobs without writing YAML.
+```python
+
+from kubeflow.trainer import TrainerClient, CustomTrainer
+
+
+def train_jax():
+    import os
+    import jax
+    import jax.distributed as dist
+
+    dist.initialize(
+        num_processes=int(os.environ["JAX_NUM_PROCESSES"]),
+        process_id=int(os.environ["JAX_PROCESS_ID"]),
+        coordinator_address=os.environ["JAX_COORDINATOR_ADDRESS"],
+    )
+
+    print("JAX Distributed Environment")
+    print("Global devices:", jax.devices())
+    print("Local devices:", jax.local_devices())
+
+
+# Runs locally (job submission)
+def submit():
+    client = TrainerClient()
+
+    job_id = client.train(
+        runtime=client.get_runtime("jax-distributed"),
+        trainer=CustomTrainer(
+            func=train_jax,
+            num_nodes=2,
+            resources_per_node={
+                "cpu": 2,
+            },
+        ),
+    )
+
+    client.wait_for_job_status(job_id)
+
+    print(
+        "\n".join(
+            client.get_job_logs(name=job_id, step="node-0")
+        )
+    )
+
+
+if __name__ == "__main__":
+    submit()
+```
+
+This configuration:
+
+- Creates 2 Pods
+- Runs the same `train.py` script in each Pod
+- Forms a single distributed JAX execution
+
+---
+
+## Scaling Semantics
+
+In the JAX runtime:
+
+- `num_nodes` controls the number of JAX processes
+- Each process corresponds to one Pod
+- All Pods run identical code
+
+Results:
+
+- 4 Pods
+- 4 JAX processes
+- One global SPMD program
+
+If each Pod has multiple GPUs, JAX will automatically detect and use them as local devices.
+
+---
+
+
+
+### Get the TrainJob Results
+You can use the `get_job_logs()` API to see your TrainJob logs. For JAX distributed training, logs are typically available on all nodes. You can inspect node 0:
+```py
+print("\n".join(TrainerClient().get_job_logs(name=job_id, step="node-0")))
+```
+
+---
+
 
 ## Next Steps
 
-- Check out [the MNIST JAX example](https://github.com/kaisoz/trainer/blob/ca27f54971070a1f65f2d9bf3a1b643f92736448/examples/jax/image-classification/mnist.ipynb).
+- Check out [the MNIST JAX example](https://github.com/kubeflow/trainer/blob/master/examples/jax/image-classification/mnist.ipynb).
+- Learn more about `TrainerClient()` APIs [in the Kubeflow SDK](https://github.com/kubeflow/sdk/blob/main/kubeflow/trainer/api/trainer_client.py).
