@@ -72,7 +72,7 @@ Run the following command to inspect the runtime packages:
 from kubeflow.trainer import TrainerClient
 
 TrainerClient().get_runtime_packages(
-    runtime=TrainerClient().get_runtime("jax-distributed")
+   runtime="jax-distributed"
 )
 
 ```
@@ -93,32 +93,48 @@ optax                0.2.4
 
 Your training script must explicitly initialize the JAX distributed runtime before performing any JAX computation.
 
-### Example: train.py
 
 ```python
-import os
-import jax
-import jax.distributed as dist
+from kubeflow.trainer import TrainerClient, CustomTrainer
 
 
-def main():
-    # Initialize distributed JAX using environment variables
-    # provided by the jax-distributed runtime.
+def get_jax_dist():
+    import os
+    import jax
+    import jax.distributed as dist
+
+    # Initialize distributed JAX.
     dist.initialize(
+        coordinator_address=os.environ["JAX_COORDINATOR_ADDRESS"],
         num_processes=int(os.environ["JAX_NUM_PROCESSES"]),
         process_id=int(os.environ["JAX_PROCESS_ID"]),
-        coordinator_address=os.environ["JAX_COORDINATOR_ADDRESS"],
     )
 
     print("JAX Distributed Environment")
-    print("Global devices:", jax.devices())
-    print("Local devices:", jax.local_devices())
+    print(f"Local devices: {jax.local_devices()}")
+    print(f"Global device count: {jax.device_count()}")
 
-    # ---- Training logic goes here ----
+    import jax.numpy as jnp
+
+    x = jnp.ones((4,))
+    y = jax.pmap(lambda v: v * jax.process_index())(x)
+
+    print("PMAP result:", y)
 
 
-if __name__ == "__main__":
-    main()
+client = TrainerClient()
+
+# Create TrainJob
+job_id = client.train(
+    runtime=client.get_runtime("jax-distributed"),
+    trainer=CustomTrainer(func=get_jax_dist),
+)
+
+# Wait until completion
+client.wait_for_job_status(job_id)
+
+# Logs are aggregated from node-0
+print("\n".join(client.get_job_logs(name=job_id)))
 ```
 
 ### Environment Variables Injected by the JAX Runtime
@@ -147,6 +163,22 @@ Kubeflow Trainer does not alter JAX semantics, it only provides the distributed 
 All processes must call **jax.distributed.initialize()** exactly once
 and before any JAX computation. Failure to do so may result in deadlocks.
 {{% /alert %}}
+
+---
+
+### Scaling Semantics
+
+In the JAX runtime:
+
+- `num_nodes` controls the number of worker Pods
+- Typically one primary JAX process per worker Pod, depending on runtime implementation.
+- All Pods run identical code
+
+Results:
+
+- 2 Pods
+- 2 JAX processes
+- Enabling a single global SPMD execution across processes.
 
 ---
 
@@ -278,21 +310,6 @@ job_id = TrainerClient().train(
 )
 ```
 
-## Scaling Semantics
-
-In the JAX runtime:
-
-- `num_nodes` controls the number of worker Pods
-- Typically one primary JAX process per worker Pod, depending on runtime implementation.
-- All Pods run identical code
-
-Results:
-
-- 2 Pods
-- 2 JAX processes
-- Enabling a single global SPMD execution across processes.
-
----
 
 ### Get the TrainJob Results
 ```python
