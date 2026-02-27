@@ -49,7 +49,7 @@
         <a {{/**/ -}}
           class="nav-link {{- if $active }} active {{- end }}" {{/**/ -}}
           href="{{ with $e.Page }}{{ $e.RelPermalink }}{{ else }}{{ $e.URL | relLangURL }}{{ end }}"
-          {{- if ne $url.Host $baseurl.Host }} target="_blank" {{- end -}}
+          {{- if ne $url.Host $baseurl.Host }} target="_blank" rel="noopener noreferrer"{{ end -}}
         >
             {{- with $e.Pre }}{{ $pre }}{{ end -}}
             <span {{- if $active }} class="active" {{- end }}>
