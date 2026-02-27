@@ -171,23 +171,6 @@ The following table lists distributions which are <em>maintained</em> by their r
     <tbody>
       <tr>
         <td>
-          Aranui Solutions
-            <br><small>deployKF</small>
-        </td>
-        <td>
-          {{< kf-version-notice >}}{{% deploykf/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://www.deploykf.org/releases/tool-versions/#kubeflow-ecosystem">[version matrix]</a></sup>
-        </td>
-        <td>
-          Multiple
-          <sup><a href="https://www.deploykf.org/guides/getting-started/#kubernetes-cluster">[list]</a></sup>
-        </td>
-        <td>
-          <a href="https://www.deploykf.org/">Website</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
           Canonical
             <br><small>Charmed Kubeflow</small>
         </td>
