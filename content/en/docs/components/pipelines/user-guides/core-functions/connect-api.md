@@ -41,7 +41,7 @@ print(experiments)
 #### ServiceAccount Token Volume
 
 To use the preceding code, you will need to run it from a Pod that has a ServiceAccount token volume mounted.
-You may manually add a `volume` and `volumeMount` to your PodSpec or use Kubeflow's [`PodDefaults`](https://github.com/kubeflow/kubeflow/tree/master/components/admission-webhook) to inject the required volume.
+You may manually add a `volume` and `volumeMount` to your PodSpec or use Kubeflow's [`PodDefaults`](https://github.com/kubeflow/dashboard/tree/main/components/poddefaults-webhooks) to inject the required volume.
 
 __Option 1 - manually add a volume to your PodSpec:__
 
