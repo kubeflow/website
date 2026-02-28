@@ -607,8 +607,63 @@ nav.foldable-nav {
     padding: 4rem 0 4rem 0 !important;
   }
 
+  #pageContent {
+    // make card body a flex coloumn so github badge can sit at the bottom
+    .card-deck .card-body,
+    .card-columns .card-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-footer-github {
+      margin-top: auto;
+      padding-top: 0.75rem;
+    }
+
+    .kf-github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255, 255, 255, 0.55) ;
+      text-decoration: none ;
+      transition: all 0.2s ease-in-out;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-bottom: none ;
+
+      i {
+        transition: inherit;
+      }
+
+      .fa-github {
+        font-size: 1.2rem;
+      }
+
+      .fa-star {
+        font-size: 0.85rem;
+        margin-left: 0.1rem;
+      }
+
+      &:hover {
+        color: $kf-blue !important;
+      }
+    }
+
+    .project-github-link {
+      transition: all 0.2s ease;
+      display: inline-block;
+      border-bottom: none ;
+
+      &:hover {
+        transform: scale(1.2);
+        color: $kf-blue !important;
+        border-bottom: none;
+      }
+    }
+  }
+
   #overview {
-    padding: 3rem 0 3rem 0 !important;
+    padding: 3rem 0 3rem 0;
   }
 
   #overview p,
