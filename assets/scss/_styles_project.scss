@@ -52,7 +52,6 @@
     padding-left: 0;
     padding-right: 0;
   }
-
   .td-sidebar {
     background-color: $td-sidebar-bg-color;
   }
@@ -63,17 +62,14 @@
     background-color: $td-sidebar-bg-color;
     height: unset;
   }
-
   .td-sidebar,
   .td-sidebar-toc {
     background-color: unset;
   }
-
   .td-main {
     padding-left: 0;
     padding-right: 0;
   }
-
   main {
     background-color: $body-bg;
   }
@@ -105,7 +101,6 @@
       //  - there is a left sidebar for md and above
       //  - there is a right sidebar for xl and above
       margin-left: 0;
-
       @include media-breakpoint-up(xl) {
         margin-right: 0;
       }
@@ -252,7 +247,6 @@ footer {
   @include media-breakpoint-down(md) {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
-
     .td-search {
       padding-right: 0.25rem;
     }
@@ -261,7 +255,6 @@ footer {
   @include media-breakpoint-up(md) {
     padding-left: 0;
     padding-right: 0;
-
     .td-search {
       padding-right: 0.5rem;
     }
@@ -311,10 +304,8 @@ nav.foldable-nav .without-child {
 
 // style the sidebar like a folder tree
 nav.foldable-nav {
-
   // apply styles to the main sidebar sections
   .ul-1 {
-
     // reduce padding of the sidebar links
     .with-child {
       padding-left: 1.5rem;
@@ -333,12 +324,12 @@ nav.foldable-nav {
     }
 
     // bold the chain of pages leading to the active page
-    .with-child.active-path>label a {
+    .with-child.active-path > label a {
       font-weight: 700;
     }
 
     // show a border on the left of open sections
-    .with-child>input:checked~ul {
+    .with-child > input:checked ~ ul {
       border-left: 0.1rem dotted $td-sidebar-left-stroke-color;
 
       // round the bottom left corner
@@ -351,29 +342,29 @@ nav.foldable-nav {
     }
 
     // color the border for the active path
-    .with-child.active-path>ul {
+    .with-child.active-path > ul {
       border-left: 0.1rem solid $td-sidebar-left-stroke-active-color !important;
     }
 
     // make the arrow for the non-active sections gray
-    .with-child>label:before {
+    .with-child > label:before {
       color: $td-sidebar-closed-color;
     }
 
     // make the arrow for open non-active sections gray
-    .with-child>input:checked~label:before {
+    .with-child > input:checked ~ label:before {
       color: $td-sidebar-closed-color;
     }
 
     // make the arrow for open active sections blue
-    .with-child.active-path>input:checked~label:before {
+    .with-child.active-path > input:checked ~ label:before {
       color: $primary;
     }
   }
 }
 
 // prevent overflow of long names in sidebar
-.td-sidebar-nav__section>ul {
+.td-sidebar-nav__section > ul {
   overflow-wrap: break-word;
 }
 
@@ -382,11 +373,11 @@ nav.foldable-nav {
 // --------------------------------------------------
 @media (hover: hover) and (pointer: fine) {
   nav.foldable-nav {
-    .ul-1 .with-child>label:hover:before {
+    .ul-1 .with-child > label:hover:before {
       transition: transform 0.3s;
     }
 
-    .ul-1 .with-child>input:checked~label:hover:before {
+    .ul-1 .with-child > input:checked ~ label:hover:before {
       transition: transform 0.3s;
     }
   }
@@ -411,8 +402,7 @@ nav.foldable-nav {
     background-color: rgba(255, 255, 255, 0.3);
     align-self: center;
     margin: 0 0.5rem;
-
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(md){
       rotate: 90deg;
     }
   }
@@ -507,7 +497,6 @@ nav.foldable-nav {
 // Home page
 // --------------------------------------------------
 .td-home {
-
   // make sure kubeflow title is white
   .display-1 {
     color: $white;
@@ -614,61 +603,67 @@ nav.foldable-nav {
     margin: 0 0 1.5em 1.5em;
   }
 
-  #overview,
-  #pageContent,
-  #cncf,
-  #community,
-  #adopters {
+  #overview, #pageContent, #cncf, #community, #adopters {
     padding: 4rem 0 4rem 0 !important;
   }
 
   #pageContent {
-    .argo-github-btn {
+    // make card body a flex coloumn so github badge can sit at the bottom
+    .card-deck .card-body,
+    .card-columns .card-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-footer-github {
+      margin-top: auto;
+      padding-top: 0.75rem;
+    }
+
+    .kf-github-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      color: #f8f9fa !important;
-      text-decoration: none !important;
+      gap: 0.4rem;
+      color: rgba(255, 255, 255, 0.55) ;
+      text-decoration: none ;
       transition: all 0.2s ease-in-out;
       font-weight: 600;
-      font-size: 1.1rem;
-      border-bottom: none !important;
+      font-size: 0.95rem;
+      border-bottom: none ;
 
       i {
         transition: inherit;
       }
 
       .fa-github {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
       }
 
       .fa-star {
-        font-size: 1.1rem;
-        margin-left: 0.2rem;
-        margin-right: -0.2rem;
+        font-size: 0.85rem;
+        margin-left: 0.1rem;
       }
 
       &:hover {
-        color: #ef7b4d !important;
-        transform: translateY(-2px);
+        color: $kf-blue !important;
       }
     }
 
     .project-github-link {
       transition: all 0.2s ease;
       display: inline-block;
-      border-bottom: none !important;
+      border-bottom: none ;
 
       &:hover {
         transform: scale(1.2);
-        color: #ffffff !important;
-        border-bottom: none !important;
+        color: $kf-blue !important;
+        border-bottom: none;
       }
     }
   }
 
   #overview {
-    padding: 3rem 0 3rem 0 !important;
+    padding: 3rem 0 3rem 0;
   }
 
   #overview p,
@@ -778,29 +773,26 @@ nav.foldable-nav {
     margin: 0 1.5em 3em 1.5em;
   }
 
-  #pageContent .lead>.image {
+  #pageContent .lead > .image {
     padding: 0 1.5em;
     max-width: 60%;
     margin-bottom: 1.5em;
   }
 
-  #pageContent .lead>.text p {
+  #pageContent .lead > .text p {
     font-size: 1em;
   }
 
   @include media-breakpoint-up(sm) {
-
     #overview,
     #community {
       font-size: 1.125em;
     }
-
-    #pageContent .lead>.image {
+    #pageContent .lead > .image {
       max-width: 35%;
       margin-bottom: 3em;
     }
-
-    #pageContent .lead>.text p {
+    #pageContent .lead > .text p {
       font-size: 1em;
     }
   }
@@ -819,34 +811,28 @@ nav.foldable-nav {
       -ms-flex-align: stretch;
       align-items: stretch;
     }
-
-    #pageContent .lead>* {
+    #pageContent .lead > * {
       -ms-flex: 0 1 auto;
       flex: 0 1 auto;
     }
-
-    #pageContent .lead>.image {
+    #pageContent .lead > .image {
       display: block;
       margin: 0 auto;
       max-width: 100%;
     }
-
-    #pageContent .lead>.image>img {
+    #pageContent .lead > .image > img {
       max-width: 80%;
       margin: 0 auto;
     }
-
-    #pageContent .lead>.text {
+    #pageContent .lead > .text {
       -ms-flex-preferred-size: 70%;
       flex-basis: 70%;
     }
-
-    #pageContent .lead:nth-child(2n + 0)>.image {
+    #pageContent .lead:nth-child(2n + 0) > .image {
       -ms-flex-order: 2;
       order: 2;
     }
-
-    #pageContent .lead:nth-child(2n + 0)>.text {
+    #pageContent .lead:nth-child(2n + 0) > .text {
       -ms-flex-order: 1;
       order: 1;
     }
@@ -904,8 +890,8 @@ nav.foldable-nav {
   border-bottom: none !important;
 }
 
-.td-content>ul li,
-.td-content>ol li.nav-item {
+.td-content > ul li,
+.td-content > ol li.nav-item {
   margin-bottom: 0px;
 }
 
@@ -948,10 +934,9 @@ nav.foldable-nav {
 // code styling
 // --------------------------------------------------
 .td-content {
-
   // set the background color of inline code
   p code,
-  li>code,
+  li > code,
   table code {
     background-color: $code-inline-bg;
   }
@@ -962,7 +947,7 @@ nav.foldable-nav {
   }
 
   // ensure links with code in them have the correct color
-  a>code {
+  a > code {
     color: unset;
   }
 }
