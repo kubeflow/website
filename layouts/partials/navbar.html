@@ -6,7 +6,7 @@
 <nav class="js-navbar-scroll navbar navbar-expand-md navbar-dark
             {{- if $cover }} td-navbar-cover {{- end }} td-navbar">
 <div class="container px-0">
-  <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
+  <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}" aria-label="{{ .Site.Title }} - home">
     {{- /**/ -}}
     <span class="navbar-brand__logo navbar-logo">
       {{- if ne .Site.Params.ui.navbar_logo false -}}
