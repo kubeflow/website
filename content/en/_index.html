@@ -3,37 +3,37 @@ title = "Kubeflow"
 +++
 
 <!-- Hero section -->
-{{<blocks/cover title="Kubeflow" subtitle="The foundation of tools for AI Platforms on Kubernetes." image_anchor="center" color="dark">}}
-<div class="mt-5">
-  <div class="mx-auto">
-    <a class="btn btn-lg btn-primary mx-1 mb-3 mb-sm-0 px-3 px-md-4 py-2" href="/docs/started/">
-      Get Started
-      <i class="fas fa-arrow-alt-circle-right ml-1"></i>
-    </a>
-    <a class="btn btn-lg btn-secondary mx-1 mb-3 mb-sm-0 px-3 px-md-4 py-2" href="/docs/about/contributing/">
-      Contribute
-      <i class="fas fa-pencil-alt ml-1"></i>
-    </a>
-    <a class="btn btn-lg btn-info mx-1 mb-3 mb-sm-0 px-3 px-md-4 py-2" href="/docs/genai/use-cases/">
-      GenAI 
-      <i class="fas fa-brain ml-1"></i>
-    </a>
-  <div class="mt-2">
-    <a class="btn btn-link text-light" href="#overview">
-      <i class="fa-solid fa-circle-chevron-down" style="font-size: 350%"></i>
-    </a>
-  </div>
+{{% blocks/cover title="Cloud-native scaled. Kubernetes empowered. Automate, orchestrate, and accelerate your ML dataflows with Kubeflow." subtitle="Kubeflow is an open-source ecosystem of tools that teams can deploy ad hoc or integrate as the complete Kubeflow platform. The mission is simple: empower practicioners to focus on models, not manifests, so everyone can stop wrestling with infrastructure and start tackling the ML frontier together." image_anchor="center" color="dark" %}}
+<div class="mt-4 d-flex justify-content-center">
+  <a class="btn btn-lg btn-primary mx-1 mb-3 mb-sm-0 px-5 py-3 shadow" href="https://www.kubeflow.org/docs/started/">
+    Get Started
+    <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+  </a>
+  <a class="btn btn-lg btn-secondary mx-1 mb-3 mb-sm-0 px-4 py-3 shadow"
+    href="https://www.kubeflow.org/docs/started/installing-kubeflow/">
+    Deploy Kubeflow
+    <i class="fas fa-download ml-2"></i>
+  </a>
+  <a class="btn btn-lg btn-secondary mx-1 mb-3 mb-sm-0 px-4 py-3 shadow" href="/docs/about/contributing/">
+    Contribute
+    <i class="fas fa-pencil-alt ml-2"></i>
+  </a>
+  <a class="btn btn-lg btn-info mx-1 mb-3 mb-sm-0 px-4 py-3 shadow" href="/docs/genai/use-cases/">
+    GenAI
+    <i class="fas fa-brain ml-2"></i>
+  </a>
 </div>
-{{</blocks/cover>}}
+{{% /blocks/cover %}}
 
-<div id="community-stats" class="text-center">
+<div id="community-stats" class="text-center mt-3 mb-4 pb-2">
   <div class="container">
     <h3 class="section-head">
       <span class="border-bottom pb-2">Open Source. Battle-Tested. Community Built.</span>
     </h3>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-3">
       <div class="col-md-4 mb-3 mb-md-0">
-        <a href="https://insights.linuxfoundation.org/project/kubeflow" target="_blank" rel="noopener" class="stat-card-link">
+        <a href="https://insights.linuxfoundation.org/project/kubeflow" target="_blank" rel="noopener"
+          class="stat-card-link">
           <div class="stat-card">
             <div class="stat-number">258M+</div>
             <div class="stat-label">PyPI Downloads</div>
@@ -41,7 +41,8 @@ title = "Kubeflow"
         </a>
       </div>
       <div class="col-md-4 mb-3 mb-md-0">
-        <a href="https://insights.linuxfoundation.org/project/kubeflow" target="_blank" rel="noopener" class="stat-card-link">
+        <a href="https://insights.linuxfoundation.org/project/kubeflow" target="_blank" rel="noopener"
+          class="stat-card-link">
           <div class="stat-card">
             <div class="stat-number">33.1K+</div>
             <div class="stat-label">GitHub Stars</div>
@@ -49,7 +50,8 @@ title = "Kubeflow"
         </a>
       </div>
       <div class="col-md-4 mb-3 mb-md-0">
-        <a href="https://insights.linuxfoundation.org/project/kubeflow" target="_blank" rel="noopener" class="stat-card-link">
+        <a href="https://insights.linuxfoundation.org/project/kubeflow" target="_blank" rel="noopener"
+          class="stat-card-link">
           <div class="stat-card">
             <div class="stat-number">3K</div>
             <div class="stat-label">Contributors</div>
@@ -60,26 +62,282 @@ title = "Kubeflow"
   </div>
 </div>
 
-<div id="overview" class="text-center">
+
+<div id="overview" class="text-center mt-5 mb-5 pb-4">
   <div class="container">
-    <h3 class="section-head">
-      <span class="border-bottom pb-2">What is Kubeflow?</span>
+    <h3 class="section-head mb-4">
+      <span class="border-bottom pb-2">An Ecosystem of Tools AND a Cohesive Platform.</span>
     </h3>
-    <p class="mx-auto col-11 col-xl-7 px-0">
-      Kubeflow is the foundation of tools for AI Platforms on Kubernetes.
-      <br><br>
-      AI platform teams can build on top of Kubeflow by using each project independently or deploying the
-      entire AI reference platform to meet their specific needs. The Kubeflow AI reference platform is
-      composable, modular, portable, and scalable, backed by an <i>ecosystem</i> of Kubernetes-native
-      <a href="/docs/started/architecture/#kubeflow-ecosystem" target="_blank">projects</a> for each stage of 
-      <a href="/docs/started/architecture/#kubeflow-projects-in-the-ai-lifecycle" target="_blank">the AI lifecycle</a>.
-      <br><br>
-      <a href="/docs/started/installing-kubeflow/" target="_blank">Deploy Kubeflow</a> anywhere you run <a href="https://kubernetes.io/" target="_blank">Kubernetes.</a>
-    </p>
+    <div class="mx-auto col-11 col-xl-8 px-0 text-left mb-5" style="font-size: 1.1rem; line-height: 1.8;">
+      <p class="mb-4">
+        Born from a mission to bridge two distinct worlds—cloud-native infrastructure ("Kube") and machine learning
+        workflows ("Flow")—Kubeflow was created to solve the "Platform Problem." As AI demands scale, modern ML efforts
+        are often spent on wrestling with a disconnected portfolio of tools that create friction instead of value.
+      </p>
+
+      <p class="mb-4">
+        This unifying mission is alive today in Kubeflow's ecosystem of maintainers and expert contributors, working
+        closely together on a shared vision of interoperability across projects like Pipelines, Notebooks, Trainer, and
+        more. With Kubeflow, teams can deploy ML workloads on any Kubernetes cluster, tailoring the environment to meet
+        their exact machine learning needs. By uniting the Kubernetes and ML communities, the result is clear: Data
+        Scientists get the centralized experience they need, and Platform Engineers can confidently rely on Kubeflow to
+        abstract their infrastructure complexity away.
+
+        In the end, the Kubeflow community works tirelessly to reduce operational friction so we all can focus on what
+        matters: our AI applications.
+      </p>
+      <div class="text-center mt-4">
+        <p class="text-muted font-italic mb-2">Scroll to learn more, or dive straight into our documentation.</p>
+        <a href="https://www.kubeflow.org/docs/" class="btn btn-outline-primary mt-2">Explore the Kubeflow Docs <i
+            class="fas fa-arrow-right ml-1"></i></a>
+      </div>
+    </div>
   </div>
 </div>
 
-<div id="adopters" class="text-center">
+<section id="pageContent" class="mt-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h3 class="section-head text-center mb-4">
+        <span class="border-bottom pb-2">What Workloads Run On Kubeflow?</span>
+      </h3>
+      <div class="mx-auto col-11 col-xl-8 px-0 text-left" style="font-size: 1.1rem; line-height: 1.8;">
+        <p class="mb-4">
+          The Kubeflow ecosystem builds specialized components that teams across the community rely on to tackle
+          everything from traditional predictive models to complex generative AI:
+        </p>
+        <ul class="mb-4">
+          <li class="mb-2"><strong>Develop (Notebooks):</strong> Spin up interactive, collaborative environments to
+            write code and experiment.</li>
+          <li class="mb-2"><strong>Train (Kubeflow Trainer):</strong> Fine-tune LLMs and train distributed foundation
+            models at scale.</li>
+          <li class="mb-2"><strong>Optimize (Katib):</strong> Automate hyperparameter tuning and optimize advanced
+            architectures like agentic RAG.</li>
+          <li class="mb-2"><strong>Process (Spark Operator):</strong> Prepare and process massive datasets natively on
+            Kubernetes.</li>
+          <li class="mb-2"><strong>Track (Dashboard):</strong> Monitor complex experiments and visualize runs through a
+            centralized UI.</li>
+          <li class="mb-2"><strong>Serve (KServe):</strong> Deploy, monitor, and scale generative and predictive models
+            directly to production.</li>
+          <li class="mb-2"><strong>Manage (Model Registry):</strong> Index, version, and manage ML models and artifact
+            metadata to bridge the gap between experimentation and production.</li>
+          <li class="mb-2"><strong>Orchestrate (Pipelines):</strong> Unify the entire ML lifecycle, enabling teams to
+            build, share, and iterate on reusable components.</li>
+        </ul>
+
+
+        <div class="mt-5 text-center">
+          <p class="mb-3 text-dark" style="font-size: 1.15rem;">
+            <strong>Kubeflow has plenty of use cases! You can learn more about our GenAI use cases, as well as check out
+              how our community uses Kubeflow on the Kubeflow blog!</strong>
+          </p>
+          <div class="d-flex justify-content-center mb-4">
+            <a href="/docs/genai/use-cases/" class="btn btn-info mx-2 shadow">
+              GenAI Use Cases <i class="fas fa-brain ml-1"></i>
+            </a>
+            <a href="https://blog.kubeflow.org/" target="_blank" rel="noopener" class="btn btn-secondary mx-2 shadow">
+              Kubeflow Blog <i class="fas fa-external-link-alt ml-1"></i>
+            </a>
+          </div>
+          <p class="mb-0 text-muted">
+            Have a great Kubeflow use case? Join our <a
+              href="https://www.kubeflow.org/docs/about/community/#list-of-available-meetings" target="_blank"
+              rel="noopener">community calls</a> or open a <a href="https://github.com/kubeflow/website" target="_blank"
+              rel="noopener">GitHub PR</a> to get your team's story featured on the official website.
+          </p>
+        </div>
+
+        <p class="mb-2 text-center mt-5">
+          <strong>Explore the individual project tiles below to learn more about each tool, or keep scrolling to launch
+            your first deployment.</strong>
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-deck">
+    <div class="card">
+      <a href="/docs/components/spark-operator/overview/" target="_blank" rel="noopener">
+        <img
+          src="https://raw.githubusercontent.com/cncf/artwork/3aee90da35b1006585f93d0c66dcef496ec376f8/projects/kubeflow-spark-operator/stacked/png/stacked-color.png"
+          class="card-img-top" draggable="false" style="padding: 1rem;  height: 250px;" alt="Spark Operator Logo" />
+      </a>
+      <div class="card-body bg-primary-dark">
+        <div class="card-title">Kubeflow Spark Operator</div>
+        <p class="card-text">
+          <a target="_blank" rel="noopener" href="/docs/components/spark-operator/overview/">Kubeflow Spark
+            Operator</a>
+          aims to make specifying and running Spark applications as easy and idiomatic as running other workloads on
+          Kubernetes.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <a href="/docs/components/notebooks/overview/" target="_blank" rel="noopener">
+        <img
+          src="https://raw.githubusercontent.com/cncf/artwork/3aee90da35b1006585f93d0c66dcef496ec376f8/projects/kubeflow-notebooks/stacked/color/stacked-color.png"
+          class="card-img-top" draggable="false" style="padding: 1rem;  height: 250px" alt="Kubeflow Notebooks Logo" />
+      </a>
+      <div class="card-body bg-primary-dark">
+        <div class="card-title">Kubeflow Notebooks</div>
+        <p class="card-text">
+          <a target="_blank" rel="noopener" href="/docs/components/notebooks/overview/">Kubeflow Notebooks</a> provide
+          interactive development environments for AI, ML, and Data workloads on Kubernetes.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener">
+        <img
+          src="https://raw.githubusercontent.com/cncf/artwork/3aee90da35b1006585f93d0c66dcef496ec376f8/projects/kubeflow-trainer/stacked/color/Kubeflow-Trainer-Logo_stacked-color.png"
+          class="card-img-top" draggable="false" style="padding: 1rem;  height: 250px" alt="Kubeflow Trainer logo" />
+      </a>
+      <div class="card-body bg-primary-dark">
+        <div class="card-title">Kubeflow Trainer</div>
+        <p class="card-text">
+          <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener">Kubeflow Trainer</a> is a
+          Kubernetes-native project for LLM fine-tuning and enabling scalable, distributed training across a wide
+          range
+          of AI frameworks, including PyTorch, HuggingFace, DeepSpeed, MLX, JAX, XGBoost, and others.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <a href="/docs/components/katib/overview/" target="_blank" rel="noopener">
+        <img src="/docs/images/logos/katib.png" class="card-img-top" draggable="false"
+          style="padding: 1rem;  height: 250px" alt="Katib Logo" />
+      </a>
+      <div class="card-body bg-primary-dark">
+        <div class="card-title">Kubeflow Katib</div>
+        <p class="card-text">
+          <a target="_blank" rel="noopener" href="/docs/components/katib/overview/">Kubeflow Katib</a> is a
+          Kubernetes-native project for automated machine learning (AutoML) with support for hyperparameter tuning,
+          early stopping, and neural architecture search.
+        </p>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="card-deck">
+    <div class="card">
+      <a href="https://kserve.github.io/website/" target="_blank" rel="noopener">
+        <img src="/docs/images/logos/kserve.png" class="card-img-top" draggable="false"
+          style="padding: 1rem;  height: 250px" alt="KServe Logo" />
+      </a>
+      <div class="card-body bg-primary-dark">
+        <div class="card-title">Kubeflow KServe</div>
+        <p class="card-text">
+          <a href="/docs/components/kserve/introduction/" target="_blank" rel="noopener">KServe</a> is a standardized
+          distributed generative and predictive AI inference platform for scalable, multi-framework deployment on
+          Kubernetes.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <a href="/docs/components/model-registry/overview/" target="_blank" rel="noopener">
+        <img
+          src="https://raw.githubusercontent.com/cncf/artwork/3aee90da35b1006585f93d0c66dcef496ec376f8/projects/kubeflow-model-registery/Kubeflow-ModelRegistry-Logo_stacked-color.png"
+          class="card-img-top" draggable="false" style="padding: 1rem;  height: 250px"
+          alt="Kubeflow Model Registry logo" />
+      </a>
+      <div class="card-body bg-primary-dark">
+        <div class="card-title">Kubeflow Model Registry</div>
+        <p class="card-text">
+          <a href="/docs/components/model-registry/overview/" target="_blank" rel="noopener">Kubeflow Model
+            Registry</a>
+          is a cloud-native component that provides a single pane of glass for ML model developers to index and manage
+          models, versions, and ML artifact metadata. It fills a gap between model experimentation and production
+          activities.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <a href="/docs/components/pipelines/overview/" target="_blank" rel="noopener">
+        <img src="/docs/images/logos/kubeflow.png" class="card-img-top" draggable="false"
+          style="padding: 1rem;  height: 250px" alt="Kubeflow Pipelines Logo" />
+      </a>
+      <div class="card-body bg-primary-dark">
+        <div class="card-title">Kubeflow Pipelines</div>
+        <p class="card-text">
+          <a target="_blank" rel="noopener" href="/docs/components/pipelines/overview/">Kubeflow Pipelines</a> (KFP)
+          is
+          a platform for building then deploying portable and scalable machine learning workflows using Kubernetes.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener">
+        <img src="/docs/images/logos/dashboard.png" class="card-img-top" draggable="false"
+          style="padding: 1rem;  height: 250px" alt="Dashboard Icon" />
+      </a>
+      <div class="card-body bg-primary-dark">
+        <div class="card-title">Kubeflow Dashboard</div>
+        <p class="card-text">
+          <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener">Kubeflow Central
+            Dashboard</a> is our hub which connects the authenticated web interfaces of Kubeflow and other ecosystem
+          components.
+        </p>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="card-columns">
+    <div class="card" style="visibility: hidden;">
+    </div>
+  </div>
+  <br />
+
+  <div class="container mt-2 mb-4">
+    <div class="text-center">
+      <p class="mb-4 text-center" style="font-size: 1.15rem;">
+        <strong>All unified by the <a href="https://github.com/kubeflow/sdk" target="_blank" rel="noopener">Kubeflow
+            SDK</a>&#8212;a unified set of Pythonic APIs designed to accelerate
+          time-to-value
+          without requiring deep Kubernetes expertise.</strong>
+      </p>
+      <div class="mx-auto col-11 col-xl-8 px-0 text-left">
+        <div class="text-center mt-4 mb-2 py-4 bg-light rounded border shadow-sm">
+          <h5 class="text-muted mb-3 font-weight-normal">Experience the ease of the Kubeflow SDK</h5>
+          <code class="font-weight-bold text-dark px-4 py-2 bg-white border rounded" style="font-size: 1.3rem;">
+            <i class="fas fa-terminal mr-2 text-muted"></i>pip install -U kubeflow
+          </code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="getting-started" class="text-center mt-5 mb-5 py-5">
+  <div class="container">
+    <h3 class="section-head mb-4">
+      <span class="border-bottom pb-2">Getting Started with Kubeflow</span>
+    </h3>
+    <div class="mx-auto col-11 col-xl-8 px-0 text-left mb-5" style="font-size: 1.1rem; line-height: 1.8;">
+      <p class="mb-4">
+        Building real AI products requires tools that adapt to unique workflows. Ready to get more models into
+        production? Our Getting Started guide outlines deployment paths tailored perfectly to various architectural
+        needs. Adopters can build a highly customized, production-ready MLOps foundation using robust community
+        manifests, or leverage a packaged, conformant distribution for a more opinionated deployment. Kubeflow is
+        commited to giving Platform Engineers the infrastructure control they require while ensuring they meet the needs
+        of their data science and machine learning counterparts.
+      </p>
+    </div>
+
+    <div class="mx-auto col-11 col-xl-8 px-0 mt-5 pt-4 text-center">
+      <blockquote class="blockquote">
+        <p class="font-italic font-weight-bold text-primary" style="font-size: 1.35rem; line-height: 1.6;">
+          "We believe Kubeflow is the gold standard for AI/ML on Kubernetes. We are committed to ensuring it empowers
+          the next decade of AI and ML workloads."
+        </p>
+      </blockquote>
+      <a class="btn btn-lg btn-primary mt-4 px-5 py-3 shadow" href="https://www.kubeflow.org/docs/started/">
+        Read the Getting Started Guide
+        <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<div id="adopters" class="text-center mt-5 mb-5 pb-4">
   <div class="container">
     <h3 class="section-head">
       <span class="border-bottom pb-2">Trusted by</span>
@@ -98,223 +356,59 @@ title = "Kubeflow"
         <img class="adopter-logo show_light-only" src="/docs/images/logos/aws-light.svg" alt="AWS Logo">
         <img class="adopter-logo show_dark-only" src="/docs/images/logos/aws-dark.svg" alt="AWS Logo">
       </div>
-      
-      <!-- DHL (Organization Contact: @juliusvonkohout)
-      <div class="px-5 py-4">
-        <img class="adopter-logo show_light-only" src="/docs/images/logos/dhl-light.svg" alt="DHL Logo">
-        <img class="adopter-logo show_dark-only" src="/docs/images/logos/dhl-dark.svg" alt="DHL Logo">
-      </div>
-      -->
 
       <!-- Oracle (Organization Contact: TBA) -->
       <div class="px-5 py-4">
         <img class="adopter-logo show_light-only" src="/docs/images/logos/oracle-light.png" alt="Oracle Logo">
         <img class="adopter-logo show_dark-only" src="/docs/images/logos/oracle-dark.png" alt="Oracle Logo">
       </div>
-      
+
       <!-- RedHat (Organization Contact: TBA) -->
       <div class="px-5 py-4">
         <img class="adopter-logo show_light-only" src="/docs/images/logos/redhat-light.svg" alt="RedHat Logo">
         <img class="adopter-logo show_dark-only" src="/docs/images/logos/redhat-dark.svg" alt="RedHat Logo">
       </div>
-      
-    </div>
-    <div>
-      <a class="btn btn-lg btn-outline-primary" href="https://github.com/kubeflow/community/blob/master/ADOPTERS.md" target="_blank" rel="noopener">
-        see more adopters on <i class="fab fa-github ml-1"></i>
-      </a>
-    </div>
-  </div>
-</div>
 
-<section id="pageContent">
-  <div class="container">
-    <h3 class="section-head text-center">
-      <span class="border-bottom pb-2">Kubeflow Projects</span>
-    </h3>
-    <div class="card-deck">
-      <div class="card">
-        <a href="/docs/components/spark-operator/overview/" target="_blank" rel="noopener" >
-          <img
-            src="https://raw.githubusercontent.com/cncf/artwork/3aee90da35b1006585f93d0c66dcef496ec376f8/projects/kubeflow-spark-operator/stacked/png/stacked-color.png"
-            class="card-img-top"
-            draggable="false"
-            style="padding: 1rem;  height: 250px;"
-            alt="Spark Operator Logo"
-          />
-        </a>
-        <div class="card-body bg-primary-dark">
-          <div class="card-title">Kubeflow Spark Operator</div>
-          <p class="card-text">
-            <a target="_blank" rel="noopener" href="/docs/components/spark-operator/overview/">Kubeflow Spark Operator</a> aims to make specifying and running Spark applications as easy and idiomatic as running other workloads on Kubernetes.
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <a href="/docs/components/notebooks/overview/" target="_blank" rel="noopener" >
-          <img
-            src="https://raw.githubusercontent.com/cncf/artwork/3aee90da35b1006585f93d0c66dcef496ec376f8/projects/kubeflow-notebooks/stacked/color/stacked-color.png"
-            class="card-img-top"
-            draggable="false"
-            style="padding: 1rem;  height: 250px"
-            alt="Kubeflow Notebooks Logo"
-          />
-        </a>
-        <div class="card-body bg-primary-dark">
-          <div class="card-title">Kubeflow Notebooks</div>
-          <p class="card-text">
-            <a target="_blank" rel="noopener" href="/docs/components/notebooks/overview/">Kubeflow Notebooks</a> runs interactive development environments for AI, ML, and Data workloads on Kubernetes.
-          </p>
-        </div>
-      </div>
-     <div class="card">
-        <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener" >
-          <img
-            src="https://raw.githubusercontent.com/cncf/artwork/3aee90da35b1006585f93d0c66dcef496ec376f8/projects/kubeflow-trainer/stacked/color/Kubeflow-Trainer-Logo_stacked-color.png"
-            class="card-img-top"
-            draggable="false"
-            style="padding: 1rem;  height: 250px"
-            alt="Kubeflow Trainer logo"
-          />
-        </a>
-        <div class="card-body bg-primary-dark">
-          <div class="card-title">Kubeflow Trainer</div>
-          <p class="card-text">
-            <a href="/docs/components/trainer/overview/" target="_blank" rel="noopener">Kubeflow Trainer</a> is a Kubernetes-native project for LLMs fine-tuning and enabling scalable, distributed training across
-            a wide range of AI frameworks, including PyTorch, HuggingFace, DeepSpeed, MLX, JAX, XGBoost, and others.
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <a href="/docs/components/katib/overview/" target="_blank" rel="noopener" >
-          <img
-            src="/docs/images/logos/katib.png"
-            class="card-img-top"
-            draggable="false"
-            style="padding: 1rem;  height: 250px"
-            alt="Katib Logo"
-          />
-        </a>
-        <div class="card-body bg-primary-dark">
-          <div class="card-title">Kubeflow Katib</div>
-          <p class="card-text">
-            <a target="_blank" rel="noopener" href="/docs/components/katib/overview/">Kubeflow Katib</a> is a Kubernetes-native project for automated machine learning (AutoML) with support for hyperparameter tuning, early stopping and neural architecture search.
-          </p>
-        </div>
-      </div>  
     </div>
-    <br />
-    <div class="card-deck">
-      <div class="card">
-        <a href="https://kserve.github.io/website/" target="_blank" rel="noopener" >
-          <img
-            src="/docs/images/logos/kserve.png"
-            class="card-img-top"
-            draggable="false"
-            style="padding: 1rem;  height: 250px"
-            alt="KServe Logo"
-          />
-        </a>
-        <div class="card-body bg-primary-dark">
-          <div class="card-title">Kubeflow KServe</div>
-          <p class="card-text">
-            <a href="/docs/components/kserve/introduction/" target="_blank" rel="noopener">KServe</a> is a standardized distributed generative and predictive AI inference platform for scalable, multi-framework deployment on Kubernetes.
-          </p>
-        </div>
-      </div>
-     <div class="card">
-        <a href="/docs/components/model-registry/overview/" target="_blank" rel="noopener" >
-          <img
-            src="https://raw.githubusercontent.com/cncf/artwork/3aee90da35b1006585f93d0c66dcef496ec376f8/projects/kubeflow-model-registery/Kubeflow-ModelRegistry-Logo_stacked-color.png"
-            class="card-img-top"
-            draggable="false"
-            style="padding: 1rem;  height: 250px"
-            alt="Kubeflow Model Registry logo"
-          />
-        </a>
-        <div class="card-body bg-primary-dark">
-          <div class="card-title">Kubeflow Model Registry</div>
-          <p class="card-text">
-            <a href="/docs/components/model-registry/overview/" target="_blank" rel="noopener">Kubeflow Model Registry</a> is a cloud-native component that provides a single pane of glass for ML model developers to index and manage models, versions, and ML artifacts metadata.
-            It fills a gap between model experimentation and production activities.
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <a href="/docs/components/pipelines/overview/" target="_blank" rel="noopener" >
-          <img
-            src="/docs/images/logos/kubeflow.png"
-            class="card-img-top"
-            draggable="false"
-            style="padding: 1rem;  height: 250px"
-            alt="Kubeflow Pipelines Logo"
-          />
-        </a>
-        <div class="card-body bg-primary-dark">
-          <div class="card-title">Kubeflow Pipelines</div>
-          <p class="card-text">
-            <a target="_blank" rel="noopener" href="/docs/components/pipelines/overview/">Kubeflow Pipelines</a> (KFP) is a platform for building then deploying portable and scalable machine learning workflows using Kubernetes.
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener" >
-          <img
-            src="/docs/images/logos/dashboard.png"
-            class="card-img-top"
-            draggable="false"
-            style="padding: 1rem;  height: 250px"
-            alt="Dashboard Icon"
-          />
-        </a>
-        <div class="card-body bg-primary-dark">
-          <div class="card-title">Kubeflow Dashboard</div>
-          <p class="card-text">
-            <a href="/docs/components/central-dash/overview/" target="_blank" rel="noopener">Kubeflow Central Dashboard</a> is our hub which connects the authenticated web interfaces of Kubeflow and other ecosystem components.
-          </p>
-        </div>
-      </div>
-    </div>
-    <br />
-    <div class="card-columns">
-     <div class="card" style="visibility: hidden;">
-        <!-- For future editors: used this card to center the Model Registry card below; you can re-use at next iteration to fill the content -->
-     </div>
-      <!-- For future editors: there is still place here for 2 more cards, before transforming the wrapper into a 'card-deck'. -->
-    </div>
-    <br />
-    <!-- For future editors: If you are adding cards not in multiples of 3, wrap them in a 'card-columns' div instead of card-deck.
-         It will look more pleasing to the eye. -->
-  </div>
-</section>
 
-<div id="community" class="text-center">
-  <div class="container">
-    <h3 class="section-head">
-      <span class="border-bottom pb-2">Join our Community</span>
-    </h3>
-    <p class="mx-auto col-md-7 px-0">
-      We are an open and welcoming <a href="/docs/about/community/" target="_blank" rel="noopener">community</a> of software developers, data scientists, and organizations!
-      Check out the <a href="/docs/about/community/#list-of-available-meetings">weekly community calls</a>, get involved in discussions on the <a href="/docs/about/community/#kubeflow-mailing-list">mailing list</a> or chat with others on the <a href="/docs/about/community/#kubeflow-slack-channels">Slack Workspace</a>!
-    </p>
+    <div class="mt-4 mb-4 pb-4 border-bottom">
+      <p class="mb-0 text-muted" style="font-size: 1.1rem;">
+        Want to see your logo here? <a href="https://github.com/kubeflow/community/blob/master/ADOPTERS.md"
+          target="_blank" rel="noopener" class="font-weight-bold">Open an issue or reach out on the adopters repo</a>,
+        open a PR, or create an issue on the <a href="https://github.com/kubeflow/website" target="_blank"
+          rel="noopener" class="font-weight-bold">website GitHub</a>.
+      </p>
+    </div>
+
+    <!-- Joined Community Section directly into the working Adopters block -->
+    <div id="join-community-inner" class="text-center pt-5 pb-5">
+      <h3 class="section-head text-primary">
+        <span class="border-bottom pb-2">Join our Community</span>
+      </h3>
+      <div class="mx-auto col-11 col-xl-8 px-0 mt-4 text-dark" style="font-size: 1.1rem">
+        <p class="mb-3">
+          We are an open and welcoming community of software developers, data scientists, and organizations!
+        </p>
+        <p>
+          Check out the <a href="https://www.kubeflow.org/docs/about/community/"
+            class="text-info font-weight-bold">weekly
+            community calls</a>, get involved in discussions on the <a
+            href="https://www.kubeflow.org/docs/about/community/" class="text-info font-weight-bold">mailing list</a> or
+          chat with others on the <a href="https://www.kubeflow.org/docs/about/community/"
+            class="text-info font-weight-bold">Slack Workspace</a>!
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 
 <div id="cncf" class="text-center">
   <div class="container">
     <div class="mx-auto col-md-4">
-      <img
-          src="/docs/images/logos/cncf.svg"
-          draggable="false"
-          class="show_light-only img-fluid
-          alt="Cloud Native Computing Foundation Logo"
-      />
-      <img
-          src="/docs/images/logos/cncf-white.svg"
-          draggable="false"
-          class="show_dark-only img-fluid
-          alt="Cloud Native Computing Foundation Logo"
-      />
+      <img src="/docs/images/logos/cncf.svg" draggable="false" class="show_light-only img-fluid"
+        alt=" Cloud Native Computing Foundation Logo" />
+      <img src="/docs/images/logos/cncf-white.svg" draggable="false" class="show_dark-only img-fluid"
+        alt=" Cloud Native Computing Foundation Logo" />
     </div>
     <div class="cncf-title">We are a Cloud Native Computing Foundation project.</div>
   </div>
