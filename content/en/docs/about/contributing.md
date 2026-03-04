@@ -72,7 +72,6 @@ To ensure smooth collaboration and avoid duplicate work, please follow these gui
 - **Self-assign before starting work**: When you decide to work on an issue, assign yourself to it first by commenting `/assign` or manually assigning yourself. This signals to others that you're working on it and prevents duplicate efforts.
   - If multiple people have commented expressing interest but no one has self-assigned yet, the first person to actually self-assign gets the issue
   - Simply commenting "I'd like to work on this" without self-assigning doesn't reserve the issue
-  - If you're interested in an issue where others have also expressed interest, go ahead and self-assign (using `/assign`) to claim it
 - **Communicate before taking over**: If you want to work on an assigned issue:
   - Check the activity on the issue - has the assignee been active recently?
   - If the assignee has been inactive for more than 2-3 weeks, you can politely ask in a comment if they're still working on it
@@ -87,6 +86,8 @@ To ensure smooth collaboration and avoid duplicate work, please follow these gui
   - Review the existing PR first
   - If you have improvements or a different approach, consider commenting on the existing PR or coordinating with its author
   - Avoid creating duplicate PRs unless coordinated with maintainers
+  - If it is agreed that you are taking over an existing PR, address the remaining review comments clearly in the newly created PR.
+
 - **Respect the assignment**: Don't create a PR for an issue that's assigned to someone else unless:
   - You've coordinated with them
   - The issue has been reassigned to you
