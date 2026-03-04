@@ -62,6 +62,38 @@ To find Kubeflow issues that make good entry points:
   For example, see these issues in the [kubeflow/kubeflow repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 - Examine the issues in any of the [Kubeflow repositories](https://github.com/kubeflow).
 
+### Issue assignment and PR etiquette
+
+To ensure smooth collaboration and avoid duplicate work, please follow these guidelines when working on issues:
+
+#### Before starting work on an issue
+
+- **Check if the issue is already assigned**: If an issue already has someone assigned to it, that person is actively working on it. Do not assign yourself to that issue or create a PR for it without coordination.
+- **Self-assign before starting work**: When you decide to work on an issue, assign yourself to it first by commenting `/assign` or manually assigning yourself. This signals to others that you're working on it and prevents duplicate efforts.
+  - If multiple people have commented expressing interest but no one has self-assigned yet, the first person to actually self-assign gets the issue
+  - Simply commenting "I'd like to work on this" without self-assigning doesn't reserve the issue
+  - If you're interested in an issue where others have also expressed interest, go ahead and self-assign (using `/assign`) to claim it
+- **Communicate before taking over**: If you want to work on an assigned issue:
+  - Check the activity on the issue - has the assignee been active recently?
+  - If the assignee has been inactive for more than 2-3 weeks, you can politely ask in a comment if they're still working on it
+  - Wait for a response before assigning yourself or starting work
+  - Maintainers can help reassign stale issues if needed
+- **One issue, one assignee**: Issues should generally have only one person assigned at a time. If you'd like to collaborate, coordinate with the current assignee first.
+
+#### When creating a pull request
+
+- **Link your PR to the issue**: Always reference the issue number in your PR description (e.g., "Fixes #123" or "Closes #456"). This helps track progress and prevents duplicate PRs.
+- **Check for existing PRs**: Before creating a PR, check if there's already an open PR addressing the same issue. If there is:
+  - Review the existing PR first
+  - If you have improvements or a different approach, consider commenting on the existing PR or coordinating with its author
+  - Avoid creating duplicate PRs unless coordinated with maintainers
+- **Respect the assignment**: Don't create a PR for an issue that's assigned to someone else unless:
+  - You've coordinated with them
+  - The issue has been reassigned to you
+  - A maintainer has explicitly asked for additional contributions
+
+Following these guidelines helps maintain a collaborative and efficient community, reduces wasted effort, and ensures everyone's contributions are valued.
+
 ## Owners files and PR workflow
 
 Our PR workflow is nearly identical to Kubernetes'.
