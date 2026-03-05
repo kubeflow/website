@@ -175,6 +175,9 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/notebooks/troubleshoot                   /docs/components/notebooks/troubleshooting
 /docs/components/notebooks/why-use-jupyter-notebook       /docs/components/notebooks/overview
 
+# Redirect page for the default link in the Notebooks v2 pre-ga banner
+/docs/components/notebooks/notebooks-v2-pre-ga-banner         https://github.com/kubeflow/notebooks/wiki/Kubeflow-Notebooks-v2 302
+
 # Refactor Pipelines section
 /docs/components/pipelines/caching                            /docs/components/pipelines/legacy-v1/overview/caching
 /docs/components/pipelines/caching-v2                         /docs/components/pipelines/user-guides/core-functions/caching
