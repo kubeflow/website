@@ -895,6 +895,100 @@ nav.foldable-nav {
   a > code {
     color: unset;
   }
+
+  // a11y: links distinguishable without color alone (underline, focus)
+  a:not(.btn) {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// a11y: same for homepage content sections (links not relying on color only)
+#overview a:not(.btn),
+#community a:not(.btn),
+#pageContent a:not(.btn) {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+// --------------------------------------------------
+// a11y: sufficient contrast for navbar badges and adopters button
+// --------------------------------------------------
+.td-navbar .badge-warning {
+  background-color: #b38600;
+  color: #fff;
+}
+
+// Adopters button: ensure 4.5:1+ contrast (light theme = dark blue on light bg)
+[data-theme="light"] #adopters .btn-outline-primary {
+  color: #003d99;
+  border-color: #003d99;
+  font-weight: 500;
+
+  &:hover {
+    color: #fff;
+    background-color: #003d99;
+    border-color: #003d99;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #003d99;
+    outline-offset: 2px;
+  }
+}
+
+// Adopters button: dark theme = light blue on dark bg
+[data-theme="dark"] #adopters .btn-outline-primary {
+  color: #7eb8ff;
+  border-color: #7eb8ff;
+  font-weight: 500;
+
+  &:hover {
+    color: #0d1117;
+    background-color: #7eb8ff;
+    border-color: #7eb8ff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #7eb8ff;
+    outline-offset: 2px;
+  }
+}
+
+// Fallback when data-theme not set (e.g. no-JS)
+#adopters .btn-outline-primary {
+  font-weight: 500;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+// a11y: sufficient contrast for main content area (background and text)
+.td-main main {
+  background-color: $body-bg;
+  color: $body-color;
+}
+
+[data-theme="light"] .td-main main {
+  background-color: #ffffff;
+  color: #212529;
+}
+
+[data-theme="dark"] .td-main main {
+  background-color: #0d1117;
+  color: #e6edf3;
 }
 
 // --------------------------------------------------

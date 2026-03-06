@@ -69,7 +69,7 @@ ignoreFiles = []
   [[menu.main]]
     name = "" 
     weight = -1000
-    pre = "<span style='display:inline-flex; align-items:center;'><img src='/events/images/cloud-native-ai-2025.png' style='height:60px; width:auto; margin-right:8px;'><span style='display:flex; flex-direction:column; justify-content:center;'><span class='badge badge-warning' style='margin-bottom:4px;'>March 23rd, 2026</span><span class='badge badge-warning'>Amsterdam, Netherlands</span></span></span>"
+    pre = "<span style='display:inline-flex; align-items:center;'><img src='/events/images/cloud-native-ai-2025.png' alt='Cloud Native AI 2025 event' style='height:60px; width:auto; margin-right:8px;'><span style='display:flex; flex-direction:column; justify-content:center;'><span class='badge badge-warning' style='margin-bottom:4px;'>March 23rd, 2026</span><span class='badge badge-warning'>Amsterdam, Netherlands</span></span></span>"
     post = ""
     url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/cloud-native-ai-kubeflow-day/"
 #  [[menu.main]]
