@@ -5,7 +5,7 @@ weight = 30
 aliases = ["/docs/ai-policy/"]
 +++
 
-AI tools may be used to draft or review code/docs, but the human contributor remains fully responsible for every change: you must understand it, verify it (build/lint/test), and be able to explain it during review, your PR may be closed if you can’t.
+AI tools may be used to draft or review code/documentation, but the human contributor remains fully responsible for every change: you must understand it, verify it (build/lint/test), and be able to explain it during review, your PR may be closed if you cannot
 
 Disclose substantial AI assistance in the PR description, make sure to add `Co-authored-by: [Agent Name]` and avoid oversized, mass-generated PRs or AI-generated commit messages.
 
