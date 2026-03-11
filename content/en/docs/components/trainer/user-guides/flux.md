@@ -46,15 +46,22 @@ We are part of the High Performance Software Foundation ([HPSF](https://hpsf.io/
 ## Quick Start
 
 You'll need to first install the Kubeflow Trainer.
-Apply the directory containing the `ClusterTrainingRuntime` and the `TrainJob`:
 
 ```bash
-kubectl apply -f examples/flux
+kubectl apply --server-side -k "https://github.com/kubeflow/trainer.git/manifests/overlays/manager?ref=master"
 ```
+
+This LAMMPS example assumes two small nodes. You can retrieve and alter the LAMMPS manifest to increase the problem size if you have more than that. Apply the `ClusterTrainingRuntime` and the `TrainJob`:
+
+```bash
+kubectl apply --server-side -f https://raw.githubusercontent.com/kubeflow/trainer/refs/heads/master/examples/flux/flux-runtime.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/trainer/refs/heads/master/examples/flux/lammps-train-job.yaml
+```
+If you get error messages about the webhook, you need to wait a little longer.
 
 ### 1. Monitor the Job
 
-Watch for the pods to be created. You will see a replicated job named `node`.
+Watch for the pods to be created, and wait for them to be `Running`.
 
 ```bash
 kubectl get pods -w
@@ -66,7 +73,13 @@ You'll see the InitContainer, and then PodInitializing is usually a container pu
 To see the Flux broker initialization and the output of the LAMMPS job, check the logs of the lead broker (pod index `0-0`):
 
 ```bash
-kubectl logs lammps-flux-interactive-node-0-0-tsqbp -c node -f
+kubectl logs lammps-flux-node-0-0-mvjsf -c node -f
+```
+
+You can look at the second pod to see the follower broker bootstrap with the lead broker, and then cleanup when LAMMPS is done running.
+
+```bash
+kubectl logs lammps-flux-node-0-1-glj22 -c node -f
 ```
 
 ## Interactive Mode
@@ -75,14 +88,19 @@ A cool feature of the Flux plugin is the ability to launch an interactive HPC cl
 
 ### Switch to Interactive Mode
 
-To use interactive mode, edit `lammps-train-job.yaml` and **comment out or remove** the `command` field under `spec.trainer`. When no command is provided, the Flux broker will start an interactive session you can shell into, just like a traditional HPC cluster.
+Delete the current job and create an interactive lammps cluster:
+
+```bash
+kubectl delete -f https://raw.githubusercontent.com/kubeflow/trainer/refs/heads/master/examples/flux/lammps-train-job.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeflow/trainer/refs/heads/master/examples/flux/flux-interactive.yaml
+```
 
 ### Using the Flux Shell
 
-Once the pods are running in interactive mode, shell into the lead broker pod:
+Once the pods are `Running` in interactive mode, shell into the lead broker pod:
 
 ```bash
-kubectl exec -it lammps-flux-interactive-node-0-0 -- bash
+kubectl exec -it lammps-flux-interactive-node-0-0-gps5p -- bash
 ```
 
 Once inside the container, follow these steps to interact with your cluster:
@@ -94,11 +112,11 @@ Once inside the container, follow these steps to interact with your cluster:
 # 2. Connect to the running lead broker socket
 flux proxy $fluxsocket bash
 
-# 3. Verify that Flux sees all 4 nodes (physical pods)
-flux resource list
-
-# 4. Manually run LAMMPS across the cluster
+# 3. Manually run LAMMPS across the cluster
 flux run -N 4 -n 4 lmp -v x 2 -v y 2 -v z 2 -in in.reaxc.hns -nocite
+
+# or run for a beefier node
+flux run -N 4 -n 256 lmp -v x 2 -v y 2 -v z 2 -in in.reaxc.hns -nocite
 ```
 
 For the above, the `WORKDIR` has the LAMMPS input file `in.reaxc.hns`.
@@ -106,14 +124,13 @@ For the above, the `WORKDIR` has the LAMMPS input file `in.reaxc.hns`.
 ## Configuration Details
 
 - **Runtime Configuration**: The `flux-runtime.yaml` defines the base blueprint. Note that the `flux: {}` policy trigger must be present for the plugin to activate.
-- **Environment Variables**: You can customize the Flux setup by adding `env` variables to the `TrainJob` spec (e.g., `FLUX_VIEW_IMAGE` to change the base OS or `FLUX_NETWORK_DEVICE` to specify the interface).
+- **Environment Variables**: You can customize the Flux setup by adding `env` variables to the `TrainJob` spec (e.g., `FLUX_VIEW_IMAGE` to change the base OS or `FLUX_NETWORK_DEVICE` to specify the interface). See [this example](https://github.com/kubeflow/trainer/blob/master/examples/flux/lammps-train-job.yaml) for setting environment variables.
 - **Volumes**: Binaries are installed to `/mnt/flux`, software is copied to `/opt/software`, and configurations are stored in `/etc/flux-config`.
 
 For environment variables, we currently support a small set:
 
 - FLUX_VIEW_IMAGE: The flux view base image, which defaults to `ghcr.io/converged-computing/flux-view-ubuntu:tag-jammy`
 - FLUX_NETWORK_DEVICE: The network device for the Flux overlay network only (not necessarily your application). Defaults to `eth0`
-- FLUX_QUEUE_POLICY: The queue policy. Defaults to `fcfs` (first come, first serve)
 
 This can be easily expanded. [Let us know](https://github.com/flux-framework).
 For the view, you primarily want it to make the base container platform, OS and version. We currently also provide:
@@ -128,7 +145,7 @@ For the view, you primarily want it to make the base container platform, OS and 
 - ghcr.io/converged-computing/flux-view-ubuntu:arm-jammy
 - ghcr.io/converged-computing/flux-view-ubuntu:arm-focal
 
-A GPU example will be added soon. Thanks for stopping by!
+Thanks for stopping by!
 
 ## Next Steps
 
