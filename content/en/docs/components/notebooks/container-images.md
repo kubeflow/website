@@ -9,7 +9,7 @@ Notebook servers run as containers inside a Kubernetes Pod, which means the type
 
 ## Official Images
 
-Kubeflow provides a number of [example container images](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers) to get you started with Kubeflow Notebooks.
+Kubeflow provides a number of [example container images](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers) to get you started with Kubeflow Notebooks.
 
 This chart shows how the images are related to each other (note, the nodes are clickable links to the Dockerfiles):
 
@@ -38,23 +38,23 @@ graph TD
   TensorFlowCuda --> TensorFlowCudaFull[TensorFlow CUDA Full]
   PyTorchGaudi --> PyTorchGaudiFull[PyTorch Gaudi Full]
 
-  click Base "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/base"
-  click Jupyter "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter"
-  click Code-Server "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/codeserver"
-  click RStudio "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/rstudio"
-  click PyTorch "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch"
-  click SciPy "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-scipy"
-  click TensorFlow "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-tensorflow"
-  click Code-Server-Conda-Python "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/codeserver-python"
-  click Tidyverse "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/rstudio-tidyverse"
-  click PyTorchFull "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-full"
-  click TensorFlowFull "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-tensorflow-full"
-  click PyTorchCuda "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-cuda"
-  click TensorFlowCuda "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-tensorflow-cuda"
-  click PyTorchCudaFull "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-cuda-full"
-  click TensorFlowCudaFull "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-tensorflow-cuda-full"
-  click PyTorchGaudi "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-gaudi"
-  click PyTorchGaudiFull "https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-gaudi-full"
+  click Base "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/base"
+  click Jupyter "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter"
+  click Code-Server "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/codeserver"
+  click RStudio "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/rstudio"
+  click PyTorch "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch"
+  click SciPy "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-scipy"
+  click TensorFlow "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow"
+  click Code-Server-Conda-Python "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/codeserver-python"
+  click Tidyverse "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/rstudio-tidyverse"
+  click PyTorchFull "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-full"
+  click TensorFlowFull "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-full"
+  click PyTorchCuda "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-cuda"
+  click TensorFlowCuda "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-cuda"
+  click PyTorchCudaFull "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-cuda-full"
+  click TensorFlowCudaFull "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-cuda-full"
+  click PyTorchGaudi "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-gaudi"
+  click PyTorchGaudiFull "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-gaudi-full"
 ```
 
 ### Base Images
@@ -63,10 +63,10 @@ These images provide a common starting point for Kubeflow Notebook containers.
 
 Dockerfile | Container Registry | Notes
 --- | --- | ---
-[`./base`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/base) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/base`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/base) | Common Base Image
-[`./codeserver`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/codeserver) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/codeserver`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/codeserver) | [code-server](https://github.com/coder/code-server) (Visual Studio Code)
-[`./jupyter`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter) | [JupyterLab](https://github.com/jupyterlab/jupyterlab)
-[`./rstudio`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/rstudio) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/rstudio`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/rstudio) | [RStudio](https://github.com/rstudio/rstudio)
+[`./base`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/base) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/base`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/base) | Common Base Image
+[`./codeserver`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/codeserver) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/codeserver`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/codeserver) | [code-server](https://github.com/coder/code-server) (Visual Studio Code)
+[`./jupyter`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter) | [JupyterLab](https://github.com/jupyterlab/jupyterlab)
+[`./rstudio`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/rstudio) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/rstudio`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/rstudio) | [RStudio](https://github.com/rstudio/rstudio)
 
 ### Kubeflow Images
 
@@ -74,19 +74,19 @@ These images extend the [base images](#base-images) with common packages used in
 
 Dockerfile | Container Registry | Notes
 --- | --- | ---
-[`./codeserver-python`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/codeserver-python) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/codeserver-python`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/codeserver-python) | code-server + Conda Python
-[`./rstudio-tidyverse`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/rstudio-tidyverse) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/rstudio-tidyverse`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/rstudio-tidyverse) | RStudio + [Tidyverse](https://www.tidyverse.org/)
-[`./jupyter-pytorch`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch) | JupyterLab + PyTorch
-[`./jupyter-pytorch-full`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-full) | JupyterLab + PyTorch + Common Packages
-[`./jupyter-pytorch-cuda`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-cuda) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-cuda`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-cuda) | JupyterLab + PyTorch + CUDA
-[`./jupyter-pytorch-cuda-full`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-cuda-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-cuda-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-cuda-full) | JupyterLab + PyTorch + CUDA + Common Packages
-[`./jupyter-scipy`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-scipy) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-scipy`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-scipy) | JupyterLab + Common Packages
-[`./jupyter-tensorflow`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-tensorflow) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow) | JupyterLab + TensorFlow
-[`./jupyter-tensorflow-full`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-tensorflow-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-full) | JupyterLab + TensorFlow + Common Packages
-[`./jupyter-tensorflow-cuda`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-tensorflow-cuda) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda) | JupyterLab + TensorFlow + CUDA
-[`./jupyter-tensorflow-cuda-full`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-tensorflow-cuda-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda-full) | JupyterLab + TensorFlow + CUDA + Common Packages
-[`./jupyter-pytorch-gaudi`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-gaudi) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi) | JupyterLab + PyTorch + Gaudi
-[`./jupyter-pytorch-gaudi-full`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-gaudi-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi-full) | JupyterLab + PyTorch + Gaudi + Common Packages
+[`./codeserver-python`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/codeserver-python) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/codeserver-python`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/codeserver-python) | code-server + Conda Python
+[`./rstudio-tidyverse`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/rstudio-tidyverse) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/rstudio-tidyverse`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/rstudio-tidyverse) | RStudio + [Tidyverse](https://www.tidyverse.org/)
+[`./jupyter-pytorch`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch) | JupyterLab + PyTorch
+[`./jupyter-pytorch-full`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-full) | JupyterLab + PyTorch + Common Packages
+[`./jupyter-pytorch-cuda`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-cuda) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-cuda`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-cuda) | JupyterLab + PyTorch + CUDA
+[`./jupyter-pytorch-cuda-full`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-cuda-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-cuda-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-cuda-full) | JupyterLab + PyTorch + CUDA + Common Packages
+[`./jupyter-scipy`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-scipy) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-scipy`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-scipy) | JupyterLab + Common Packages
+[`./jupyter-tensorflow`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow) | JupyterLab + TensorFlow
+[`./jupyter-tensorflow-full`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-full) | JupyterLab + TensorFlow + Common Packages
+[`./jupyter-tensorflow-cuda`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-cuda) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda) | JupyterLab + TensorFlow + CUDA
+[`./jupyter-tensorflow-cuda-full`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-cuda-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda-full) | JupyterLab + TensorFlow + CUDA + Common Packages
+[`./jupyter-pytorch-gaudi`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-gaudi) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi) | JupyterLab + PyTorch + Gaudi
+[`./jupyter-pytorch-gaudi-full`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-gaudi-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi-full) | JupyterLab + PyTorch + Gaudi + Common Packages
 
 ## Package Installation
 
@@ -119,7 +119,7 @@ For a container image to work with Kubeflow Notebooks, it must:
 ### Install Python Packages
 
 You may extend one of the images and install any `pip` or `conda` packages your Kubeflow Notebook users are likely to need.
-As a guide, look at [`./jupyter-pytorch-full/Dockerfile`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter-pytorch-full/Dockerfile) for a `pip install ...` example, and the [`./rstudio-tidyverse/Dockerfile`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/rstudio-tidyverse/Dockerfile) for `conda install ...`.
+As a guide, look at [`./jupyter-pytorch-full/Dockerfile`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-full/Dockerfile) for a `pip install ...` example, and the [`./rstudio-tidyverse/Dockerfile`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/rstudio-tidyverse/Dockerfile) for `conda install ...`.
 
 A common cause of errors is users running `pip install --user ...`, causing the home-directory (which is backed by a PVC) to contain a different or incompatible version of a package contained in  `/opt/conda/...`
 
@@ -140,7 +140,7 @@ While `tini` was created to handle a single process running in a container as PI
 
 Scripts that need to run during the startup of the container can be placed in `/etc/cont-init.d/`, and are executed in ascending alphanumeric order.
 
-An example of a startup script can be found in [`./rstudio/s6/cont-init.d/02-rstudio-env-fix`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/rstudio/s6/cont-init.d/02-rstudio-env-fix).
+An example of a startup script can be found in [`./rstudio/s6/cont-init.d/02-rstudio-env-fix`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/rstudio/s6/cont-init.d/02-rstudio-env-fix).
 This script uses the [with-contenv](https://github.com/just-containers/s6-overlay#container-environment) helper so that environment variables (passed to container) are available in the script.
 The purpose of this script is to snapshot any `KUBERNETES_*` environment variables into the `Renviron.site` at pod startup, as without these variables `kubectl` does not work.
 
@@ -148,7 +148,7 @@ The purpose of this script is to snapshot any `KUBERNETES_*` environment variabl
 
 Extra services to be monitored by `s6-overlay` should be placed in their own folder under `/etc/services.d/` containing a script called `run` and optionally a finishing script `finish`.
 
-An example of a service can be found in the `run` script of [`.jupyter/s6/services.d/jupyterlab`](https://github.com/kubeflow/kubeflow/tree/master/components/example-notebook-servers/jupyter/s6/services.d/jupyterlab) which is used to start JupyterLab itself.
+An example of a service can be found in the `run` script of [`.jupyter/s6/services.d/jupyterlab`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter/s6/services.d/jupyterlab) which is used to start JupyterLab itself.
 For more information about the `run` and `finish` scripts, please see the [s6-overlay documentation](https://github.com/just-containers/s6-overlay#writing-a-service-script).
 
 #### Run Services As Root
