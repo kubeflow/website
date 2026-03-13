@@ -59,3 +59,7 @@ and kubectl YAML), best practices (`QuantileDMatrix`, early stopping,
 checkpointing, logging), and common issues, see the XGBoost documentation:
 
 **[Distributed XGBoost on Kubernetes — XGBoost Tutorial](https://xgboost.readthedocs.io/en/latest/tutorials/kubernetes.html)**
+
+You can also use the Kubeflow Trainer distributed XGBoost notebook example:
+
+**[xgboost-distributed.ipynb](https://github.com/kubeflow/trainer/blob/master/examples/xgboost/distributed-training/xgboost-distributed.ipynb)**
