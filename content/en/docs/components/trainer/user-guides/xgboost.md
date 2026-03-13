@@ -13,9 +13,8 @@ Before exploring this guide, make sure to follow
 [the Getting Started guide](/docs/components/trainer/getting-started/)
 to understand the basics of Kubeflow Trainer.
 
----
 
-## XGBoost Distributed Overview
+## XGBoost Overview
 
 XGBoost supports distributed training through the
 [Collective](https://xgboost.readthedocs.io/en/latest/tutorials/kubernetes.html)
@@ -50,16 +49,7 @@ DMLC_NUM_WORKER = numNodes × workersPerNode
 - **GPU training**: 1 worker per GPU. The GPU count is derived from
   `resourcesPerNode` limits in the TrainJob.
 
----
-
-## Further Information
-
-For comprehensive documentation including complete training examples (Python SDK
-and kubectl YAML), best practices (`QuantileDMatrix`, early stopping,
-checkpointing, logging), and common issues, see the XGBoost documentation:
-
-**[Distributed XGBoost on Kubernetes — XGBoost Tutorial](https://xgboost.readthedocs.io/en/latest/tutorials/kubernetes.html)**
-
-You can also use the Kubeflow Trainer distributed XGBoost notebook example:
-
-**[xgboost-distributed.ipynb](https://github.com/kubeflow/trainer/blob/master/examples/xgboost/distributed-training/xgboost-distributed.ipynb)**
+## Next Steps
+- check out the [xgboost example](https://github.com/kubeflow/trainer/blob/master/examples/xgboost/distributed-training/xgboost-distributed.ipynb)
+- learn more about `TrainerClinet()` APIs in the [KubeFlow SDK](https://github.com/kubeflow/sdk/blob/main/kubeflow/trainer/api/trainer_client.py)
+- Explore **[XGboost documentation](https://xgboost.readthedocs.io/en/latest/tutorials/kubernetes.html)** for advanced configuration options
