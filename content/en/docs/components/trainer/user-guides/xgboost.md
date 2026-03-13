@@ -1,13 +1,11 @@
 +++
 title = "XGBoost Guide"
-description = "How to run distributed XGBoost on Kubernetes with Kubeflow Trainer"
+description = "How to run XGBoost on Kubernetes with Kubeflow Trainer"
 weight = 20
 +++
 
 This guide describes how to use TrainJob to run distributed
 [XGBoost](https://xgboost.readthedocs.io/) training on Kubernetes.
-
----
 
 ## Prerequisites
 
