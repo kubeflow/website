@@ -903,3 +903,70 @@ nav.foldable-nav {
 .alert {
   background-color: $alert-bg;
 }
+
+// --------------------------------------------------
+// copy-to-clipboard button for code blocks
+// --------------------------------------------------
+.td-content {
+  .highlight,
+  pre:not(.mermaid) {
+    position: relative;
+  }
+}
+
+.copy-code-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 10;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 4px 8px;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 4px;
+  background-color: rgba(128, 128, 128, 0.15);
+  color: $gray-500;
+
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+
+  opacity: 0;
+  transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  span {
+    pointer-events: none;
+  }
+
+  svg {
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+    color: $gray-700;
+    border-color: rgba(128, 128, 128, 0.5);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &.copied {
+    color: #28a745;
+    border-color: rgba(40, 167, 69, 0.5);
+    background-color: rgba(40, 167, 69, 0.1);
+    opacity: 1;
+  }
+}
+
+// show button on hover of the code block
+.highlight:hover .copy-code-button,
+pre:not(.mermaid):hover .copy-code-button {
+  opacity: 1;
+}
