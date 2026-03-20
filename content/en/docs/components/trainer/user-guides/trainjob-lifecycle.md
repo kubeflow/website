@@ -100,7 +100,7 @@ kubectl patch trainjob my-trainjob --type=merge -p '{"spec":{"suspend":false}}'
 ```
 
 {{% alert title="Note" color="info" %}}
-When a TrainJob with `activeDeadlineSeconds` is resumed from suspension, the deadline timer
+When a TrainJob with ActiveDeadlineSeconds is resumed from suspension, the deadline timer
 resets from the resume time and not the original creation time. This means the TrainJob gets
 the full deadline duration after each resume.
 {{% /alert %}}
