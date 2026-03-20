@@ -5,10 +5,16 @@ weight = 30
 aliases = ["/docs/ai-policy/"]
 +++
 
-AI tools may be used to draft or review code/docs, but the human contributor remains fully responsible for every change: you must understand it, verify it (build/lint/test), and be able to explain it during review, your PR may be closed if you can’t.
+Please review the Kubeflow [contributing](contributing.md) guide first.
 
-Disclose substantial AI assistance in the PR description, make sure to add `Co-authored-by: [Agent Name]` and avoid oversized, mass-generated PRs or AI-generated commit messages.
+The use of AI to generate code or documentation is permitted, but contributors must adhere to the following guidelines.
 
-Do not use AI to author responses in review threads or community discussions, reviewers expect to engage with you directly.
+- **Verification:** Do not blindly submit AI outputs. All AI-generated code must be locally built, linted, and tested against the Kubeflow test suite before a PR is opened.
+- **Explainability:** You must be able to explain and justify any AI-generated logic during the review process. If you can't explain it, don't submit it.
+- **Disclosure:** If a contribution is substantially generated or refactored by AI (e.g., Claude, Codex, Cursor), include a note in the PR description or use a footer in the commit message: `Assisted-by: [Agent Name]`, or `Co-authored-by: [Agent Name]`.
+- **Quality:** Maintainers reserve the right to close PRs that appear to be low-effort, mass-generated AI content that adds technical debt or lacks proper context.
+- **Authentic Communication:** AI should be used for code and technical drafting, not for automated responses to maintainer feedback or community discussions. We value human-to-human collaboration.
 
-All contributions must still meet Kubeflow’s quality and security standards and comply with DCO, Apache-2.0, and third-party IP/licensing requirements.
+
+
+
