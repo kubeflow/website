@@ -6,6 +6,8 @@ on:
 
 jobs:
   validate-pr-title:
+    permissions:
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Check PR Title Format
