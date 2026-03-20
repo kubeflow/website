@@ -36,11 +36,14 @@ With Kubeflow Trainer, you can run:
 - Data-parallel and model-parallel JAX workloads
 
 {{% alert title="Note" color="info" %}}
-The JAX runtime currently supports CPU and GPU workloads only.
+The default JAX runtime currently supports CPU and GPU workloads only.
 
-TPU workloads are not supported because installing both `jax[cuda]`
+TPU workloads are not supported in the default JAX runtime because installing both `jax[cuda]`
 and `jax[tpu]` in the same image leads to backend and plugin conflicts.
 A separate TPU-specific runtime is required.
+
+Check out [the JAX on TPU guide](https://www.kubeflow.org/docs/components/trainer/user-guides/jax-tpu/)
+for more details on how to run JAX on Cloud TPU.
 {{% /alert %}}
 
 ---
