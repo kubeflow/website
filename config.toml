@@ -96,8 +96,21 @@ ignoreFiles = []
 ###############################################################################
 # Docsy - Output Formats
 ###############################################################################
+[outputFormats.LLMS]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.LLMSFull]
+  mediaType = "text/plain"
+  baseName = "llms-full"
+  isPlainText = true
+  notAlternative = true
+
 [outputs]
-section = [ "HTML" ]
+  home = ["HTML", "LLMS", "LLMSFull"]
+  section = ["HTML"]
 
 ###############################################################################
 # Docsy - Goldmark markdown parser
