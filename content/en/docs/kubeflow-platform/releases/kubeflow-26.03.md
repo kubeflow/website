@@ -5,7 +5,7 @@ weight = 89
 +++
 
 {{% alert title="Note" color="warning" %}}
-We are changing to calendar year/month for releases // TODO [Release Handbook - Calendar version releases](https://github.com/kubeflow/community/pull/935/)
+We are transitioning to a Calendar Versioning model to provide a more predictable and automated release schedule. For more details on the upcoming phases, please refer to the [Release Handbook](https://github.com/kubeflow/manifests/blob/master/releases/kubeflow-ai-reference-platform-release-handbook.md).
 {{% /alert %}}
 
 ## Kubeflow AI reference platform 26.03
@@ -36,7 +36,7 @@ We are changing to calendar year/month for releases // TODO [Release Handbook - 
       <th class="table-light">Manifests</th>
       <td>
         <b>Release:</b> 
-          <a href="https://github.com/kubeflow/manifests/releases/tag/26.03-rc.1">26.03-rc.1</a>
+          <a href="https://github.com/kubeflow/manifests/releases/tag/26.03">26.03</a>
         <br>
         <b>Branch:</b>
           <a href="https://github.com/kubeflow/manifests/tree/26.03">26.03</a>
@@ -103,7 +103,7 @@ We are changing to calendar year/month for releases // TODO [Release Handbook - 
         <tr>
         <td>Kubeflow SDK</td>
         <td>
-          <a href="https://github.com/kubeflow/sdk/releases/tag/0.3.0">TODO v0.4.0</a>
+          <a href="https://github.com/kubeflow/sdk/releases/tag/0.3.0">v0.3.0</a>
         </td>
       </tr>
       <!-- ======================= -->
@@ -113,62 +113,59 @@ We are changing to calendar year/month for releases // TODO [Release Handbook - 
         <td rowspan="10" class="align-middle">Notebooks Working Group</td>
         <td>Admission Webhook (PodDefaults)</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/admission-webhook">TODO v1.11.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/admission-webhook">v1.10.0</a>
         </td>
       </tr>
       <tr>
         <td>Central Dashboard</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/centraldashboard">TODO v2.0.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/centraldashboard">v1.10.0</a>
         </td>
       </tr>
       <tr>
         <td>Jupyter Web Application</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/crud-web-apps/jupyter">TODO v1.11.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/crud-web-apps/jupyter">v1.10.0</a>
         </td>
       </tr>
       <tr>
         <td>Kubeflow Access Management API</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/access-management">TODO v1.11.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/access-management">v1.10.0</a>
         </td>
       </tr>
       <tr>
         <td>Notebook Controller</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/notebook-controller">TODO v1.11.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/notebook-controller">v1.10.0</a>
         </td>
       </tr>
       <tr>
         <td>Profile Controller</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/profile-controller">TODO v1.11.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/profile-controller">v1.10.0</a>
         </td>
       </tr>
       <tr>
         <td>Tensorboard Controller</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/notebook-controller">TODO v1.11.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/notebook-controller">v1.10.0</a>
         </td>
       </tr>
       <tr>
         <td>Tensorboard Web Application</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/crud-web-apps/tensorboards">TODO v1.11.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/crud-web-apps/tensorboards">v1.10.0</a>
         </td>
       </tr>
       <tr>
         <td>Volumes Web Application</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/crud-web-apps/volumes">TODO v1.11.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/crud-web-apps/volumes">v1.10.0</a>
         </td>
       </tr>
       <tr>
-        <td>Notebooks 2.0 (Kubeflow Workspaces)</td>
-        <td>
-          <a href="https://github.com/kubeflow/notebooks/tree/notebooks-v2">2.0.0-alpha.0</a>
-        </td>
+      </td>
       </tr>
       <!-- ======================= -->
       <!-- Pipelines Working Group -->
@@ -203,7 +200,7 @@ We are changing to calendar year/month for releases // TODO [Release Handbook - 
       <tr>
         <td>Trainer</td>
         <td>
-          <a href="https://github.com/kubeflow/trainer/releases/tag/v2.1.0">TODO v2.2.0</a>
+          <a href="https://github.com/kubeflow/trainer/releases/tag/v2.1.0">v2.1.0</a>
         </td>
       </tr>
       <!-- ======================= -->
@@ -249,7 +246,7 @@ This information is only for the manifests found in the <a href="https://github.
         <td>
           <a href="https://kubernetes.io/">Kubernetes</a>
         </td>
-        <td>1.33-1.35</td>
+        <td>1.34+</td>
         <td rowspan="4" class="align-middle">
           <i>Other versions may work, but have not been validated by the <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Kubeflow Manifests Working Group</a>.</i>
         </td>
@@ -288,16 +285,16 @@ This information is only for the manifests found in the <a href="https://github.
         <td>
           <a href="https://kustomize.io/">Kustomize</a>
         </td>
-        <td>5.7.1</td>
+        <td>5.8.1</td>
       </tr>
       <!-- ======================= -->
       <!-- Knative Serving -->
       <!-- ======================= -->
       <tr>
         <td>
-          <a href="https://knative.dev/v1.20-docs/">Knative </a>
+          <a href="https://knative.dev/docs/">Knative</a>
         </td>
-        <td>1.20.0</td>
+        <td>1.21.0</td>
         <td rowspan="1" class="align-middle">
           <i>Knative is only needed when using the optional <a href="https://kserve.github.io/website/">KServe Component</a>.</i>
         </td>
@@ -309,7 +306,7 @@ This information is only for the manifests found in the <a href="https://github.
         <td>
           <a href="https://github.com/oauth2-proxy/oauth2-proxy/releases/tag/v7.10.0">OAuth2 Proxy</a>
         </td>
-        <td>7.10.0</td>
+        <td>7.14.3</td>
       </tr>
       <!-- ======================= -->
       <!-- Argo Workflows -->
