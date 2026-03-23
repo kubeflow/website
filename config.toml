@@ -92,6 +92,25 @@ ignoreFiles = []
     weight = -99
     pre = "<i class='fab fa-github pr-2'></i>"
     url = "https://github.com/kubeflow/"
+  [[menu.main]]
+    name = "AI-Ready Docs"
+    identifier = "llms"
+    weight = -98
+    pre = "<i class='fas fa-robot pr-2'></i>"
+  [[menu.main]]
+    name = "llms.txt"
+    parent = "llms"
+    weight = 1
+    pre = "<i class='fas fa-file-alt pr-2'></i>"
+    post = "<br><small class='text-muted'>Curated index</small>"
+    url = "/llms.txt"
+  [[menu.main]]
+    name = "llms-full.txt"
+    parent = "llms"
+    weight = 2
+    pre = "<i class='fas fa-file pr-2'></i>"
+    post = "<br><small class='text-muted'>Full documentation</small>"
+    url = "/llms-full.txt"
 
 ###############################################################################
 # Docsy - Output Formats
