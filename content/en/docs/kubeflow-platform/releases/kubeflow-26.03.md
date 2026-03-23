@@ -16,19 +16,13 @@ We are transitioning to a Calendar Versioning model to provide a more predictabl
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2026-03-20
+        2026-03-22
       </td>
     </tr>
     <tr>
       <th class="table-light">Media</th>
       <td>
         <b>Blog:</b> 
-          To be published
-        <br>
-        <b>Video:</b> 
-          To be published
-        <br>
-        <b>Roadmap:</b>
           To be published
       </td>
     </tr>
@@ -55,7 +49,7 @@ We are transitioning to a Calendar Versioning model to provide a more predictabl
         <br>
         <b>Release Manager Shadow: </b> Alok Dangre (<a href="https://github.com/alokdangre">@alokdangre</a>)
         <br>
-        <b>Product Manager: </b> Dhanisha Phadate (<a href="https://github.com/danishaphadate">@danishaphadate</a>)
+        <b>Product Manager: </b> Dhanisha Phadate (<a href="https://github.com/dhanishaphadate">@dhanishaphadate</a>)
         <br>
         <b>AutoML/Katib and Training WG Liaison: </b> Anya Kramar (<a href="https://github.com/kramaranya">@kramaranya</a>)
         <br>
@@ -110,7 +104,7 @@ We are transitioning to a Calendar Versioning model to provide a more predictabl
       <!-- Notebooks Working Group -->
       <!-- ======================= -->
       <tr>
-        <td rowspan="10" class="align-middle">Notebooks Working Group</td>
+        <td rowspan="9" class="align-middle">Notebooks Working Group</td>
         <td>Admission Webhook (PodDefaults)</td>
         <td>
           <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/admission-webhook">v1.10.0</a>
@@ -163,9 +157,6 @@ We are transitioning to a Calendar Versioning model to provide a more predictabl
         <td>
           <a href="https://github.com/kubeflow/kubeflow/tree/v1.10.0/components/crud-web-apps/volumes">v1.10.0</a>
         </td>
-      </tr>
-      <tr>
-      </td>
       </tr>
       <!-- ======================= -->
       <!-- Pipelines Working Group -->
@@ -294,7 +285,7 @@ This information is only for the manifests found in the <a href="https://github.
         <td>
           <a href="https://knative.dev/docs/">Knative</a>
         </td>
-        <td>1.21.0</td>
+        <td>1.21.1</td>
         <td rowspan="1" class="align-middle">
           <i>Knative is only needed when using the optional <a href="https://kserve.github.io/website/">KServe Component</a>.</i>
         </td>
