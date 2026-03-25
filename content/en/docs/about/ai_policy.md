@@ -5,7 +5,7 @@ weight = 30
 aliases = ["/docs/ai-policy/"]
 +++
 
-Please review the Kubeflow [contributing](contributing.md) guide first.
+Please review the Kubeflow [contributing](contributing.md) guide first. If an [AGENTS.md](https://agents.md/) or [copilot-instructions.md](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions) file is present, please configure your agent to read them for additional context.
 
 The use of AI to generate code or documentation is permitted, but contributors must adhere to the following guidelines.
 
