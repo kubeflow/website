@@ -12,8 +12,8 @@ This guide describes how to use TrainJob to train or fine-tune AI models with
 ## Prerequisites
 
 Before exploring this guide, make sure to follow:
-- [The Getting Started guide](https://www.kubeflow.org/docs/components/trainer/user-guides/)
-- [GKE Cloud TPU documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/tpus) to set up a GKE cluster with TPU nodes. For example, for an autopilot GKE cluster, you can create a TPU custom ComputeClass like
+- [The Getting Started guide](/docs/components/trainer/user-guides/)
+- [GKE Cloud TPU documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/tpus) to set up a GKE cluster with TPU nodes. For example, for an autopilot GKE cluster, you can create a [TPU custom ComputeClass](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/tpus#custom-compute-classes) like
 ```
 apiVersion: cloud.google.com/v1
 kind: ComputeClass
@@ -348,13 +348,19 @@ print("\n".join(client.get_job_logs(name=job_id)))
 
 ### Node Selectors and Topology
 
-When running on GKE, TPUs are often managed via [Compute Classes](https://cloud.google.com/kubernetes-engine/docs/how-to/tpus-compute-class). You must match the `node_selector` to your TPU node pool labels:
+When running on GKE, TPUs are managed via specific node pools and you must match the proper `node_selector` and `tolerations` to your TPU node pool labels. 
+If you are using [custom ComputeClasses](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/tpus#custom-compute-classes), add the following `node_selector` and `tolerations` to your TPU node pool labels:
 
 | Label | Example Value |
 |-------|---------------|
 | `cloud.google.com/compute-class` | `tpu-multihost-v5-8` |
 | `cloud.google.com/gke-tpu-accelerator` | `tpu-v5-lite-podslice` |
 | `cloud.google.com/gke-tpu-topology` | `2x4` |
+
+| Toleration Key | Toleration Operator | Toleration Effect |
+|-------|---------------|---------------|
+| `google.com/tpu` | `Exists` | `NoSchedule` |
+| `cloud.google.com/compute-class` | `Exists` | `NoSchedule` |
 
 ### Environment Variables
 
