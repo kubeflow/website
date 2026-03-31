@@ -32,7 +32,7 @@ Details about the different types of Kubeflow members as well as membership crit
 
 If you would like your company or organization to be acknowledged for contributing to Kubeflow, or participating in the community (being a user counts), please send a PR adding the relevant info to [member_organizations.yaml](https://github.com/kubeflow/community/blob/master/member_organizations.yaml).
 
-Additionally, if your company has adopted Kubeflow internally, we encouraage you to add yourself to [ADOPTERS.md](https://github.com/kubeflow/community/blob/master/ADOPTERS.md)!
+Additionally, if your company has adopted Kubeflow internally, we encourage you to add yourself to [ADOPTERS.md](https://github.com/kubeflow/community/blob/master/ADOPTERS.md)!
 
 If you want your employee's GitHub contributions to be attributed to your company,
 please ask them to set the company field in their GitHub profile.
@@ -222,14 +222,11 @@ GitHub usernames and aliases listed in OWNERS files are case-insensitive.
     [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) applies an
     `approved` label
 - Phase 3: Automation merges the PR:
-
   - If all of the following are true:
-
     - All required labels are present (eg: `lgtm`, `approved`)
     - Any blocking labels are missing (eg: there is no `do-not-merge/hold`, `needs-rebase`)
 
   - And if any of the following are true:
-
     - there are no presubmit prow jobs configured for this repo
     - there are presubmit prow jobs configured for this repo, and they all pass after automatically
       being re-run one last time
