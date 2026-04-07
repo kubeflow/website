@@ -371,6 +371,74 @@ If you are using [custom ComputeClasses](https://docs.cloud.google.com/kubernete
 
 ---
 
+## Reusable ClusterTrainingRuntime
+
+Instead of setting the node selectors and tolerations via the Python SDK for every TrainJob, cluster administrators can configure a reusable `ClusterTrainingRuntime` for a specific TPU type and topology. This simplifies the user experience by moving infrastructure-specific details out of the training script.
+
+```yaml
+apiVersion: trainer.kubeflow.org/v1alpha1
+kind: ClusterTrainingRuntime
+metadata:
+  name: jax-tpu-v5-8
+  labels:
+    trainer.kubeflow.org/framework: jax
+spec:
+  mlPolicy:
+    numNodes: 2
+    jax: {}
+  template:
+    spec:
+      replicatedJobs:
+        - name: node
+          template:
+            metadata:
+              labels:
+                trainer.kubeflow.org/trainjob-ancestor-step: trainer
+            spec:
+              template:
+                spec:
+                  nodeSelector:
+                    cloud.google.com/compute-class: "tpu-multihost-v5-8"
+                    cloud.google.com/gke-tpu-accelerator: "tpu-v5-lite-podslice"
+                    cloud.google.com/gke-tpu-topology: "2x4"
+                  tolerations:
+                    - key: "google.com/tpu"
+                      operator: "Exists"
+                      effect: "NoSchedule"
+                    - key: "cloud.google.com/compute-class"
+                      operator: "Exists"
+                      effect: "NoSchedule"
+                  containers:
+                    - name: node
+                      image: us-docker.pkg.dev/cloud-tpu-images/jax-ai-image/tpu:latest
+                      resources:
+                        limits:
+                          google.com/tpu: 4
+```
+
+Users can then submit TrainJobs referencing this runtime without specifying the target infrastructure details, such as the `job_patch`, base `image`, or TPU resource limits:
+
+```python
+job_id = client.train(
+    runtime="jax-tpu-v5-8",
+    trainer=CustomTrainer(
+        func=train_mnist_jax,
+        env={
+            "JAX_PLATFORMS": "tpu,cpu",
+            "ENABLE_PJRT_COMPATIBILITY": "true",
+        },
+        packages_to_install=[
+            "tensorflow-datasets",
+            "flax",
+            "optax",
+            "tensorflow",
+        ],
+    ),
+)
+```
+
+---
+
 ## Next Steps
 
 - Learn more about [JAX distributed training](https://jax.readthedocs.io/en/latest/jax.distributed.html).
