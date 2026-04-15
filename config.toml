@@ -140,16 +140,16 @@ enable = true
   gcs_engine_id = "007239566369470735695:624rglujm-w"
 
   # Text label for the version menu in the top bar of the website.
-  version_menu = "Version"
+  version_menu = "v1.10"
 
   # The major.minor version tag for the version of the docs represented in this
   # branch of the repository. Used in the "version-banner" partial to display a
   # version number for this doc set.
-  version = "master"
+  version = "v1.10"
 
   # Flag used in the "version-banner" partial to decide whether to display a
   # banner on every page indicating that this is an archived version of the docs.
-  archived_version = false
+  archived_version = true
 
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
@@ -175,7 +175,7 @@ enable = true
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
-    version = "master"
+    version = "Latest"
     githubbranch = "master"
     url = "https://master.kubeflow.org"
   [[params.versions]]
