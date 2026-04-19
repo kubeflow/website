@@ -12,6 +12,7 @@ This guide describes how to use TrainJob to train or fine-tune AI models with
 ## Prerequisites
 
 Before exploring this guide, make sure to follow:
+
 - [The Getting Started guide](/docs/components/trainer/user-guides/)
 - [AMD GPU Operator documentation](https://instinct.docs.amd.com/projects/gpu-operator/en/latest/) to set up a Kubernetes cluster with AMD GPU nodes and the `amd.com/gpu` device plugin.
 
@@ -20,6 +21,7 @@ Before exploring this guide, make sure to follow:
 ## PyTorch on AMD ROCm Overview
 
 PyTorch on AMD ROCm requires a different runtime environment than the default NVIDIA CUDA runtime. Specifically:
+
 - **Image**: You must use an AMD ROCm-compatible PyTorch image (e.g., `rocm/pytorch:rocm7.1.1_ubuntu24.04_py3.12_pytorch_release_2.10.0`).
 - **Resources**: You must request `amd.com/gpu` resources instead of `nvidia.com/gpu`.
 - **Backend**: PyTorch `torch.distributed` with the `nccl` backend works on ROCm via [RCCL](https://github.com/ROCm/rccl), AMD's drop-in NCCL replacement. No code changes are required.
@@ -245,7 +247,6 @@ job_id = client.train(
         resources_per_node={
             "amd.com/gpu": 1,
         },
-        packages_to_install=["torchvision"],
     ),
     options=[job_patch],
 )
@@ -263,9 +264,17 @@ print("\n".join(client.get_job_logs(name=job_id)))
 AMD ROCm GPUs are exposed in Kubernetes via the AMD GPU device plugin. Specify `amd.com/gpu`
 in `resources_per_node` to request AMD GPU devices:
 
-| Resource | Description |
-|----------|-------------|
-| `amd.com/gpu` | AMD GPU device managed by the AMD GPU Operator |
+| Resource      | Description                                                                                                                                       |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `amd.com/gpu` | AMD GPU device managed by the AMD GPU Operator. Set the value to match the number of GPUs per node on your hardware (e.g., `8` for MI300X nodes). |
+
+### Node Selector (optional)
+
+In mixed clusters (AMD and NVIDIA GPU nodes), add a `node_selector` to ensure pods schedule exclusively on AMD GPU nodes. The AMD GPU Operator labels GPU nodes by default:
+
+| Label                 | Value  |
+| --------------------- | ------ |
+| `amd.com/gpu.present` | `true` |
 
 ### Tolerations
 
@@ -273,8 +282,18 @@ Depending on your cluster configuration, AMD GPU nodes may have a `NoSchedule` t
 Add the following toleration if your nodes are tainted:
 
 | Toleration Key | Toleration Operator | Toleration Effect |
-|----------------|---------------------|-------------------|
-| `amd.com/gpu` | `Exists` | `NoSchedule` |
+| -------------- | ------------------- | ----------------- |
+| `amd.com/gpu`  | `Exists`            | `NoSchedule`      |
+
+### Environment Variables
+
+Common ROCm environment variables you may need to configure:
+
+| Variable                    | Description                                                                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `HIP_VISIBLE_DEVICES`       | Controls which AMD GPUs are visible to the process. Equivalent to `CUDA_VISIBLE_DEVICES` on NVIDIA.          |
+| `NCCL_SOCKET_IFNAME`        | Specifies the network interface RCCL uses for inter-node communication (e.g., `eth0`).                       |
+| `HSA_FORCE_FINE_GRAIN_PCIE` | Set to `1` to enable fine-grain PCIe memory, which can improve performance in some multi-GPU configurations. |
 
 ---
 
@@ -327,7 +346,6 @@ job_id = client.train(
     runtime="torch-rocm-distributed",
     trainer=CustomTrainer(
         func=train_mnist_rocm,
-        packages_to_install=["torchvision"],
     ),
 )
 ```
