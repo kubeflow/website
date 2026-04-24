@@ -74,7 +74,7 @@ corresponding [AI lifecycle stage](/docs/started/architecture/#kubeflow-projects
       </tr>
       <tr>
         <td>
-         <a href="/docs/components/model-registry/installation/#installing-model-registry">
+         <a href="/docs/components/hub/installation/#installing-model-registry">
             Kubeflow Model Registry
           </a>
         </td>

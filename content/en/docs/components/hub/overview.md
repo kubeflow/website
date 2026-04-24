@@ -15,7 +15,7 @@ weight = 10
 A model registry is an important component in the lifecycle of AI/ML models, an integral component for any MLOps platform and for ML workflows.
 
 <p style="text-align: center;">
-  <img src="/docs/components/model-registry/images/MLloopinnerouter.png"
+  <img src="/docs/components/hub/images/MLloopinnerouter.png"
     alt="Model Registry MLOps loop"
     class="mt-3 mb-3 border rounded p-3 bg-white">
 </p>
@@ -24,7 +24,7 @@ A model registry provides a central index for ML model developers to index and m
 It fills a gap between model experimentation and production activities.
 It provides a central interface for all stakeholders in the ML lifecycle to collaborate on ML models.
 
-<img src="/docs/components/model-registry/images/ml-lifecycle-kubeflow-modelregistry.drawio.svg"
+<img src="/docs/components/hub/images/ml-lifecycle-kubeflow-modelregistry.drawio.svg"
   alt="Kubeflow Components in ML Lifecycle"
   class="mt-3 mb-3 border rounded p-3 bg-white">
 
@@ -103,5 +103,5 @@ By implementing a model registry, ACME Inc. can significantly enhance their MLOp
 
 ## Next steps
 
-- Follow the [installation guide](/docs/components/model-registry/installation/) to set up Model Registry
-- Run some examples following the [getting started guide](/docs/components/model-registry/getting-started/)
+- Follow the [installation guide](/docs/components/hub/installation/) to set up Model Registry
+- Run some examples following the [getting started guide](/docs/components/hub/getting-started/)

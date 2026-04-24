@@ -19,7 +19,7 @@ The logical model is exposed via the Model Registry [REST API](reference/rest-ap
 To follow along the examples in this guide, you will need a Kubeflow installation and the Model Registry installed:
 
 - [Kubeflow](/docs/started/installing-kubeflow/)
-- [Model Registry](/docs/components/model-registry/installation/)
+- [Model Registry](/docs/components/hub/installation/)
 - Python >= 3.9
 
 <!-- TODO: list python client as a requirement -->
@@ -29,7 +29,7 @@ To follow along the examples in this guide, you will need a Kubeflow installatio
 To use Model Registry on a notebook you should first install the Python client:
 
 ```raw
-!pip install model-registry=="{{% model-registry/latest-version %}}"
+!pip install model-registry=="{{% hub/latest-version %}}"
 !pip install kserve=="0.13"
 ```
 
@@ -193,7 +193,7 @@ The InferenceService is now created, the CSI retrieves the latest artifact data 
 
 In addition to the command line and Python clients, you can also use the Model Registry UI to manage your models. The UI provides an intuitive interface for registering, updating, and querying models and their metadata.
 
-   <img src="/docs/components/model-registry/images/model-registry-ui-main.png"
+   <img src="/docs/components/hub/images/model-registry-ui-main.png"
    alt="Model Registry Overview"
    class="mt-3 mb-3 border rounded">
 

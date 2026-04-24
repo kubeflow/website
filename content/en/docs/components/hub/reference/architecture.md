@@ -4,7 +4,7 @@ description = "Reference documentation for the Kubeflow Model Registry"
 weight = 100
 +++
 
-<img src="/docs/components/model-registry/reference/images/model-registry-overview.jpg"
+<img src="/docs/components/hub/reference/images/model-registry-overview.jpg"
   alt="Model Registry High Level Architecture"
   class="mt-3 mb-3 border rounded">
 

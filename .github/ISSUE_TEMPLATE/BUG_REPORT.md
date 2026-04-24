@@ -32,7 +32,7 @@ https://kubeflow.org/...
 <!-- /area central-dashboard -->
 <!-- /area katib -->
 <!-- /area kserve -->
-<!-- /area model-registry -->
+<!-- /area hub -->
 <!-- /area notebooks -->
 <!-- /area pipelines -->
 <!-- /area spark-operator -->
@@ -43,4 +43,4 @@ https://kubeflow.org/...
 ---
 
 <!-- Don't delete message below to encourage users to support your issue! -->
-Impacted by this bug? Give it a 👍. 
+Impacted by this bug? Give it a 👍.
