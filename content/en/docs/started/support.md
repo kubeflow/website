@@ -72,7 +72,7 @@ You can ask questions and make suggestions in the following places:
   - [Kubeflow Katib](https://github.com/kubeflow/katib/issues)
   - [Kubeflow Trainer](https://github.com/kubeflow/trainer/issues)
   - [Kubeflow Notebooks](https://github.com/kubeflow/notebooks/issues)
-  - [Kubeflow Model Registry](https://github.com/kubeflow/hub/issues)
+  - [Kubeflow Hub](https://github.com/kubeflow/hub/issues)
   - [Kubeflow Dashboard](https://github.com/kubeflow/dashboard/issues)
   - [Kserve](https://github.com/kserve/kserve/issues)
   - [Kubeflow AI Reference Platform / Manifests](https://github.com/kubeflow/manifests/issues)

@@ -1,6 +1,6 @@
 +++
 title = "Architecture"
-description = "Reference documentation for the Kubeflow Model Registry"
+description = "Reference documentation for the Kubeflow Hub's Model Registry component"
 weight = 100
 +++
 
