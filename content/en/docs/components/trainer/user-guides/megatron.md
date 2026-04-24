@@ -32,6 +32,11 @@ It provides production-grade implementations of parallelism strategies:
 Since Megatron-Core uses `torchrun` as its distributed launcher, it works natively with the
 existing `torch-distributed` ClusterTrainingRuntime. No dedicated Megatron runtime is needed.
 
+If you want to reuse an existing Hugging Face transformer,
+[Megatron-Bridge](https://github.com/NVIDIA/Megatron-Bridge) converts the model into a
+Megatron-compatible format so you can apply TP and PP to it. This guide uses Megatron-Core
+directly with a small GPT model built from scratch.
+
 ## Megatron Distributed Environment
 
 Kubeflow Trainer uses the `torch-distributed` runtime to launch Megatron-Core training with
@@ -54,6 +59,17 @@ parallel_state.initialize_model_parallel(
 
 For a `TP_SIZE` of 2, Megatron-Core creates a tensor-parallel group spanning 2 processes,
 and each layer's weight matrices are split across those 2 GPUs.
+
+Megatron-Core compiles a small C++ dataset helper the first time it is used, so the training
+container needs a C/C++ toolchain (`make` and `g++`). The default `pytorch/pytorch:*-runtime`
+image does not ship these tools. The example below installs them from inside the training
+function with `apt-get`; for production you can bake `make` and `g++` into a custom training
+runtime image to skip the install on every run.
+
+Megatron-Core also initializes several NCCL communicators (one per parallel group: TP, DP,
+and helper groups) during training. Each communicator reserves shared memory in `/dev/shm`,
+which is capped at 64 MB by default in Kubernetes Pods, and that is not enough for multi-group
+workloads. See [Increasing /dev/shm for NCCL](#increasing-devshm-for-nccl) below for the fix.
 
 ## Create TrainJob with Megatron-Core Training
 
@@ -149,7 +165,9 @@ def train_megatron_gpt_tp():
     optim = Adam(gpt_model.parameters())
 
     # Step 3: Prepare a mock dataset (no real data download needed).
-    # Install build tools for Megatron's C++ dataset helpers.
+    # Install build tools for Megatron's C++ dataset helpers. The default
+    # pytorch/pytorch:*-runtime image does not include them; bake them into
+    # a custom runtime image if you want to skip this on every run.
     import subprocess as _sp
     _sp.run(["apt-get", "update", "-qq"], capture_output=True)
     _sp.run(["apt-get", "install", "-y", "-qq", "make", "g++"], capture_output=True)
@@ -162,12 +180,9 @@ def train_megatron_gpt_tp():
     for _f in ["Makefile", "helpers.cpp"]:
         _urlreq.urlretrieve(_base_url + _f, os.path.join(_datasets_dir, _f))
 
-    if torch.distributed.is_available() and torch.distributed.is_initialized():
-        if torch.distributed.get_rank() == 0:
-            compile_helpers()
-        torch.distributed.barrier()
-    else:
+    if torch.distributed.get_rank() == 0:
         compile_helpers()
+    torch.distributed.barrier()
 
     config = GPTDatasetConfig(
         random_seed=0,
@@ -176,7 +191,7 @@ def train_megatron_gpt_tp():
         reset_attention_mask=False,
         eod_mask_loss=False,
         tokenizer=MegatronTokenizer.from_pretrained(
-            metadata_path={"library": "null"},
+            metadata_path={"library": "null-text"},
             vocab_size=_SEQUENCE_LENGTH,
         ),
         mid_level_dataset_surplus=0.005,
@@ -232,6 +247,13 @@ def train_megatron_gpt_tp():
     torch.distributed.destroy_process_group()
 ```
 
+{{% alert title="Note" color="info" %}}
+Installing `make` and `g++` from inside the training function is a workaround because the
+default `pytorch/pytorch:*-runtime` image used by `torch-distributed` does not ship a C/C++
+toolchain. A cluster administrator can move this into a custom training runtime image so
+that every job starts faster and does not depend on the Debian package mirrors.
+{{% /alert %}}
+
 ### Create a TrainJob
 
 After configuring the training function, use the `train()` API to create a TrainJob.
@@ -258,7 +280,7 @@ job_name = TrainerClient().train(
 ```
 
 {{% alert title="Note" color="info" %}}
-The `TP_SIZE` environment variable must match the total number of GPUs across all nodes
+The TP_SIZE environment variable must match the total number of GPUs across all nodes
 (`num_nodes * gpu`). If you set `num_nodes=2` and `gpu=1`, then `TP_SIZE` should be 2.
 {{% /alert %}}
 
@@ -277,8 +299,12 @@ Kubernetes pods get 64 MB of `/dev/shm` by default, which is not enough for Mega
 it creates multiple NCCL communicators (one per parallel group: TP, DP, etc.). When `/dev/shm`
 fills up, NCCL operations fail silently or crash.
 
-The fix is to mount `/dev/shm` as a memory-backed `emptyDir` volume in the ClusterTrainingRuntime.
-If your cluster administrator has not already configured this, you can patch the runtime:
+The fix is to mount `/dev/shm` as a memory-backed `emptyDir` volume. You have two ways to
+apply it: a cluster administrator can patch the `torch-distributed` ClusterTrainingRuntime so
+every job picks it up, or an individual user can attach the same mount to a single TrainJob
+via [RuntimePatches](/docs/components/trainer/operator-guides/runtime-patches/).
+
+**Option 1: Cluster administrator — patch the runtime once for every job.**
 
 ```yaml
 apiVersion: trainer.kubeflow.org/v2alpha1
@@ -299,10 +325,42 @@ spec:
                       emptyDir:
                         medium: Memory
                   containers:
-                    - name: trainer
+                    - name: node
                       volumeMounts:
                         - name: dshm
                           mountPath: /dev/shm
+```
+
+**Option 2: TrainJob author — attach the mount to a single job with `runtimePatches`.**
+
+```yaml
+apiVersion: trainer.kubeflow.org/v2alpha1
+kind: TrainJob
+metadata:
+  name: megatron-tp
+spec:
+  runtimeRef:
+    name: torch-distributed
+  runtimePatches:
+    - manager: trainer.kubeflow.org/kubeflow-sdk
+      trainingRuntimeSpec:
+        template:
+          spec:
+            replicatedJobs:
+              - name: node
+                template:
+                  spec:
+                    template:
+                      spec:
+                        volumes:
+                          - name: dshm
+                            emptyDir:
+                              medium: Memory
+                        containers:
+                          - name: node
+                            volumeMounts:
+                              - name: dshm
+                                mountPath: /dev/shm
 ```
 
 This is a [well-known NCCL + Kubernetes issue](https://github.com/NVIDIA/nccl/issues/525).
@@ -330,6 +388,42 @@ In that case, use the multi-node configuration (`num_nodes=2, gpu=1`) instead of
 on a single node (`num_nodes=1, gpu=2`), because `torchrun --nproc_per_node=auto` uses the
 CUDA device count, not the Kubernetes GPU resource count.
 {{% /alert %}}
+
+### Co-Scheduling Multi-Node Pods on the Same Physical Node
+
+Tensor Parallelism is communication-intensive: every forward and backward step does an
+`all-reduce` across the TP group. If you are forced into a multi-node configuration but the
+target nodes have more than one physical GPU, you can pin both TrainJob Pods onto the same
+node so NCCL can use NVLink or PCIe peer-to-peer instead of the Pod network.
+
+The following `runtimePatches` entry attaches a `podAffinity` rule that co-schedules all
+Pods of the TrainJob onto the same node. Replace `<your-trainjob-name>` with the
+`metadata.name` of the TrainJob (JobSet propagates it as the `jobset.sigs.k8s.io/jobset-name`
+label on every Pod):
+
+```yaml
+runtimePatches:
+  - manager: trainer.kubeflow.org/kubeflow-sdk
+    trainingRuntimeSpec:
+      template:
+        spec:
+          replicatedJobs:
+            - name: node
+              template:
+                spec:
+                  template:
+                    spec:
+                      affinity:
+                        podAffinity:
+                          requiredDuringSchedulingIgnoredDuringExecution:
+                            - labelSelector:
+                                matchExpressions:
+                                  - key: jobset.sigs.k8s.io/jobset-name
+                                    operator: In
+                                    values:
+                                      - <your-trainjob-name>
+                              topologyKey: kubernetes.io/hostname
+```
 
 ## Next Steps
 
