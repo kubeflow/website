@@ -1,6 +1,6 @@
 +++
 title = "Reference"
-description = "Reference docs for Kubeflow Model Registry"
+description = "Reference docs for Kubeflow Hub"
 weight = 100
 +++
 

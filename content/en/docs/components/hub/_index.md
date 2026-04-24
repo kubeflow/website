@@ -1,6 +1,6 @@
 +++
-title = "Kubeflow Model Registry"
-description = "Documentation for Kubeflow Model Registry"
+title = "Kubeflow Hub"
+description = "Documentation for Kubeflow Hub (formerly Model Registry)"
 weight = 50
 +++
 

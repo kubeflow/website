@@ -36,7 +36,7 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Outreach                                | [#kubeflow-outreach](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)            |
 | Katib                                   | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)               |
 | ML experience                           | [#kubeflow-ml-experience](https://app.slack.com/client/T08PSQ7BQ/C08KJBVDH5H)       |
-| Model Registry                          | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)      |
+| Hub (formerly Model Registry)           | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)      |
 | Notebooks                               | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)           |
 | Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)           |
 | Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)            |
@@ -72,7 +72,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow community call             | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
 | Kubeflow Trainer and Katib call     | [Google Doc](https://bit.ly/2PWVCkV)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
 | Kubeflow SDK and ML Experience call | [Google Doc](https://bit.ly/kf-ml-experience)        | [YouTube playlist](https://youtu.be/VkbVVk2OGUI?list=PLmzRWLV1CK_wSO2IMPnzChxESmaoXNfrY)     |
-| Kubeflow Model Registry call        | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
+| Kubeflow Hub call                   | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
 | Kubeflow Notebooks call             | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
 | Kubeflow Pipelines call             | [Google Doc](http://bit.ly/kfp-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
 | Kubeflow Spark Operator call        | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
@@ -161,7 +161,7 @@ The following table outlines which components are maintained by each Working Gro
           <a href="https://github.com/kubeflow/community/tree/master/wg-data">Data</a>
         </td>
         <td>
-          <a href="https://github.com/kubeflow/hub">Kubeflow Model Registry</a>
+          <a href="https://github.com/kubeflow/hub">Kubeflow Hub</a>
         </td>
       </tr>
       <tr>
