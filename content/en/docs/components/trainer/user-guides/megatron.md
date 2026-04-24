@@ -33,9 +33,10 @@ Since Megatron-Core uses `torchrun` as its distributed launcher, it works native
 existing `torch-distributed` ClusterTrainingRuntime. No dedicated Megatron runtime is needed.
 
 If you want to reuse an existing Hugging Face transformer,
-[Megatron-Bridge](https://github.com/NVIDIA/Megatron-Bridge) converts the model into a
-Megatron-compatible format so you can apply TP and PP to it. This guide uses Megatron-Core
-directly with a small GPT model built from scratch.
+[Megatron-Bridge](https://github.com/NVIDIA-NeMo/Megatron-Bridge) is a PyTorch-native training
+library that provides bidirectional conversion between Hugging Face and Megatron-Core formats
+with parallelism-aware checkpoints (TP, PP, and more). This guide uses Megatron-Core directly
+with a small GPT model built from scratch.
 
 ## Megatron Distributed Environment
 
