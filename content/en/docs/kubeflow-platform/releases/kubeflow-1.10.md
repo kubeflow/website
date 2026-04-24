@@ -183,7 +183,7 @@ weight = 91
         <td rowspan="2" class="align-middle">Data Working Group</td>
         <td>Model Registry</td>
         <td>
-          <a href="https://github.com/kubeflow/model-registry/releases/tag/v0.2.17">v0.2.17</a>
+          <a href="https://github.com/kubeflow/hub/releases/tag/v0.2.17">v0.2.17</a>
         </td>
       </tr>
       <tr>

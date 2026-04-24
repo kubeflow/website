@@ -6,12 +6,12 @@ weight = 20
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubeflow%2Fmodel-registry.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubeflow%2Fmodel-registry?ref=badge_shield&issueType=license)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9937/badge)](https://www.bestpractices.dev/projects/9937)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/model-registry/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/model-registry)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/hub/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/hub)
 
 This guide shows how to get started with Model Registry and run a few examples using the
 command line or Python clients.
 
-For an overview of the logical model of model registry, check the [Model Registry logical model](https://github.com/kubeflow/model-registry/blob/main/docs/logical_model.md).
+For an overview of the logical model of model registry, check the [Model Registry logical model](https://github.com/kubeflow/hub/blob/main/docs/logical_model.md).
 The logical model is exposed via the Model Registry [REST API](reference/rest-api).
 
 ## Prerequisites
@@ -204,12 +204,12 @@ To access the Model Registry UI, navigate to the Kubeflow central dashboard and 
 - Updating model metadata
 - Deleting models
 
-For detailed instructions on using the Model Registry UI, refer to the [Model Registry UI documentation](https://github.com/kubeflow/model-registry/blob/main/clients/ui/README.md).
+For detailed instructions on using the Model Registry UI, refer to the [Model Registry UI documentation](https://github.com/kubeflow/hub/blob/main/clients/ui/README.md).
 
 ## Next steps
 
 - Get involved:
   - [Model Registry working group](https://www.kubeflow.org/docs/about/community/#kubeflow-community-meetings)
-  - [GitHub repository](https://github.com/kubeflow/model-registry)
+  - [GitHub repository](https://github.com/kubeflow/hub)
 - Share your feedback:
-  - [File an issue](https://github.com/kubeflow/model-registry/issues/new/choose)
+  - [File an issue](https://github.com/kubeflow/hub/issues/new/choose)
