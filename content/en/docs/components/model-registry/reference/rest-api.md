@@ -35,12 +35,12 @@ https://kubeflow.example.com/api/model_registry/v1alpha3/artifacts?pageSize=100&
 
 ## Swagger UI
 
-The following [Swagger UI](https://github.com/swagger-api/swagger-ui) is automatically generated from the [`{{% model-registry/latest-version %}}`](https://github.com/kubeflow/model-registry/releases/tag/v{{% model-registry/latest-version %}}) version of Kubeflow Model Registry for the [`v1alpha3` REST API](https://github.com/kubeflow/model-registry/blob/v{{% model-registry/latest-version %}}/api/openapi/model-registry.yaml).
+The following [Swagger UI](https://github.com/swagger-api/swagger-ui) is automatically generated from the [`{{% model-registry/latest-version %}}`](https://github.com/kubeflow/hub/releases/tag/v{{% model-registry/latest-version %}}) version of Kubeflow Model Registry for the [`v1alpha3` REST API](https://github.com/kubeflow/hub/blob/v{{% model-registry/latest-version %}}/api/openapi/model-registry.yaml).
 
 {{% alert title="Note" color="info" %}}
 The _try it out_ feature of Swagger UI does not work due to authentication and CORS, but it can help you construct the correct API calls.
 {{% /alert %}}
 
 {{< swaggerui-inline component_name="Kubeflow Model Registry" default_input_url="https://kubeflow.example.com/" >}}
-https://raw.githubusercontent.com/kubeflow/model-registry/refs/tags/v{{% model-registry/latest-version %}}/api/openapi/model-registry.yaml
+https://raw.githubusercontent.com/kubeflow/hub/refs/tags/v{{% model-registry/latest-version %}}/api/openapi/model-registry.yaml
 {{< /swaggerui-inline >}}

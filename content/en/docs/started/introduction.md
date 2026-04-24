@@ -28,7 +28,7 @@ training or model serving.
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | [Kubeflow KServe](https://www.kubeflow.org/docs/components/kserve/)                 | [`kserve/kserve`](https://github.com/kserve/kserve)                     |
 | [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [`kubeflow/katib`](https://github.com/kubeflow/katib)                   |
-| [Kubeflow Model Registry](https://www.kubeflow.org/docs/components/model-registry/) | [`kubeflow/model-registry`](https://github.com/kubeflow/model-registry) |
+| [Kubeflow Model Registry](https://www.kubeflow.org/docs/components/model-registry/) | [`kubeflow/hub`](https://github.com/kubeflow/hub) |
 | [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | [`kubeflow/notebooks`](https://github.com/kubeflow/notebooks)           |
 | [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)           | [`kubeflow/pipelines`](https://github.com/kubeflow/pipelines)           |
 | [Kubeflow Spark Operator](https://www.kubeflow.org/docs/components/spark-operator/) | [`kubeflow/spark-operator`](https://github.com/kubeflow/spark-operator) |
@@ -102,7 +102,7 @@ Kubeflow projects have individual roadmaps which established by project maintain
 - [KServe roadmap](https://github.com/kserve/kserve/blob/master/ROADMAP.md)
 - [Kubeflow Pipelines roadmap](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
 - [Kubeflow Katib roadmap](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
-- [Kubeflow Model Registry roadmap](https://github.com/kubeflow/model-registry/blob/main/ROADMAP.md)
+- [Kubeflow Model Registry roadmap](https://github.com/kubeflow/hub/blob/main/ROADMAP.md)
 - [Kubeflow Spark Operator roadmap](https://github.com/kubeflow/spark-operator/blob/master/ROADMAP.md)
 - [Kubeflow Trainer roadmap](https://github.com/kubeflow/trainer/blob/master/ROADMAP.md)
 

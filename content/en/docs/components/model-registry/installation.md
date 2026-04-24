@@ -6,7 +6,7 @@ weight = 30
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubeflow%2Fmodel-registry.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubeflow%2Fmodel-registry?ref=badge_shield&issueType=license)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9937/badge)](https://www.bestpractices.dev/projects/9937)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/model-registry/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/model-registry)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/hub/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/hub)
 
 This section details how to set up and configure Model Registry on your Kubernetes cluster with Kubeflow.
 
@@ -33,7 +33,7 @@ These instructions assume that you've installed Kubeflow from the [manifests](ht
 Clone the `model-registry` repository:
 
 ```sh
-git clone --depth 1 -b v{{% model-registry/latest-version %}} https://github.com/kubeflow/model-registry.git
+git clone --depth 1 -b v{{% model-registry/latest-version %}} https://github.com/kubeflow/hub.git
 ```
 
 Switch to the `manifests/kustomize` for the remaining commands in this section:
@@ -77,31 +77,31 @@ kubectl get configmap centraldashboard-config -n kubeflow -o json | jq '.data.li
 
 It is also possible to install Model Registry as a standalone deployment, separately from Kubeflow.
 
-By default, the [manifests](https://github.com/kubeflow/model-registry/tree/v{{% model-registry/latest-version %}}/manifests/kustomize) deploy the Model Registry in the `kubeflow` namespace;
+By default, the [manifests](https://github.com/kubeflow/hub/tree/v{{% model-registry/latest-version %}}/manifests/kustomize) deploy the Model Registry in the `kubeflow` namespace;
 you must ensure the `kubeflow` namespace is available (for example: `kubectl create namespace kubeflow`)
-or modify [the kustomization file](https://github.com/kubeflow/model-registry/blob/v{{% model-registry/latest-version %}}/manifests/kustomize/overlays/db/kustomization.yaml#L3) to your desired namespace.
+or modify [the kustomization file](https://github.com/kubeflow/hub/blob/v{{% model-registry/latest-version %}}/manifests/kustomize/overlays/db/kustomization.yaml#L3) to your desired namespace.
 
-See the list of available versions on the [GitHub releases](https://github.com/kubeflow/model-registry/releases) of the `kubeflow/model-registry` repository. To install a specific release of the Model Registry, modify the following commands with the desired `ref=<GIT_TAG>`.
+See the list of available versions on the [GitHub releases](https://github.com/kubeflow/hub/releases) of the `kubeflow/hub` repository. To install a specific release of the Model Registry, modify the following commands with the desired `ref=<GIT_TAG>`.
 
 Run the following command to install the `v{{% model-registry/latest-version %}}` release of Model Registry:
 
 ```shell
 MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
-kubectl apply -n kubeflow -k "https://github.com/kubeflow/model-registry/manifests/kustomize/overlays/db?ref=v${MODEL_REGISTRY_VERSION}"
+kubectl apply -n kubeflow -k "https://github.com/kubeflow/hub/manifests/kustomize/overlays/db?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
 If your Kubernetes cluster uses Istio, you MUST apply the Istio-compatibility manifests (e.g. when using a full Kubeflow Platform). However, these are NOT required for non-Istio clusters.
 
 ```shell
 MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
-kubectl apply -n kubeflow -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/istio?ref=v${MODEL_REGISTRY_VERSION}"
+kubectl apply -n kubeflow -k "https://github.com/kubeflow/hub/manifests/kustomize/options/istio?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
 If you want Kserve to be able to support `model-registry://` URI formats, you must apply the cluster-scoped `CustomStorageContainer` CR.
 
 ```shell
 MODEL_REGISTRY_VERSION={{% model-registry/latest-version %}}
-kubectl apply -n kubeflow -k "https://github.com/kubeflow/model-registry/manifests/kustomize/options/csi?ref=v${MODEL_REGISTRY_VERSION}"
+kubectl apply -n kubeflow -k "https://github.com/kubeflow/hub/manifests/kustomize/options/csi?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
 ## TLS Configuration

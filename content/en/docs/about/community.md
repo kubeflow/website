@@ -161,7 +161,7 @@ The following table outlines which components are maintained by each Working Gro
           <a href="https://github.com/kubeflow/community/tree/master/wg-data">Data</a>
         </td>
         <td>
-          <a href="https://github.com/kubeflow/model-registry">Kubeflow Model Registry</a>
+          <a href="https://github.com/kubeflow/hub">Kubeflow Model Registry</a>
         </td>
       </tr>
       <tr>
