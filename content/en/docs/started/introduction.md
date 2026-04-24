@@ -29,7 +29,7 @@ training or model serving.
 | [Kubeflow KServe](https://www.kubeflow.org/docs/components/kserve/)                 | [`kserve/kserve`](https://github.com/kserve/kserve)                     |
 | [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/)                     | [`kubeflow/kale`](https://github.com/kubeflow/kale)                     |
 | [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [`kubeflow/katib`](https://github.com/kubeflow/katib)                   |
-| [Kubeflow Model Registry](https://www.kubeflow.org/docs/components/model-registry/) | [`kubeflow/hub`](https://github.com/kubeflow/hub) |
+| [Kubeflow Model Registry](https://www.kubeflow.org/docs/components/hub/)            | [`kubeflow/hub`](https://github.com/kubeflow/hub) |
 | [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | [`kubeflow/notebooks`](https://github.com/kubeflow/notebooks)           |
 | [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)           | [`kubeflow/pipelines`](https://github.com/kubeflow/pipelines)           |
 | [Kubeflow SDK](https://www.kubeflow.org/docs/components/sdk/)                       | [`kubeflow/sdk`](https://github.com/kubeflow/sdk) |
