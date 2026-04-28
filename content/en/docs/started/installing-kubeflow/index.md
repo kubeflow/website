@@ -176,13 +176,13 @@ The following table lists distributions which are <em>maintained</em> by their r
         </td>
         <td>
           {{< kf-version-notice >}}{{% canonical/latest-version %}}{{< /kf-version-notice >}}
-          <sup><a href="https://charmed-kubeflow.io/docs/release-notes">[release notes]</a></sup>
+          <sup><a href="https://documentation.ubuntu.com/charmed-kubeflow/latest/reference/release-notes/">[release notes]</a></sup>
         </td>
         <td>
           Multiple
         </td>
         <td>
-          <a href="https://charmed-kubeflow.io/">Website</a>
+          <a href="https://ubuntu.com/kubeflow">Website</a>
         </td>
       </tr>
       <tr>
