@@ -63,9 +63,9 @@ ignoreFiles = []
   [[menu.main]]
     name = "" 
     weight = -1000
-    pre = "<span style='display:inline-flex; align-items:center;'><img src='/events/images/cloud-native-ai-2025.png' style='height:60px; width:auto; margin-right:8px;'><span style='display:flex; flex-direction:column; justify-content:center;'><span class='badge badge-warning' style='margin-bottom:4px;'>March 23rd, 2026</span><span class='badge badge-warning'>Amsterdam, Netherlands</span></span></span>"
+    pre = "<span style='display:inline-flex; align-items:center;'><img src='/events/images/kubeflow-virtual.png' style='height:60px; width:auto; margin-right:8px;'><span style='display:flex; flex-direction:column; justify-content:center;'><span class='badge badge-warning' style='margin-bottom:4px;'>August 19th, 2026</span><span class='badge badge-warning'>Virtual</span></span></span>"
     post = ""
-    url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/cloud-native-ai-kubeflow-day/"
+    url = "https://community.cncf.io/events/details/cncf-virtual-project-events-hosted-by-cncf-presents-kubeflow-community-showcase-2026-genai-and-mlops-in-action/"
 #  [[menu.main]]
 #    name = "GSoC 2025"
 #    weight = -900
