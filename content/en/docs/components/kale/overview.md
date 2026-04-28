@@ -34,5 +34,5 @@ without rewriting anything.
 
 ## Next Steps
 
-- Compile and run your first notebook on Kubeflow Pipelines with the [quickstart guide](https://kubeflow-kale.readthedocs.io/en/latest/getting-started/quickstart.html).
-- Understand cell annotations, data marshalling, and how Kale compiles to KFP in the [core concepts](https://kubeflow-kale.readthedocs.io/en/latest/concepts/index.html).
+- Compile and run your first notebook on Kubeflow Pipelines with the [quickstart guide](https://kale.kubeflow.org/en/latest/getting-started/quickstart.html).
+- Understand cell annotations, data marshalling, and how Kale compiles to KFP in the [core concepts](https://kale.kubeflow.org/en/latest/concepts/index.html).
