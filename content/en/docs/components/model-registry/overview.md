@@ -1,6 +1,6 @@
 +++
 title = "Overview"
-description = "An overview for Kubeflow Model Registry"
+description = "An overview for Kubeflow Hub, Model Registry, and Model Catalog"
 weight = 10
 +++
 
@@ -8,11 +8,22 @@ weight = 10
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9937/badge)](https://www.bestpractices.dev/projects/9937)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/model-registry/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/model-registry)
 
-{{% alpha-status feedbacklink="https://github.com/kubeflow/model-registry/issues/new/choose" %}}
+{{% alpha-status feedbacklink="https://github.com/kubeflow/hub/issues/new/choose" %}}
+
+## What is Kubeflow Hub?
+
+[Kubeflow Hub](https://github.com/kubeflow/hub) (formerly known as Model Registry) is the central component in Kubeflow for managing the full lifecycle of ML models.
+It brings together two complementary capabilities under one project:
+
+- **[Model Registry](#what-is-model-registry)** — a metadata store where teams register, version, and track their own models, model versions, and artifacts as they move from experimentation to production.
+- **[Model Catalog](#what-is-model-catalog)** — a read-only discovery service that aggregates models from external catalog sources, letting users search and browse curated models before registering or deploying them.
+
+Together, Model Registry and Model Catalog cover the full model-management workflow: discover a model in the catalog, register it in the registry, version and govern it through the ML lifecycle, and deploy it to production.
 
 ## What is Model Registry?
 
-A model registry is an important component in the lifecycle of AI/ML models, an integral component for any MLOps platform and for ML workflows.
+The Model Registry is a central index for ML model developers to manage models, versions, and ML artifacts metadata.
+It fills a gap between model experimentation and production activities, providing a central interface for all stakeholders in the ML lifecycle to collaborate on ML models.
 
 <p style="text-align: center;">
   <img src="/docs/components/model-registry/images/MLloopinnerouter.png"
@@ -20,23 +31,48 @@ A model registry is an important component in the lifecycle of AI/ML models, an 
     class="mt-3 mb-3 border rounded p-3 bg-white">
 </p>
 
-A model registry provides a central index for ML model developers to index and manage models, versions, and ML artifacts metadata.
-It fills a gap between model experimentation and production activities.
-It provides a central interface for all stakeholders in the ML lifecycle to collaborate on ML models.
-
 <img src="/docs/components/model-registry/images/ml-lifecycle-kubeflow-modelregistry.drawio.svg"
   alt="Kubeflow Components in ML Lifecycle"
   class="mt-3 mb-3 border rounded p-3 bg-white">
 
-- **Create**: during the creation phase, the Model Registry facilitates collaboration between different teams in order to track changes, experiment with different model architectures, and maintain a history of model iterations.
-- **Verify**: in the verification stage, the Model Registry supports rigorous testing and validation before progressing further, maintaining a record of performance metrics and test results for each version.
-- **Package**: the Model Registry assists in organizing model artifacts and dependencies, enabling seamless integration with deployment pipelines and ensuring reproducibility across environments.
-- **Release**: when releasing a model, the Model Registry manages the transition of validated versions to production-ready status, helping organization to maintain versioning conventions and facilitating approval workflows.
-- **Deploy**: during deployment, the Model Registry provides information of the approved model versions and associated artifacts, ensuring consistency and traceability across deployment environments.
-- **Monitor**: in the monitoring phase, the Model Registry supports ongoing performance monitoring and model drift detection by maintaining a comprehensive record of deployed models and linking to their performance metrics, facilitating proactive maintenance and retraining as needed.
+The Model Registry supports every stage of the ML lifecycle:
+
+- **Create**: facilitates collaboration between different teams in order to track changes, experiment with different model architectures, and maintain a history of model iterations.
+- **Verify**: supports rigorous testing and validation before progressing further, maintaining a record of performance metrics and test results for each version.
+- **Package**: assists in organizing model artifacts and dependencies, enabling seamless integration with deployment pipelines and ensuring reproducibility across environments.
+- **Release**: manages the transition of validated versions to production-ready status, helping organizations to maintain versioning conventions and facilitating approval workflows.
+- **Deploy**: provides information about the approved model versions and associated artifacts, ensuring consistency and traceability across deployment environments.
+- **Monitor**: supports ongoing performance monitoring and model drift detection by maintaining a comprehensive record of deployed models and linking to their performance metrics, facilitating proactive maintenance and retraining as needed.
 
 DevOps, Data Scientists, and developers need to collaborate with other users in the ML workflow to get models into production.
 Data scientists need an efficient way to share model versions, artifacts and metadata with other users that need access to those models as part of the MLOps workflow.
+
+## What is Model Catalog?
+
+The [Model Catalog](/docs/components/model-registry/reference/model-catalog-rest-api/) is a **read-only discovery service** for ML models across multiple catalog sources.
+It acts as a federated metadata aggregation layer, allowing users to search and discover models from various external catalogs through a unified interface.
+
+### Key capabilities
+
+- **Federated discovery**: browse models from multiple catalog sources in a single view, without needing to visit each source individually.
+- **Pluggable sources**: add new catalog sources via configuration. Currently supported source types include:
+  - **YAML Catalog** — static YAML files containing curated model metadata.
+  - **Hugging Face Hub** — discover models directly from [Hugging Face's model repository](https://huggingface.co/models), with support for organization-scoped and pattern-based model inclusion/exclusion.
+- **Rich metadata**: each catalog model exposes metadata such as description, provider, tasks, languages, license information, and extensible custom properties.
+- **Filtering and search**: filter models by task, provider, license, language, and other properties. Custom properties like `model_type` (generative vs. predictive) enable further classification.
+- **Model registration**: once you find a model in the catalog, you can register it directly into a Model Registry to begin versioning, governing, and deploying it.
+
+### How it works
+
+The catalog service operates as a metadata aggregation layer that:
+
+1. Reads catalog source configurations (YAML files or Hugging Face API connections).
+2. Federates model metadata from those sources into a unified REST API.
+3. Provides search, filtering, and detail endpoints for the UI and programmatic access.
+
+The catalog does not store model weights or artifacts — it provides metadata and references to where models can be found in their source repositories.
+
+For the API specification, see the [Model Catalog REST API reference](/docs/components/model-registry/reference/model-catalog-rest-api/).
 
 ## Use Cases
 
@@ -61,7 +97,7 @@ The _Data Scientist_ uses Kubeflow Notebooks to perform exploratory research and
 
 ### Use Case 2: Experimenting with Different Model Weights to Optimize Model Accuracy
 
-The _Data Scientist_ after identifying a base model, uses Kubeflow Pipelines, Katib, and other components to experiment model training with alternative weights, hyperparameters, and other variations to improve the model’s performance metrics; Kubeflow Model Registry can be used to track data related to experiments and runs for comparison, reproducibility and collaboration.
+The _Data Scientist_ after identifying a base model, uses Kubeflow Pipelines, Katib, and other components to experiment model training with alternative weights, hyperparameters, and other variations to improve the model's performance metrics; Kubeflow Model Registry can be used to track data related to experiments and runs for comparison, reproducibility and collaboration.
 
 * Register the Base Model: Track the Base Model storage location along with hyperparameters in the Model Registry. 
 * Track Experiments/Runs: With Kubeflow pipelines or using the Kubeflow Notebooks, track every variation of the hyper-parameters along with any configuration in that specific Experiment. With each run the different parameters can be tracked in the Model Registry.
@@ -105,3 +141,4 @@ By implementing a model registry, ACME Inc. can significantly enhance their MLOp
 
 - Follow the [installation guide](/docs/components/model-registry/installation/) to set up Model Registry
 - Run some examples following the [getting started guide](/docs/components/model-registry/getting-started/)
+- Explore the [Model Catalog REST API reference](/docs/components/model-registry/reference/model-catalog-rest-api/)
