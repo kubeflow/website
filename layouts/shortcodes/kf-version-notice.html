@@ -1,6 +1,6 @@
 {{ .Page.Store.Set "hasPopper" true }}
 {{- $version_full := replaceRE `\s` "" .Inner }}
-{{- $version_short := replaceRE `^(\d+)\.(\d+)\.(\d+).*` `$1.$2` $version_full }}
+{{- $version_short := cond (eq (strings.Count "." $version_full) 1) $version_full (replaceRE `^(\d+)\.(\d+)\.(\d+).*` `$1.$2` $version_full) }}
 
 {{- $latest_release_json_path := "release-info/latest.json" }}
 {{- $latest_release_json := .Page.Resources.Get $latest_release_json_path }}
@@ -8,23 +8,57 @@
   {{- errorf `Failed to get "latest" release info, no file at %q.` $latest_release_json_path }}
 {{- end }}
 {{- $latest_release := $latest_release_json | transform.Unmarshal }}
-{{- $latest_release_full := $latest_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1.$2.$3` }}
-{{- $latest_release_major := $latest_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1` | int  }}
-{{- $latest_release_minor := $latest_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$2` | int  }}
+{{- $latest_release_full := cond (strings.HasPrefix $latest_release.tag "v") ($latest_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1.$2.$3`) $latest_release.tag }}
+{{- $latest_release_major := 0 }}
+{{- $latest_release_minor := 0 }}
+{{- if strings.HasPrefix $latest_release.tag "v" }}
+  {{- $latest_release_major = $latest_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1` | int }}
+  {{- $latest_release_minor = $latest_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$2` | int }}
+{{- else }}
+  {{- /* CalVer format: YY.MM (e.g. "26.03") */}}
+  {{- $latest_release_major = $latest_release.tag | replaceRE `^(\d+)\..*` `$1` | int }}
+  {{- $latest_release_minor = $latest_release.tag | replaceRE `^\d+\.(\d+).*` `$1` | int }}
+{{- end }}
 
-{{- $this_release_json_path := printf "release-info/v%s.json" $version_full }}
+{{- $version_is_calver := eq (strings.Count "." $version_full) 1 }}
+{{- $this_release_json_path := cond $version_is_calver (printf "release-info/%s.json" $version_full) (printf "release-info/v%s.json" $version_full) }}
 {{- $this_release_json := .Page.Resources.Get $this_release_json_path }}
 {{- if not $this_release_json }}
   {{- errorf "Failed to get release info for version %q, no file at %q.\n\n\n!!!! TIP: run the './content/en/docs/started/installing-kubeflow/get_new_releases.sh' to update Kubeflow release information !!!!\n\n\n" $version_full $this_release_json_path $version_full }}
 {{- end }}
 {{- $this_release := $this_release_json | transform.Unmarshal }}
-{{- $this_release_major := $this_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1` | int }}
-{{- $this_release_minor := $this_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$2` | int }}
+{{- $this_release_major := 0 }}
+{{- $this_release_minor := 0 }}
+{{- if strings.HasPrefix $this_release.tag "v" }}
+  {{- $this_release_major = $this_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$1` | int }}
+  {{- $this_release_minor = $this_release.tag | replaceRE `^v(\d+)\.(\d+)\.(\d+).*` `$2` | int }}
+{{- else }}
+  {{- /* CalVer format: YY.MM (e.g. "26.03") */}}
+  {{- $this_release_major = $this_release.tag | replaceRE `^(\d+)\..*` `$1` | int }}
+  {{- $this_release_minor = $this_release.tag | replaceRE `^\d+\.(\d+).*` `$1` | int }}
+{{- end }}
 {{- $this_release_date := $this_release.publish_date | time.AsTime }}
 {{- $this_release_date_string := $this_release_date | time.Format ":date_long" }}
 
-{{- $this_version_lag := sub $latest_release_minor $this_release_minor }}
-{{- $popup_content_prefix := printf "Kubeflow %s was initially released on <strong>%s</strong> and is <strong>%d</strong> minor versions behind the latest release." $version_full $this_release_date_string $this_version_lag }}
+{{- $latest_is_calver := not (strings.HasPrefix $latest_release.tag "v") }}
+{{- $this_is_calver := not (strings.HasPrefix $this_release.tag "v") }}
+{{- $this_version_lag := 0 }}
+{{- if and $latest_is_calver $this_is_calver }}
+  {{- /* Both CalVer: compute lag in months */}}
+  {{- $this_version_lag = sub (add (mul $latest_release_major 12) $latest_release_minor) (add (mul $this_release_major 12) $this_release_minor) }}
+{{- else if and (not $latest_is_calver) (not $this_is_calver) }}
+  {{- /* Both semver: compare minor versions */}}
+  {{- $this_version_lag = sub $latest_release_minor $this_release_minor }}
+{{- else }}
+  {{- /* Mixed schemes: this is a legacy semver release, latest is CalVer */}}
+  {{- $this_version_lag = -1 }}
+{{- end }}
+{{- $popup_content_prefix := "" }}
+{{- if lt $this_version_lag 0 }}
+  {{- $popup_content_prefix = printf "Kubeflow %s was initially released on <strong>%s</strong> and is 1 version behind the latest release. This is a legacy semver release; the project has since moved to CalVer versioning." $version_full $this_release_date_string }}
+{{- else }}
+  {{- $popup_content_prefix = printf "Kubeflow %s was initially released on <strong>%s</strong> and is <strong>%d</strong> minor versions behind the latest release." $version_full $this_release_date_string $this_version_lag }}
+{{- end }}
 {{- $popup_content_suffix := "Distributions are supported by their maintainers. Contact the provider for information on support and updates." }}
 
 {{- $button_style := "" }}
