@@ -39,6 +39,22 @@
       {{ range $i, $e := .Site.Menus.main -}}
       {{ $longContent := gt (len $e.Name) 8 -}}
       {{ $isLast := eq $i (sub $last 1) -}}
+      {{ if $e.HasChildren -}}
+      <li class="nav-item dropdown mt-1 mt-lg-0 {{ if $isLast }}mr-1 mr-lg-3 mr-xl-4{{ else }}mr-2 mr-xl-4{{- end }}">
+        <a class="nav-link dropdown-toggle" href="#" id="nav-dropdown-{{ $e.Identifier }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{- with $e.Pre }}{{ . }}{{ end -}}
+          <span>{{ $e.Name }}</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="nav-dropdown-{{ $e.Identifier }}">
+          {{ range $e.Children -}}
+          <a class="dropdown-item" href="{{ .URL | relLangURL }}">
+            {{- with .Pre }}{{ . }}{{ end }}{{ .Name -}}
+            {{- with .Post }}{{ . }}{{ end -}}
+          </a>
+          {{ end -}}
+        </div>
+      </li>
+      {{ else -}}
       <li class="nav-item mt-1 mt-lg-0 {{ if $isLast }}mr-1 mr-lg-3 mr-xl-4{{ else }}mr-2 mr-xl-4{{- end }} {{- if $longContent }} long-content {{- end }}">
         {{ $active := or ($p.IsMenuCurrent "main" $e) ($p.HasMenuCurrent "main" $e) -}}
         {{ with $e.Page }}{{ $active = or $active ( $.IsDescendant $e) }}{{ end -}}
@@ -58,6 +74,7 @@
             {{- with $e.Post }}{{ $post }}{{ end -}}
         </a>
       </li>
+      {{ end -}}
       {{ end -}}
       <li class="nav-item mr-2 mt-1 mt-lg-0 py-md-2">
         <div class="vr"></div>
