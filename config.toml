@@ -139,14 +139,17 @@ enable = true
   # Google Custom Search Engine ID.
   gcs_engine_id = "007239566369470735695:624rglujm-w"
 
-  # The text label for the version menu in the top bar.
+  # Text label for the version menu in the top bar of the website.
   version_menu = "v1.10"
 
-  # The version of the docs. This is used in the "version-banner" partial.
+  # The major.minor version tag for the version of the docs represented in this
+  # branch of the repository. Used in the "version-banner" partial to display a
+  # version number for this doc set.
   version = "v1.10"
 
-  # If the "version-banner" partial should display at the top of each page.
-  archived_version = false
+  # Flag used in the "version-banner" partial to decide whether to display a
+  # banner on every page indicating that this is an archived version of the docs.
+  archived_version = true
 
   # The URL of the latest version of the docs.
   # Used in the "version-banner" partial.
