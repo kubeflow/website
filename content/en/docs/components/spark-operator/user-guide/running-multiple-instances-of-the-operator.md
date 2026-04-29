@@ -5,6 +5,20 @@ description: |
 weight: 70
 ---
 
+{{% alert title="Important" color="warning" %}}
+Spark Operator creates **cluster-scoped resources** such as
+`MutatingWebhookConfiguration`, `ValidatingWebhookConfiguration`, and `ClusterRole`.
+
+Because of this, running Spark Operator instances in **different namespaces**
+within the same Kubernetes cluster is **not supported** and will result in
+resource conflicts.
+
+The recommended approach is to:
+- Deploy Spark Operator **once** (or multiple releases) in a **single operator namespace**
+- Configure each instance to watch **different Spark job namespaces**
+  using `spark.jobNamespaces`
+{{% /alert %}}
+
 If you need to run multiple instances of the Spark operator within the same k8s cluster, then you need to ensure that the running instances should not watch the same spark job namespace.
 For example, you can deploy two Spark operator instances in the `spark-operator` namespace, one with release name `spark-operator-1` which watches the `spark-1` namespace:
 
