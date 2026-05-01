@@ -381,3 +381,14 @@ docs/started/requirements/                    /docs/started/getting-started/
 # Move releases and distributions to Kubeflow AI reference platform.
 /docs/releases/*                                               /docs/kubeflow-platform/releases/:splat
 /docs/distributions/*                                          /docs/kubeflow-platform/distributions/:splat
+
+# Rename model-registry to hub (https://github.com/kubeflow/website/pull/4364)
+/docs/components/model-registry/getting-started/               /docs/components/hub/getting-started/
+/docs/components/model-registry/installation/                  /docs/components/hub/installation/
+/docs/components/model-registry/overview/                      /docs/components/hub/overview/
+/docs/components/model-registry/reference/                     /docs/components/hub/reference/
+/docs/components/model-registry/reference/architecture/        /docs/components/hub/reference/architecture/
+/docs/components/model-registry/reference/model-catalog-rest-api/   /docs/components/hub/reference/model-catalog-rest-api/
+/docs/components/model-registry/reference/python-client/       /docs/components/hub/reference/python-client/
+/docs/components/model-registry/reference/rest-api/            /docs/components/hub/reference/rest-api/
+/docs/components/model-registry/reference/ui-rest-api/         /docs/components/hub/reference/ui-rest-api/
