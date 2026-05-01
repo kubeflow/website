@@ -5,7 +5,7 @@ weight = 20
 aliases = ["/docs/contributing/"]
 +++
 
-This document is the single source of truth for how to contribute to the code base.
+This document is the single source of truth for how to contribute to Kubeflow.
 We'd love to accept your patches and contributions to this project.
 There are just a few small guidelines you need to follow.
 
@@ -94,6 +94,12 @@ To ensure smooth collaboration and avoid duplicate work, please follow these gui
   - A maintainer has explicitly asked for additional contributions
 
 Following these guidelines helps maintain a collaborative and efficient community, reduces wasted effort, and ensures everyone's contributions are valued.
+
+### Non-code contributions
+
+- **Documentation**: Improve the accuracy and clarity of our technical docs by fixing stale information and ensuring all new content follows the standards set in the [Kubeflow Documentation Style Guide](style-guide.md).
+- **Blog posts and user stories**: Share your technical insights or success stories on the Kubeflow blog to help the community learn from real-world use cases.
+- **Event outreach**: Help spread awareness by speaking at events, and representing Kubeflow at community booths.
 
 ## Owners files and PR workflow
 
