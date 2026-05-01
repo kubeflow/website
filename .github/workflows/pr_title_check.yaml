@@ -14,13 +14,13 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          VALID_COMPONENTS="central-dashboard|katib|kserve|model-registry|notebooks|pipelines|spark-operator|trainer|gsoc|website|community"
+          VALID_COMPONENTS="central-dashboard|katib|kserve|hub|notebooks|pipelines|spark-operator|trainer|gsoc|website|community"
           if [[ ! "$PR_TITLE" =~ ^($VALID_COMPONENTS):\ .+ ]]; then
             echo "❌ PR title does not follow the correct format: 'component_name: description'"
-            echo "Component value must be one of these central-dashboard|katib|kserve|model-registry|notebooks|pipelines|spark-operator|trainer|gsoc|website|community"
-            echo "Example: model-registry: Add model registry UI Installation instructions"
+            echo "Component value must be one of these central-dashboard|katib|kserve|hub|notebooks|pipelines|spark-operator|trainer|gsoc|website|community"
+            echo "Example: hub: Add model registry UI Installation instructions"
 
-            COMMENT_BODY="⚠️ **Invalid PR Title** ⚠️\n\nYour PR title \`$PR_TITLE\` does not match the required format: \`component_name: description\`.\n\n**Allowed components (case sensitive):** \`central-dashboard, katib, kserve, model-registry, notebooks, pipelines, spark-operator, trainer, gsoc, website, community\`\n\n✅ **Example:** \`model-registry: Add model registry UI Installation instructions\`\n\nPlease update your PR title accordingly by either using GITHUB GUI or by usinge \`/retitle component_name: description\` as stated above."
+            COMMENT_BODY="⚠️ **Invalid PR Title** ⚠️\n\nYour PR title \`$PR_TITLE\` does not match the required format: \`component_name: description\`.\n\n**Allowed components (case sensitive):** \`central-dashboard, katib, kserve, hub, notebooks, pipelines, spark-operator, trainer, gsoc, website, community\`\n\n✅ **Example:** \`hub: Add model registry UI Installation instructions\`\n\nPlease update your PR title accordingly by either using GITHUB GUI or by usinge \`/retitle component_name: description\` as stated above."
             
             # Post the comment to the PR using GitHub API
             curl -s -H "Authorization: token $GITHUB_TOKEN" \

@@ -179,7 +179,7 @@ weight = 95
         <td rowspan="1" class="align-middle">Data Working Group</td>
         <td>Model Registry</td>
         <td>
-          <a href="https://github.com/kubeflow/model-registry/releases/tag/v0.2.1">v0.2.1</a>
+          <a href="https://github.com/kubeflow/hub/releases/tag/v0.2.1">v0.2.1</a>
         </td>
       </tr>
   </tbody>
@@ -459,7 +459,7 @@ This information is only for the manifests found in the <a href="https://github.
         <td rowspan="1" class="align-middle">Data Working Group</td>
         <td>Model Registry</td>
         <td>
-          <a href="https://github.com/kubeflow/model-registry/releases/tag/v0.2.9">v0.2.9</a>
+          <a href="https://github.com/kubeflow/hub/releases/tag/v0.2.9">v0.2.9</a>
         </td>
       </tr>
   </tbody>

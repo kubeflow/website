@@ -6,16 +6,16 @@ weight = 10
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubeflow%2Fmodel-registry.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubeflow%2Fmodel-registry?ref=badge_shield&issueType=license)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9937/badge)](https://www.bestpractices.dev/projects/9937)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/model-registry/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/model-registry)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/hub/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/hub)
 
-{{% alpha-status feedbacklink="https://github.com/kubeflow/model-registry/issues/new/choose" %}}
+{{% alpha-status feedbacklink="https://github.com/kubeflow/hub/issues/new/choose" %}}
 
 ## What is Model Registry?
 
 A model registry is an important component in the lifecycle of AI/ML models, an integral component for any MLOps platform and for ML workflows.
 
 <p style="text-align: center;">
-  <img src="/docs/components/model-registry/images/MLloopinnerouter.png"
+  <img src="/docs/components/hub/images/MLloopinnerouter.png"
     alt="Model Registry MLOps loop"
     class="mt-3 mb-3 border rounded p-3 bg-white">
 </p>
@@ -24,7 +24,7 @@ A model registry provides a central index for ML model developers to index and m
 It fills a gap between model experimentation and production activities.
 It provides a central interface for all stakeholders in the ML lifecycle to collaborate on ML models.
 
-<img src="/docs/components/model-registry/images/ml-lifecycle-kubeflow-modelregistry.drawio.svg"
+<img src="/docs/components/hub/images/ml-lifecycle-kubeflow-modelregistry.drawio.svg"
   alt="Kubeflow Components in ML Lifecycle"
   class="mt-3 mb-3 border rounded p-3 bg-white">
 
@@ -103,5 +103,5 @@ By implementing a model registry, ACME Inc. can significantly enhance their MLOp
 
 ## Next steps
 
-- Follow the [installation guide](/docs/components/model-registry/installation/) to set up Model Registry
-- Run some examples following the [getting started guide](/docs/components/model-registry/getting-started/)
+- Follow the [installation guide](/docs/components/hub/installation/) to set up Model Registry
+- Run some examples following the [getting started guide](/docs/components/hub/getting-started/)

@@ -92,7 +92,7 @@ See the following links for more information about each Kubeflow project:
 - [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
   tuning using various AutoML algorithms.
 
-- [Kubeflow Model Registry](/docs/components/model-registry/) can be used to store ML metadata,
+- [Kubeflow Model Registry](/docs/components/hub/) can be used to store ML metadata,
   model artifacts, and preparing models for production serving.
 
 - [KServe](https://kserve.github.io/website/master/) can be used for online and batch inference
