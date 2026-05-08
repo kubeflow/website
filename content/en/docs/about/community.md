@@ -36,7 +36,7 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Outreach                                | [#kubeflow-outreach](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)            |
 | Katib                                   | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)               |
 | ML experience                           | [#kubeflow-ml-experience](https://app.slack.com/client/T08PSQ7BQ/C08KJBVDH5H)       |
-| Model Registry                          | [#kubeflow-model-registry](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)      |
+| Hub                                     | [#kubeflow-hub](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)      |
 | Notebooks                               | [#kubeflow-notebooks](https://app.slack.com/client/T08PSQ7BQ/C073W562HFY)           |
 | Pipelines                               | [#kubeflow-pipelines](https://app.slack.com/client/T08PSQ7BQ/C073N7BMLB1)           |
 | Platform Manifests and Release Planning | [#kubeflow-platform](https://app.slack.com/client/T08PSQ7BQ/C073W572LA2)            |
