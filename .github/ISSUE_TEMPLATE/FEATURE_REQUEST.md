@@ -33,7 +33,7 @@ https://kubeflow.org/...
 <!-- /area central-dashboard -->
 <!-- /area katib -->
 <!-- /area kserve -->
-<!-- /area model-registry -->
+<!-- /area hub -->
 <!-- /area notebooks -->
 <!-- /area pipelines -->
 <!-- /area spark-operator -->
@@ -47,4 +47,4 @@ https://kubeflow.org/...
 <!-- Any additional related comments that might help. Drawings/mockups would be extremely helpful (if required). -->
 
 <!-- Don't delete the message below to encourage users to support your issue! -->
-Love this idea? Give it a 👍. 
+Love this idea? Give it a 👍.

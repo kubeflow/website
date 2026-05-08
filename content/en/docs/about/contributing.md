@@ -56,7 +56,7 @@ To find Kubeflow issues that make good entry points:
 - If you're looking for good first issues for code, check out some of the following repositories:
   - [kubeflow/pipelines](https://github.com/kubeflow/pipelines/issues?q=is:open+is:issue+label:%22good+first+issue%22)
   - [kubeflow/trainer](https://github.com/kubeflow/trainer/issues?q=is:open+is:issue+label:%22good+first+issue%22)
-  - [kubeflow/model-registry](https://github.com/kubeflow/model-registry/issues?q=is:issue+label:%22good+first+issue%22+is:open)
+  - [kubeflow/hub](https://github.com/kubeflow/hub/issues?q=is:issue+label:%22good+first+issue%22+is:open)
   - [kubeflow/notebooks](https://github.com/kubeflow/notebooks/issues?q=is:issue+label:%22good+first+issue%22+is:open)
 - For issues that require deeper knowledge of one or more technical aspects, look at issues labeled **help wanted**.
   For example, see these issues in the [kubeflow/kubeflow repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)

@@ -6,7 +6,7 @@ weight = 10
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubeflow%2Fmodel-registry.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubeflow%2Fmodel-registry?ref=badge_shield&issueType=license)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9937/badge)](https://www.bestpractices.dev/projects/9937)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/model-registry/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/model-registry)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/hub/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/hub)
 
 {{% alpha-status feedbacklink="https://github.com/kubeflow/hub/issues/new/choose" %}}
 
@@ -26,12 +26,12 @@ The Model Registry is a central index for ML model developers to manage models, 
 It fills a gap between model experimentation and production activities, providing a central interface for all stakeholders in the ML lifecycle to collaborate on ML models.
 
 <p style="text-align: center;">
-  <img src="/docs/components/model-registry/images/MLloopinnerouter.png"
+  <img src="/docs/components/hub/images/MLloopinnerouter.png"
     alt="Model Registry MLOps loop"
     class="mt-3 mb-3 border rounded p-3 bg-white">
 </p>
 
-<img src="/docs/components/model-registry/images/ml-lifecycle-kubeflow-modelregistry.drawio.svg"
+<img src="/docs/components/hub/images/ml-lifecycle-kubeflow-modelregistry.drawio.svg"
   alt="Kubeflow Components in ML Lifecycle"
   class="mt-3 mb-3 border rounded p-3 bg-white">
 
@@ -49,7 +49,7 @@ Data scientists need an efficient way to share model versions, artifacts and met
 
 ## What is Model Catalog?
 
-The [Model Catalog](/docs/components/model-registry/reference/model-catalog-rest-api/) is a **read-only discovery service** for ML models across multiple catalog sources.
+The [Model Catalog](/docs/components/hub/reference/model-catalog-rest-api/) is a **read-only discovery service** for ML models across multiple catalog sources.
 It acts as a federated metadata aggregation layer, allowing users to search and discover models from various external catalogs through a unified interface.
 
 ### Key capabilities
@@ -72,7 +72,7 @@ The catalog service operates as a metadata aggregation layer that:
 
 The catalog does not store model weights or artifacts — it provides metadata and references to where models can be found in their source repositories.
 
-For the API specification, see the [Model Catalog REST API reference](/docs/components/model-registry/reference/model-catalog-rest-api/).
+For the API specification, see the [Model Catalog REST API reference](/docs/components/hub/reference/model-catalog-rest-api/).
 
 ## Use Cases
 
@@ -139,6 +139,6 @@ By implementing a model registry, ACME Inc. can significantly enhance their MLOp
 
 ## Next steps
 
-- Follow the [installation guide](/docs/components/model-registry/installation/) to set up Model Registry
-- Run some examples following the [getting started guide](/docs/components/model-registry/getting-started/)
-- Explore the [Model Catalog REST API reference](/docs/components/model-registry/reference/model-catalog-rest-api/)
+- Follow the [installation guide](/docs/components/hub/installation/) to set up Model Registry
+- Run some examples following the [getting started guide](/docs/components/hub/getting-started/)
+- Explore the [Model Catalog REST API reference](/docs/components/hub/reference/model-catalog-rest-api/)

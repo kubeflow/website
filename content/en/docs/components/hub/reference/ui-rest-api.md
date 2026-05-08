@@ -17,5 +17,5 @@ The API spec follows the OpenAPI 3.0 standard. It defines endpoints related to:
 
 You can explore the full API using the Swagger YAML here:
 
-[Raw Swagger YAML for Model Registry UI](https://raw.githubusercontent.com/kubeflow/model-registry/main/clients/ui/api/openapi/mod-arch.yaml)
+[Raw Swagger YAML for Model Registry UI](https://raw.githubusercontent.com/kubeflow/hub/main/clients/ui/api/openapi/mod-arch.yaml)
 
