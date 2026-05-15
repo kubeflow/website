@@ -206,13 +206,13 @@ The following table lists distributions which are <em>maintained</em> by their r
             <br><small>Kubeflow on Google Kubernetes Engine</small>
         </td>
         <td>
-          {{< kf-version-notice >}}{{% gke/latest-version %}}{{< /kf-version-notice >}}
+          {{< kf-version-notice >}}{{< gke/latest-version >}}{{< /kf-version-notice >}}
         </td>
         <td>
           Google Kubernetes Engine (GKE)
         </td>
         <td>
-          <a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/">Website</a>
+          <a href="https://googlecloudplatform.github.io/kubeflow-gke-docs/docs/deploy/">GKE deployment guide</a>
         </td>
       </tr>
       <tr>
