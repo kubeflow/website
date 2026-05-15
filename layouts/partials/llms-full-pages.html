@@ -1,0 +1,16 @@
+{{- $section := .section -}}
+{{- range $section.Pages.ByWeight -}}
+  {{- $p := . -}}
+  {{- printf "### [%s](%s)\n" $p.Title $p.Permalink | safeHTML -}}
+  {{- with $p.Params.description -}}
+    {{- printf "> %s\n" . | safeHTML -}}
+  {{- end -}}
+  {{- printf "\n" -}}
+  {{- with $p.RawContent -}}
+    {{- printf "%s\n" (. | replaceRE `\{\{[<%].*?[>%]\}\}` "") | safeHTML -}}
+  {{- end -}}
+  {{- printf "\n" -}}
+  {{- if $p.IsSection -}}
+    {{- partial "llms-full-pages.html" (dict "section" $p) -}}
+  {{- end -}}
+{{- end -}}
