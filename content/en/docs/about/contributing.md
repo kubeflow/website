@@ -99,7 +99,8 @@ Following these guidelines helps maintain a collaborative and efficient communit
 
 - **Documentation**: Improve the accuracy and clarity of our technical docs by fixing stale information and ensuring all new content follows the standards set in the [Kubeflow Documentation Style Guide](style-guide.md).
 - **Blog posts**: Share your technical insights or success stories on the Kubeflow blog or CNCF about Kubeflow to help the community to gain more knowledge on kubeflow. These content can take different forms from  learn from real-world use cases, Kubeflow integrations, news about releases or practical use cases.
-- **Event outreach**: Help spread awareness by speaking at events, and representing Kubeflow at community booths.
+- **Event outreach**: Contribute to outreach activities by bringing awareness of kubeflow with activities such as:
+speaking at events, representing Kubeflow at community booths/tables, helping organize an event, Program committee or Program Chairs.
 
 ## Owners files and PR workflow
 
