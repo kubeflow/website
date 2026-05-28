@@ -26,13 +26,12 @@ training or model serving.
 
 | Kubeflow Project                                                                    | Source Code                                                             |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [Kubeflow KServe](https://www.kubeflow.org/docs/components/kserve/)                 | [`kserve/kserve`](https://github.com/kserve/kserve)                     |
 | [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/)                     | [`kubeflow/kale`](https://github.com/kubeflow/kale)                     |
 | [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [`kubeflow/katib`](https://github.com/kubeflow/katib)                   |
-| [Kubeflow Hub](https://www.kubeflow.org/docs/components/hub/)                       | [`kubeflow/hub`](https://github.com/kubeflow/hub) |
+| [Kubeflow Hub](https://www.kubeflow.org/docs/components/hub/)                       | [`kubeflow/hub`](https://github.com/kubeflow/hub)                       |
 | [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | [`kubeflow/notebooks`](https://github.com/kubeflow/notebooks)           |
 | [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)           | [`kubeflow/pipelines`](https://github.com/kubeflow/pipelines)           |
-| [Kubeflow SDK](https://www.kubeflow.org/docs/components/sdk/)                       | [`kubeflow/sdk`](https://github.com/kubeflow/sdk) |
+| [Kubeflow SDK](https://www.kubeflow.org/docs/components/sdk/)                       | [`kubeflow/sdk`](https://github.com/kubeflow/sdk)                       |
 | [Kubeflow Spark Operator](https://www.kubeflow.org/docs/components/spark-operator/) | [`kubeflow/spark-operator`](https://github.com/kubeflow/spark-operator) |
 | [Kubeflow Trainer](https://www.kubeflow.org/docs/components/trainer/)               | [`kubeflow/trainer`](https://github.com/kubeflow/trainer)               |
 
@@ -49,6 +48,18 @@ or [Kubeflow Manifests](https://www.kubeflow.org/docs/started/installing-kubeflo
 | [Central Dashboard](https://www.kubeflow.org/docs/components/central-dash/)                         | [`kubeflow/dashboard`](https://github.com/kubeflow/dashboard) |
 | [Profile Controller](https://www.kubeflow.org/docs/components/central-dash/profiles/)               | [`kubeflow/dashboard`](https://github.com/kubeflow/dashboard) |
 | [Kubeflow Manifests](https://www.kubeflow.org/docs/started/installing-kubeflow/#kubeflow-manifests) | [`kubeflow/manifests`](https://github.com/kubeflow/manifests) |
+
+## What is Kubeflow Ecosystem
+
+Kubeflow has always fostered a strong community-driven culture and actively supports projects
+that build on, integrate with, or complement Kubeflow sub-projects. As part of this effort,
+the Kubeflow community established the Kubeflow Ecosystem to highlight projects that are valuable
+to the broader community and demonstrate maturity, sustainability, and excellence within their respective domains.
+
+You can find the list of Kubeflow Ecosystem projects [in this page](/docs/ecosystem/).
+
+If you are interested in joining the Kubeflow Ecosystem, please refer to
+[the contribution guidelines](https://github.com/kubeflow/community/tree/master/how-to/join-kubeflow-ecosystem.md)
 
 ## Kubeflow Overview Diagram
 
@@ -101,12 +112,12 @@ The [Kubeflow logo represents](https://github.com/kubeflow/kubeflow/issues/187#i
 
 Kubeflow projects have individual roadmaps which established by project maintainers:
 
-- [KServe roadmap](https://github.com/kserve/kserve/blob/master/ROADMAP.md)
 - [Kubeflow Pipelines roadmap](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
 - [Kubeflow Katib roadmap](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
 - [Kubeflow Hub roadmap](https://github.com/kubeflow/hub/blob/main/ROADMAP.md)
 - [Kubeflow Spark Operator roadmap](https://github.com/kubeflow/spark-operator/blob/master/ROADMAP.md)
 - [Kubeflow Trainer roadmap](https://github.com/kubeflow/trainer/blob/master/ROADMAP.md)
+- [Kubeflow SDK roadmap](https://github.com/kubeflow/sdk/blob/main/ROADMAP.md)
 
 To see what's coming up in future versions of Kubeflow AI reference platform, refer to the
 [Kubeflow AI reference platform](https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md).

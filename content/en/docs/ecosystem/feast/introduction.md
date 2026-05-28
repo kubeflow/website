@@ -10,7 +10,7 @@ weight = 10
 
 The following diagram shows the architecture of Feast:
 
-<img src="/docs/external-add-ons/feast/images/feast-architecture.png" 
+<img src="/docs/ecosystem/feast/images/feast-architecture.png" 
      alt="Feast architecture diagram"
      class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>
@@ -66,7 +66,7 @@ Some of the key challenges that feature stores help to address include:
 
 ## How to use Feast with Kubeflow?
 
-Feast can be run on the same Kubernetes cluster as Kubeflow, and may be used to serve features for models that are trained in [Kubeflow Pipelines](/docs/components/notebooks/overview/) and deployed with [KServe](/docs/components/kserve/introduction/).
+Feast can be run on the same Kubernetes cluster as Kubeflow, and may be used to serve features for models that are trained in [Kubeflow Pipelines](/docs/components/notebooks/overview/) and deployed with [KServe](/docs/ecosystem/kserve/introduction/).
 
 ### Requirements
 
@@ -104,6 +104,6 @@ Feast provides the following categories of APIs:
   - The most natural place to use this SDK is to create a training dataset as part of a [Kubeflow Pipeline](/docs/components/pipelines/overview/) prior to model training.
 - **Model serving**:
   - The Feast Python SDK can also be used for [online feature retrieval](https://docs.feast.dev/how-to-guides/feast-snowflake-gcp-aws/read-features-from-the-online-store).
-    This client is used to retrieve feature values for inference with model-serving-systems like [KServe](/docs/components/kserve/introduction/).
+    This client is used to retrieve feature values for inference with model-serving-systems like [KServe](/docs/ecosystem/kserve/introduction/).
 
 Please see the Feast [tutorials page](https://docs.feast.dev/tutorials/tutorials-overview) for more information on using Feast.

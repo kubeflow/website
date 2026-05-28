@@ -143,7 +143,7 @@ Katib allows you to effortlessly [optimize hyperparameters of LLMs using distrib
 
 ## Inference at Scale
 
-After training and tuning, [KServe](/docs/components/kserve/introduction) delivers scalable, framework-agnostic inference:
+After training and tuning, [KServe](/docs/ecosystem/kserve/introduction) delivers scalable, framework-agnostic inference:
 
 - Expose models via Kubernetes Custom Resources
 

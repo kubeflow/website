@@ -11,7 +11,7 @@ Elyra is a _JupyterLab extension_ that provides a _visual pipeline editor_ to en
 
 The following screenshot shows an example of a Pipeline created with Elyra:
 
-<img src="/docs/external-add-ons/elyra/images/elyra-pipeline-screenshot.png"
+<img src="/docs/ecosystem/elyra/images/elyra-pipeline-screenshot.png"
      alt="An example of a Pipeline created with Elyra"
      class="mt-3 mb-3 border rounded">
 </img>

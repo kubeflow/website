@@ -55,7 +55,7 @@ The following sections are available when [Katib](/docs/components/katib/) is in
 
 ### KServe
 
-The following sections are available when [KServe](/docs/components/kserve/) is installed:
+The following sections are available when [KServe](/docs/ecosystem/kserve/) is installed:
 
 - **KServe Endpoints**: manage deployed KServe model endpoints
 

@@ -18,7 +18,7 @@ KServe provides performant, high abstraction interfaces for common machine learn
 
 The following diagram shows the architecture of KServe:
 
-<img src="/docs/components/kserve/pics/kserve-architecture.png"
+<img src="/docs/ecosystem/kserve/pics/kserve-architecture.png"
      alt="KServe architecture diagram"
      class="p-2">
 </img>
@@ -34,4 +34,4 @@ KServe provides the following functionality:
 Kubeflow provides Kustomize installation files [in the `kubeflow/manifests` repository](https://github.com/kubeflow/manifests) with each Kubeflow release.
 For the officially tested and supported installation method, refer to the [KServe test workflow](https://github.com/kubeflow/manifests/blob/master/.github/workflows/kserve_test.yaml) in the Kubeflow manifests repository, which demonstrates the verified configuration for deploying KServe with Kubeflow.
 
-Kubeflow also provides the [models web application](/docs/components/kserve/webapp/) to manage your deployed model endpoints with a web interface.
+Kubeflow also provides the [models web application](/docs/ecosystem/kserve/webapp/) to manage your deployed model endpoints with a web interface.
