@@ -95,12 +95,6 @@ See the following links for more information about each Kubeflow project:
 - [Kubeflow Model Registry](/docs/components/hub/) can be used to store ML metadata,
   model artifacts, and preparing models for production serving.
 
-- [KServe](https://kserve.github.io/website/master/) can be used for online and batch inference
-  in the model serving step.
-
-- [Feast](https://feast.dev/) can be used as a feature store and to manage offline and online
-  features.
-
 - [Kubeflow Pipelines](/docs/components/pipelines/) can be used to build, deploy, and manage each
   step in the AI lifecycle.
 

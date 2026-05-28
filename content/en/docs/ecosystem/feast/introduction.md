@@ -10,7 +10,7 @@ weight = 10
 
 The following diagram shows the architecture of Feast:
 
-<img src="/docs/external-add-ons/feast/images/feast-architecture.png" 
+<img src="/docs/ecosystem/feast/images/feast-architecture.png" 
      alt="Feast architecture diagram"
      class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>

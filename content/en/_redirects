@@ -392,3 +392,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/model-registry/reference/python-client/       /docs/components/hub/reference/python-client/
 /docs/components/model-registry/reference/rest-api/            /docs/components/hub/reference/rest-api/
 /docs/components/model-registry/reference/ui-rest-api/         /docs/components/hub/reference/ui-rest-api/
+
+# Introducing Kubeflow Ecosystem
+/docs/components/kserve/            /docs/kubeflow-ecosystem/kserve/
+/docs/external-add-ons/*            /docs/kubeflow-ecosystem/:splat
