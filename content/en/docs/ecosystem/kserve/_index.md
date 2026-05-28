@@ -1,5 +1,5 @@
 +++
-title = "Kubeflow KServe"
-description = "Serverless Inferencing on Kubernetes"
+title = "KServe"
+description = "AI inference platform on Kubernetes"
 weight = 45
 +++
