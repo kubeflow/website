@@ -67,17 +67,17 @@ The following list shows available Kubeflow community meetings with the correspo
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Meeting Name                        | Meeting Notes                                        | Recordings                                                                                   |
-| ----------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Kubeflow community call             | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
-| Kubeflow Trainer and Katib call     | [Google Doc](https://bit.ly/2PWVCkV)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
-| Kubeflow SDK and ML Experience call | [Google Doc](https://bit.ly/kf-ml-experience)        | [YouTube playlist](https://youtu.be/VkbVVk2OGUI?list=PLmzRWLV1CK_wSO2IMPnzChxESmaoXNfrY)     |
-| Kubeflow Hub call                   | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
-| Kubeflow Notebooks call             | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
-| Kubeflow Pipelines call             | [Google Doc](http://bit.ly/kfp-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
-| Kubeflow Spark Operator call        | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
-| Kubeflow AI Reference Platform call | [Google Doc](https://bit.ly/kf-release-team-notes)   | [YouTube playlist](https://youtu.be/hSWhr6JyXe0?list=PLmzRWLV1CK_wdWP58XoaJ0kczgHTdsOph)     |
-| KServe call                         | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
+| Meeting Name                         | Meeting Notes                                        | Recordings                                                                                   |
+| ------------------------------------ | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Kubeflow community call              | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
+| Kubeflow Trainer and Katib call      | [Google Doc](https://bit.ly/2PWVCkV)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
+| Kubeflow SDK and ML Experience call  | [Google Doc](https://bit.ly/kf-ml-experience)        | [YouTube playlist](https://youtu.be/VkbVVk2OGUI?list=PLmzRWLV1CK_wSO2IMPnzChxESmaoXNfrY)     |
+| Kubeflow Hub call                    | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
+| Kubeflow Notebooks call              | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
+| Kubeflow Pipelines call              | [Google Doc](http://bit.ly/kfp-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
+| Kubeflow Spark Operator call         | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
+| Kubeflow Community Distribution call | [Google Doc](https://bit.ly/kf-release-team-notes)   | [YouTube playlist](https://youtu.be/hSWhr6JyXe0?list=PLmzRWLV1CK_wdWP58XoaJ0kczgHTdsOph)     |
+| KServe call                          | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
 
 </div>
 </div>

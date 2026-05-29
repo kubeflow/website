@@ -7,7 +7,7 @@ aliases = ["/genai/use-cases/"]
 
 # Powering GenAI Use Cases with Kubeflow
 
-Kubeflow Projects are powering every stage of the GenAI application lifecycle
+Kubeflow subprojects are powering every stage of the GenAI application lifecycle
 
 From generating synthetic data to retrieval-augmented generation (RAG), fine-tuning large language models (LLMs), hyperparameter optimization, inference at scale, and evaluation,
 Kubeflow’s modular, Kubernetes-native architecture makes building end-to-end GenAI pipelines both reproducible and production-ready.
@@ -158,7 +158,6 @@ Integrate KServe endpoints into Pipelines to orchestrate rollout strategies and 
 Rigorous evaluation guards against drift and degradation:
 
 - Pipeline-Embedded Eval Steps
-
   - Statistical benchmarks for synthetic data
   - Text metrics (BLEU, ROUGE) for generation quality
 

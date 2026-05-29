@@ -5,149 +5,218 @@ weight = 20
 
 +++
 
-This guide describes how to install Kubeflow projects, or Kubeflow AI reference platform using package
-distributions or Kubeflow manifests.
+This guide describes how to install Kubeflow subprojects, or Kubeflow Community Distribution using
+Kubeflow manifests.
 
 Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow,
-Kubeflow projects, and Kubeflow AI reference platform.
+Kubeflow subprojects and Kubeflow Community Distribution
 
 ## Installation Methods
 
 You can install Kubeflow using one of these methods:
 
-- [**Kubeflow Projects**](#kubeflow-projects)
-- [**Kubeflow AI Reference Platform**](#kubeflow-ai-reference-platform)
+- [**Kubeflow Subprojects**](#kubeflow-projects)
+- [**Kubeflow Distribution**](#kubeflow-distribution)
 
-## Kubeflow Projects
+## Kubeflow Subprojects
 
-Kubeflow projects in the [Kubeflow ecosystem](/docs/started/architecture/#kubeflow-ecosystem) can be
-deployed as a standalone services, without the need to install the entire Kubeflow AI reference
-platform.You might integrate these services as part of your existing AI platform or use them
-independently.
+Kubeflow subprojects in the [Kubeflow landscape](/docs/started/architecture/#kubeflow-landscape) can
+be deployed as a standalone services, without the need to install the entire Kubeflow
+Community Distribution. You might integrate these services as part of your existing AI platform or
+use them independently.
 
 These projects are a quick and easy method to get started with the Kubeflow. They provide
-flexibility to users who may not require the capabilities of a full Kubeflow AI reference platform.
+flexibility to users who may not require the capabilities of a full Kubeflow Community Distribution.
 
-The following table lists Kubeflow projects that may be deployed in a standalone mode. It also
-lists their associated GitHub repository and
-corresponding [AI lifecycle stage](/docs/started/architecture/#kubeflow-projects-in-the-ai-lifecycle).
+The following tables list Kubeflow subprojects grouped by their corresponding
+[maturity level](https://github.com/kubeflow/community/tree/master/subprojects/status_levels_requirements.md).
+
+### Stable Kubeflow Subprojects
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Kubeflow Project</th>
+        <th>Kubeflow Subproject</th>
         <th>AI Lifecycle Stage</th>
-        <th>Source Code</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>
-         <a href="https://kserve.github.io/website/">
-            KServe
-          </a>
-        </td>
-        <td>
-          Model Serving
-        </td>
-        <td>
-          <a href="https://github.com/kserve/kserve">
-            <code>kserve/kserve</code>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="/docs/components/katib/installation/#installing-katib">
+          <a href="https://github.com/kubeflow/katib">
             Kubeflow Katib
           </a>
         </td>
         <td>
           Model Optimization and AutoML
         </td>
+      </tr>
+      <tr>
         <td>
-          <a href="https://github.com/kubeflow/katib">
-            <code>kubeflow/katib</code>
+         <a href="https://github.com/kubeflow/hub">
+            Kubeflow Hub
           </a>
+        </td>
+        <td>
+          Artifact management and catalog
         </td>
       </tr>
       <tr>
         <td>
-         <a href="/docs/components/hub/installation/#installing-model-registry">
-            Kubeflow Model Registry
-          </a>
-        </td>
-        <td>
-          Model Registry
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/hub">
-            <code>kubeflow/hub</code>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="/docs/components/pipelines/operator-guides/installation/">
+          <a href="https://github.com/kubeflow/pipelines">
             Kubeflow Pipelines
           </a>
         </td>
         <td>
           ML Workflows and Schedules
         </td>
-        <td>
-          <a href="https://github.com/kubeflow/pipelines">
-            <code>kubeflow/pipelines</code>
-          </a>
-        </td>
       </tr>
       <tr>
         <td>
-          <a href="/docs/components/spark-operator/getting-started#installation">
+          <a href="https://github.com/kubeflow/spark-operator">
             Kubeflow Spark Operator
           </a>
         </td>
         <td>
-          Data Preparation
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/spark-operator">
-            <code>kubeflow/spark-operator</code>
-          </a>
+          Data Processing
         </td>
       </tr>
       <tr>
         <td>
-          <a href="/docs/components/trainer/getting-started">
+          <a href="https://github.com/kubeflow/trainer">
             Kubeflow Trainer
           </a>
         </td>
         <td>
           Model Training and LLMs Fine-Tuning
         </td>
+      </tr>
+      <tr>
         <td>
-          <a href="https://github.com/kubeflow/trainer">
-            <code>kubeflow/trainer</code>
+          <a href="https://github.com/kubeflow/sdk">
+            Kubeflow SDK
           </a>
+        </td>
+        <td>
+          Unified Pythonic Interface
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-## Kubeflow AI Reference Platform
+### Development
+
+<div class="table-responsive distributions-table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Kubeflow Subproject</th>
+        <th>AI Lifecycle Stage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/notebooks">
+            Kubeflow Workspaces
+          </a>
+        </td>
+        <td>
+          Interactive Development Environments
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/kale">
+            Kubeflow Kale
+          </a>
+        </td>
+        <td>
+          JupyterLab Extension for KFP
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/mlflow-integration">
+            Kubeflow MLFlow Integration
+          </a>
+        </td>
+        <td>
+          Experiment Tracking
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/mcp-server">
+            Kubeflow MCP Server
+          </a>
+        </td>
+          AI-Assistant Development with Kubeflow
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/mcp-apache-spark-history-server">
+            Kubeflow MCP Spark History Server
+          </a>
+        </td>
+        <td>
+          AI tools to interact with Spark History Server
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Deprecated
+
+<div class="table-responsive distributions-table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Kubeflow Subproject</th>
+        <th>AI Lifecycle Stage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/notebooks">
+            Kubeflow Notebooks v1
+          </a>
+        </td>
+        <td>
+          Interactive Development Environment
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/trainer">
+            Kubeflow Training Operator v1
+          </a>
+        </td>
+        <td>
+          Model Training and LLMs Fine-Tuning
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+You can find the list of archived projects here in [this document](https://github.com/kubeflow/community/tree/master/subprojects/PROJECTS.md).
+
+## Kubeflow Distribution
 
 You can use one of the following methods to install the
-[Kubeflow AI reference platform](/docs/started/introduction/#what-is-the-kubeflow-ai-reference-platform)
-and get the full suite of Kubeflow projects bundled together with additional tools.
+[Kubeflow Distribution](/docs/started/introduction/#what-is-the-kubeflow-ai-reference-platform)
+and get the full suite of Kubeflow subprojects bundled together with additional tools.
 
 ### Packaged Distributions
 
-Packaged distributions are maintained by various organizations and typically aim to provide
-a simplified installation and management experience for your **Kubeflow Platform**.
-Some can be deployed on multiple [Kubernetes distributions](https://kubernetes.io/partners/#conformance),
-while others target a specific platform (e.g. EKS or GKE).
+See the definition for Kubeflow Distributions [in the overview page](../introduction#kubeflow-distribution)
 
 {{% alert title="" color="info" %}}
 Packaged distributions are developed and supported by their respective maintainers.
@@ -248,16 +317,9 @@ The following table lists distributions which are <em>maintained</em> by their r
   </table>
 </div>
 
-### Kubeflow Manifests
+### Kubeflow Community Distribution
 
-The Kubeflow manifests are a collection of community maintained manifests to install Kubeflow AI
-reference platform in popular Kubernetes clusters such as Kind (locally), Minikube (locally), Rancher,
-EKS, AKS, GKE. They are aggregated by the Manifests Working Group and are intended to be
-used by users with Kubernetes knowledge and as the base of packaged distributions.
-
-Kubeflow Manifests contain all Kubeflow projects, Kubeflow Central Dashboard, and other Kubeflow
-applications that comprise the **Kubeflow AI reference platform**. This installation is helpful when you want to
-try out the end-to-end Kubeflow AI reference platform capabilities.
+See the definition for Kubeflow Community Distribution [in the overview page](../introduction#kubeflow-community-distribution)
 
 If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases):
 
@@ -266,8 +328,165 @@ If you want a stable / conservative experience we recommend to use the [latest s
 
 You can also install the master branch of [`kubeflow/manifests`](https://github.com/kubeflow/manifests) by following the instructions [here](https://github.com/kubeflow/manifests?tab=readme-ov-file#installation) and provide us feedback.
 
+### Included Projects
+
+The Kubeflow Community Distribution bundles the following projects:
+
+<div class="table-responsive distributions-table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Organization</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/katib">
+            Kubeflow Katib
+          </a>
+        </td>
+        <td>
+          Kubeflow
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/hub">
+            Kubeflow Hub
+          </a>
+        </td>
+        <td>
+          Kubeflow
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/pipelines">
+            Kubeflow Pipelines
+          </a>
+        </td>
+        <td>
+          Kubeflow
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/spark-operator">
+            Kubeflow Spark Operator
+          </a>
+        </td>
+        <td>
+          Kubeflow
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/trainer">
+            Kubeflow Trainer
+          </a>
+        </td>
+        <td>
+          Kubeflow
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/sdk">
+            Kubeflow SDK
+          </a>
+        </td>
+        <td>
+          Kubeflow
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/notebooks">
+            Kubeflow Workspaces
+          </a>
+        </td>
+        <td>
+          Kubeflow
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/dashboard">
+            Kubeflow Dashboard
+          </a>
+        </td>
+        <td>
+          Kubeflow
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kubeflow/dashboard">
+            Kubeflow Profile Controller
+          </a>
+        </td>
+        <td>
+          Kubeflow
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/kserve/kserve">
+            KServe
+          </a>
+        </td>
+        <td>
+          KServe
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/istio/istio">
+            Istio
+          </a>
+        </td>
+        <td>
+          Istio
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/dexidp/dex">
+            Dex
+          </a>
+        </td>
+        <td>
+          Dex
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/cert-manager/cert-manager">
+            cert-manager
+          </a>
+        </td>
+        <td>
+          Cert Manager
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/oauth2-proxy/oauth2-proxy">
+            oauth2-proxy
+          </a>
+        </td>
+        <td>
+          oauth2-proxy
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## Next steps
 
 - Review our [introduction to Kubeflow](/docs/started/introduction/).
 - Explore the [architecture of Kubeflow](/docs/started/architecture).
-- Learn more about the [Kubeflow projects](/docs/components/).
+- Learn more about the [Kubeflow subprojects](/docs/components/).
