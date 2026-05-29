@@ -29,9 +29,9 @@ These projects are a quick and easy method to get started with the Kubeflow. The
 flexibility to users who may not require the capabilities of a full Kubeflow distribution.
 
 The following tables list Kubeflow subprojects grouped by their corresponding
-[maturity level](https://github.com/kubeflow/community/tree/master/subprojects/status_levels_requirements.md).
+[maturity level](https://github.com/kubeflow/community/tree/master/subprojects/maturity_requirements.md).
 
-You can find the list of archived projects here in [this document](https://github.com/kubeflow/community/tree/master/subprojects/PROJECTS.md).
+You can find the list of archived projects in [this document](https://github.com/kubeflow/community/tree/master/subprojects/PROJECTS.md).
 
 ### Stable Projects
 
@@ -40,68 +40,68 @@ You can find the list of archived projects here in [this document](https://githu
     <thead>
       <tr>
         <th>Kubeflow Subproject</th>
-        <th>AI Lifecycle Stage</th>
+        <th>Source Code</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/katib">
+          <a href="https://www.kubeflow.org/docs/components/katib/">
             Kubeflow Katib
           </a>
         </td>
         <td>
-          Model Optimization and AutoML
+          <a href="https://github.com/kubeflow/katib">kubeflow/katib</a>
         </td>
       </tr>
       <tr>
         <td>
-         <a href="https://github.com/kubeflow/hub">
+         <a href="https://www.kubeflow.org/docs/components/hub/">
             Kubeflow Hub
           </a>
         </td>
         <td>
-          Artifact management and catalog
+          <a href="https://github.com/kubeflow/hub">kubeflow/hub</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/pipelines">
+          <a href="https://www.kubeflow.org/docs/components/pipelines/">
             Kubeflow Pipelines
           </a>
         </td>
         <td>
-          ML Workflows and Schedules
+          <a href="https://github.com/kubeflow/pipelines">kubeflow/pipelines</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/spark-operator">
+          <a href="https://www.kubeflow.org/docs/components/spark-operator/">
             Kubeflow Spark Operator
           </a>
         </td>
         <td>
-          Data Processing
+          <a href="https://github.com/kubeflow/spark-operator">kubeflow/spark-operator</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/trainer">
+          <a href="https://www.kubeflow.org/docs/components/trainer/">
             Kubeflow Trainer
           </a>
         </td>
         <td>
-          Model Training and LLMs Fine-Tuning
+          <a href="https://github.com/kubeflow/trainer">kubeflow/trainer</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/sdk">
+          <a href="https://sdk.kubeflow.org/en/latest/">
             Kubeflow SDK
           </a>
         </td>
         <td>
-          Unified Pythonic Interface
+          <a href="https://github.com/kubeflow/sdk">kubeflow/sdk</a>
         </td>
       </tr>
     </tbody>
@@ -115,58 +115,52 @@ You can find the list of archived projects here in [this document](https://githu
     <thead>
       <tr>
         <th>Kubeflow Subproject</th>
-        <th>AI Lifecycle Stage</th>
+        <th>Source Code</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/notebooks">
+          <a href="https://www.kubeflow.org/docs/components/notebooks/">
             Kubeflow Workspaces
           </a>
         </td>
         <td>
-          Interactive Development Environments
+          <a href="https://github.com/kubeflow/notebooks">kubeflow/notebooks</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/kale">
+          <a href="https://kale.kubeflow.org">
             Kubeflow Kale
           </a>
         </td>
         <td>
-          JupyterLab Extension for KFP
+          <a href="https://github.com/kubeflow/kale">kubeflow/kale</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/mlflow-integration">
-            Kubeflow MLFlow Integration
-          </a>
+          Kubeflow MLFlow Integration
         </td>
         <td>
-          Experiment Tracking
+          <a href="https://github.com/kubeflow/mlflow-integration">kubeflow/mlflow-integration</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/mcp-server">
-            Kubeflow MCP Server
-          </a>
+          Kubeflow MCP Server
         </td>
         <td>
-          AI-Assistant Development with Kubeflow
+          <a href="https://github.com/kubeflow/mcp-server">kubeflow/mcp-server</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/mcp-apache-spark-history-server">
-            Kubeflow MCP Spark History Server
-          </a>
+          Kubeflow MCP Spark History Server
         </td>
         <td>
-          AI tools to interact with Spark History Server
+          <a href="https://github.com/kubeflow/mcp-apache-spark-history-server">kubeflow/mcp-apache-spark-history-server</a>
         </td>
       </tr>
     </tbody>
@@ -180,19 +174,19 @@ You can find the list of archived projects here in [this document](https://githu
     <thead>
       <tr>
         <th>Kubeflow Subproject</th>
-        <th>AI Lifecycle Stage</th>
+        <th>Source Code</th>
         <th>Archived Date</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/notebooks">
+          <a href="https://www.kubeflow.org/docs/components/notebooks/">
             Kubeflow Notebooks v1
           </a>
         </td>
         <td>
-          Interactive Development Environment
+          <a href="https://github.com/kubeflow/notebooks">kubeflow/notebooks</a>
         </td>
         <td>
           TBD
@@ -200,15 +194,15 @@ You can find the list of archived projects here in [this document](https://githu
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/trainer">
+          <a href="https://www.kubeflow.org/docs/components/trainer/">
             Kubeflow Training Operator v1
           </a>
         </td>
         <td>
-          Model Training and LLMs Fine-Tuning
+          <a href="https://github.com/kubeflow/trainer">kubeflow/trainer</a>
         </td>
         <td>
-          TBD
+          12/31/2026
         </td>
       </tr>
     </tbody>
