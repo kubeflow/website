@@ -40,7 +40,7 @@ If you are interested in joining the Kubeflow Ecosystem, please refer to
 
 ## Kubeflow Distribution
 
-The Kubeflow Distribution is a vendor-provided and supported deployment of Kubeflow components and
+The Kubeflow Distribution is a vendor-provided and supported deployment of Kubeflow subprojects and
 integrations designed to run on specific infrastructure or platform environments. Distributions may
 include additional tooling, integrations, operational features, and commercial support tailored
 to the vendor ecosystem.
@@ -51,7 +51,7 @@ or [Kubeflow Community Distribution](https://www.kubeflow.org/docs/started/insta
 
 ### Kubeflow Community Distribution
 
-The Kubeflow Community Distribution is the community-maintained, vendor-neutral distribution of
+The Kubeflow Community Distribution is the community-maintained and vendor-neutral distribution of
 Kubeflow subprojects and Kubeflow ecosystem projects with essential platform tools to provide secure,
 multi-tenant, and end-to-end AI platform on Kubernetes. It serves as a reference implementation
 of the Kubeflow Distribution and it is Kubeflow Conformant.
@@ -108,11 +108,11 @@ The [Kubeflow logo represents](https://github.com/kubeflow/kubeflow/issues/187#i
 Kubeflow subprojects have individual roadmaps which established by project maintainers:
 
 - [Kubeflow Pipelines roadmap](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
+- [Kubeflow Trainer roadmap](https://github.com/kubeflow/trainer/blob/master/ROADMAP.md)
+- [Kubeflow SDK roadmap](https://github.com/kubeflow/sdk/blob/main/ROADMAP.md)
 - [Kubeflow Katib roadmap](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
 - [Kubeflow Hub roadmap](https://github.com/kubeflow/hub/blob/main/ROADMAP.md)
 - [Kubeflow Spark Operator roadmap](https://github.com/kubeflow/spark-operator/blob/master/ROADMAP.md)
-- [Kubeflow Trainer roadmap](https://github.com/kubeflow/trainer/blob/master/ROADMAP.md)
-- [Kubeflow SDK roadmap](https://github.com/kubeflow/sdk/blob/main/ROADMAP.md)
 
 ## Kubeflow Community
 

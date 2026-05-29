@@ -5,11 +5,11 @@ weight = 20
 
 +++
 
-This guide describes how to install Kubeflow subprojects, or Kubeflow Community Distribution using
-Kubeflow manifests.
+This guide describes how to install Kubeflow subprojects or Kubeflow distribution using packaged
+distribution or Kubeflow community distribution.
 
 Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow,
-Kubeflow subprojects and Kubeflow Community Distribution
+Kubeflow subprojects, and Kubeflow distribution.
 
 ## Installation Methods
 
@@ -22,16 +22,18 @@ You can install Kubeflow using one of these methods:
 
 Kubeflow subprojects in the [Kubeflow landscape](/docs/started/architecture/#kubeflow-landscape) can
 be deployed as a standalone services, without the need to install the entire Kubeflow
-Community Distribution. You might integrate these services as part of your existing AI platform or
+distribution. You might integrate these services as part of your existing AI platform or
 use them independently.
 
 These projects are a quick and easy method to get started with the Kubeflow. They provide
-flexibility to users who may not require the capabilities of a full Kubeflow Community Distribution.
+flexibility to users who may not require the capabilities of a full Kubeflow distribution.
 
 The following tables list Kubeflow subprojects grouped by their corresponding
 [maturity level](https://github.com/kubeflow/community/tree/master/subprojects/status_levels_requirements.md).
 
-### Stable Kubeflow Subprojects
+You can find the list of archived projects here in [this document](https://github.com/kubeflow/community/tree/master/subprojects/PROJECTS.md).
+
+### Stable Projects
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
@@ -106,7 +108,7 @@ The following tables list Kubeflow subprojects grouped by their corresponding
   </table>
 </div>
 
-### Development
+### Development Projects
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
@@ -171,7 +173,7 @@ The following tables list Kubeflow subprojects grouped by their corresponding
   </table>
 </div>
 
-### Deprecated
+### Deprecated Projects
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
@@ -179,6 +181,7 @@ The following tables list Kubeflow subprojects grouped by their corresponding
       <tr>
         <th>Kubeflow Subproject</th>
         <th>AI Lifecycle Stage</th>
+        <th>Archived Date</th>
       </tr>
     </thead>
     <tbody>
@@ -191,6 +194,9 @@ The following tables list Kubeflow subprojects grouped by their corresponding
         <td>
           Interactive Development Environment
         </td>
+        <td>
+          TBD
+        </td>
       </tr>
       <tr>
         <td>
@@ -201,12 +207,13 @@ The following tables list Kubeflow subprojects grouped by their corresponding
         <td>
           Model Training and LLMs Fine-Tuning
         </td>
+        <td>
+          TBD
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
-
-You can find the list of archived projects here in [this document](https://github.com/kubeflow/community/tree/master/subprojects/PROJECTS.md).
 
 ## Kubeflow Distribution
 
@@ -337,7 +344,6 @@ The Kubeflow Community Distribution bundles the following projects:
     <thead>
       <tr>
         <th>Project</th>
-        <th>Organization</th>
       </tr>
     </thead>
     <tbody>
@@ -347,18 +353,12 @@ The Kubeflow Community Distribution bundles the following projects:
             Kubeflow Katib
           </a>
         </td>
-        <td>
-          Kubeflow
-        </td>
       </tr>
       <tr>
         <td>
           <a href="https://github.com/kubeflow/hub">
             Kubeflow Hub
           </a>
-        </td>
-        <td>
-          Kubeflow
         </td>
       </tr>
       <tr>
@@ -367,18 +367,12 @@ The Kubeflow Community Distribution bundles the following projects:
             Kubeflow Pipelines
           </a>
         </td>
-        <td>
-          Kubeflow
-        </td>
       </tr>
       <tr>
         <td>
           <a href="https://github.com/kubeflow/spark-operator">
             Kubeflow Spark Operator
           </a>
-        </td>
-        <td>
-          Kubeflow
         </td>
       </tr>
       <tr>
@@ -387,18 +381,12 @@ The Kubeflow Community Distribution bundles the following projects:
             Kubeflow Trainer
           </a>
         </td>
-        <td>
-          Kubeflow
-        </td>
       </tr>
       <tr>
         <td>
           <a href="https://github.com/kubeflow/sdk">
             Kubeflow SDK
           </a>
-        </td>
-        <td>
-          Kubeflow
         </td>
       </tr>
       <tr>
@@ -407,18 +395,12 @@ The Kubeflow Community Distribution bundles the following projects:
             Kubeflow Workspaces
           </a>
         </td>
-        <td>
-          Kubeflow
-        </td>
       </tr>
       <tr>
         <td>
           <a href="https://github.com/kubeflow/dashboard">
             Kubeflow Dashboard
           </a>
-        </td>
-        <td>
-          Kubeflow
         </td>
       </tr>
       <tr>
@@ -427,18 +409,12 @@ The Kubeflow Community Distribution bundles the following projects:
             Kubeflow Profile Controller
           </a>
         </td>
-        <td>
-          Kubeflow
-        </td>
       </tr>
       <tr>
         <td>
           <a href="https://github.com/kserve/kserve">
             KServe
           </a>
-        </td>
-        <td>
-          KServe
         </td>
       </tr>
       <tr>
@@ -447,18 +423,12 @@ The Kubeflow Community Distribution bundles the following projects:
             Istio
           </a>
         </td>
-        <td>
-          Istio
-        </td>
       </tr>
       <tr>
         <td>
           <a href="https://github.com/dexidp/dex">
             Dex
           </a>
-        </td>
-        <td>
-          Dex
         </td>
       </tr>
       <tr>
@@ -467,18 +437,12 @@ The Kubeflow Community Distribution bundles the following projects:
             cert-manager
           </a>
         </td>
-        <td>
-          Cert Manager
-        </td>
       </tr>
       <tr>
         <td>
           <a href="https://github.com/oauth2-proxy/oauth2-proxy">
             oauth2-proxy
           </a>
-        </td>
-        <td>
-          oauth2-proxy
         </td>
       </tr>
     </tbody>
