@@ -24,7 +24,10 @@ Kubeflow Distribution. This provides flexibility for users who may not need the 
 end-to-end AI platform capabilities but want to leverage specific functionalities, such as model
 training or model serving.
 
-You can find list of Kubeflow subprojects in [the installation page](/docs/started/installing-kubeflow/#kubeflow-subprojects)
+You can find list of Kubeflow subprojects in [the installation page](/docs/started/installing-kubeflow/#kubeflow-subprojects).
+
+If you are interested to become Kubeflow subproject,
+[this process guidelines](https://github.com/kubeflow/community/tree/master/subprojects).
 
 ## Kubeflow Ecosystem
 
@@ -36,7 +39,7 @@ to the broader community and demonstrate maturity, sustainability, and excellenc
 You can find the list of Kubeflow Ecosystem projects [in this page](/docs/ecosystem/).
 
 If you are interested in joining the Kubeflow Ecosystem, please refer to
-[the contribution guidelines](https://github.com/kubeflow/community/tree/master/ecosystem)
+[this process guidelines](https://github.com/kubeflow/community/tree/master/ecosystem).
 
 ## Kubeflow Distribution
 
@@ -46,8 +49,8 @@ include additional tooling, integrations, operational features, and commercial s
 to the vendor ecosystem.
 
 The Kubeflow Distribution can be
-installed via [Packaged Distributions](https://www.kubeflow.org/docs/started/installing-kubeflow/#packaged-distributions)
-or [Kubeflow Community Distribution](https://www.kubeflow.org/docs/started/installing-kubeflow/#kubeflow-community-distribution).
+installed via [Packaged Distributions](/docs/started/installing-kubeflow/#packaged-distributions)
+or [Kubeflow Community Distribution](/docs/started/installing-kubeflow/#kubeflow-community-distribution).
 
 ### Kubeflow Community Distribution
 
@@ -55,17 +58,6 @@ The Kubeflow Community Distribution is the community-maintained and vendor-neutr
 Kubeflow subprojects and Kubeflow ecosystem projects with essential platform tools to provide secure,
 multi-tenant, and end-to-end AI platform on Kubernetes. It serves as a reference implementation
 of the Kubeflow Distribution and it is Kubeflow Conformant.
-
-## Kubeflow Overview Diagram
-
-The following diagram shows the Kubeflow subprojects to cover each stage of the AI lifecycle
-on top of Kubernetes. Read the [architecture overview](/docs/started/architecture/) to
-learn how Kubeflow subprojects fit in AI lifecycle.
-
-<img src="/docs/started/images/kubeflow-overview.drawio.svg" 
-     alt="Kubeflow Overview Diagram"
-     class="mt-3 mb-3 border rounded bg-white">
-</img>
 
 ## Kubeflow Video Introduction
 

@@ -7,7 +7,17 @@ weight = 10
 This guide introduces Kubeflow subprojects and how they fit in each stage of the AI lifecycle.
 
 Read [the introduction](/docs/started/introduction) to learn more about Kubeflow subprojects,
-Kubeflow ecosystem, and Kubeflow community distribution.
+Kubeflow ecosystem, and Kubeflow distribution.
+
+## Kubeflow Overview Diagram
+
+The following diagram shows the Kubeflow subprojects to cover each stage of the AI lifecycle
+on top of Kubernetes.
+
+<img src="/docs/started/images/kubeflow-overview.drawio.svg"
+     alt="Kubeflow Overview Diagram"
+     class="mt-3 mb-3 border rounded bg-white">
+</img>
 
 ## Kubeflow Landscape
 
