@@ -13,7 +13,7 @@ Experiments results.
 
 ## Accessing Katib UI from Kubeflow Central Dashboard
 
-If you install Katib as part of Kubeflow platform, you can access Katib UI via
+If you install Katib as part of Kubeflow Community Distribution, you can access Katib UI via
 [Kubeflow Central Dashboard](/docs/components/central-dash/access/#how-to-access-the-kubeflow-central-dashboard).
 Click **Experiments (AutoML)** in the left-hand menu:
 

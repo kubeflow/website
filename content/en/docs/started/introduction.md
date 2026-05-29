@@ -11,7 +11,7 @@ weight = 1
 AI platform teams can build on top of Kubeflow by using each subproject independently or deploying the
 entire Kubeflow Community Distribution to meet their specific needs. The Kubeflow Community Distribution
 is composable, modular, portable, and scalable, backed by an ecosystem of Kubernetes-native
-projects that cover every stage of the [AI lifecycle](https://www.kubeflow.org/docs/started/architecture/#kubeflow-projects-in-the-ai-lifecycle).
+projects that cover every stage of the [AI lifecycle](https://www.kubeflow.org/docs/started/architecture/#kubeflow-landscape-in-the-ai-lifecycle).
 
 Whether you’re an AI practitioner, a platform administrator, or a team of developers, Kubeflow
 offers modular, scalable, and extensible tools to support your AI use cases.
@@ -24,7 +24,7 @@ Kubeflow Distribution. This provides flexibility for users who may not need the 
 end-to-end AI platform capabilities but want to leverage specific functionalities, such as model
 training or model serving.
 
-You can find list of Kubeflow subprojects in [the installation page](/docs/started/installing-kubeflow)
+You can find list of Kubeflow subprojects in [the installation page](/docs/started/installing-kubeflow/#kubeflow-subprojects)
 
 ## Kubeflow Ecosystem
 
@@ -47,7 +47,7 @@ to the vendor ecosystem.
 
 The Kubeflow Distribution can be
 installed via [Packaged Distributions](https://www.kubeflow.org/docs/started/installing-kubeflow/#packaged-distributions)
-or [Kubeflow Community Distribution](https://www.kubeflow.org/docs/started/installing-kubeflow/#kubeflow-manifests).
+or [Kubeflow Community Distribution](https://www.kubeflow.org/docs/started/installing-kubeflow/#kubeflow-community-distribution).
 
 ### Kubeflow Community Distribution
 

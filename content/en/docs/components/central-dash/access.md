@@ -17,7 +17,7 @@ For more information, please see the documentation of the distribution you are u
 
 ## Raw Manifests
 
-If you are using the default [Kubeflow Manifests](/docs/started/installing-kubeflow/#kubeflow-manifests), you may access the Istio gateway with `kubectl` port-forwarding or another method.
+If you are using the default [Kubeflow Manifests](/docs/started/installing-kubeflow/#kubeflow-community-distribution), you may access the Istio gateway with `kubectl` port-forwarding or another method.
 
 ### kubectl port-forwarding
 

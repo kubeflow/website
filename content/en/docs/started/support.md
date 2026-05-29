@@ -50,18 +50,7 @@ You can ask questions and make suggestions in the following places:
   has logged your problem, create a new issue to describe the problem.
 
   Each Kubeflow project has its own issue tracker within the [Kubeflow
-  organization on GitHub](https://github.com/kubeflow). To get you started,
-  here are the primary issue trackers:
-  - [Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator/issues)
-  - [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/issues)
-  - [Kubeflow Katib](https://github.com/kubeflow/katib/issues)
-  - [Kubeflow Trainer](https://github.com/kubeflow/trainer/issues)
-  - [Kubeflow SDK](https://github.com/kubeflow/sdk/issues)
-  - [Kubeflow Notebooks](https://github.com/kubeflow/notebooks/issues)
-  - [Kubeflow Hub](https://github.com/kubeflow/hub/issues)
-  - [Kubeflow Dashboard](https://github.com/kubeflow/dashboard/issues)
-  - [Kubeflow Community Distribution](https://github.com/kubeflow/manifests/issues)
-  - [Kubeflow Website](https://github.com/kubeflow/website/issues)
+  organization on GitHub](https://github.com/kubeflow).
 
 <a id="provider-support"></a>
 

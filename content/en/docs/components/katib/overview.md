@@ -4,9 +4,6 @@ description = "An overview for Katib"
 weight = 10
 +++
 
-{{% beta-status
-  feedbacklink="https://github.com/kubeflow/katib/issues" %}}
-
 ## What is Katib ?
 
 Katib is a Kubernetes-native project for automated machine learning (AutoML).

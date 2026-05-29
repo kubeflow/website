@@ -15,7 +15,7 @@ Kubeflow subprojects, and Kubeflow distribution.
 
 You can install Kubeflow using one of these methods:
 
-- [**Kubeflow Subprojects**](#kubeflow-projects)
+- [**Kubeflow Subprojects**](#kubeflow-subprojects)
 - [**Kubeflow Distribution**](#kubeflow-distribution)
 
 ## Kubeflow Subprojects
@@ -155,8 +155,8 @@ You can find the list of archived projects here in [this document](https://githu
             Kubeflow MCP Server
           </a>
         </td>
-          AI-Assistant Development with Kubeflow
         <td>
+          AI-Assistant Development with Kubeflow
         </td>
       </tr>
       <tr>
@@ -218,7 +218,7 @@ You can find the list of archived projects here in [this document](https://githu
 ## Kubeflow Distribution
 
 You can use one of the following methods to install the
-[Kubeflow Distribution](/docs/started/introduction/#what-is-the-kubeflow-ai-reference-platform)
+[Kubeflow Distribution](/docs/started/introduction/#kubeflow-distribution)
 and get the full suite of Kubeflow subprojects bundled together with additional tools.
 
 ### Packaged Distributions

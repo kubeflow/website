@@ -107,7 +107,7 @@ The list below describes the fields in the YAML file for an Experiment.
 Katib Experiment from [this directory](https://github.com/kubeflow/katib/tree/ea46a7f2b73b2d316b6b7619f99eb440ede1909b/examples/v1beta1)
 doesn't work with [Istio sidecar injection](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection)
 since Trials require access to the internet to download datasets. If you deploy Katib with
-Kubeflow platform, you can disable Istio sidecar injection. Specify this annotation: `sidecar.istio.io/inject: "false"`
+Kubeflow Community Distribution, you can disable Istio sidecar injection. Specify this annotation: `sidecar.istio.io/inject: "false"`
 in your Experiment Trial's template to disable Istio sidecar injection:
 
 ```yaml
@@ -132,7 +132,7 @@ You can create hyperparameter tuning Experiment using the
 The Experiment's Trials use PyTorch model to train an image classification model for the
 FashionMNIST dataset. You can check [the training container source code](https://github.com/kubeflow/katib/tree/fc858d15dd41ff69166a2020efa200199063f9ba/examples/v1beta1/trial-images/pytorch-mnist). **Note:** Since this training container downloads FashionMNIST
 dataset, you [need to disable Istio sidecar injection](#running-katib-experiment-with-istio)
-if you deploy Katib with Kubeflow Platform.
+if you deploy Katib with Kubeflow Community Distribution.
 
 Deploy the Experiment:
 
