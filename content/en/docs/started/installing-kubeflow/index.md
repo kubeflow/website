@@ -5,11 +5,10 @@ weight = 20
 
 +++
 
-This guide describes how to install Kubeflow subprojects or Kubeflow distribution using packaged
-distribution or Kubeflow community distribution.
+This guide describes how to install Kubeflow subprojects, Kubeflow Community Distribution, or
+vendor-packaged Kubeflow Distributions.
 
-Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow,
-Kubeflow subprojects, and Kubeflow distribution.
+Read [the introduction guide](/docs/started/introduction) to learn more about Kubeflow concepts.
 
 ## Installation Methods
 
