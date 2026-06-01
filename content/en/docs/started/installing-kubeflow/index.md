@@ -15,7 +15,7 @@ Read [the introduction guide](/docs/started/introduction) to learn more about Ku
 You can install Kubeflow using one of these methods:
 
 - [**Kubeflow Subprojects**](#kubeflow-subprojects)
-- [**Kubeflow Distribution**](#kubeflow-distribution)
+- [**Kubeflow Distribution**](#kubeflow-distributions)
 
 ## Kubeflow Subprojects
 

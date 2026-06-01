@@ -21,7 +21,7 @@ See the [Connect SDK to the API](/docs/components/pipelines/user-guides/core-fun
 How requests are authenticated and authorized will depend on the distribution you are using.
 Typically, you will need to provide a token or cookie in the request headers.
 
-Please refer to the documentation of your [Kubeflow distribution](/docs/started/installing-kubeflow/#kubeflow-distribution) for more information.
+Please refer to the documentation of your [Kubeflow distribution](/docs/started/installing-kubeflow/#kubeflow-distributions) for more information.
 
 ### Example Usage
 
