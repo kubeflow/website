@@ -208,11 +208,10 @@ You can find the list of archived projects in [this document](https://github.com
   </table>
 </div>
 
-## Kubeflow Distribution
+## Kubeflow Distributions
 
 You can use one of the following methods to install the
-[Kubeflow Distribution](/docs/started/introduction/#kubeflow-distribution)
-and get the full suite of Kubeflow subprojects bundled together with additional tools.
+[Kubeflow Distributions](/docs/started/introduction/#kubeflow-distribution).
 
 ### Packaged Distributions
 
