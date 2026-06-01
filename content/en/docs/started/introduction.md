@@ -54,10 +54,11 @@ or [Kubeflow Community Distribution](/docs/started/installing-kubeflow/#kubeflow
 
 ### Kubeflow Community Distribution
 
-The Kubeflow Community Distribution is the community-maintained and vendor-neutral distribution of
-Kubeflow subprojects and Kubeflow ecosystem projects with essential platform tools to provide secure,
-multi-tenant, and end-to-end AI platform on Kubernetes. It serves as a reference implementation
-of the Kubeflow Distribution and it is Kubeflow Conformant.
+Kubeflow Community Distribution (KCD) is community-maintained reference for deploying Kubeflow
+subprojects and ecosystem integrations in a vendor neutral package.
+
+The development of the KCD is directed by the neutral [Kubeflow Distribution Committee (KDC)](</docs/about/governance#kubeflow-distribution-committee(KDC))
+which is made up of representatives for each Kubeflow subproject and KCD maintainers.
 
 ## Kubeflow Video Introduction
 
