@@ -24,9 +24,6 @@ You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
      kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION" 
      ```
 
-> **Note:** The placeholder `{{% pipelines/latest-version %}}` automatically resolves to the latest Kubeflow Pipelines release (e.g., `2.5.0`).
-> Users don’t need to manually update this value each time a new release is published.
-
 > 💡 **Troubleshooting**: If you encounter persistent pod crashes (e.g., `proxy-agent`, `workflow-controller`) after applying the default config, you may try using the `platform-agnostic` configuration instead:
 >
 > ```bash
@@ -51,13 +48,16 @@ Kubeflow Pipelines can be deployed in Kubernetes native API mode, which stores p
      kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
      kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
      kubectl wait --for=condition=Ready pod -l app.kubernetes.io/instance=cert-manager -n cert-manager --timeout=300s
-     kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/cert-manager/platform-agnostic-k8s-native?ref=$PIPELINE_VERSION"
      ```
 
-> 💡 **Alternative**: For multi-user environments with multiple teams or users requiring isolation and RBAC controls on who can access what pipelines, you can use the multi-user Kubernetes native mode:
-> ```bash
-> kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/cert-manager/platform-agnostic-multi-user-k8s-native?ref=$PIPELINE_VERSION"
-> ```
+2. Then deploy the remaining Kubeflow resources:
+```bash
+kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/cert-manager/platform-agnostic-k8s-native?ref=$PIPELINE_VERSION"
+```
+Alternatively, for multi-user environments with multiple teams or users requiring isolation and RBAC controls on who can access what pipelines, you can use the multi-user Kubernetes native mode (requires Istio to be installed):
+```bash
+kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/cert-manager/platform-agnostic-multi-user-k8s-native?ref=$PIPELINE_VERSION"
+```
 
 > 💡 **Migration Note**: If you are upgrading from a previous version not deployed in Kubernetes native API mode, consider leveraging the [migration script](https://github.com/kubeflow/pipelines/tree/master/tools/k8s-native) to export all existing pipelines and pipeline versions as Kubernetes manifests which can be applied after upgrading Kubeflow Pipelines.
 
