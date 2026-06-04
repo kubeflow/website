@@ -11,8 +11,8 @@ you can also choose to deploy only Kubeflow Pipelines standalone.
 You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
 [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/), and [kustomize](https://kustomize.io/).
 
-> **Note:** The placeholder `{{% pipelines/latest-version %}}` automatically resolves to the latest Kubeflow Pipelines release (e.g., `2.5.0`).
-> Users don’t need to manually update this value each time a new release is published.
+> **Note:** The placeholder `{{% pipelines/latest-version %}}` automatically resolves to the latest Kubeflow Pipelines release (e.g., `2.16.1`).
+> Users do not need to manually update this value each time a new release is published.
 
 ## Deploying Kubeflow Pipelines
 
@@ -22,7 +22,7 @@ You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
 export PIPELINE_VERSION={{% pipelines/latest-version %}}
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
 kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
-kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION" 
+kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=$PIPELINE_VERSION"
 ```
 
 ### 2. Deploy Kubeflow Pipelines as part of the community distribution for production ready environments:
@@ -30,7 +30,7 @@ kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=
 This includes proper RBAC and security settings for multi-tenant enterprise environments.
 
 - [Install just KFP](https://github.com/kubeflow/manifests#kubeflow-pipelines)
-- [Reproducable GHA workflow](https://github.com/kubeflow/manifests/blob/master/.github/workflows/pipeline_test.yaml)
+- [Reproducible GHA workflow](https://github.com/kubeflow/manifests/blob/master/.github/workflows/pipeline_test.yaml)
 - [Install with a single command](https://github.com/kubeflow/manifests#install-with-a-single-command)
 
 ### 3. Deploying Kubeflow Pipelines in Kubernetes Native API Mode for non-production experiments:
@@ -44,7 +44,7 @@ kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
 kubectl wait --for=condition=Ready pod -l app.kubernetes.io/instance=cert-manager -n cert-manager --timeout=300s
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/cert-manager/platform-agnostic-k8s-native?ref=$PIPELINE_VERSION"
-# Alternatively, for multi-user environments with multiple teams or users requiring isolation and RBAC controls on who can access which pipelines, you can use the multi-user Kubernetes native mode (requires Istio to be installed, so we stongly recommend to just use the community distribution):
+# Alternatively, for multi-user environments with multiple teams or users requiring isolation and RBAC controls on who can access which pipelines (still not production-ready like the community distribution), you can use the multi-user Kubernetes native mode (requires Istio to be installed, so we strongly recommend using the community distribution instead):
 # kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/cert-manager/platform-agnostic-multi-user-k8s-native?ref=$PIPELINE_VERSION"
 ```
 
@@ -59,11 +59,12 @@ Deploy KFP on a KinD cluster with pod-to-pod TLS enabled using the Makefile targ
 
 The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
 
-1. Standalone / non-production
-```
+### Standalone / non-production
+
+```bash
 kubectl port-forward -n kubeflow svc/ml-pipeline-ui 8080:80
 ```
 Open http://localhost:8080 on your browser to see the Kubeflow Pipelines UI.
 
-2. Community Distribution
+### Community Distribution
 [Port-Forward / LoadBalancer / Ingress](https://github.com/kubeflow/manifests#port-forward)
