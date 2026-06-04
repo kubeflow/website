@@ -18,7 +18,7 @@ You should be familiar with [Kubernetes](https://kubernetes.io/docs/home/),
 
 ### 1. Deploy the Kubeflow Pipelines development flavor standalone and non-production for first experiments:
 
-```
+```bash
 export PIPELINE_VERSION={{% pipelines/latest-version %}}
 kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=$PIPELINE_VERSION"
 kubectl wait --for condition=established --timeout=60s crd/applications.app.k8s.io
