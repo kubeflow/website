@@ -19,13 +19,13 @@ weight = 90
       <th class="table-light">Media</th>
       <td>
         <b>Blog:</b> 
-          To be published
+          <a href="https://blog.kubeflow.org/kubeflow-1.11-release/">Kubeflow 1.11 Release Announcement</a>
         <br>
         <b>Video:</b> 
           To be published
         <br>
         <b>Roadmap:</b>
-          To be published
+          <a href="https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md#kubeflow-111-release-planned-for-release-december-2025">Kubeflow 1.11 Features</a>
       </td>
     </tr>
     <tr>
