@@ -27,7 +27,7 @@ kubectl apply -k "github.com/kubeflow/pipelines/manifests/kustomize/env/dev?ref=
 
 ### 2. Deploy Kubeflow Pipelines as part of the community distribution for production ready environments:
 
-This includes proper RBAC and security settings for enterprise envrionments.
+This includes proper RBAC and security settings for multi-tenant enterprise environments.
 
 - [Install just KFP](https://github.com/kubeflow/manifests#kubeflow-pipelines)
 - [Reproducable GHA workflow](https://github.com/kubeflow/manifests/blob/master/.github/workflows/pipeline_test.yaml)
