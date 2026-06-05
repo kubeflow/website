@@ -64,7 +64,7 @@ For example, using homebrew to install hugo on macOS or linux:
 # TIP: to install hugo run the following commands
 HOMEBREW_COMMIT="9d025105a8be086b2eeb3b1b2697974f848dbaac" # 0.124.1
 curl -fL -o "hugo.rb" "https://raw.githubusercontent.com/Homebrew/homebrew-core/${HOMEBREW_COMMIT}/Formula/h/hugo.rb"
-brew install ./hugo.rb
+HOMEBREW_DEVELOPER="true" brew install ./hugo.rb
 brew pin hugo
 ```
 
@@ -76,7 +76,8 @@ If you plan to make changes to the site styling, you need to install some **node
 You can install the same versions we use in Netlify (defined in `package.json`) with the following command:
 
 ```bash
-npm install -D
+# NOTE: ensure you have node 18 installed, possibly using nvm
+npm install
 ```
 
 ### Run local hugo server
@@ -102,7 +103,7 @@ Follow the usual GitHub workflow of forking the repository on GitHub and then cl
 
    ```bash
    # install the node packages (at the root of the repo)
-   # NOTE: ensure you have node 18 installed
+   # NOTE: ensure you have node 18 installed, possibly using nvm
    npm install
    ```
 
