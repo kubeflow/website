@@ -176,19 +176,19 @@ enable = true
   # The value depends on the branch:
   #  - `master` -> "Version"
   #  - `v1.0-branch` -> "v1.0"
-  version_menu = "Version"
+  version_menu = "v26.03"
 
   # The version of the docs. This is used in the "version-banner" partial.
   # The value depends on the branch:
   #  - `master` -> "REPLACE_WITH_VERSION_ON_ARCHIVE"
   #  - `v1.0-branch` -> "v1.0"
-  version = "REPLACE_WITH_VERSION_ON_ARCHIVE"
+  version = "v26.03"
 
   # If the "version-banner" partial should display at the top of each page.
   # The value depends on the branch:
   #  - `master` -> false
   #  - `v*-branch` -> true
-  archived_version = false
+  archived_version = true
 
   # The URL of the latest version of the docs.
   # Used in the "version-banner" partial.
@@ -217,9 +217,17 @@ enable = true
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
-    version = "master"
+    version = "Latest"
     githubbranch = "master"
     url = "https://master.kubeflow.org"
+  [[params.versions]]
+    version = "v26.03"
+    githubbranch = "v26.03-branch"
+    url = "https://v26-03-branch.kubeflow.org"
+  [[params.versions]]
+    version = "v1.11"
+    githubbranch = "v1.11-branch"
+    url = "https://v1-11-branch.kubeflow.org"
   [[params.versions]]
     version = "v1.10"
     githubbranch = "v1.10-branch"
