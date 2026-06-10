@@ -199,12 +199,12 @@ The following table outlines which components are maintained by each Working Gro
           <a href="https://github.com/kubeflow/community/tree/master/wg-notebooks">Notebooks</a>
         </td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/admission-webhook">Admission Webhook (PodDefaults)</a>
+          <a href="https://github.com/kubeflow/dashboard/tree/main/components/poddefaults-webhooks">PodDefault Webhooks</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/centraldashboard">Central Dashboard</a>
+          <a href="https://github.com/kubeflow/dashboard/tree/main/components/centraldashboard">Central Dashboard</a>
         </td>
       </tr>
       <tr>
@@ -214,7 +214,7 @@ The following table outlines which components are maintained by each Working Gro
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/access-management">Kubeflow Access Management API (KFAM)</a>
+          <a href="https://github.com/kubeflow/dashboard/tree/main/components/access-management">Kubeflow Access Management API (KFAM)</a>
         </td>
       </tr>
       <tr>
@@ -224,7 +224,7 @@ The following table outlines which components are maintained by each Working Gro
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/master/components/profile-controller">Profile Controller</a>
+          <a href="https://github.com/kubeflow/dashboard/tree/main/components/profile-controller">Profile Controller</a>
         </td>
       </tr>
       <tr>
