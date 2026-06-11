@@ -1,9 +1,9 @@
 approvers:
 - andreyvelich
+- chasecadet
 - franciscojavierarceo
 - juliusvonkohout 
-- johnugeorge
-- terrytangyuan
+- thesuperzapper
 - varodrig
 - zijianjoy
 
@@ -12,4 +12,5 @@ reviewers:
 emeritus_approvers:
 - james-jwu
 - jbottum
-
+- johnugeorge
+- terrytangyuan
