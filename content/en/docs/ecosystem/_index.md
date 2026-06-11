@@ -15,4 +15,4 @@ the Kubeflow community established the Kubeflow Ecosystem to highlight projects 
 to the broader community and demonstrate maturity, sustainability, and excellence within their respective domains.
 
 If you are interested in joining the Kubeflow Ecosystem, please refer to
-[the contribution guidelines](https://github.com/kubeflow/community/tree/master/how-to/join-kubeflow-ecosystem.md)
+[the contribution guidelines](https://github.com/kubeflow/community/tree/master/ecosystem)
