@@ -1,7 +1,7 @@
 +++
 title =  "Governance"
 description = "About the Kubeflow Governance Structure"
-weight = 10
+weight = 50
 aliases = ["/docs/governance/"]
 +++
 

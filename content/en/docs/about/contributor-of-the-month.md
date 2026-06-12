@@ -1,6 +1,6 @@
 +++
 title = "Contributor of the Month"
 description = "Coming Soon"
-weight = 40
+weight = 35
 aliases = ["/docs/contributor-of-the-month/"]
 +++

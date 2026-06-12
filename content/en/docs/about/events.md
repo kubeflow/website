@@ -1,7 +1,7 @@
 +++
 title =  "Events"
 description = "Kubeflow Community Events and Meetups"
-weight = 15
+weight = 100
 manualLink = "/events/"
 icon = "fa-solid fa-arrow-up-right-from-square"
 +++

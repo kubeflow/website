@@ -222,14 +222,11 @@ GitHub usernames and aliases listed in OWNERS files are case-insensitive.
     [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) applies an
     `approved` label
 - Phase 3: Automation merges the PR:
-
   - If all of the following are true:
-
     - All required labels are present (eg: `lgtm`, `approved`)
     - Any blocking labels are missing (eg: there is no `do-not-merge/hold`, `needs-rebase`)
 
   - And if any of the following are true:
-
     - there are no presubmit prow jobs configured for this repo
     - there are presubmit prow jobs configured for this repo, and they all pass after automatically
       being re-run one last time
