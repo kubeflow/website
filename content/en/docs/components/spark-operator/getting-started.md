@@ -9,12 +9,17 @@ User Guide. If you are running the Kubernetes Operator for Apache Spark on Googl
 
 ## Prerequisites
 
-- Helm >= 3
 - Kubernetes >= 1.16
 
 ## Installation
 
-### Add Helm Repo
+The Spark Operator can be installed using [Helm](#install-with-helm) or [Kustomize](#install-with-kustomize).
+
+### Install with Helm
+
+Helm >= 3 is required to install the Spark Operator chart.
+
+#### Add Helm Repo
 
 ```shell
 helm repo add spark-operator https://kubeflow.github.io/spark-operator
@@ -24,7 +29,7 @@ helm repo update
 
 See [helm repo](https://helm.sh/docs/helm/helm_repo) for command documentation.
 
-### Install the chart
+#### Install the chart
 
 ```shell
 helm install [RELEASE_NAME] spark-operator/spark-operator
@@ -61,7 +66,7 @@ Now you should see the operator running in the cluster by checking the status of
 helm status --namespace spark-operator my-release
 ```
 
-### Upgrade the Chart
+#### Upgrade the Chart
 
 ```shell
 helm upgrade [RELEASE_NAME] spark-operator/spark-operator [flags]
@@ -69,7 +74,7 @@ helm upgrade [RELEASE_NAME] spark-operator/spark-operator [flags]
 
 See [helm upgrade](https://helm.sh/docs/helm/helm_upgrade) for command documentation.
 
-### Uninstall the Chart
+#### Uninstall the Chart
 
 ```shell
 helm uninstall [RELEASE_NAME]
@@ -79,29 +84,118 @@ This removes all the Kubernetes resources associated with the chart and deletes 
 
 See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall) for command documentation.
 
-### Additional Steps to Integrate Jupyter Notebooks
+### Install with Kustomize
 
-Integrating Jupyter Notebooks with the Spark Operator to run big data or distributed machine learning jobs with PySpark.
+Kustomize support is available starting from Spark Operator v2.5.1. You will need `kubectl` v1.14+ (which includes built-in Kustomize support) or a standalone [kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/) binary.
 
-See [Integration with Notebooks](../user-guide/notebooks-spark-operator) for further details.
+To install using Kustomize, clone the release branch of the [Spark Operator repository](https://github.com/kubeflow/spark-operator) and apply the default configuration:
+
+```shell
+# Example: git clone --branch v2.5.1 https://github.com/kubeflow/spark-operator.git
+git clone --branch <release-tag> https://github.com/kubeflow/spark-operator.git
+cd spark-operator
+kubectl apply -k config/default --server-side --force-conflicts
+```
+
+By default, all resources are installed in the `spark-operator` namespace.
+
+A successful `kubectl apply -k config/default --server-side --force-conflicts` creates:
+ - The `spark-operator` Namespace
+ - 3 CRDs (SparkApplication, ScheduledSparkApplication, SparkConnect)
+ - Controller Deployment (1 replica) with ServiceAccount, ClusterRole, and leader-election Role
+ - Webhook Deployment (1 replica) with ServiceAccount, ClusterRole, Role, Service, and self-signed TLS
+ - MutatingWebhookConfiguration and ValidatingWebhookConfiguration
+
+The webhook generates its own TLS certificates at startup (no cert-manager required by default).
+
+Verify the operator is running:
+
+```shell
+kubectl -n spark-operator get pods
+```
+
+#### Configuration with Kustomize
+
+Unlike Helm values, kustomize parameters are edited directly in the manifest files or via overlays.
+
+| What to change | Where to [edit](https://github.com/kubeflow/spark-operator) |
+|---|---|
+| Operator namespace | `namespace:` in `config/default/kustomization.yaml` |
+| Image tag | `images:` block in `config/default/kustomization.yaml`, or run `make kustomize-set-image` |
+| Controller flags (log level, workers, feature gates, etc.) | `args:` in `config/manager/manager.yaml` |
+| Webhook flags (port, log level, etc.) | `args:` in `config/webhook/deployment.yaml` |
+| Job namespaces (webhook selectors) | `values:` lists in `config/webhook/webhook-objectselector-patch.yaml` and `webhook-validating-selector-patch.yaml` |
+| Resource requests/limits | `resources:` in `config/manager/manager.yaml` and `config/webhook/deployment.yaml` |
+
+
+For larger customizations, create a [kustomize overlay](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/):
+
+```bash
+mkdir -p my-overlay
+cat > my-overlay/kustomization.yaml <<EOF
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../config/default
+# Add patches, images overrides, etc.
+EOF
+kubectl apply -k my-overlay --server-side --force-conflicts
+```
+
+#### Upgrading the operator with Kustomize
+
+To upgrade the operator using Kustomize manifests pull the latest manifests (or the desired release tag) and re-apply:
+
+```
+git pull  # or: git checkout v<new-version>
+kubectl apply -k config/default --server-side --force-conflicts
+```
+
+#### Uninstall the operator with Kustomize
+
+To uninstall, first delete the Spark RBAC resources from each application namespace, then delete the operator:
+
+```shell
+kubectl delete -k config/spark-rbac -n <app-namespace>
+kubectl delete -k config/default
+```
+
+**Warning:** `kubectl delete -k config/default` will also remove the CRDs, which deletes all SparkApplication, ScheduledSparkApplication, and SparkConnect resources cluster-wide.
 
 ## Running the Examples
+
+Spark driver and executor pods need a Spark-specific service account to communicate with the Kubernetes API server. The setup differs depending on your installation method.
+
+### Helm RBAC setup
+
+If you installed the operator using the Helm chart and overrode `spark.jobNamespaces`, the chart automatically creates a service account in the specified namespace. The service account name ends with `-spark` and starts with the Helm release name.
+
+For example, if you would like your Spark jobs to run in a namespace called `test-ns`, first make sure it already exists, and then install the chart with the command:
+
+```shell
+helm install my-release spark-operator/spark-operator --namespace spark-operator --set "spark.jobNamespaces={test-ns}"
+```
+
+See the section on the [Spark Job Namespace](#about-spark-job-namespaces) for details on the behavior of the default Spark Job Namespace.
+
+### Kustomize RBAC setup
+
+If you installed the operator using Kustomize manifests, the service account and other RBAC resources must be created manually in each job namespace:
+
+```shell
+# For jobs run in the default namespace
+kubectl -n default apply -k config/spark-rbac
+```
+
+See the section on [Spark RBAC](#about-the-service-account-for-driver-pods) for details on the RBAC resources needed for Spark jobs.
+
+### Run the Spark PI example
 
 To run the Spark PI example, run the following command:
 
 ```shell
 kubectl apply -f examples/spark-pi.yaml
 ```
-
-Note that `spark-pi.yaml` configures the driver pod to use the `spark` service account to communicate with the Kubernetes API server. You might need to replace it with the appropriate service account before submitting the job. If you installed the operator using the Helm chart and overrode `spark.jobNamespaces`, the service account name ends with `-spark` and starts with the Helm release name. For example, if you would like to run your Spark jobs to run in a namespace called `test-ns`, first make sure it already exists, and then install the chart with the command:
-
-```shell
-helm install my-release spark-operator/spark-operator --namespace spark-operator --set "spark.jobNamespaces={test-ns}"
-```
-
-Then the chart will set up a service account for your Spark jobs to use in that namespace.
-
-See the section on the [Spark Job Namespace](#about-spark-job-namespaces) for details on the behavior of the default Spark Job Namespace.
 
 Running the above command will create a `SparkApplication` object named `spark-pi`. Check the object by running the following command:
 
@@ -177,9 +271,15 @@ Events:
 
 The operator submits the Spark Pi example to run once it receives an event indicating the `SparkApplication` object was added.
 
+## Additional Steps to Integrate Jupyter Notebooks
+
+Integrating Jupyter Notebooks with the Spark Operator to run big data or distributed machine learning jobs with PySpark.
+
+See [Integration with Notebooks](../user-guide/notebooks-spark-operator) for further details.
+
 ## Configuration
 
-The operator is typically deployed and run using the Helm chart. However, users can still run it outside a Kubernetes cluster and make it talk to the Kubernetes API server of a cluster by specifying path to `kubeconfig`, which can be done using the `-kubeconfig` flag.
+The operator is typically deployed and run using the Helm chart or Kustomize manifests. However, users can still run it outside a Kubernetes cluster and make it talk to the Kubernetes API server of a cluster by specifying path to `kubeconfig`, which can be done using the `-kubeconfig` flag.
 
 The operator uses multiple workers in the `SparkApplication` controller. The number of worker threads are controlled using command-line flag `-controller-threads` which has a default value of 10.
 
@@ -191,16 +291,6 @@ The mutating admission webhook is an **optional** component and can be enabled o
 
 By default, the operator will manage custom resource objects of the managed CRD types for the whole cluster. It can be configured to manage only the custom resource objects in a specific namespace with the flag `-namespace=<namespace>`
 
-## Upgrade
-
-To upgrade the operator, e.g., to use a newer version container image with a new tag, run the following command with updated parameters for the Helm release:
-
-```shell
-helm upgrade <YOUR-HELM-RELEASE-NAME> --set image.repository=org/image --set image.tag=newTag
-```
-
-Refer to the Helm [documentation](https://helm.sh/docs/helm/helm_upgrade/) for more details on `helm upgrade`.
-
 ## About Spark Job Namespaces
 
 The Spark Job Namespaces value defines the namespaces where `SparkApplications` can be deployed. The Helm chart value for the Spark Job Namespaces is `spark.jobNamespaces`, and its default value is `[]`. When the list of namespaces is empty the Helm chart will create a service account in the namespace where the spark-operator is deployed.
@@ -211,7 +301,7 @@ The Spark Operator uses the Spark Job Namespace to identify and filter relevant 
 
 ## About the Service Account for Driver Pods
 
-A Spark driver pod need a Kubernetes service account in the pod's namespace that has permissions to create, get, list, and delete executor pods, and create a Kubernetes headless service for the driver. The driver will fail and exit without the service account, unless the default service account in the pod's namespace has the needed permissions. To submit and run a `SparkApplication` in a namespace, please make sure there is a service account with the permissions in the namespace and set `.spec.driver.serviceAccount` to the name of the service account. Please refer to [spark-rbac.yaml](https://github.com/kubeflow/spark-operator/blob/master/config/rbac/spark-application-rbac.yaml) for an example RBAC setup that creates a driver service account named `spark-operator-spark` in the `default` namespace, with a RBAC role binding giving the service account the needed permissions.
+A Spark driver pod need a Kubernetes service account in the pod's namespace that has permissions to create, get, list, and delete executor pods, and create a Kubernetes headless service for the driver. The driver will fail and exit without the service account, unless the default service account in the pod's namespace has the needed permissions. To submit and run a `SparkApplication` in a namespace, please make sure there is a service account with the permissions in the namespace and set `.spec.driver.serviceAccount` to the name of the service account. Please refer to [spark-application-rbac.yaml](https://github.com/kubeflow/spark-operator/blob/master/config/spark-rbac/spark-application-rbac.yaml) for an example RBAC setup that creates a driver service account named `spark-operator-spark` in the `default` namespace, with a RBAC role binding giving the service account the needed permissions.
 
 ## About the Service Account for Executor Pods
 
