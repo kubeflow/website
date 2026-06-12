@@ -1,7 +1,7 @@
 +++
 title =  "Documentation Style Guide"
 description = "Style guide for writing Kubeflow documentation"
-weight = 90
+weight = 60
 +++
 
 This style guide is for the [Kubeflow documentation](/docs/).

@@ -125,8 +125,8 @@ To see what's coming up in future versions of Kubeflow AI reference platform, re
 ## Kubeflow Community
 
 Kubeflow is a community-led project maintained by the
-[Kubeflow Working Groups](/docs/about/governance/#4-working-groups)
-under the guidance of the [Kubeflow Steering Committee](/docs/about/governance/#2-kubeflow-steering-committee-ksc).
+[Kubeflow Working Groups](/docs/about/governance/#5-working-groups)
+under the guidance of the [Kubeflow Steering Committee](/docs/about/governance/#2-kubeflow-steering-committee).
 
 We encourage you to learn about the [Kubeflow Community](/docs/about/community/)
 and how to [contribute](/docs/about/contributing/) to the project!

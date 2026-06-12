@@ -1,7 +1,7 @@
 +++
 title = "Community Membership"
 description = "Guidelines for contributing to Kubeflow"
-weight = 30
+weight = 40
 aliases = ["/docs/membership/"]
 +++
 
