@@ -32,7 +32,7 @@ The following tables list Kubeflow subprojects grouped by their corresponding
 
 You can find the list of archived projects in [this document](https://github.com/kubeflow/community/tree/master/subprojects/PROJECTS.md).
 
-### Stable Projects
+### Graduated Projects
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
@@ -45,6 +45,16 @@ You can find the list of archived projects in [this document](https://github.com
     <tbody>
       <tr>
         <td>
+          <a href="https://www.kubeflow.org/docs/components/hub/">
+            Kubeflow Hub
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/hub">kubeflow/hub</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <a href="https://www.kubeflow.org/docs/components/katib/">
             Kubeflow Katib
           </a>
@@ -55,12 +65,12 @@ You can find the list of archived projects in [this document](https://github.com
       </tr>
       <tr>
         <td>
-         <a href="https://www.kubeflow.org/docs/components/hub/">
-            Kubeflow Hub
+          <a href="https://www.kubeflow.org/docs/components/notebooks/">
+            Kubeflow Notebooks
           </a>
         </td>
         <td>
-          <a href="https://github.com/kubeflow/hub">kubeflow/hub</a>
+          <a href="https://github.com/kubeflow/notebooks">kubeflow/notebooks</a>
         </td>
       </tr>
       <tr>
@@ -71,6 +81,16 @@ You can find the list of archived projects in [this document](https://github.com
         </td>
         <td>
           <a href="https://github.com/kubeflow/pipelines">kubeflow/pipelines</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://sdk.kubeflow.org/en/latest/">
+            Kubeflow SDK
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/sdk">kubeflow/sdk</a>
         </td>
       </tr>
       <tr>
@@ -93,21 +113,11 @@ You can find the list of archived projects in [this document](https://github.com
           <a href="https://github.com/kubeflow/trainer">kubeflow/trainer</a>
         </td>
       </tr>
-      <tr>
-        <td>
-          <a href="https://sdk.kubeflow.org/en/latest/">
-            Kubeflow SDK
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/sdk">kubeflow/sdk</a>
-        </td>
-      </tr>
     </tbody>
   </table>
 </div>
 
-### Development Projects
+### Incubating Projects
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
@@ -120,17 +130,7 @@ You can find the list of archived projects in [this document](https://github.com
     <tbody>
       <tr>
         <td>
-          <a href="https://www.kubeflow.org/docs/components/notebooks/">
-            Kubeflow Workspaces
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/notebooks">kubeflow/notebooks</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://kale.kubeflow.org">
+          <a href="https://www.kubeflow.org/docs/components/kale/">
             Kubeflow Kale
           </a>
         </td>
@@ -140,7 +140,7 @@ You can find the list of archived projects in [this document](https://github.com
       </tr>
       <tr>
         <td>
-          Kubeflow MLFlow Integration
+          Kubeflow MLflow Integration
         </td>
         <td>
           <a href="https://github.com/kubeflow/mlflow-integration">kubeflow/mlflow-integration</a>
@@ -174,34 +174,27 @@ You can find the list of archived projects in [this document](https://github.com
       <tr>
         <th>Kubeflow Subproject</th>
         <th>Source Code</th>
-        <th>Archived Date</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>
-          <a href="https://www.kubeflow.org/docs/components/notebooks/">
-            Kubeflow Notebooks v1
+          <a href="https://www.kubeflow.org/docs/components/pipelines/legacy-v1/">
+            Kubeflow Pipelines v1
           </a>
         </td>
         <td>
-          <a href="https://github.com/kubeflow/notebooks">kubeflow/notebooks</a>
-        </td>
-        <td>
-          TBD
+          <a href="https://github.com/kubeflow/pipelines">kubeflow/pipelines</a>
         </td>
       </tr>
       <tr>
         <td>
-          <a href="https://www.kubeflow.org/docs/components/trainer/">
+          <a href="https://www.kubeflow.org/docs/components/trainer/legacy-v1/">
             Kubeflow Training Operator v1
           </a>
         </td>
         <td>
           <a href="https://github.com/kubeflow/trainer">kubeflow/trainer</a>
-        </td>
-        <td>
-          12/31/2026
         </td>
       </tr>
     </tbody>
