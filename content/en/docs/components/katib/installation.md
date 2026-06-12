@@ -22,7 +22,7 @@ You need to install Katib control plane and Python SDK to create Katib Experimen
 
 You can skip these steps if you have already
 [installed Kubeflow Community Distribution (KCD)](/docs/started/installing-kubeflow/)
-using manifests or package distributions. KCD includes Katib.
+using community or package distributions. KCD includes Katib.
 
 You can install Katib as a standalone component.
 

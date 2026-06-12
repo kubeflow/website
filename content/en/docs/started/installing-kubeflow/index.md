@@ -320,126 +320,17 @@ The following table lists distributions which are <em>maintained</em> by their r
 
 See the definition for Kubeflow Community Distribution [in the overview page](../introduction#kubeflow-community-distribution)
 
-If you want a stable / conservative experience we recommend to use the [latest stable release](https://github.com/kubeflow/manifests/releases):
+If you want a stable / conservative experience we recommend to use the
+[latest stable release](https://github.com/kubeflow/community-distribution/releases):
 
-- [`v1.11 branch`](https://github.com/kubeflow/manifests/tree/v1.11-branch)
-- [`v1.11.0 release`](https://github.com/kubeflow/manifests/releases/tag/v1.11.0)
+- [`v26.03 branch`](https://github.com/kubeflow/community-distribution/tree/release-26.03)
+- [`v1.11 branch`](https://github.com/kubeflow/community-distribution/tree/v1.11-branch)
+- [`v1.11.0 release`](https://github.com/kubeflow/community-distribution/releases/tag/v1.11.0)
 
-You can also install the master branch of [`kubeflow/manifests`](https://github.com/kubeflow/manifests) by following the instructions [here](https://github.com/kubeflow/manifests?tab=readme-ov-file#installation) and provide us feedback.
-
-### Included Projects
-
-The Kubeflow Community Distribution bundles the following projects:
-
-<div class="table-responsive distributions-table">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Project</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/katib">
-            Kubeflow Katib
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/hub">
-            Kubeflow Hub
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/pipelines">
-            Kubeflow Pipelines
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/spark-operator">
-            Kubeflow Spark Operator
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/trainer">
-            Kubeflow Trainer
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/sdk">
-            Kubeflow SDK
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/notebooks">
-            Kubeflow Workspaces
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/dashboard">
-            Kubeflow Dashboard
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kubeflow/dashboard">
-            Kubeflow Profile Controller
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/kserve/kserve">
-            KServe
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/istio/istio">
-            Istio
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/dexidp/dex">
-            Dex
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/cert-manager/cert-manager">
-            cert-manager
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://github.com/oauth2-proxy/oauth2-proxy">
-            oauth2-proxy
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+You can also install the master branch of
+[`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution)
+by following the instructions [here](https://github.com/kubeflow/community-distribution?tab=readme-ov-file#installation)
+and provide us feedback.
 
 ## Next steps
 

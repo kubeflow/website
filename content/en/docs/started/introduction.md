@@ -57,7 +57,7 @@ or [Kubeflow Community Distribution](/docs/started/installing-kubeflow/#kubeflow
 Kubeflow Community Distribution (KCD) is community-maintained reference for deploying Kubeflow
 subprojects and ecosystem integrations in a vendor neutral package.
 
-The development of the KCD is directed by the neutral [Kubeflow Distribution Committee (KDC)](/docs/about/governance/#4-kubeflow-distribution-committee-kdc)
+The development of the KCD is directed by the neutral [Kubeflow Distribution Committee (KDC)](/docs/about/governance/#4-kubeflow-distribution-committee)
 which is made up of representatives for each Kubeflow subproject and KCD maintainers.
 
 ## Kubeflow Video Introduction
