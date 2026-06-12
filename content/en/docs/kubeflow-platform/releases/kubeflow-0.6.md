@@ -48,7 +48,7 @@ weight = 106
 </table>
 </div>
 
-## KubKubeflow AI reference platform 0.6.0
+## Kubeflow AI reference platform 0.6.0
 
 <div class="table-responsive">
 <table class="table table-bordered">
