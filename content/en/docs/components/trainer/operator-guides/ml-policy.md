@@ -50,6 +50,30 @@ mlPolicy:
     numProcPerNode: gpu
 ```
 
+#### Inject PET_* envs into init/sidecar containers
+
+By default, the Torch plugin injects `PET_*` topology env vars into the main trainer container only.
+If you want to run distributed preflight checks in init containers (or other auxiliary containers),
+you can opt-in by configuring `torch.envInjection.targets` in the Runtime `mlPolicy`.
+
+The `jobName` must match the replicated job name in the runtime template (for example, `node`), and
+each entry in `containerNames` must exist in that job pod spec (regular or init container).
+
+```YAML
+mlPolicy:
+  numNodes: 2
+  torch:
+    envInjection:
+      targets:
+        - jobName: node
+          containerNames:
+            - preflight-check
+```
+
+Note: env injection targets always receive `PET_MASTER_ADDR` and `PET_MASTER_PORT`. For TrainJobs
+running torchtune, the main trainer container uses a rendezvous endpoint argument instead of these
+env vars.
+
 ### MPI
 
 [The `MPI` policy](https://pkg.go.dev/github.com/kubeflow/trainer/v2/pkg/apis/trainer/v1alpha1#MPIMLPolicySource)
