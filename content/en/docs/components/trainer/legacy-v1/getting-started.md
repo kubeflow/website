@@ -30,7 +30,7 @@ download dataset, create model, and train the model.
 The Training Operator will automatically set `WORLD_SIZE` and `RANK` for the appropriate PyTorchJob
 worker to perform [PyTorch Distributed Data Parallel (DDP)](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html).
 
-If you install the Training Operator as part of the Kubeflow Platform, you can open a new
+If you install the Training Operator as part of the Kubeflow Community Distribution, you can open a new
 [Kubeflow Notebook](/docs/components/notebooks/quickstart-guide/) to run this script. If you
 install the Training Operator standalone, make sure that you
 [configure local `kubeconfig`](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#programmatic-access-to-the-api)

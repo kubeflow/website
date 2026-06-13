@@ -6,19 +6,6 @@ weight = 80
 
 This page describes the Kubeflow resources and support options available when you encounter a problem, have a question, or want to make a suggestion about Kubeflow.
 
-<a id="application-status"></a>
-
-## Project Status
-
-Please make yourself familiar with the [structure of Kubeflow](https://www.kubeflow.org/docs/started/introduction/#what-is-kubeflow) first.
-When you deploy Kubeflow to a Kubernetes cluster, your deployment includes multiple projects. Note that project versioning is independent from Kubeflow AI reference platform version. Each project should meet certain [criteria](https://github.com/kubeflow/community/blob/master/guidelines/application_requirements.md) regarding stability, upgradability, logging, monitoring, and security (PodSecurityStandards restricted, network policies, and integration tests for authentication and authorization).
-
-Project status indicators:
-
-- **Stable**: The application complies with most of the criteria and is considered stable for this release.
-- **Beta**: The application is progressing towards meeting most criteria.
-- **Alpha**: The application is in an early development or integration stage.
-
 <a id="levels-of-support"></a>
 
 ## Levels of Support
@@ -54,9 +41,8 @@ You can ask questions and make suggestions in the following places:
   group.
 - **Kubeflow documentation** for overviews and how-to guides. In particular,
   refer to the following documents when troubleshooting a problem:
-
   - [Kubeflow installation and setup](/docs/started/installing-kubeflow/)
-  - [Kubeflow projects](/docs/components/)
+  - [Kubeflow subprojects](/docs/components/)
 
 - **Kubeflow issue trackers** for known issues, questions, and feature requests.
   Search the open issues to see if someone else has already logged the problem
@@ -64,19 +50,7 @@ You can ask questions and make suggestions in the following places:
   has logged your problem, create a new issue to describe the problem.
 
   Each Kubeflow project has its own issue tracker within the [Kubeflow
-  organization on GitHub](https://github.com/kubeflow). To get you started,
-  here are the primary issue trackers:
-
-  - [Kubeflow Spark Operator](https://github.com/kubeflow/spark-operator/issues)
-  - [Kubeflow Pipelines](https://github.com/kubeflow/pipelines/issues)
-  - [Kubeflow Katib](https://github.com/kubeflow/katib/issues)
-  - [Kubeflow Trainer](https://github.com/kubeflow/trainer/issues)
-  - [Kubeflow Notebooks](https://github.com/kubeflow/notebooks/issues)
-  - [Kubeflow Hub](https://github.com/kubeflow/hub/issues)
-  - [Kubeflow Dashboard](https://github.com/kubeflow/dashboard/issues)
-  - [Kserve](https://github.com/kserve/kserve/issues)
-  - [Kubeflow AI Reference Platform / Manifests](https://github.com/kubeflow/manifests/issues)
-  - [Kubeflow Website](https://github.com/kubeflow/website/issues)
+  organization on GitHub](https://github.com/kubeflow).
 
 <a id="provider-support"></a>
 

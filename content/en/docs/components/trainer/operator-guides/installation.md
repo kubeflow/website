@@ -6,8 +6,8 @@ weight = 10
 
 This guide describes how to install Kubeflow Trainer control plane on a Kubernetes cluster.
 
-You can skip these steps if [the Kubeflow platform](https://www.kubeflow.org/docs/started/installing-kubeflow/)
-is already deployed using manifests or package distributions, as it includes Kubeflow Trainer by default.
+You can skip these steps if [the Kubeflow distribution](https://www.kubeflow.org/docs/started/installing-kubeflow/)
+is already deployed using community or package distributions, as it includes Kubeflow Trainer by default.
 
 ## Prerequisites
 

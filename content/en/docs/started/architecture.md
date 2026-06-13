@@ -4,14 +4,24 @@ description = "An overview of Kubeflow's architecture"
 weight = 10
 +++
 
-This guide introduces Kubeflow projects and how they fit in each stage of the AI lifecycle.
+This guide introduces Kubeflow subprojects and how they fit in each stage of the AI lifecycle.
 
-Read [the introduction](/docs/started/introduction) to learn more about Kubeflow, Kubeflow
-projects, and Kubeflow AI reference platform.
+Read [the introduction](/docs/started/introduction) to learn more about Kubeflow subprojects,
+Kubeflow ecosystem, and Kubeflow distribution.
 
-## Kubeflow Ecosystem
+## Kubeflow Overview Diagram
 
-The following diagram gives an overview of the Kubeflow Ecosystem and how it relates to the wider
+The following diagram shows the Kubeflow subprojects to cover each stage of the AI lifecycle
+on top of Kubernetes.
+
+<img src="/docs/started/images/kubeflow-overview.drawio.svg"
+     alt="Kubeflow Overview Diagram"
+     class="mt-3 mb-3 border rounded bg-white">
+</img>
+
+## Kubeflow Landscape
+
+The following diagram gives an overview of the Kubeflow Landscape and how it relates to the wider
 Kubernetes and AI landscape. Kubeflow builds on [Kubernetes](https://kubernetes.io/) as a system for
 deploying, scaling, and managing AI platforms.
 
@@ -69,12 +79,13 @@ _production_ phases, this diagram explores which stages fit into each phase:
      class="mt-3 mb-3 rounded">
 </img>
 
-### Kubeflow Projects in the AI Lifecycle
+### Kubeflow Landscape in the AI Lifecycle
 
-The next diagram shows how Kubeflow projects fit for each stage of the AI lifecycle:
+The next diagram shows how Kubeflow subprojects and Kubeflow ecosystem projects fit for each stage
+of the AI lifecycle:
 
 <img src="/docs/started/images/ai-lifecycle-kubeflow.drawio.svg" 
-     alt="Kubeflow Projects in the AI Lifecycle"
+     alt="Kubeflow Landscape in the AI Lifecycle"
      class="mt-3 mb-3 border rounded p-3 bg-white">
 </img>
 
@@ -92,20 +103,15 @@ See the following links for more information about each Kubeflow project:
 - [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
   tuning using various AutoML algorithms.
 
-- [Kubeflow Model Registry](/docs/components/hub/) can be used to store ML metadata,
-  model artifacts, and preparing models for production serving.
+- [Kubeflow Hub](/docs/components/hub/) can be used to store ML metadata, model artifacts, and
+  preparing models for production serving.
 
 - [Kubeflow Pipelines](/docs/components/pipelines/) can be used to build, deploy, and manage each
   step in the AI lifecycle.
 
-AI platform teams can build on top of Kubeflow by using each
-[project independently](/docs/started/introduction/#what-are-kubeflow-projects) or deploying the
-entire [AI reference platform](/docs/started/introduction/#what-is-the-kubeflow-ai-reference-platform)
-to meet their specific needs.
-
 ## Kubeflow Interfaces
 
-This section introduces the interfaces that you can use to interact with Kubeflow projects.
+This section introduces the interfaces that you can use to interact with the Kubeflow subprojects.
 
 ### Kubeflow Dashboard
 
@@ -116,27 +122,18 @@ The Kubeflow Central Dashboard looks like this:
      class="mt-3 mb-3 border rounded">
 </img>
 
-The Kubeflow AI reference platform includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)
+The Kubeflow Community Distribution includes [Kubeflow Central Dashboard](/docs/components/central-dash/overview/)
 which acts as a hub for your AI platform and tools by exposing the UIs of components running in the
 cluster.
 
-### Kubeflow APIs and SDKs
+### Kubeflow SDK
 
-<!--
-TODO (andreyvelich): Add reference docs once this issue is implemented: https://github.com/kubeflow/katib/issues/2081
--->
+The Kubeflow SDK is a set of unified Pythonic APIs that let you run any AI workload at any scale –
+without the need to learn Kubernetes. It provides simple and consistent APIs across the
+Kubeflow subprojects, enabling users to focus on building AI applications rather than managing
+complex infrastructure.
 
-Various Kubeflow projects offer APIs and Python SDKs.
-
-See the following sets of reference documentation:
-
-- [Pipelines reference docs](/docs/components/pipelines/reference/) for the Kubeflow
-  Pipelines API and SDK, including the Kubeflow Pipelines domain-specific
-  language (DSL).
-- [Kubeflow Python SDK](https://github.com/kubeflow/sdk/blob/main/kubeflow/trainer/api/trainer_client.py)
-  to interact with Kubeflow Trainer APIs and to manage TrainJobs.
-- [Katib Python SDK](https://github.com/kubeflow/katib/blob/086093fed72610c227e3ae1b4044f27afa940852/sdk/python/v1beta1/kubeflow/katib/api/katib_client.py)
-  to manage Katib hyperparameter tuning Experiments using Python APIs.
+Visit [the Kubeflow SDK website](https://sdk.kubeflow.org/en/latest/) to learn more about it.
 
 ## Next steps
 

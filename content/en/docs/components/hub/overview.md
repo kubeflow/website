@@ -8,8 +8,6 @@ weight = 10
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9937/badge)](https://www.bestpractices.dev/projects/9937)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kubeflow/hub/badge)](https://scorecard.dev/viewer/?uri=github.com/kubeflow/hub)
 
-{{% alpha-status feedbacklink="https://github.com/kubeflow/hub/issues/new/choose" %}}
-
 ## What is Kubeflow Hub?
 
 [Kubeflow Hub](https://github.com/kubeflow/hub) (formerly known as Model Registry) is the central component in Kubeflow for managing the full lifecycle of ML models.

@@ -15,9 +15,10 @@ Each [packaged distribution of Kubeflow](/docs/started/installing-kubeflow/#pack
 
 For more information, please see the documentation of the distribution you are using.
 
-## Raw Manifests
+## Kubeflow Community Distribution
 
-If you are using the default [Kubeflow Manifests](/docs/started/installing-kubeflow/#kubeflow-manifests), you may access the Istio gateway with `kubectl` port-forwarding or another method.
+If you are using the default [Kubeflow Community Distribution](/docs/started/installing-kubeflow/#kubeflow-community-distribution),
+you may access the Istio gateway with `kubectl` port-forwarding or another method.
 
 ### kubectl port-forwarding
 
@@ -26,15 +27,15 @@ To access the central dashboard using `kubectl` port-forwarding:
 1. [Install `kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/), if you haven't already done so.
 2. Use the following command to set up port forwarding on your local machine:
 
-    ```bash
-    export ISTIO_NAMESPACE=istio-system
-    kubectl port-forward svc/istio-ingressgateway -n ${ISTIO_NAMESPACE} 8080:80
-    ```
+   ```bash
+   export ISTIO_NAMESPACE=istio-system
+   kubectl port-forward svc/istio-ingressgateway -n ${ISTIO_NAMESPACE} 8080:80
+   ```
 
 3. Open a browser and navigate to: [http://localhost:8080](http://localhost:8080)
 4. If you have not changed the default username and password, you may log in with:
-    - Username: `user@example.com`
-    - Password: `12341234`
+   - Username: `user@example.com`
+   - Password: `12341234`
 
 ## Next steps
 

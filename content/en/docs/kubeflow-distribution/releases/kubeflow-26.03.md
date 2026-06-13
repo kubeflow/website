@@ -1,6 +1,6 @@
 +++
-title = "Kubeflow AI reference platform 26.03"
-description = "Information about the Kubeflow AI reference platform 26.03 release"
+title = "Kubeflow Community Distribution 26.03"
+description = "Information about the Kubeflow Community Distribution 26.03 release"
 weight = 89
 +++
 
@@ -8,7 +8,7 @@ weight = 89
 We are transitioning to a Calendar Versioning model to provide a more predictable and automated release schedule. For more details on the upcoming phases, please refer to the [Release Handbook](https://github.com/kubeflow/manifests/blob/master/releases/kubeflow-ai-reference-platform-release-handbook.md).
 {{% /alert %}}
 
-## Kubeflow AI reference platform 26.03
+## Kubeflow Community Distribution 26.03
 
 <div class="table-responsive">
 <table class="table table-bordered">
