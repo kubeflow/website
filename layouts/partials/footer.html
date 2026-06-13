@@ -33,6 +33,7 @@
         {{ end }}
           <p>
             <small class="text-white">Website <a href="{{ .Site.Params.privacy_policy }}" target="_blank" rel="noopener">Privacy Policy</a></small>
+            <small class="text-white"> | <a href="{{ "llms.txt" | absURL }}" rel="noopener">llms.txt</a> · <a href="{{ "llms-full.txt" | absURL }}" rel="noopener">llms-full.txt</a></small>
           </p>
 	{{ if not .Site.Params.ui.footer_about_disable }}
 		{{ with .Site.GetPage "about" }}<p class="mt-2"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}

@@ -1,0 +1,46 @@
+{{- $docs := site.GetPage "/docs" -}}
+# Kubeflow
+
+> Kubeflow is the foundation of tools for AI Platforms on Kubernetes, providing a composable, modular, portable, and scalable AI reference platform backed by Kubernetes-native projects covering every stage of the AI lifecycle.
+
+Kubeflow enables AI platform teams to build production-ready ML workflows with tools for training, tuning, serving, pipelines, and notebooks. Each Kubeflow project can be used independently or as part of the full AI reference platform.
+
+- Source code: <https://github.com/kubeflow/>
+- Documentation: <{{ site.BaseURL }}docs/>
+{{ range $docs.Sections.ByWeight -}}
+  {{- if eq .RelPermalink "/docs/components/" -}}
+    {{- range .Sections.ByWeight -}}
+      {{- $sec := . -}}
+      {{- $t := replace (replace $sec.Title "&#39;" "'") "&amp;" "&" -}}
+      {{- printf "\n## %s\n\n" $t -}}
+      {{- if $sec.Params.description -}}
+        {{- $d := replace (replace $sec.Params.description "&#39;" "'") "&amp;" "&" -}}
+        {{- printf "- [%s](%s): %s\n" $t $sec.Permalink $d -}}
+      {{- else -}}
+        {{- printf "- [%s](%s)\n" $t $sec.Permalink -}}
+      {{- end -}}
+      {{- partial "llms-pages.html" (dict "section" $sec "legacy" false) -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $sec := . -}}
+    {{- $t := replace (replace $sec.Title "&#39;" "'") "&amp;" "&" -}}
+    {{- printf "\n## %s\n\n" $t -}}
+    {{- if $sec.Params.description -}}
+      {{- $d := replace (replace $sec.Params.description "&#39;" "'") "&amp;" "&" -}}
+      {{- printf "- [%s](%s): %s\n" $t $sec.Permalink $d -}}
+    {{- else -}}
+      {{- printf "- [%s](%s)\n" $t $sec.Permalink -}}
+    {{- end -}}
+    {{- partial "llms-pages.html" (dict "section" $sec "legacy" false) -}}
+  {{- end -}}
+{{- end -}}
+{{- printf "\n## Optional\n\nLegacy (v1) documentation for components that have been upgraded. These pages are kept for historical reference.\n\n" -}}
+{{- range $docs.Sections.ByWeight -}}
+  {{- if eq .RelPermalink "/docs/components/" -}}
+    {{- range .Sections.ByWeight -}}
+      {{- partial "llms-pages.html" (dict "section" . "legacy" true) -}}
+    {{- end -}}
+  {{- else -}}
+    {{- partial "llms-pages.html" (dict "section" . "legacy" true) -}}
+  {{- end -}}
+{{- end -}}
