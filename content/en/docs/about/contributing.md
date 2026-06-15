@@ -205,7 +205,7 @@ GitHub usernames and aliases listed in OWNERS files are case-insensitive.
   - If the code changes look good to them, a **reviewer** types `/lgtm` in a PR comment or review;
     if they change their mind, they `/lgtm cancel`
   - Once a **reviewer** has `/lgtm`'ed, [prow](https://prow.k8s.io)
-    ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) applies an `lgtm` label to the PR
+    ([@google-oss-prow](https://github.com/apps/google-oss-prow)) applies an `lgtm` label to the PR
 - Phase 2: Humans approve the PR
   - The PR **author** `/assign`'s all suggested **approvers** to the PR, and optionally notifies
     them (eg: "pinging @foo for approval")
@@ -215,10 +215,10 @@ GitHub usernames and aliases listed in OWNERS files are case-insensitive.
     forwards/backwards compatibility, API and flag definitions, etc
   - If the code changes look good to them, an **approver** types `/approve` in a PR comment or
     review; if they change their mind, they `/approve cancel`
-  - [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) updates its
+  - [prow](https://prow.k8s.io) ([@google-oss-prow](https://github.com/apps/google-oss-prow)) updates its
     comment in the PR to indicate which **approvers** still need to approve
   - Once all **approvers** (one from each of the previously identified OWNERS files) have approved,
-    [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) applies an
+    [prow](https://prow.k8s.io) ([@google-oss-prow](https://github.com/apps/google-oss-prow)) applies an
     `approved` label
 - Phase 3: Automation merges the PR:
   - If all of the following are true:
@@ -274,12 +274,12 @@ is the state of today.
 
 ## Automation using OWNERS files
 
-### [`prow`](https://git.k8s.io/test-infra/prow)
+### [`prow`](https://github.com/kubernetes-sigs/prow)
 
 Prow receives events from GitHub, and reacts to them. It is effectively stateless. The following
 pieces of prow are used to implement the code review process above.
 
-- [cmd: tide](https://git.k8s.io/test-infra/prow/cmd/tide)
+- [cmd: tide](https://github.com/kubernetes-sigs/prow/tree/main/cmd/tide)
   - per-repo configuration:
     - `labels`: list of labels required to be present for merge (eg: `lgtm`)
     - `missingLabels`: list of labels required to be missing for merge (eg: `do-not-merge/hold`)
@@ -291,10 +291,10 @@ pieces of prow are used to implement the code review process above.
   - merges PR's once they meet the appropriate criteria as configured above
   - if there are any presubmit prow jobs for the repo the PR is against, they will be re-run one
     final time just prior to merge
-- [plugin: assign](https://git.k8s.io/test-infra/prow/plugins/assign)
+- [plugin: assign](https://prow.k8s.io/command-help#assign)
   - assigns GitHub users in response to `/assign` comments on a PR
   - unassigns GitHub users in response to `/unassign` comments on a PR
-- [plugin: approve](https://git.k8s.io/test-infra/prow/plugins/approve)
+- [plugin: approve](https://prow.k8s.io/command-help#approve)
   - per-repo configuration:
     - `issue_required`: defaults to `false`; when `true`, require that the PR description link to
       an issue, or that at least one **approver** issues a `/approve no-issue`
@@ -304,12 +304,12 @@ pieces of prow are used to implement the code review process above.
     OWNERS files has `/approve`'d
   - comments as required OWNERS files are satisfied
   - removes outdated approval status comments
-- [plugin: blunderbuss](https://git.k8s.io/test-infra/prow/plugins/blunderbuss)
+- [plugin: blunderbuss](https://github.com/kubernetes-sigs/prow/tree/main/pkg/plugins/blunderbuss)
   - determines **reviewers** and requests their reviews on PR's
-- [plugin: lgtm](https://git.k8s.io/test-infra/prow/plugins/lgtm)
+- [plugin: lgtm](https://prow.k8s.io/command-help#lgtm)
   - adds the `lgtm` label when a **reviewer** comments `/lgtm` on a PR
   - the **PR author** may not `/lgtm` their own PR
-- [pkg: k8s.io/test-infra/prow/repoowners](https://git.k8s.io/test-infra/prow/repoowners/repoowners.go)
+- [pkg: k8s.io/test-infra/prow/repoowners](https://github.com/kubernetes-sigs/prow/tree/main/pkg/repoowners)
   - parses OWNERS and OWNERS_ALIAS files
   - if the `no_parent_owners` option is encountered, parent owners are excluded from having
     any influence over files adjacent to or underneath of the current OWNERS file
