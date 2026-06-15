@@ -19,7 +19,7 @@ Responsibilities for most roles are scoped to these repositories.
 | Approver | Contributions acceptance approval| Highly experienced active reviewer and contributor to a repository | [OWNERS](/docs/about/contributing/#owners) file approver entry|
 | WG Lead  | Provides technical leadership for a Working Group | Have sufficient domain knowledge to provide effective technical leadership | [wgs.yaml] entry |
 | WG Chair | Provides overall leadership for a Working Group | Have sufficient domain knowledge to provide effective leadership | [wgs.yaml] entry |
-| Kubeflow Steering Commitee Member | The KSC provides leadership for the overall Kubeflow project | [Details](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter) | [Members](https://github.com/kubeflow/community/blob/master/KUBEFLOW-STEERING-COMMITTEE.md#charter) |
+| Kubeflow Steering Commitee Member | The KSC provides leadership for the overall Kubeflow project | [Details](https://github.com/kubeflow/community/blob/master/committee-steering/charter.md) | [Members](https://github.com/kubeflow/community/tree/master/committee-steering#members) |
 
 </div>
 </div>
