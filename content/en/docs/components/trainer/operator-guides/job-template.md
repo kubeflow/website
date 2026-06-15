@@ -143,3 +143,59 @@ spec:
                           port: 2222
                         initialDelaySeconds: 5
 ```
+
+## Elastic Scaling Support (Pod-Level)
+
+Kubeflow Trainer v2 runtimes support dynamic, pod-level elastic scaling by leveraging underlying Elastic JobSets. This allows external autoscalers, or framework launchers like PyTorch Elastic (`torchrun`), to scale the number of worker pods up or down in-place without tearing down or restarting the entire training job.
+
+To utilize this, you can dynamically mutate the `parallelism` and `completions` fields of a running workload's template spec.
+
+### Feature Gate Requirement
+
+Elastic scaling is an alpha feature and is disabled by default. The cluster administrator must ensure that the underlying JobSet controller manager has been started with the feature gate enabled.
+
+**Via Command-Line Flag:**
+Pass the flag directly to the controller manager binary:
+```bash
+--feature-gates=ElasticJobSet=true
+```
+
+**Via Deployment Spec:**
+args:
+- "--feature-gates=ElasticJobSet=true"
+
+### Limitations & Validation Rules
+
+To prevent invalid configurations from causing a controller error loop, the admission webhook strictly validates any updates to the template scaling fields. Your runtime configuration must adhere to the following rules:
+
+**Indexed Completion Mode Only:** Elastic scaling is only supported for jobs explicitly configured with completionMode: Indexed. Attempting to scale a NonIndexed job will result in an immutability validation error.
+    
+**Synchronized In-Place Updates:** You must update both fields in tandem. The admission server will reject any modification where parallelism does not exactly equal completions (parallelism == completions).
+    
+**Minimum Value Constraints:** Both fields must maintain a value strictly greater than or equal to 1 (parallelism >= 1 and completions >= 1). You cannot use a scale-down to 0 as a suspension mechanism.
+    
+**Terminal Freeze:** Mutations to scaling fields are frozen and will be rejected if the training job has already reached a terminal status condition (Completed or Failed).
+    
+**Structural Immutability:** All other structural parameters of the replicatedJobs array (such as adding/removing jobs, changing container images, or modifying environment variables) remain strictly immutable.
+
+### Example: Configured for Elasticity
+
+When defining a runtime intended for elastic workloads, make sure your job specification establishes an Indexed completion mode baseline:
+
+```yaml
+- name: node
+    template:
+      spec:
+        template:
+          spec:
+            completionMode: Indexed  # Required for elastic scaling
+            parallelism: 2           # Mutate dynamically (e.g., 2 -> 4)
+            completions: 2           # Mutate dynamically (e.g., 2 -> 4)
+            containers:
+              - name: node
+                image: ghcr.io/kubeflow/trainer/pytorch-runtime
+                command:
+                  - torchrun
+                  - --nnodes=2:4     # Min 2 nodes, Max 4 nodes elastic range
+                  - train.py
+```
