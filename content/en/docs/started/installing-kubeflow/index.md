@@ -201,9 +201,7 @@ See the definition for Kubeflow Community Distribution [in the overview page](..
 If you want a stable / conservative experience we recommend to use the
 [latest stable release](https://github.com/kubeflow/community-distribution/releases):
 
-- [`v26.03 branch`](https://github.com/kubeflow/community-distribution/tree/release-26.03)
-- [`v1.11 branch`](https://github.com/kubeflow/community-distribution/tree/v1.11-branch)
-- [`v1.11.0 release`](https://github.com/kubeflow/community-distribution/releases/tag/v1.11.0)
+- [`v26.03.1 branch`](https://github.com/kubeflow/community-distribution/tree/release-26.03.1)
 
 You can also install the master branch of
 [`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution)
