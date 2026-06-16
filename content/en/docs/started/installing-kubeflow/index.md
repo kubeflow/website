@@ -27,179 +27,64 @@ use them independently.
 These projects are a quick and easy method to get started with the Kubeflow. They provide
 flexibility to users who may not require the capabilities of a full Kubeflow distribution.
 
-The following tables list Kubeflow subprojects grouped by their corresponding
-[maturity level](https://github.com/kubeflow/community/tree/master/subprojects/maturity_requirements.md).
+The following tables list Kubeflow subprojects grouped by their corresponding maturity levels.
+Learn more about maturity levels expectations and requirements in
+[this document](https://github.com/kubeflow/community/tree/master/subprojects/maturity_requirements.md)
 
 You can find the list of archived projects in [this document](https://github.com/kubeflow/community/tree/master/subprojects/PROJECTS.md).
 
 ### Graduated Projects
 
-<div class="table-responsive distributions-table">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Kubeflow Subproject</th>
-        <th>Source Code</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/hub/">
-            Kubeflow Hub
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/hub">kubeflow/hub</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/katib/">
-            Kubeflow Katib
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/katib">kubeflow/katib</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/notebooks/">
-            Kubeflow Notebooks
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/notebooks">kubeflow/notebooks</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/pipelines/">
-            Kubeflow Pipelines
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/pipelines">kubeflow/pipelines</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://sdk.kubeflow.org/en/latest/">
-            Kubeflow SDK
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/sdk">kubeflow/sdk</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/spark-operator/">
-            Kubeflow Spark Operator
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/spark-operator">kubeflow/spark-operator</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/trainer/">
-            Kubeflow Trainer
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/trainer">kubeflow/trainer</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+These projects are stable and ready for general availability. Breaking changes are only allowed
+following the defined feature lifecycle for the project.
+
+<div class="table-responsive">
+<div class="table table-bordered">
+
+| Kubeflow Subproject                                                                 | Source Code                                                           |
+| ----------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Kubeflow Hub](https://www.kubeflow.org/docs/components/hub/)                       | [kubeflow/hub](https://github.com/kubeflow/hub)                       |
+| [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [kubeflow/katib](https://github.com/kubeflow/katib)                   |
+| [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | [kubeflow/notebooks](https://github.com/kubeflow/notebooks)           |
+| [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)           | [kubeflow/pipelines](https://github.com/kubeflow/pipelines)           |
+| [Kubeflow Spark Operator](https://www.kubeflow.org/docs/components/spark-operator/) | [kubeflow/spark-operator](https://github.com/kubeflow/spark-operator) |
+| [Kubeflow Trainer](https://www.kubeflow.org/docs/components/trainer/)               | [kubeflow/trainer](https://github.com/kubeflow/trainer)               |
 
 ### Incubating Projects
 
-<div class="table-responsive distributions-table">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Kubeflow Subproject</th>
-        <th>Source Code</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/kale/">
-            Kubeflow Kale
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/kale">kubeflow/kale</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Kubeflow MLflow Integration
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/mlflow-integration">kubeflow/mlflow-integration</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Kubeflow MCP Server
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/mcp-server">kubeflow/mcp-server</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Kubeflow MCP Spark History Server
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/mcp-apache-spark-history-server">kubeflow/mcp-apache-spark-history-server</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+These projects are actively developed, broadly usable, and on track for Graduation. While most core
+functionality is stable, it is still maturing toward a final release.
+
+<div class="table-responsive">
+<div class="table table-bordered">
+
+| Kubeflow Subproject                                             | Source Code                                       |
+| --------------------------------------------------------------- | ------------------------------------------------- |
+| [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/) | [kubeflow/kale](https://github.com/kubeflow/kale) |
+| [Kubeflow SDK](https://sdk.kubeflow.org/en/latest/)             | [kubeflow/sdk](https://github.com/kubeflow/sdk)   |
+
+### Experimental Projects
+
+Not all pieces of these projects are in place, and it may not be ready for wider adoption. User
+feedback around the UX of these projects is desired, such as for Custom Resource Definition APIs,
+technical implementation details, and planned use-cases for the projects.
+
+<div class="table-responsive">
+<div class="table table-bordered">
+
+| Kubeflow Subproject               | Source Code                                                                                             |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Kubeflow MLflow Integration       | [kubeflow/mlflow-integration](https://github.com/kubeflow/mlflow-integration)                           |
+| Kubeflow MCP Server               | [kubeflow/mcp-server](https://github.com/kubeflow/mcp-server)                                           |
+| Kubeflow MCP Spark History Server | [kubeflow/mcp-apache-spark-history-server](https://github.com/kubeflow/mcp-apache-spark-history-server) |
 
 ### Deprecated Projects
 
-<div class="table-responsive distributions-table">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Kubeflow Subproject</th>
-        <th>Source Code</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/pipelines/legacy-v1/">
-            Kubeflow Pipelines v1
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/pipelines">kubeflow/pipelines</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/trainer/legacy-v1/">
-            Kubeflow Training Operator v1
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/trainer">kubeflow/trainer</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+Development of this project is halted and no new versions are planned. New issues will likely not
+be worked on except for critical security issues. Projects assets that are included in the releases
+are expected to exist for at least **two minor releases** or **one year**, whichever happens later.
+
+Currently, Kubeflow doesn't have any deprecated projects.
 
 ## Kubeflow Distributions
 
@@ -316,9 +201,7 @@ See the definition for Kubeflow Community Distribution [in the overview page](..
 If you want a stable / conservative experience we recommend to use the
 [latest stable release](https://github.com/kubeflow/community-distribution/releases):
 
-- [`v26.03 branch`](https://github.com/kubeflow/community-distribution/tree/release-26.03)
-- [`v1.11 branch`](https://github.com/kubeflow/community-distribution/tree/v1.11-branch)
-- [`v1.11.0 release`](https://github.com/kubeflow/community-distribution/releases/tag/v1.11.0)
+- [`v26.03.1 branch`](https://github.com/kubeflow/community-distribution/tree/release-26.03.1)
 
 You can also install the master branch of
 [`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution)
