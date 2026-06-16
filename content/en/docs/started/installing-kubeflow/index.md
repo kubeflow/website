@@ -27,12 +27,16 @@ use them independently.
 These projects are a quick and easy method to get started with the Kubeflow. They provide
 flexibility to users who may not require the capabilities of a full Kubeflow distribution.
 
-The following tables list Kubeflow subprojects grouped by their corresponding
-[maturity level](https://github.com/kubeflow/community/tree/master/subprojects/maturity_requirements.md).
+The following tables list Kubeflow subprojects grouped by their corresponding maturity levels.
+Learn more about maturity levels expectations and requirements in
+[this document](https://github.com/kubeflow/community/tree/master/subprojects/maturity_requirements.md)
 
 You can find the list of archived projects in [this document](https://github.com/kubeflow/community/tree/master/subprojects/PROJECTS.md).
 
 ### Graduated Projects
+
+These projects are stable and ready for general availability. Breaking changes are only allowed
+following the defined feature lifecycle for the project.
 
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
@@ -85,16 +89,6 @@ You can find the list of archived projects in [this document](https://github.com
       </tr>
       <tr>
         <td>
-          <a href="https://sdk.kubeflow.org/en/latest/">
-            Kubeflow SDK
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/sdk">kubeflow/sdk</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
           <a href="https://www.kubeflow.org/docs/components/spark-operator/">
             Kubeflow Spark Operator
           </a>
@@ -119,6 +113,9 @@ You can find the list of archived projects in [this document](https://github.com
 
 ### Incubating Projects
 
+These projects are actively developed, broadly usable, and on track for Graduation. While most core
+functionality is stable, it is still maturing toward a final release.
+
 <div class="table-responsive distributions-table">
   <table class="table table-bordered">
     <thead>
@@ -138,6 +135,35 @@ You can find the list of archived projects in [this document](https://github.com
           <a href="https://github.com/kubeflow/kale">kubeflow/kale</a>
         </td>
       </tr>
+      <tr>
+        <td>
+          <a href="https://sdk.kubeflow.org/en/latest/">
+            Kubeflow SDK
+          </a>
+        </td>
+        <td>
+          <a href="https://github.com/kubeflow/sdk">kubeflow/sdk</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Experimental Projects
+
+Not all pieces of these projects are in place, and it may not be ready for wider adoption. User
+feedback around the UX of these projects is desired, such as for Custom Resource Definition APIs,
+technical implementation details, and planned use-cases for the projects.
+
+<div class="table-responsive distributions-table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Kubeflow Subproject</th>
+        <th>Source Code</th>
+      </tr>
+    </thead>
+    <tbody>
       <tr>
         <td>
           Kubeflow MLflow Integration
@@ -168,38 +194,11 @@ You can find the list of archived projects in [this document](https://github.com
 
 ### Deprecated Projects
 
-<div class="table-responsive distributions-table">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Kubeflow Subproject</th>
-        <th>Source Code</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/pipelines/legacy-v1/">
-            Kubeflow Pipelines v1
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/pipelines">kubeflow/pipelines</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.kubeflow.org/docs/components/trainer/legacy-v1/">
-            Kubeflow Training Operator v1
-          </a>
-        </td>
-        <td>
-          <a href="https://github.com/kubeflow/trainer">kubeflow/trainer</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+Development of this project is halted and no new versions are planned. New issues will likely not
+be worked on except for critical security issues. Projects assets that are included in the releases
+are expected to exist for at least **two minor releases** or **one year**, whichever happens later.
+
+Currently, Kubeflow doesn't have any deprecated projects.
 
 ## Kubeflow Distributions
 
