@@ -248,6 +248,21 @@ The following table lists distributions which are <em>maintained</em> by their r
       </tr>
       <tr>
         <td>
+          prokube.ai
+            <br><small>prokube MLOps</small>
+        </td>
+        <td>
+          {{< kf-version-notice >}}{{% prokube/latest-version %}}{{< /kf-version-notice >}}
+        </td>
+        <td>
+          Multiple Kubernetes distributions
+        </td>
+        <td>
+          <a href="https://prokube.ai">Website</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
           Red Hat
             <br><small>Open Data Hub</small>
         </td>
