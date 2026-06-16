@@ -38,6 +38,9 @@ You can find the list of archived projects in [this document](https://github.com
 These projects are stable and ready for general availability. Breaking changes are only allowed
 following the defined feature lifecycle for the project.
 
+<div class="table-responsive">
+<div class="table table-bordered">
+
 | Kubeflow Subproject                                                                 | Source Code                                                           |
 | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | [Kubeflow Hub](https://www.kubeflow.org/docs/components/hub/)                       | [kubeflow/hub](https://github.com/kubeflow/hub)                       |
@@ -52,6 +55,9 @@ following the defined feature lifecycle for the project.
 These projects are actively developed, broadly usable, and on track for Graduation. While most core
 functionality is stable, it is still maturing toward a final release.
 
+<div class="table-responsive">
+<div class="table table-bordered">
+
 | Kubeflow Subproject                                             | Source Code                                       |
 | --------------------------------------------------------------- | ------------------------------------------------- |
 | [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/) | [kubeflow/kale](https://github.com/kubeflow/kale) |
@@ -62,6 +68,9 @@ functionality is stable, it is still maturing toward a final release.
 Not all pieces of these projects are in place, and it may not be ready for wider adoption. User
 feedback around the UX of these projects is desired, such as for Custom Resource Definition APIs,
 technical implementation details, and planned use-cases for the projects.
+
+<div class="table-responsive">
+<div class="table table-bordered">
 
 | Kubeflow Subproject               | Source Code                                                                                             |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
