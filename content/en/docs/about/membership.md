@@ -179,6 +179,67 @@ The following apply to the part of codebase for which one would be an approver i
 - All privileges that reviewers have
 - May approve code contributions for acceptance
 
+## WG Chair
+
+WG Chairs provide overall leadership for a Working Group. They are responsible for running operations and processes governing the WG.
+
+**Defined by:** Entry in [wgs.yaml] file in the kubeflow/community repo.
+
+**Number:** 2-3 per Working Group
+
+### Requirements
+
+- Must be at least a [Member](#member) on the contributor ladder
+- Have sufficient domain knowledge to provide effective leadership
+- Show interest in people management
+
+### Responsibilities
+
+The following are the primary responsibilities of a WG Chair:
+
+- Drive charter changes and get community buy-in
+- Define how priorities and commitments are managed
+- Organize and facilitate WG meetings
+- Ensure meetings are recorded and made publicly available
+- Report activity to the community via kubeflow-discuss mailing list at least once a quarter
+- Coordinate communication with other WGs and the Steering Committee
+- Ensure a maintained CONTRIBUTING.md document exists if the WG has specific contributor requirements
+- Identify, track, and maintain WG enhancements for current releases
+- If no Tech Lead role is present, assume Tech Lead responsibilities
+
+### Privileges
+
+- Decision making power over WG operations and processes
+- Can nominate and approve Reviewers and Approvers
+- Serve as escalation point for WG membership disagreements
+
+## WG Tech Lead
+
+WG Tech Leads provide technical leadership for a Working Group. This is an optional role - if not present, WG Chairs assume these responsibilities.
+
+**Defined by:** Entry in [wgs.yaml] file in the kubeflow/community repo.
+
+**Number:** 2-3 per Working Group (optional)
+
+### Requirements
+
+- Must be at least a [Member](#member) on the contributor ladder
+- Have sufficient domain knowledge to provide effective technical leadership
+- Demonstrated technical expertise in the WG's domain
+
+### Responsibilities
+
+- Establish new subprojects within the WG
+- Decommission existing subprojects
+- Resolve cross-subproject technical issues and decisions
+- Provide technical guidance and mentorship
+
+### Privileges
+
+- Technical decision making authority for the WG
+- Can approve subproject creation proposals
+- Serve as escalation point for technical disagreements
+
 ## Inactive members
 
 *Members are continuously active contributors in the community.*
