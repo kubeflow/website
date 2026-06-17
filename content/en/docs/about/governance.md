@@ -43,18 +43,12 @@ defines the scope and governance of the KDC.
 ## 5. Working Groups
 
 Kubeflow has multiple working groups (WGs) that own and maintain Kubeflow subpojects. The overall
-WG roles and organizational governance can be found in
-[this document](https://github.com/kubeflow/community/blob/master/wgs/wg-governance.md).
+WG governance can be found in
+[this document](https://github.com/kubeflow/community/blob/master/committee-steering/wg-governance.md).
 
-Below is the current list of Kubeflow WGs with their contact information, active members, and charters:
-
-1. [AutoML WG](https://github.com/kubeflow/community/tree/master/wg-automl)
-1. [Data WG](https://github.com/kubeflow/community/tree/master/wg-data)
-1. [ML Experience WG](https://github.com/kubeflow/community/tree/master/wg-ml-experience)
-1. [Notebooks WG](https://github.com/kubeflow/community/tree/master/wg-notebooks)
-1. [Pipelines WG](https://github.com/kubeflow/community/tree/master/wg-pipelines)
-1. [Training WG](https://github.com/kubeflow/community/tree/master/wg-training)
+Check out [the list of active WGs](https://github.com/kubeflow/community/blob/master/wgs.yaml)
 
 ## Next Steps
 
 - Find out how [to engage with the Kubeflow working groups and community](./community.md)
+- Learn about [Kubeflow community membership ladder](https://github.com/kubeflow/community/blob/master/community-membership.md)
