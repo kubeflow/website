@@ -41,14 +41,14 @@ following the defined feature lifecycle for the project.
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Kubeflow Subproject                                                                 | Source Code                                                           |
-| ----------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Kubeflow Hub](https://www.kubeflow.org/docs/components/hub/)                       | [kubeflow/hub](https://github.com/kubeflow/hub)                       |
-| [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [kubeflow/katib](https://github.com/kubeflow/katib)                   |
-| [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | [kubeflow/notebooks](https://github.com/kubeflow/notebooks)           |
-| [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)           | [kubeflow/pipelines](https://github.com/kubeflow/pipelines)           |
-| [Kubeflow Spark Operator](https://www.kubeflow.org/docs/components/spark-operator/) | [kubeflow/spark-operator](https://github.com/kubeflow/spark-operator) |
-| [Kubeflow Trainer](https://www.kubeflow.org/docs/components/trainer/)               | [kubeflow/trainer](https://github.com/kubeflow/trainer)               |
+| Kubeflow Subproject                                                                 | Roadmap                                                                      |
+| ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [Kubeflow Hub](https://www.kubeflow.org/docs/components/hub/)                       | [Roadmap](https://github.com/kubeflow/hub/blob/main/ROADMAP.md)              |
+| [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [Roadmap](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)          |
+| [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | Progressing                                                                  |
+| [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)           | [Roadmap](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)      |
+| [Kubeflow Spark Operator](https://www.kubeflow.org/docs/components/spark-operator/) | [Roadmap](https://github.com/kubeflow/spark-operator/blob/master/ROADMAP.md) |
+| [Kubeflow Trainer](https://www.kubeflow.org/docs/components/trainer/)               | [Roadmap](https://github.com/kubeflow/trainer/blob/master/ROADMAP.md)        |
 
 ### Incubating Projects
 
@@ -58,10 +58,10 @@ functionality is stable, it is still maturing toward a final release.
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Kubeflow Subproject                                             | Source Code                                       |
-| --------------------------------------------------------------- | ------------------------------------------------- |
-| [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/) | [kubeflow/kale](https://github.com/kubeflow/kale) |
-| [Kubeflow SDK](https://sdk.kubeflow.org/en/latest/)             | [kubeflow/sdk](https://github.com/kubeflow/sdk)   |
+| Kubeflow Subproject                                             | Roadmap                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- |
+| [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/) | Progressing                                                     |
+| [Kubeflow SDK](https://sdk.kubeflow.org/en/latest/)             | [Roadmap](https://github.com/kubeflow/sdk/blob/main/ROADMAP.md) |
 
 ### Experimental Projects
 
@@ -72,11 +72,11 @@ technical implementation details, and planned use-cases for the projects.
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Kubeflow Subproject               | Source Code                                                                                             |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Kubeflow MLflow Integration       | [kubeflow/mlflow-integration](https://github.com/kubeflow/mlflow-integration)                           |
-| Kubeflow MCP Server               | [kubeflow/mcp-server](https://github.com/kubeflow/mcp-server)                                           |
-| Kubeflow MCP Spark History Server | [kubeflow/mcp-apache-spark-history-server](https://github.com/kubeflow/mcp-apache-spark-history-server) |
+| Kubeflow Subproject               | Roadmap     |
+| --------------------------------- | ----------- |
+| Kubeflow MLflow Integration       | Progressing |
+| Kubeflow MCP Server               | Progressing |
+| Kubeflow MCP Spark History Server | Progressing |
 
 ### Deprecated Projects
 
@@ -207,6 +207,9 @@ You can also install the master branch of
 [`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution)
 by following the instructions [here](https://github.com/kubeflow/community-distribution?tab=readme-ov-file#installation)
 and provide us feedback.
+
+Check out [the Kubeflow Community Distribution roadmap](https://github.com/kubeflow/community-distribution/blob/master/ROADMAP.md)
+to learn more about the future releases.
 
 ## Next steps
 

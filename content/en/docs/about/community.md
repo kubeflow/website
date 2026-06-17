@@ -76,7 +76,6 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Pipelines call              | [Google Doc](http://bit.ly/kfp-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
 | Kubeflow Spark Operator call         | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | Kubeflow Community Distribution call | [Google Doc](https://bit.ly/kf-release-team-notes)   | [YouTube playlist](https://youtu.be/hSWhr6JyXe0?list=PLmzRWLV1CK_wdWP58XoaJ0kczgHTdsOph)     |
-| KServe call                          | [Google Doc](https://bit.ly/3NlKFb3)                 |                                                                                              |
 
 </div>
 </div>
