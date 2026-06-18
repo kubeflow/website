@@ -24,9 +24,20 @@ package = "netlify-plugin-checklinks"
     # https://github.com/Munter/netlify-plugin-checklinks/issues/388
     "competent-brattain-de2d6d.netlify.app",
     "public/docs/examples/shared-resources",
-    # ignore the Google Fonts stylesheet imported by the Docsy theme, which
-    # intermittently times out during external link checking (ETIMEDOUT)
-    "fonts.googleapis.com",
+  ]
+
+  # Checks matching these patterns are still executed, but their failures are
+  # treated as non-fatal "todo" items instead of failing the deploy. Externally
+  # hosted assets (images, stylesheets, scripts) are always loaded by the link
+  # checker and can intermittently time out for reasons outside this repository's
+  # control. Tolerating transient network errors here keeps deploys from failing
+  # on flaky external hosts, while genuine internal broken links still fail the
+  # build. Prefer vendoring external assets locally over relying on this guard.
+  todoPatterns = [
+    "ETIMEDOUT",
+    "ESOCKETTIMEDOUT",
+    "ECONNRESET",
+    "EAI_AGAIN",
   ]
 
 [context.deploy-preview.environment]
