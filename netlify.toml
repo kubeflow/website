@@ -24,6 +24,9 @@ package = "netlify-plugin-checklinks"
     # https://github.com/Munter/netlify-plugin-checklinks/issues/388
     "competent-brattain-de2d6d.netlify.app",
     "public/docs/examples/shared-resources",
+    # ignore the Google Fonts stylesheet imported by the Docsy theme, which
+    # intermittently times out during external link checking (ETIMEDOUT)
+    "fonts.googleapis.com",
   ]
 
 [context.deploy-preview.environment]
