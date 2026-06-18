@@ -1,6 +1,6 @@
 {
-  "tag": "v1.10.1",
-  "url": "https://github.com/kubeflow/manifests/releases/tag/v1.10.1",
-  "commit_date": "2025-05-12T17:11:39Z",
-  "publish_date": "2025-05-14T09:22:12Z"
+  "tag": "26.03.1",
+  "url": "https://github.com/kubeflow/community-distribution/releases/tag/26.03.1",
+  "commit_date": "2026-06-12T15:28:01Z",
+  "publish_date": "2026-06-15T09:56:57Z"
 }
