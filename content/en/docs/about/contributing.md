@@ -15,7 +15,8 @@ There are just a few small guidelines you need to follow.
 
 Kubeflow uses Developer Certificate of Origin ([DCO](https://github.com/apps/dco/)).
 
-Check <https://github.com/kubeflow/community/tree/master/dco-signoff-hook#signing-off-commits> to learn how to sign off your contributions.
+Check [this page](https://github.com/kubeflow/community/tree/master/dco-signoff-hook#signing-off-commits)
+to learn how to sign off your contributions.
 
 ### Follow the code of conduct
 
@@ -24,7 +25,8 @@ and [inclusivity document](https://github.com/kubeflow/community/blob/master/INC
 
 ## Membership
 
-Details about the different types of Kubeflow members as well as membership criteria can be found at [Community Membership](/docs/about/membership/)
+Details about the different types of Kubeflow members as well as membership requirements and privileges
+can be found at [the community membership document](https://github.com/kubeflow/community/blob/master/community-membership.md).
 
 **Note**: Anyone can contribute to Kubeflow, joining the Kubeflow organization is not a mandatory step.
 
@@ -58,7 +60,6 @@ To find Kubeflow issues that make good entry points:
   - [kubeflow/hub](https://github.com/kubeflow/hub/issues?q=is:issue+label:%22good+first+issue%22+is:open)
   - [kubeflow/notebooks](https://github.com/kubeflow/notebooks/issues?q=is:issue+label:%22good+first+issue%22+is:open)
 - For issues that require deeper knowledge of one or more technical aspects, look at issues labeled **help wanted**.
-  For example, see these issues in the [kubeflow/kubeflow repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 - Examine the issues in any of the [Kubeflow repositories](https://github.com/kubeflow).
 
 ### Issue assignment and PR etiquette

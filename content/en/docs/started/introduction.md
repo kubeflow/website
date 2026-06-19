@@ -96,25 +96,13 @@ a foundation of tools for running AI workloads on Kubernetes.
 
 The [Kubeflow logo represents](https://github.com/kubeflow/kubeflow/issues/187#issuecomment-375194419) the letters `K` and `F` inside the heptagon of the Kubernetes logo, which represent two communities: `Kubernetes` (cloud-native) and `flow` (Machine Learning). In this context, `flow` is not only indicating `TensorFlow`, but also all ML frameworks which make use of Dataflow Graph as the normal form for model/algorithm implementation.
 
-## Roadmaps
-
-Kubeflow subprojects have individual roadmaps which established by project maintainers:
-
-- [Kubeflow Pipelines roadmap](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
-- [Kubeflow Trainer roadmap](https://github.com/kubeflow/trainer/blob/master/ROADMAP.md)
-- [Kubeflow SDK roadmap](https://github.com/kubeflow/sdk/blob/main/ROADMAP.md)
-- [Kubeflow Katib roadmap](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
-- [Kubeflow Hub roadmap](https://github.com/kubeflow/hub/blob/main/ROADMAP.md)
-- [Kubeflow Spark Operator roadmap](https://github.com/kubeflow/spark-operator/blob/master/ROADMAP.md)
-
 ## Kubeflow Community
 
-Kubeflow is a community-led project maintained by the
-[Kubeflow Working Groups](/docs/about/governance/#5-working-groups)
-under the guidance of the [Kubeflow Steering Committee](/docs/about/governance/#2-kubeflow-steering-committee).
+Kubeflow is a community-led project maintained by the Kubeflow Working Groups under the guidance
+of the Kubeflow Outreach Committee, Kubeflow Distribution Committee, and Kubeflow Steering Committee.
 
-We encourage you to learn about the [Kubeflow Community](/docs/about/community/)
-and how to [contribute](/docs/about/contributing/) to the project!
+We encourage you to learn about the [Kubeflow Community](https://www.kubeflow.org/docs/about/community/)
+and how to [contribute](https://www.kubeflow.org/docs/about/contributing/) to the project!
 
 ## Next Steps
 
