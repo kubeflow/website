@@ -206,6 +206,20 @@ You can find the list of archived projects in [this document](https://github.com
 You can use one of the following methods to install the
 [Kubeflow Distributions](/docs/started/introduction/#kubeflow-distribution).
 
+### Kubeflow Community Distribution
+
+See the definition for Kubeflow Community Distribution [in the overview page](../introduction#kubeflow-community-distribution)
+
+If you want a stable / conservative experience we recommend to use the
+[latest stable release](https://github.com/kubeflow/community-distribution/releases):
+
+- [`v26.03.1 branch`](https://github.com/kubeflow/community-distribution/tree/release-26.03.1)
+
+You can also install the master branch of
+[`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution)
+by following the instructions [here](https://github.com/kubeflow/community-distribution?tab=readme-ov-file#installation)
+and provide us feedback.
+
 ### Packaged Distributions
 
 See the definition for Kubeflow Distributions [in the overview page](../introduction#kubeflow-distribution)
@@ -323,22 +337,6 @@ The following table lists distributions which are <em>maintained</em> by their r
     </tbody>
   </table>
 </div>
-
-### Kubeflow Community Distribution
-
-See the definition for Kubeflow Community Distribution [in the overview page](../introduction#kubeflow-community-distribution)
-
-If you want a stable / conservative experience we recommend to use the
-[latest stable release](https://github.com/kubeflow/community-distribution/releases):
-
-- [`v26.03 branch`](https://github.com/kubeflow/community-distribution/tree/release-26.03)
-- [`v1.11 branch`](https://github.com/kubeflow/community-distribution/tree/v1.11-branch)
-- [`v1.11.0 release`](https://github.com/kubeflow/community-distribution/releases/tag/v1.11.0)
-
-You can also install the master branch of
-[`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution)
-by following the instructions [here](https://github.com/kubeflow/community-distribution?tab=readme-ov-file#installation)
-and provide us feedback.
 
 ## Next steps
 
