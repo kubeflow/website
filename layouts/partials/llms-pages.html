@@ -1,0 +1,18 @@
+{{- $section := .section -}}
+{{- $legacy := .legacy -}}
+{{- range $section.Pages.ByWeight -}}
+  {{- $p := . -}}
+  {{- $isLeg := in $p.RelPermalink "legacy-v1" -}}
+  {{- if eq $legacy $isLeg -}}
+    {{- if $p.Params.description -}}
+      {{- printf "- [%s](%s): %s\n" $p.Title $p.Permalink $p.Params.description | safeHTML -}}
+    {{- else -}}
+      {{- printf "- [%s](%s)\n" $p.Title $p.Permalink | safeHTML -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $p.IsSection -}}
+    {{- if or $legacy (not $isLeg) -}}
+      {{- partial "llms-pages.html" (dict "section" $p "legacy" $legacy) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

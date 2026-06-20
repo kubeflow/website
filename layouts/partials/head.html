@@ -4,6 +4,8 @@
 {{ range .AlternativeOutputFormats -}}
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{ end -}}
+<link rel="alternate" type="text/plain" title="LLM-friendly documentation" href="{{ "llms.txt" | absURL }}">
+<link rel="alternate" type="text/plain" title="LLM-friendly full documentation" href="{{ "llms-full.txt" | absURL }}">
 
 {{ $outputFormat := partial "outputformat.html" . -}}
 {{ if and hugo.IsProduction (ne $outputFormat "print") -}}
