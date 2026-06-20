@@ -5,7 +5,7 @@ weight = 20
 aliases = ["/docs/contributing/"]
 +++
 
-This document is the single source of truth for how to contribute to the code base.
+This document is the single source of truth for how to contribute to Kubeflow.
 We'd love to accept your patches and contributions to this project.
 There are just a few small guidelines you need to follow.
 
@@ -94,6 +94,16 @@ To ensure smooth collaboration and avoid duplicate work, please follow these gui
   - A maintainer has explicitly asked for additional contributions
 
 Following these guidelines helps maintain a collaborative and efficient community, reduces wasted effort, and ensures everyone's contributions are valued.
+
+### Contributions outside the Kubeflow components (including non-technical contributions)
+
+- **Documentation**: Contribute to technical documentation by improving the accuracy and clarity of Kubeflow technical documentation and/or fixing stale information and ensuring all new content follows the standards set in the [Kubeflow Documentation Style Guide](style-guide.md).
+- **Blog posts**: Contribute to Kubeflow blog and/or CNCF about Kubeflow to help the community to gain more knowledge on Kubeflow. The content can take different forms from learn from real-world use cases, Kubeflow integrations, news about releases, contributions or practical use cases.
+- **Event outreach**: Contribute to outreach activities by bringing awareness of kubeflow with activities such as:
+speaking at events, representing Kubeflow at community booths/tables, helping organize an event, Program committee or Program Chairs.
+- **Community Engagement**: Engagement with end-users, contributors (Kubeflow community) participating or leading community meetings, social media management/promotion, discussions with end-users and contributors to enrich the kubeflow ecosystem.
+- **Technical Content**: Creating webinars, demos, tutorials that showcase Kubeflow use cases and Kubeflow ecosystem including integrations, solution architectures, publications, e-books, books, white papers.
+- **Website contributions**: Contributing to website desing, new content creation, website maintenance and/or contributing to PR's review.
 
 ## Owners files and PR workflow
 
