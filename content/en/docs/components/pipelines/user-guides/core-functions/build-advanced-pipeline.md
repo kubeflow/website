@@ -1,14 +1,34 @@
 +++
-title = "Build a More Advanced ML Pipeline"
-description = "Create a more advanced pipeline that leverages additional KFP features."
+title = "Build an Advanced ML Pipeline"
+description = "Follow an advanced end-to-end example that combines multiple KFP features in a single pipeline."
 weight = 199
 +++
 
 {{% kfp-v2-keywords %}}
 
-This step demonstrates how to build a more advanced machine learning (ML) pipeline that leverages additional KFP pipeline composition features.
+This guide is an advanced tutorial that shows how several KFP features work together in a single end-to-end machine learning (ML) pipeline.
 
-The following ML pipeline creates a dataset, normalizes the features of the dataset as a preprocessing step, and trains a simple ML model on the data using different hyperparameters:
+## Overview
+
+In this example, you will build a pipeline that:
+
+- creates a dataset
+- preprocesses the dataset
+- trains models with multiple hyperparameters in parallel
+- submits the pipeline to the KFP backend
+
+If you want to learn a specific feature in isolation, see the linked guides in [How to use this example](#how-to-use-this-example) and [Explore related features](#explore-related-features).
+
+## How to use this example
+
+As you read the example below, pay particular attention to the following KFP features:
+
+1. [Install Python packages at component runtime](#1-install-python-packages-at-component-runtime)
+2. [Pass datasets and models between components](#2-pass-datasets-and-models-between-components)
+3. [Run training steps in parallel](#3-run-training-steps-in-parallel)
+4. [Submit the pipeline by using the KFP SDK client](#4-submit-the-pipeline-by-using-the-kfp-sdk-client)
+
+The following ML pipeline creates a dataset, normalizes its features as a preprocessing step, and trains a simple ML model using different hyperparameters:
 
 ```python
 from typing import List
@@ -124,25 +144,55 @@ run = kfp_client.create_run_from_pipeline_func(
 url = f'{endpoint}/#/runs/details/{run.run_id}'
 print(url)
 ```
+## 1. Install Python packages at component runtime
 
-This example introduces the following new features in the pipeline:
+This example installs Python packages at component runtime by using the `packages_to_install` argument on the `@dsl.component` decorator, as follows:
 
-* Some Python **packages to install** are added at component runtime, using the `packages_to_install` argument on the `@dsl.component` decorator, as follows:
+`@dsl.component(packages_to_install=['pandas==1.3.5'])`
 
-    `@dsl.component(packages_to_install=['pandas==1.3.5'])`
+To use a library after installing it, you must include its import statements within the scope of the component function, so that the library is imported at component runtime.
 
-    To use a library after installing it, you must include its import statements within the scope of the component function, so that the library is imported at component runtime.
+To learn more about Python function-based components, see [Lightweight Python components](/docs/components/pipelines/user-guides/components/lightweight-python-components/).
 
-* **Input and output artifacts** of types `Dataset` and `Model` are introduced in the component signature to describe the input and output artifacts of the components. This is done using the type annotation generics `Input[]` and `Output[]` for input and output artifacts respectively.
+## 2. Pass datasets and models between components
 
-  Within the scope of a component, artifacts can be read (for inputs) and written (for outputs) via the `.path` attribute. The KFP backend ensures that *input* artifact files are copied *to* the executing pod's local file system from the remote storage at runtime, so that the component function can read input artifacts from the local file system. By comparison, *output* artifact files are copied *from* the local file system of the pod to remote storage, when the component finishes running. This way, the output artifacts persist outside the pod. In both cases, the component author needs to interact with the local file system only to create persistent artifacts.
+**Input and output artifacts** of types `Dataset` and `Model` are introduced in the component signature to describe the input and output artifacts of the components. This is done using the type annotation generics `Input[]` and `Output[]` for input and output artifacts respectively.
 
-  The arguments for the parameters annotated with `Output[]` are not passed to components by the pipeline author. The KFP backend passes this artifact during component runtime, so that component authors don't need to be concerned about the path to which the output artifacts are written. After an output artifact is written, the backend executing the component recognizes the KFP artifact types (`Dataset` or `Model`), and organizes them on the Dashboard.
+Within the scope of a component, artifacts can be read (for inputs) and written (for outputs) via the `.path` attribute. The KFP backend ensures that *input* artifact files are copied *to* the executing pod's local file system from the remote storage at runtime, so that the component function can read input artifacts from the local file system. By comparison, *output* artifact files are copied *from* the local file system of the pod to remote storage, when the component finishes running. This way, the output artifacts persist outside the pod. In both cases, the component author needs to interact with the local file system only to create persistent artifacts.
 
-  An output artifact can be passed as an input to a downstream component using the `.outputs` attribute of the source task and the output artifact parameter name, as follows:
+The arguments for the parameters annotated with `Output[]` are not passed to components by the pipeline author. The KFP backend passes this artifact during component runtime, so that component authors don't need to be concerned about the path to which the output artifacts are written. After an output artifact is written, the backend executing the component recognizes the KFP artifact types (`Dataset` or `Model`), and organizes them on the Dashboard.
 
-  `create_dataset_task.outputs['iris_dataset']`
+An output artifact can be passed as an input to a downstream component using the `.outputs` attribute of the source task and the output artifact parameter name, as follows:
 
-* One of the **DSL control flow features**, `dsl.ParallelFor`, is used. It is a context manager that lets pipeline authors create tasks. These tasks execute in parallel in a loop. Using `dsl.ParallelFor` to iterate over the `neighbors` pipeline argument lets you execute the  `train_model` component with different arguments and test multiple hyperparameters in one pipeline run. Other control flow features include `dsl.Condition` and `dsl.ExitHandler`.
+`create_dataset_task.outputs['iris_dataset']`
 
-Congratulations! You now have a KFP deployment, an end-to-end ML pipeline, and an introduction to the UI. That's just the beginning of KFP pipeline and Dashboard features.
+To learn more, see [Create, use, pass, and track ML artifacts](/docs/components/pipelines/user-guides/data-handling/artifacts/).
+
+## 3. Run training steps in parallel
+
+This example uses one of the **DSL control flow features**, `dsl.ParallelFor`. It is a context manager that lets pipeline authors create tasks. These tasks execute in parallel in a loop.
+
+Using `dsl.ParallelFor` to iterate over the `neighbors` pipeline argument lets you execute the `train_model` component with different arguments and test multiple hyperparameters in one pipeline run. Other control flow features include `dsl.Condition` and `dsl.ExitHandler`.
+
+To learn more about looping and other control flow patterns, see [Control flow](/docs/components/pipelines/user-guides/core-functions/control-flow/).
+
+## 4. Submit the pipeline by using the KFP SDK client
+
+At the end of the example, the pipeline is submitted to the KFP backend by using the SDK client:
+
+- create a `Client`
+- call `create_run_from_pipeline_func`
+- pass pipeline arguments
+- open the generated run URL in the UI
+
+To learn more about connecting the SDK to the KFP API and submitting runs, see [Connect the SDK to the API](/docs/components/pipelines/user-guides/core-functions/connect-api/) and [Run a Pipeline](/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/).
+
+## Explore related features
+
+You now have a KFP deployment, an end-to-end ML pipeline, and an introduction to the UI. That’s just the beginning of KFP pipeline and Dashboard features. Other KFP features are documented separately. To continue exploring, see:
+
+- [Compile a Pipeline](/docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/)
+- [Use caching](/docs/components/pipelines/user-guides/core-functions/caching/)
+- [Use platform-specific features](/docs/components/pipelines/user-guides/core-functions/platform-specific-features/)
+- [Use the KFP CLI](/docs/components/pipelines/user-guides/core-functions/cli/)
+- [Execute KFP pipelines locally](/docs/components/pipelines/user-guides/core-functions/execute-kfp-pipelines-locally/)
