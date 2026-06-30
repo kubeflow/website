@@ -7,7 +7,7 @@ aliases = ["/docs/contributor-of-the-month/"]
 
 ## Learn about the Program
 
-Please review the elegibilily criteria and process in the [Kubeflow community](https://github.com/varodrig/community/blob/contributor-month/committee-outreach/contributor-month.md). The program will start in July 1st, 2026.
+Please review the elegibilily criteria and process in the [Kubeflow community](https://github.com/kubeflow/community/blob/master/committee-outreach/contributor-month.md). The program will start in July 1st, 2026.
 
 ## How to apply
 
