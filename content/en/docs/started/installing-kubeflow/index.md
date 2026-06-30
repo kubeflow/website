@@ -45,7 +45,7 @@ following the defined feature lifecycle for the project.
 | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [Kubeflow Hub](https://www.kubeflow.org/docs/components/hub/)                       | [Roadmap](https://github.com/kubeflow/hub/blob/main/ROADMAP.md)              |
 | [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [Roadmap](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)          |
-| [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | Progressing                                                                  |
+| [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | [Roadmap](https://github.com/kubeflow/notebooks/blob/main/ROADMAP.md)        |
 | [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)           | [Roadmap](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)      |
 | [Kubeflow Spark Operator](https://www.kubeflow.org/docs/components/spark-operator/) | [Roadmap](https://github.com/kubeflow/spark-operator/blob/master/ROADMAP.md) |
 | [Kubeflow Trainer](https://www.kubeflow.org/docs/components/trainer/)               | [Roadmap](https://github.com/kubeflow/trainer/blob/master/ROADMAP.md)        |
