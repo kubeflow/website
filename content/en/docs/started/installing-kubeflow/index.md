@@ -60,7 +60,7 @@ functionality is stable, it is still maturing toward a final release.
 
 | Kubeflow Subproject                                             | Roadmap                                                         |
 | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/) | Progressing                                                     |
+| [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/) | [Roadmap](https://github.com/kubeflow/kale/blob/main/ROADMAP.md) |
 | [Kubeflow SDK](https://sdk.kubeflow.org/en/latest/)             | [Roadmap](https://github.com/kubeflow/sdk/blob/main/ROADMAP.md) |
 
 ### Experimental Projects
