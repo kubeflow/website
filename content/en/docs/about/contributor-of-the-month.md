@@ -11,6 +11,6 @@ Please review the elegibilily criteria and process in the [Kubeflow community](h
 
 ## How to apply
 
-Sponsors will be submitting the nominations in the following [link](https://docs.google.com/forms/d/1DE2gP1nbjb_-ZcnChk-MWLFpjFIqQwSruq5pso1LHEU/prefill)
+Sponsors will be submitting the nominations in the following [link](https://forms.gle/LCKY8NX3pzrmYUdr6)
 
 
