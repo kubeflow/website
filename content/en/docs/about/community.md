@@ -73,7 +73,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | [Kubeflow SDK and ML Experience call][2]  | [Google Doc](https://bit.ly/kf-ml-experience)        | [YouTube playlist](https://youtu.be/VkbVVk2OGUI?list=PLmzRWLV1CK_wSO2IMPnzChxESmaoXNfrY)     |
 | [Kubeflow Hub call][3]                    | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
 | [Kubeflow Notebooks call][4]              | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
-| [Kubeflow Pipelines call][5]              | [Google Doc](http://bit.ly/kfp-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
+| [Kubeflow Pipelines call][5]              | [Google Doc](https://bit.ly/kfp-meeting-notes)       | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
 | [Kubeflow Spark Operator call][6]         | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | [Kubeflow Community Distribution call][7] | [Google Doc](https://bit.ly/kf-release-team-notes)   | [YouTube playlist](https://youtu.be/hSWhr6JyXe0?list=PLmzRWLV1CK_wdWP58XoaJ0kczgHTdsOph)     |
 
