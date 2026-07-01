@@ -76,6 +76,8 @@ The following list shows available Kubeflow community meetings with the correspo
 | [Kubeflow Pipelines call][5]              | [Google Doc](https://bit.ly/kfp-meeting-notes)       | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
 | [Kubeflow Spark Operator call][6]         | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | [Kubeflow Community Distribution call][7] | [Google Doc](https://bit.ly/kf-release-team-notes)   | [YouTube playlist](https://youtu.be/hSWhr6JyXe0?list=PLmzRWLV1CK_wdWP58XoaJ0kczgHTdsOph)     |
+| [Kubeflow Docs Agent call][8]             | [Google Doc][notes-docs-agent]                       |                                                                                              |
+| [Kubeflow Outreach Program call][9]       | [Google Doc][notes-outreach-program]                 |                                                                                              |
 
 [0]: https://zoom-lfx.platform.linuxfoundation.org/meeting/91956494486?password=6b63548e-98e0-4cb2-b63f-6b408090a5f9
 [1]: https://zoom-lfx.platform.linuxfoundation.org/meeting/94838800520?password=07cd1676-1c31-4fb3-8536-732cf7dad502
@@ -85,6 +87,11 @@ The following list shows available Kubeflow community meetings with the correspo
 [5]: https://zoom-lfx.platform.linuxfoundation.org/meeting/91355917913?password=a81a7846-1fcb-4ffc-9b83-6eb897da0c3a
 [6]: https://zoom-lfx.platform.linuxfoundation.org/meeting/91692004209?password=e48ce50b-b41d-459a-9f32-7313fa388380
 [7]: https://zoom-lfx.platform.linuxfoundation.org/meeting/92113176338?password=883a2c39-41a9-4395-b9f2-d2bd73e8c39e
+[8]: https://zoom-lfx.platform.linuxfoundation.org/meeting/99511158809?password=29577223-6733-4df0-828b-75a95f474555
+[9]: https://zoom-lfx.platform.linuxfoundation.org/meeting/99427447261?password=0d90a0ca-d31e-4fe1-a95f-363c3ec0e3c3
+
+[notes-docs-agent]: https://docs.google.com/document/d/1E1SGYGhKHhvIHRDsk--0vIVOmboKWByZy45H-obZ3sc/edit?usp=sharing
+[notes-outreach-program]: https://docs.google.com/document/d/1IblkZ0z61mjpSccIK7qDaMqUbFADZiIoOX9g8uDq_qc/edit?usp=sharing
 
 </div>
 </div>
