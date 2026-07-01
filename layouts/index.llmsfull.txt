@@ -1,0 +1,15 @@
+{{- $docs := site.GetPage "/docs" -}}
+# Kubeflow — Full Documentation Index
+
+> Kubeflow is the foundation of tools for AI Platforms on Kubernetes, providing a composable, modular, portable, and scalable AI reference platform backed by Kubernetes-native projects covering every stage of the AI lifecycle.
+{{ range $docs.Sections.ByWeight -}}
+  {{- if eq .RelPermalink "/docs/components/" -}}
+    {{- range .Sections.ByWeight -}}
+      {{- printf "\n## %s\n\n" .Title -}}
+      {{- partial "llms-full-pages.html" (dict "section" .) -}}
+    {{- end -}}
+  {{- else -}}
+    {{- printf "\n## %s\n\n" .Title -}}
+    {{- partial "llms-full-pages.html" (dict "section" .) -}}
+  {{- end -}}
+{{- end -}}
