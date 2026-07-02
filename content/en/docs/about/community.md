@@ -66,18 +66,18 @@ The following list shows available Kubeflow community meetings with the correspo
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Meeting Link                              | Meeting Notes                                        | Recordings                                                                                   |
-| ----------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| [Kubeflow Community call][0]              | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
-| [Kubeflow Trainer and Katib call][1]      | [Google Doc](https://bit.ly/2PWVCkV)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
-| [Kubeflow SDK and ML Experience call][2]  | [Google Doc](https://bit.ly/kf-ml-experience)        | [YouTube playlist](https://youtu.be/VkbVVk2OGUI?list=PLmzRWLV1CK_wSO2IMPnzChxESmaoXNfrY)     |
-| [Kubeflow Hub call][3]                    | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
-| [Kubeflow Notebooks call][4]              | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
-| [Kubeflow Pipelines call][5]              | [Google Doc](https://bit.ly/kfp-meeting-notes)       | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
-| [Kubeflow Spark Operator call][6]         | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
-| [Kubeflow Community Distribution call][7] | [Google Doc](https://bit.ly/kf-release-team-notes)   | [YouTube playlist](https://youtu.be/hSWhr6JyXe0?list=PLmzRWLV1CK_wdWP58XoaJ0kczgHTdsOph)     |
-| [Kubeflow Docs Agent call][8]             | [Google Doc][notes-docs-agent]                       |                                                                                              |
-| [Kubeflow Outreach Program call][9]       | [Google Doc][notes-outreach-program]                 |                                                                                              |
+| Meeting Name                         | Meeting Link  | Meeting Notes                                        | Recordings                                                                                   |
+| ------------------------------------ | --------------| ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Kubeflow Community call              | [Register][0] | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
+| Kubeflow Trainer and Katib call      | [Register][1] | [Google Doc](https://bit.ly/2PWVCkV)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
+| Kubeflow SDK and ML Experience call  | [Register][2] | [Google Doc](https://bit.ly/kf-ml-experience)        | [YouTube playlist](https://youtu.be/VkbVVk2OGUI?list=PLmzRWLV1CK_wSO2IMPnzChxESmaoXNfrY)     |
+| Kubeflow Hub call                    | [Register][3] | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
+| Kubeflow Notebooks call              | [Register][4] | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
+| Kubeflow Pipelines call              | [Register][5] | [Google Doc](https://bit.ly/kfp-meeting-notes)       | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_zxNI1k5aF1cJreIymqAFBo) |
+| Kubeflow Spark Operator call         | [Register][6] | [Google Doc](https://bit.ly/3VGzP4n)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
+| Kubeflow Community Distribution call | [Register][7] | [Google Doc](https://bit.ly/kf-release-team-notes)   | [YouTube playlist](https://youtu.be/hSWhr6JyXe0?list=PLmzRWLV1CK_wdWP58XoaJ0kczgHTdsOph)     |
+| Kubeflow Docs Agent call             | [Register][8] | [Google Doc][notes-docs-agent]                       |                                                                                              |
+| Kubeflow Outreach Program call       | [Register][9] | [Google Doc][notes-outreach-program]                 |                                                                                              |
 
 [0]: https://zoom-lfx.platform.linuxfoundation.org/meeting/91956494486?password=6b63548e-98e0-4cb2-b63f-6b408090a5f9
 [1]: https://zoom-lfx.platform.linuxfoundation.org/meeting/94838800520?password=07cd1676-1c31-4fb3-8536-732cf7dad502
