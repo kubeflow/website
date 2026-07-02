@@ -69,7 +69,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | Meeting Name                         | Meeting Link  | Meeting Notes                                        | Recordings                                                                                   |
 | ------------------------------------ | --------------| ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | Kubeflow Community call              | [Register][0] | [Google Doc](https://bit.ly/kf-meeting-notes)        | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ypvsQu10SGRmhf2S7mbYL5) |
-| Kubeflow Trainer and Katib call      | [Register][1] | [Google Doc](https://bit.ly/2PWVCkV)                 | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
+| Kubeflow Trainer and Katib call      | [Register][1] | [Google Doc](https://bit.ly/kf-trainer-meeting)      | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xAiAY-3Vw94lrUs4xeNZ3j) |
 | Kubeflow SDK and ML Experience call  | [Register][2] | [Google Doc](https://bit.ly/kf-ml-experience)        | [YouTube playlist](https://youtu.be/VkbVVk2OGUI?list=PLmzRWLV1CK_wSO2IMPnzChxESmaoXNfrY)     |
 | Kubeflow Hub call                    | [Register][3] | [Google Doc](https://bit.ly/kf-model-registry-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_ymLhMu0UMeaWPsLDPIjNnW) |
 | Kubeflow Notebooks call              | [Register][4] | [Google Doc](https://bit.ly/kf-notebooks-wg-notes)   | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_wpsjmJYTo50xe2eYu1-HvP) |
