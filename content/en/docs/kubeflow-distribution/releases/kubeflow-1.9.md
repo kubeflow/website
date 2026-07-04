@@ -133,13 +133,13 @@ weight = 95
       <tr>
         <td>Tensorboard Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.9.0/components/crud-web-apps/volumes">v1.9.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.9.0/components/crud-web-apps/tensorboards">v1.9.0</a>
         </td>
       </tr>
       <tr>
         <td>Volumes Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.9.0/components/crud-web-apps/tensorboards">v1.9.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.9.0/components/crud-web-apps/volumes">v1.9.0</a>
         </td>
       </tr>
       <!-- ======================= -->
@@ -413,13 +413,13 @@ This information is only for the manifests found in the <a href="https://github.
       <tr>
         <td>Tensorboard Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.9.0/components/crud-web-apps/volumes">v1.9.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.9.0/components/crud-web-apps/tensorboards">v1.9.0</a>
         </td>
       </tr>
       <tr>
         <td>Volumes Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.9.0/components/crud-web-apps/tensorboards">v1.9.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.9.0/components/crud-web-apps/volumes">v1.9.0</a>
         </td>
       </tr>
       <!-- ======================= -->

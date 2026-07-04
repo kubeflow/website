@@ -119,13 +119,13 @@ weight = 101
       <tr>
         <td>Tensorboard Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.3.1-rc.0/components/crud-web-apps/volumes">v1.3.1-rc.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.3.1-rc.0/components/crud-web-apps/tensorboards">v1.3.1-rc.0</a>
         </td>
       </tr>
       <tr>
         <td>Volumes Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.3.1-rc.0/components/crud-web-apps/tensorboards">v1.3.1-rc.0</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.3.1-rc.0/components/crud-web-apps/volumes">v1.3.1-rc.0</a>
         </td>
       </tr>
       <!-- ======================= -->
@@ -307,13 +307,13 @@ weight = 101
       <tr>
         <td>Tensorboard Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.3.0-rc.1/components/crud-web-apps/volumes">v1.3.0-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.3.0-rc.1/components/crud-web-apps/tensorboards">v1.3.0-rc.1</a>
         </td>
       </tr>
       <tr>
         <td>Volumes Web App</td>
         <td>
-          <a href="https://github.com/kubeflow/kubeflow/tree/v1.3.0-rc.1/components/crud-web-apps/tensorboards">v1.3.0-rc.1</a>
+          <a href="https://github.com/kubeflow/kubeflow/tree/v1.3.0-rc.1/components/crud-web-apps/volumes">v1.3.0-rc.1</a>
         </td>
       </tr>
       <!-- ======================= -->
