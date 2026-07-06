@@ -169,8 +169,7 @@ the [style guide for the Kubeflow docs](https://kubeflow.org/docs/about/style-gu
 
 ## Styling your content
 
-The theme holds its styles in the [`assets/scss` directory](https://github.com/kubeflow/website/tree/master/themes/docsy/assets/scss).
-
+The theme holds its styles in the [`assets/scss` directory](https://github.com/google/docsy/tree/5597d435dc74ce68240e0c3871addf24567493b0/assets/scss).
 **Do not change these files**, they are not actually inside this repo, but are part of the [google/docsy](https://github.com/google/docsy) repo.
 
 You can override the default styles and add new ones:
@@ -182,7 +181,7 @@ You can override the default styles and add new ones:
   overrides the theme's [`layouts/partials/navbar.html`](https://github.com/kubeflow/website/blob/master/themes/docsy/layouts/partials/navbar.html)
 
 - You can update the Kubeflow website's project variables in the [`_variables_project.scss` file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
-  Values in that file override the [Docsy variables](https://github.com/kubeflow/website/blob/master/themes/docsy/assets/scss/_variables.scss).
+  Values in that file override the [Docsy variables](https://github.com/google/docsy/blob/5597d435dc74ce68240e0c3871addf24567493b0/assets/scss/_variables.scss).
   You can also use `_variables_project.scss` to specify your own values for any of the default [Bootstrap 4 variables](https://getbootstrap.com/docs/4.0/getting-started/theming/).
 
 - Custom styles [`_styles_project` file](https://github.com/kubeflow/website/blob/master/assets/scss/_styles_project.scss)
@@ -204,9 +203,9 @@ The site's [front page](https://www.kubeflow.org/):
 
 - The CSS styles are in the [project variables file](https://github.com/kubeflow/website/blob/master/assets/scss/_variables_project.scss).
 
-- The page uses the [cover block](https://www.docsy.dev/docs/adding-content/shortcodes/#blocks-cover) defined by the theme.
-
-- The page also uses the [linkdown block](https://www.docsy.dev/docs/adding-content/shortcodes/#blocks-link-down).
+- The page uses the [cover block](https://www.docsy.dev/docs/content/shortcodes/#blocks-cover) defined by the theme.
+  
+- The page also uses the [linkdown block](https://www.docsy.dev/docs/content/shortcodes/#blocks-link-down).
 
 ## Using Hugo shortcodes
 
