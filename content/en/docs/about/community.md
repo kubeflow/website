@@ -78,7 +78,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Community Distribution call | [Register][7]  | [Google Doc](https://bit.ly/kf-release-team-notes)       | [YouTube playlist](https://youtu.be/hSWhr6JyXe0?list=PLmzRWLV1CK_wdWP58XoaJ0kczgHTdsOph)     |
 | Kubeflow Docs Agent call             | [Register][8]  | [Google Doc][notes-docs-agent]                           |                                                                                              |
 | Kubeflow Outreach Program call       | [Register][9]  | [Google Doc][notes-outreach-program]                     |                                                                                              |
-| Kubeflow Steering Comittee call      | [Register][10] | [Google Doc](https://bit.ly/kf-steering-committee-notes) |                                                                                              |
+| Kubeflow Steering Comittee call      | [Register][10] | [Google Doc](https://bit.ly/kf-steering-committee-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLVuuG8XLbwJ8)                      |
 
 [0]: https://zoom-lfx.platform.linuxfoundation.org/meeting/91956494486?password=6b63548e-98e0-4cb2-b63f-6b408090a5f9
 [1]: https://zoom-lfx.platform.linuxfoundation.org/meeting/94838800520?password=07cd1676-1c31-4fb3-8536-732cf7dad502
