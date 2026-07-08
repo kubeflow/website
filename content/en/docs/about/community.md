@@ -77,7 +77,7 @@ The following list shows available Kubeflow community meetings with the correspo
 | Kubeflow Spark Operator call         | [Register][6]  | [Google Doc](https://bit.ly/3VGzP4n)                     | [YouTube playlist](https://www.youtube.com/playlist?list=PLmzRWLV1CK_xXuM6gALgBG8vDZHFCNxce) |
 | Kubeflow Community Distribution call | [Register][7]  | [Google Doc](https://bit.ly/kf-release-team-notes)       | [YouTube playlist](https://youtu.be/hSWhr6JyXe0?list=PLmzRWLV1CK_wdWP58XoaJ0kczgHTdsOph)     |
 | Kubeflow Docs Agent call             | [Register][8]  | [Google Doc][notes-docs-agent]                           |                                                                                              |
-| Kubeflow Outreach Program call       | [Register][9]  | [Google Doc][notes-outreach-program]                     |                                                                                              |
+| Kubeflow Outreach Program call       | [Register][9]  | [Google Doc][notes-outreach-program]                     | [YouTube playlist](https://www.youtube.com/playlist?list=PLfpJkLRvh6V8)                      |
 | Kubeflow Steering Comittee call      | [Register][10] | [Google Doc](https://bit.ly/kf-steering-committee-notes) | [YouTube playlist](https://www.youtube.com/playlist?list=PLVuuG8XLbwJ8)                      |
 
 [0]: https://zoom-lfx.platform.linuxfoundation.org/meeting/91956494486?password=6b63548e-98e0-4cb2-b63f-6b408090a5f9
