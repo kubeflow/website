@@ -76,9 +76,9 @@ With [the Kubeflow SDK](https://github.com/kubeflow/sdk) and the `train()` API, 
 custom fine-tuning scripts and scale them across thousands of GPUs. For detailed usage, see
 the Kubeflow Trainer documentation:
 
-- [PyTorch: Qwen3-32B fine-tuning](/docs/components/trainer/user-guides/pytorch/#configure-pytorch-training-function).
-- [DeepSpeed: T5 fine-tuning](/docs/components/trainer/user-guides/deepspeed/#configure-deepspeed-training-function).
-- [MLX: LLama3.2 fine-tuning](/docs/components/trainer/user-guides/mlx/#fine-tune-llm-with-mlx-and-trainjob)
+- [PyTorch: Qwen3-32B fine-tuning](https://trainer.kubeflow.org/en/latest/user-guides/pytorch.html#configure-pytorch-training-function).
+- [DeepSpeed: T5 fine-tuning](https://trainer.kubeflow.org/en/latest/user-guides/deepspeed.html#configure-deepspeed-training-function).
+- [MLX: LLama3.2 fine-tuning](https://trainer.kubeflow.org/en/latest/user-guides/mlx.html#fine-tune-llm-with-mlx-and-trainjob)
 
 You can implement a wide range of advanced algorithms to fine-tune your LLMs such as
 supervised fine tuning (SFT), knowledge distillation, Direct Preference Optimization (DPO),
@@ -89,7 +89,7 @@ Kubeflow Trainer enables efficient distributed training with both data paralleli
 model parallelism, ensuring optimal GPU utilization and reduced training time.
 
 For a faster start, you can use
-[the `BuiltinTrainers()`](/docs/components/trainer/user-guides/builtin-trainer/overview/), which
+[the `BuiltinTrainers()`](https://trainer.kubeflow.org/en/latest/user-guides/builtin-trainer/overview.html), which
 provide pre-configured blueprints for LLMs fine-tuning.
 Simply specify the desired configuration to get started:
 
@@ -131,7 +131,7 @@ TrainerClient().train(
 )
 ```
 
-For details, see the [Kubeflow Trainer TorchTune guide](/docs/components/trainer/user-guides/builtin-trainer/torchtune/).
+For details, see the [Kubeflow Trainer TorchTune guide](https://trainer.kubeflow.org/en/latest/user-guides/builtin-trainer/torchtune.html).
 
 ## Hyperparameter Optimization
 

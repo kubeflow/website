@@ -5,9 +5,9 @@ weight = 10
 +++
 
 {{% alert title="Note" color="info" %}}
-If you are using Kubeflow Training Operator V1, refer [to this migration document](/docs/components/trainer/operator-guides/migration).
+If you are using Kubeflow Training Operator V1, refer [to this migration document](https://trainer.kubeflow.org/en/latest/operator-guides/migration.html).
 
-For legacy Kubeflow Training Operator V1 documentation, check [these guides](/docs/components/trainer/legacy-v1).
+For legacy Kubeflow Training Operator V1 documentation, check [these guides](https://trainer.kubeflow.org/en/latest/legacy-v1/).
 {{% /alert %}}
 
 ## What is Kubeflow Trainer
@@ -33,7 +33,7 @@ GPU utilization.
 With [the Kubeflow Python SDK](https://github.com/kubeflow/sdk), AI practitioners can effortlessly
 develop and fine-tune LLMs while leveraging the Kubeflow Trainer APIs: TrainJob and Runtimes.
 
-<img src="/docs/components/trainer/images/trainer-tech-stack.drawio.svg"
+<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/trainer-tech-stack.drawio.svg"
   alt="Kubeflow Trainer Tech Stack"
   class="mt-3 mb-3 border rounded p-3 bg-white"
   style="width: 100%; max-width: 30em">
@@ -42,7 +42,7 @@ develop and fine-tune LLMs while leveraging the Kubeflow Trainer APIs: TrainJob 
 
 Checkout following KubeCon + CloudNativeCon talks for Kubeflow Trainer capabilities:
 
-<img src="/docs/components/trainer/images/user-personas.drawio.svg"
+<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/user-personas.drawio.svg"
   alt="Kubeflow Trainer Personas"
   class="mt-3 mb-3 border rounded p-3 bg-white"
   style="width: 100%; max-width: 30em">
@@ -56,11 +56,11 @@ Additional talks:
 
 Kubeflow Trainer documentation is separated between these user personas:
 
-- [AI Practitioners](/docs/components/trainer/user-guides): ML engineers and data scientists who
+- [AI Practitioners](https://trainer.kubeflow.org/en/latest/user-guides/): ML engineers and data scientists who
   develop AI models using the Kubeflow Python SDK and TrainJob.
-- [Platform Administrators](/docs/components/trainer/operator-guides): administrators and DevOps
+- [Platform Administrators](https://trainer.kubeflow.org/en/latest/operator-guides/): administrators and DevOps
   engineers responsible for managing Kubernetes clusters and Kubeflow Training Runtimes.
-- [Contributors](/docs/components/trainer/contributor-guides): open source contributors working on
+- [Contributors](https://trainer.kubeflow.org/en/latest/contributor-guides/): open source contributors working on
   [Kubeflow Trainer project](https://github.com/kubeflow/trainer).
 
 ## Kubeflow Trainer Introduction
@@ -74,7 +74,7 @@ Watch the following KubeCon + CloudNativeCon 2024 talk which provides an overvie
 The Kubeflow Trainer supports key phases on the [AI lifecycle](/docs/started/architecture/#kubeflow-landscape-in-the-ai-lifecycle),
 including model training and LLMs fine-tuning, as shown in the diagram below:
 
-<img src="/docs/components/trainer/images/ai-lifecycle-trainer.drawio.svg"
+<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/ai-lifecycle-trainer.drawio.svg"
   alt="AI Lifecycle Trainer"
   class="mt-3 mb-3 border rounded p-3 bg-white">
 
@@ -117,4 +117,4 @@ Kubeflow Trainer seamlessly integrates with Kubernetes ecosystem projects like
 ## Next steps
 
 Run your first Kubeflow TrainJob by following the
-[Getting Started guide](/docs/components/trainer/getting-started/).
+[Getting Started guide](https://trainer.kubeflow.org/en/latest/getting-started/).

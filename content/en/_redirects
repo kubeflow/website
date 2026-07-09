@@ -369,7 +369,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/training/user-guides/pytorch/                /docs/components/trainer/legacy-v1/user-guides/pytorch/
 /docs/components/training/overview/                           /docs/components/trainer/legacy-v1/overview/
 /docs/components/training/getting-started/                    /docs/components/trainer/legacy-v1/getting-started/
-/docs/components/trainer/operator-guides/podtemplate-overrides/    /docs/components/trainer/operator-guides/runtime-patches/
 
 # Move KServe to Kubeflow Projects
 /docs/external-add-ons/kserve/                                 /docs/components/kserve/
@@ -399,3 +398,70 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Introducing Kubeflow Community Distribution
 /docs/kubeflow-platform/*            /docs/kubeflow-distribution/:splat
+
+# Kubeflow Trainer docs moved to https://trainer.kubeflow.org/en/latest/
+
+/docs/components/trainer/getting-started/                          https://trainer.kubeflow.org/en/latest/getting-started/
+
+/docs/components/trainer/user-guides/                              https://trainer.kubeflow.org/en/latest/user-guides/
+/docs/components/trainer/user-guides/pytorch/                      https://trainer.kubeflow.org/en/latest/user-guides/pytorch.html
+/docs/components/trainer/user-guides/pytorch-rocm/                 https://trainer.kubeflow.org/en/latest/user-guides/pytorch-rocm.html
+/docs/components/trainer/user-guides/jax/                          https://trainer.kubeflow.org/en/latest/user-guides/jax.html
+/docs/components/trainer/user-guides/jax-tpu/                      https://trainer.kubeflow.org/en/latest/user-guides/jax-tpu.html
+/docs/components/trainer/user-guides/deepspeed/                    https://trainer.kubeflow.org/en/latest/user-guides/deepspeed.html
+/docs/components/trainer/user-guides/mlx/                          https://trainer.kubeflow.org/en/latest/user-guides/mlx.html
+/docs/components/trainer/user-guides/xgboost/                      https://trainer.kubeflow.org/en/latest/user-guides/xgboost.html
+/docs/components/trainer/user-guides/megatron/                     https://trainer.kubeflow.org/en/latest/user-guides/megatron.html
+/docs/components/trainer/user-guides/flux/                         https://trainer.kubeflow.org/en/latest/user-guides/flux.html
+/docs/components/trainer/user-guides/data-cache/                   https://trainer.kubeflow.org/en/latest/user-guides/data-cache.html
+/docs/components/trainer/user-guides/trainjob-lifecycle/           https://trainer.kubeflow.org/en/latest/user-guides/trainjob-lifecycle.html
+/docs/components/trainer/user-guides/builtin-trainer/              https://trainer.kubeflow.org/en/latest/user-guides/builtin-trainer/
+/docs/components/trainer/user-guides/builtin-trainer/overview/     https://trainer.kubeflow.org/en/latest/user-guides/builtin-trainer/overview.html
+/docs/components/trainer/user-guides/builtin-trainer/torchtune/    https://trainer.kubeflow.org/en/latest/user-guides/builtin-trainer/torchtune.html
+/docs/components/trainer/user-guides/local-execution-mode/                https://trainer.kubeflow.org/en/latest/user-guides/local-execution/
+/docs/components/trainer/user-guides/local-execution-mode/overview/       https://trainer.kubeflow.org/en/latest/user-guides/local-execution/overview.html
+/docs/components/trainer/user-guides/local-execution-mode/local_process/  https://trainer.kubeflow.org/en/latest/user-guides/local-execution/local-process.html
+/docs/components/trainer/user-guides/local-execution-mode/docker/         https://trainer.kubeflow.org/en/latest/user-guides/local-execution/docker.html
+/docs/components/trainer/user-guides/local-execution-mode/podman/         https://trainer.kubeflow.org/en/latest/user-guides/local-execution/podman.html
+
+/docs/components/trainer/operator-guides/                          https://trainer.kubeflow.org/en/latest/operator-guides/
+/docs/components/trainer/operator-guides/installation/             https://trainer.kubeflow.org/en/latest/operator-guides/installation.html
+/docs/components/trainer/operator-guides/migration/                https://trainer.kubeflow.org/en/latest/operator-guides/migration.html
+/docs/components/trainer/operator-guides/runtime/                  https://trainer.kubeflow.org/en/latest/operator-guides/runtime.html
+/docs/components/trainer/operator-guides/ml-policy/                https://trainer.kubeflow.org/en/latest/operator-guides/ml-policy.html
+/docs/components/trainer/operator-guides/job-template/             https://trainer.kubeflow.org/en/latest/operator-guides/job-template.html
+/docs/components/trainer/operator-guides/runtime-patches/          https://trainer.kubeflow.org/en/latest/operator-guides/runtime-patches.html
+/docs/components/trainer/operator-guides/podtemplate-overrides/    https://trainer.kubeflow.org/en/latest/operator-guides/runtime-patches.html
+/docs/components/trainer/operator-guides/extension-framework/      https://trainer.kubeflow.org/en/latest/operator-guides/extension-framework.html
+/docs/components/trainer/operator-guides/job-scheduling/                https://trainer.kubeflow.org/en/latest/operator-guides/job-scheduling/
+/docs/components/trainer/operator-guides/job-scheduling/overview/       https://trainer.kubeflow.org/en/latest/operator-guides/job-scheduling/overview.html
+/docs/components/trainer/operator-guides/job-scheduling/coscheduling/   https://trainer.kubeflow.org/en/latest/operator-guides/job-scheduling/coscheduling.html
+/docs/components/trainer/operator-guides/job-scheduling/volcano/        https://trainer.kubeflow.org/en/latest/operator-guides/job-scheduling/volcano.html
+/docs/components/trainer/operator-guides/job-scheduling/kai/            https://trainer.kubeflow.org/en/latest/operator-guides/job-scheduling/kai.html
+/docs/components/trainer/operator-guides/job-scheduling/kueue/          https://kueue.sigs.k8s.io/docs/tasks/run/trainjobs/
+
+/docs/components/trainer/contributor-guides/                       https://trainer.kubeflow.org/en/latest/contributor-guides/
+/docs/components/trainer/contributor-guides/contributing/          https://trainer.kubeflow.org/en/latest/contributor-guides/contributing.html
+/docs/components/trainer/contributor-guides/community/             https://trainer.kubeflow.org/en/latest/contributor-guides/community.html
+
+/docs/components/trainer/legacy-v1/                                  https://trainer.kubeflow.org/en/latest/legacy-v1/
+/docs/components/trainer/legacy-v1/overview/                         https://trainer.kubeflow.org/en/latest/legacy-v1/overview.html
+/docs/components/trainer/legacy-v1/installation/                     https://trainer.kubeflow.org/en/latest/legacy-v1/installation.html
+/docs/components/trainer/legacy-v1/getting-started/                  https://trainer.kubeflow.org/en/latest/legacy-v1/getting-started.html
+/docs/components/trainer/legacy-v1/user-guides/                      https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/
+/docs/components/trainer/legacy-v1/user-guides/fine-tuning/          https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/fine-tuning.html
+/docs/components/trainer/legacy-v1/user-guides/jax/                  https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/jax.html
+/docs/components/trainer/legacy-v1/user-guides/job-scheduling/       https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/job-scheduling.html
+/docs/components/trainer/legacy-v1/user-guides/managedby/            https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/multi-cluster.html
+/docs/components/trainer/legacy-v1/user-guides/mpi/                  https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/mpi.html
+/docs/components/trainer/legacy-v1/user-guides/paddle/               https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/paddlepaddle.html
+/docs/components/trainer/legacy-v1/user-guides/prometheus/           https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/monitoring.html
+/docs/components/trainer/legacy-v1/user-guides/pytorch/              https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/pytorch.html
+/docs/components/trainer/legacy-v1/user-guides/tensorflow/           https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/tensorflow.html
+/docs/components/trainer/legacy-v1/user-guides/xgboost/              https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/xgboost.html
+/docs/components/trainer/legacy-v1/reference/                        https://trainer.kubeflow.org/en/latest/legacy-v1/reference/
+/docs/components/trainer/legacy-v1/reference/architecture/           https://trainer.kubeflow.org/en/latest/legacy-v1/reference/architecture.html
+/docs/components/trainer/legacy-v1/reference/distributed-training/   https://trainer.kubeflow.org/en/latest/legacy-v1/reference/distributed-training.html
+/docs/components/trainer/legacy-v1/reference/fine-tuning/            https://trainer.kubeflow.org/en/latest/legacy-v1/reference/fine-tuning.html
+/docs/components/trainer/legacy-v1/explanation/                      https://trainer.kubeflow.org/en/latest/legacy-v1/explanation/
+/docs/components/trainer/legacy-v1/explanation/fine-tuning/          https://trainer.kubeflow.org/en/latest/legacy-v1/explanation/fine-tuning.html
