@@ -69,9 +69,9 @@ ignoreFiles = []
 [[menu.main]]
     name = "GSoC 2026"
     weight = -900
-    pre = "<i class='fas pr-2'><img src='/docs/images/logos/gsoc.svg' style='height: 1.22em;'></i>"
+    pre = "<i class='fas pr-2'><img src='/docs/images/logos/gsoc.svg' alt='' style='height: 1.22em;'></i>"
     post = "<br><span class='badge badge-success'>Ongoing</span>"
-    url = "/events/upcoming-events/gsoc-2026/"
+    url = "/events/gsoc-2026/"
   [[menu.main]]
     name = "Docs"
     weight = -102
