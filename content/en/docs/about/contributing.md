@@ -98,7 +98,7 @@ Following these guidelines helps maintain a collaborative and efficient communit
 ### Contributions outside the Kubeflow components (including non-technical contributions)
 
 - **Documentation**: Contribute to technical documentation by improving the accuracy and clarity of Kubeflow technical documentation and/or fixing stale information and ensuring all new content follows the standards set in the [Kubeflow Documentation Style Guide](style-guide.md).
-- **Blog posts**: Contribute to Kubeflow blog and/or CNCF about Kubeflow to help the community to gain more knowledge on Kubeflow. The content can take different forms from learn from real-world use cases, Kubeflow integrations, news about releases, contributions or practical use cases.
+- **Blog posts**: Write about Kubeflow for the Kubeflow blog or CNCF publications to help the community learn more about the project. Topics can include lessons from real-world use cases, Kubeflow integrations, release news, contribution stories, or practical guidance.
 - **Event outreach**: Contribute to outreach activities by bringing awareness of kubeflow with activities such as:
 speaking at events, representing Kubeflow at community booths/tables, helping organize an event, Program committee or Program Chairs.
 - **Community Engagement**: Engagement with end-users, contributors (Kubeflow community) participating or leading community meetings, social media management/promotion, discussions with end-users and contributors to enrich the kubeflow ecosystem.
