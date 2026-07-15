@@ -223,7 +223,7 @@ enable = true
 
   # These entries appear in the drop-down menu at the top of the website.
   [[params.versions]]
-    version = "Latest"
+    version = "master"
     githubbranch = "master"
     url = "https://master.kubeflow.org"
   [[params.versions]]
