@@ -99,11 +99,10 @@ Following these guidelines helps maintain a collaborative and efficient communit
 
 - **Documentation**: Contribute to technical documentation by improving the accuracy and clarity of Kubeflow technical documentation and/or fixing stale information and ensuring all new content follows the standards set in the [Kubeflow Documentation Style Guide](style-guide.md).
 - **Blog posts**: Write about Kubeflow for the Kubeflow blog or CNCF publications to help the community learn more about the project. Topics can include lessons from real-world use cases, Kubeflow integrations, release news, contribution stories, or practical guidance.
-- **Event outreach**: Contribute to outreach activities by bringing awareness of kubeflow with activities such as:
-speaking at events, representing Kubeflow at community booths/tables, helping organize an event, Program committee or Program Chairs.
-- **Community Engagement**: Engagement with end-users, contributors (Kubeflow community) participating or leading community meetings, social media management/promotion, discussions with end-users and contributors to enrich the kubeflow ecosystem.
-- **Technical Content**: Creating webinars, demos, tutorials that showcase Kubeflow use cases and Kubeflow ecosystem including integrations, solution architectures, publications, e-books, books, white papers.
-- **Website contributions**: Contributing to website desing, new content creation, website maintenance and/or contributing to PR's review.
+- **Event outreach**: Raise awareness of Kubeflow by speaking at events, representing Kubeflow at community booths or tables, helping organize events, or serving on program committees or as a program chair.
+- **Community engagement**: Engage with end users and contributors in the Kubeflow community by participating in or leading community meetings, managing or promoting social media, and discussing ways to enrich the Kubeflow ecosystem.
+- **Technical content**: Create webinars, demos, tutorials, publications, e-books, books, and white papers that showcase Kubeflow use cases, integrations, and solution architectures.
+- **Website contributions**: Contribute to website design, create new content, maintain the website, or review PRs.
 
 ## Owners files and PR workflow
 
