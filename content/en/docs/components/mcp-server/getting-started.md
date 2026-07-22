@@ -25,7 +25,7 @@ kubeflow-mcp serve
 The default transport is HTTP and listens on `http://localhost:8000/mcp`.
 Configure authentication before exposing the endpoint outside a local development
 environment. See the repository's
-[HTTP authentication guidance](https://github.com/kubeflow/mcp-server#http-authentication)
+[HTTP authentication guidance](https://github.com/kubeflow/mcp-server#kubeflow-mcp-serve)
 for the available bearer-token and JWT settings.
 
 ## Connect an MCP client
@@ -37,5 +37,6 @@ claude mcp add kubeflow -- kubeflow-mcp serve
 ```
 
 The repository also includes configuration examples for Cursor and HTTP clients.
-Review the [project README](https://github.com/kubeflow/mcp-server#readme) for the
+Watch the [demo video](https://github.com/kubeflow/mcp-server#demo) for a walkthrough.
+Review the project [README](https://github.com/kubeflow/mcp-server#readme) for the
 current options, supported personas, and client configuration.
