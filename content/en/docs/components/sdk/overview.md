@@ -10,8 +10,8 @@ The Kubeflow SDK is a set of unified Pythonic APIs that let you run any AI workl
 
 Kubeflow SDK Benefits
 
-- Unified Experience: Single SDK to interact with multiple Kubeflow projects through consistent Python APIs
-- Simplified AI Workloads: Abstract away Kubernetes complexity and work effortlessly across all Kubeflow projects using familiar Python APIs
+- Unified Experience: Single SDK to interact with multiple Kubeflow subprojects through consistent Python APIs
+- Simplified AI Workloads: Abstract away Kubernetes complexity and work effortlessly across all Kubeflow subprojects using familiar Python APIs
 - Built for Scale: Seamlessly scale any AI workload — from local laptop to large-scale production cluster with thousands of GPUs using the same APIs.
 - Rapid Iteration: Reduced friction between development and production environments
 - Local Development: First-class support for local development without a Kubernetes cluster requiring only pip installation

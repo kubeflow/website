@@ -21,14 +21,15 @@ These are the minimal requirements to install Model Registry:
 
 ## Installing Model Registry
 
-Kubeflow Model registry may be installed as part of a Kubeflow Platform, or as a standalone component.
+Kubeflow Model registry may be installed as part of a Kubeflow Community Distribution (KCD), or as a standalone component.
 The best option for you will depend on your specific requirements.
 
-### Installing on Kubeflow Platform
+### Installing on KCD
 
-Kubeflow Model Registry is available as an opt-in alpha component in Kubeflow Platform 1.9+, see [Installing Kubeflow](/docs/started/installing-kubeflow/) to learn more about deploying the Kubeflow Platform.
+Kubeflow Model Registry is available as an opt-in alpha component in KCD 1.9+, see
+[Installing KCD](/docs/started/installing-kubeflow/) to learn more about deploying the KCD.
 
-These instructions assume that you've installed Kubeflow from the [manifests](https://github.com/kubeflow/manifests/), if you're using a distribution consult its documentation instead.
+These instructions assume that you've installed KCD from the [manifests](https://github.com/kubeflow/manifests/), if you're using a distribution consult its documentation instead.
 
 Clone the `hub` repository:
 
@@ -90,7 +91,7 @@ MODEL_REGISTRY_VERSION={{% hub/latest-version %}}
 kubectl apply -n kubeflow -k "https://github.com/kubeflow/hub/manifests/kustomize/overlays/db?ref=v${MODEL_REGISTRY_VERSION}"
 ```
 
-If your Kubernetes cluster uses Istio, you MUST apply the Istio-compatibility manifests (e.g. when using a full Kubeflow Platform). However, these are NOT required for non-Istio clusters.
+If your Kubernetes cluster uses Istio, you MUST apply the Istio-compatibility manifests (e.g. when using a full KCD). However, these are NOT required for non-Istio clusters.
 
 ```shell
 MODEL_REGISTRY_VERSION={{% hub/latest-version %}}

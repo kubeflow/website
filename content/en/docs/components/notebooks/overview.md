@@ -4,7 +4,6 @@ description = "An overview of Kubeflow Notebooks"
 weight = 5
                     
 +++
-{{% stable-status %}}
 
 ## What is Kubeflow Notebooks?
 
