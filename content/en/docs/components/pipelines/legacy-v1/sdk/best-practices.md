@@ -7,7 +7,7 @@ weight = 60
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -15,8 +15,8 @@ This page describes some recommended practices for designing
 components. For an application of these best practices, see the
 [component development guide](/docs/components/pipelines/legacy-v1/sdk/component-development). If 
 you're new to pipelines, see the conceptual guides to 
-[pipelines](/docs/components/pipelines/concepts/pipeline/)
-and [components](/docs/components/pipelines/concepts/component/).
+[pipelines](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/pipeline.html)
+and [components](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/component.html).
 
 <a id="general"></a>
 ### General component design rules
@@ -115,7 +115,7 @@ and [components](/docs/components/pipelines/concepts/component/).
 ## Writing a component specification YAML file
 
 For the complete definition of a Kubeflow Pipelines component, see the
-[component specification](/docs/components/pipelines/reference/component-spec/).
+[component specification](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/component-spec.html).
 When creating your `component.yaml` file, you can look at the definitions for 
 some
 [existing components](https://github.com/kubeflow/pipelines/search?q=filename%3Acomponent.yaml&unscoped_q=filename%3Acomponent.yaml).

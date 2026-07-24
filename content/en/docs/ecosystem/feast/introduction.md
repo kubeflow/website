@@ -101,7 +101,7 @@ Feast provides the following categories of APIs:
   - The Python SDK is typically used from within a Jupyter notebook by end users to administer Feast, but ML teams may opt to version control feature specifications in order to follow a GitOps based approach.
 - **Model training**:
   - The Feast Python SDK can be used to trigger the [creation of training datasets](https://docs.feast.dev/how-to-guides/feast-snowflake-gcp-aws/build-a-training-dataset).
-  - The most natural place to use this SDK is to create a training dataset as part of a [Kubeflow Pipeline](/docs/components/pipelines/overview/) prior to model training.
+  - The most natural place to use this SDK is to create a training dataset as part of a [Kubeflow Pipeline](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/overview.html) prior to model training.
 - **Model serving**:
   - The Feast Python SDK can also be used for [online feature retrieval](https://docs.feast.dev/how-to-guides/feast-snowflake-gcp-aws/read-features-from-the-online-store).
     This client is used to retrieve feature values for inference with model-serving-systems like [KServe](/docs/ecosystem/kserve/introduction/).

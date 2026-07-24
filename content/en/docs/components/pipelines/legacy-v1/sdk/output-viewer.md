@@ -7,13 +7,13 @@ weight = 80
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
 
 This page shows you how to use the Kubeflow Pipelines UI to visualize output 
-from a Kubeflow Pipelines [component](/docs/components/pipelines/concepts/component/). 
+from a Kubeflow Pipelines [component](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/component.html).
 
 ## Introduction
 
@@ -66,7 +66,7 @@ of all metrics visualizations can be found in [metrics_visualization_v2.py](http
 ### Requirements
 
 * Use Kubeflow Pipelines v1.7.0 or above: [upgrade Kubeflow Pipelines](/docs/components/pipelines/legacy-v1/installation/standalone-deployment/#upgrading-kubeflow-pipelines).
-* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when you [compile and run your pipelines](/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/).
+* Use `kfp.dsl.PipelineExecutionMode.V2_COMPATIBLE` mode when you [compile and run your pipelines](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/run-a-pipeline.html).
 * Make sure to use the latest environment kustomize manifest [pipelines/manifests/kustomize/env/dev/kustomization.yaml](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/manifests/kustomize/env/dev/kustomization.yaml).
 
 
@@ -280,7 +280,7 @@ def html_visualization(html_artifact: Output[HTML]):
 The metric visualization in V2 or V2 compatible mode depends on SDK visualization APIs,
 refer to [metrics_visualization_v2.py](https://github.com/kubeflow/pipelines/blob/sdk/release-1.8/samples/test/metrics_visualization_v2.py)
 for a complete pipeline example. Follow instruction
-[Compile and run your pipeline](/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/)
+[Compile and run your pipeline](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/run-a-pipeline.html)
 to compile in V2 compatible mode.
 
 ## v1 SDK: Writing out metadata for the output viewers

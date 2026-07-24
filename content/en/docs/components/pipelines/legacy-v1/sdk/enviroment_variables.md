@@ -7,7 +7,7 @@ weight = 115
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -28,7 +28,7 @@ Set up your environment:
 In this example, you pass an environment variable to a lightweight Python 
 component, which writes the variable's value to the log.
 
-[Learn more about lightweight Python components](/docs/components/pipelines/user-guides/components/lightweight-python-components/)
+[Learn more about lightweight Python components](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/lightweight-python-components.html)
 
 To build a component, define a stand-alone Python function and then call 
 [kfp.components.func_to_container_op(func)](https://kubeflow-pipelines.readthedocs.io/en/stable/source/components.html#kfp.components.func_to_container_op) to convert the 

@@ -7,7 +7,7 @@ weight = 10
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.23`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.23/).
 {{% /alert %}}
 
@@ -60,8 +60,8 @@ A _pipeline component_ is a self-contained set of user code, packaged as a
 performs one step in the pipeline. For example, a component can be responsible
 for data preprocessing, data transformation, model training, and so on.
 
-See the conceptual guides to [pipelines](/docs/components/pipelines/concepts/pipeline/)
-and [components](/docs/components/pipelines/concepts/component/).
+See the conceptual guides to [pipelines](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/pipeline.html)
+and [components](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/component.html).
 
 ## Example of a pipeline
 
