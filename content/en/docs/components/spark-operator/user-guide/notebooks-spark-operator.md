@@ -52,7 +52,7 @@ Save the following manifest as `enterprise-gateway-helm.yaml` which will be used
 global:
   rbac: true
 
-image: elyra/enterprise-gateway:3.2.3
+image: elyra/enterprise-gateway:3.3.0
 imagePullPolicy: Always
 logLevel: DEBUG
 
@@ -67,7 +67,7 @@ kernel:
 
 kip:
   enabled: false
-  image: elyra/kernel-image-puller:3.2.3
+  image: elyra/kernel-image-puller:3.3.0
   imagePullPolicy: Always
   pullPolicy: Always
   defaultContainerRegistry: quay.io
@@ -80,7 +80,7 @@ The command below uses a YAML file named enterprise-gateway-helm.yaml, which inc
 
 ```bash
 helm upgrade --install enterprise-gateway \
-  https://github.com/jupyter-server/enterprise_gateway/releases/download/v3.2.3/jupyter_enterprise_gateway_helm-3.2.3.tar.gz \
+  https://github.com/jupyter-server/enterprise_gateway/releases/download/v3.3.0/jupyter_enterprise_gateway_helm-3.3.0.tar.gz \
   --namespace enterprise-gateway \
   --values enterprise-gateway-helm.yaml \
   --create-namespace \
@@ -190,7 +190,7 @@ Next, add the kernelspecs to the mounted volume at `/jupyter-gateway/kernelspecs
 
 You can download and extract them with:
 ```bash
-mkdir spark_python_operator && cd spark_python_operator && curl -sL https://github.com/jupyter-server/enterprise_gateway/releases/download/v3.2.3/jupyter_enterprise_gateway_kernelspecs_kubernetes-3.2.3.tar.gz | tar -xz --strip-components=1 "spark_python_operator/*" 
+mkdir spark_python_operator && cd spark_python_operator && curl -sL https://github.com/jupyter-server/enterprise_gateway/releases/download/v3.3.0/jupyter_enterprise_gateway_kernelspecs_kubernetes-3.3.0.tar.gz | tar -xz --strip-components=1 "spark_python_operator/*" 
 ```
 Once extracted, make any necessary customizations to the kernelspecs.
 
