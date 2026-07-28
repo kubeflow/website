@@ -604,5 +604,5 @@ See this [sample component][org-sample] for a real-life component example.
 * Visualize the output of your component by
   [adding metadata for an output
   viewer](/docs/components/pipelines/legacy-v1/sdk/output-viewer/).
-* Explore the [reusable components and other shared
-  resources](/docs/examples/shared-resources/).
+* Explore how to [load and share reusable
+  components](/docs/components/pipelines/user-guides/components/load-and-share-components/).

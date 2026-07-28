@@ -231,7 +231,7 @@ when designing a pipeline.
 [python-function-component]: /docs/components/pipelines/legacy-v1/sdk/python-function-components/
 [component-dev]: /docs/components/pipelines/legacy-v1/sdk/component-development/
 [python-function-component-data-passing]: /docs/components/pipelines/legacy-v1/sdk/python-function-components/#understanding-how-data-is-passed-between-components
-[prebuilt-components]: /docs/examples/shared-resources/
+[prebuilt-components]: /docs/components/pipelines/user-guides/components/load-and-share-components/
 
 
 ```python
