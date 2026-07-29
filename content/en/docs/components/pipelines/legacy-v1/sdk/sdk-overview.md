@@ -197,7 +197,7 @@ Use the following options to create or reuse pipeline components.
 
 *   You can reuse prebuilt components in your pipeline.
 
-    [Learn more about reusing prebuilt components](/docs/examples/shared-resources/).
+    [Learn more about reusing prebuilt components](/docs/components/pipelines/user-guides/components/load-and-share-components/).
 
 
 ## Next steps

@@ -48,8 +48,8 @@
 /docs/pipelines/sdk/gcp/enable-gpu-and-tpu/         /docs/distributions/gke/pipelines/enable-gpu-and-tpu/
 /docs/pipelines/preemptible/                        /docs/distributions/gke/pipelines/preemptible/
 /docs/pipelines/sdk/gcp/preemptible/                /docs/distributions/gke/pipelines/preemptible/
-/docs/pipelines/reusable-components/                /docs/examples/shared-resources/
-/docs/pipelines/sdk/reusable-components/            /docs/examples/shared-resources/
+/docs/pipelines/reusable-components/                /docs/components/pipelines/user-guides/components/load-and-share-components/
+/docs/pipelines/sdk/reusable-components/            /docs/components/pipelines/user-guides/components/load-and-share-components/
 /docs/pipelines/sdk/build-component/                /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
 /docs/components/pipelines/sdk/build-component/     /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
 /docs/components/pipelines/upgrade/                 /docs/components/pipelines/legacy-v1/installation/upgrade/
@@ -102,7 +102,7 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/use-cases/job-scheduling/                /docs/other-guides/job-scheduling/
 
 # Remove examples docs
-/docs/examples/*                                /docs/started/kubeflow-examples
+/docs/examples/*                                /docs/started/introduction
 
 # Move the kustomize guide to the config section
 /docs/components/misc/kustomize/              /docs/distributions/kfctl/kustomize/
