@@ -23,7 +23,7 @@ We are transitioning to a Calendar Versioning model to provide a more predictabl
       <th class="table-light">Media</th>
       <td>
         <b>Blog:</b> 
-          To be published
+          <a href="https://blog.kubeflow.org/kubeflow-26.03-release/">Kubeflow Community Distribution 26.03.1 Release Announcement</a>
       </td>
     </tr>
     <tr>
