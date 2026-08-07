@@ -57,7 +57,7 @@ This workflow is detailed in the [Katib RAG blog post](https://blog.kubeflow.org
 
 ## Scaling RAG Data Transformation with Spark
 
-Preprocessing massive document collections for RAG pipelines—text cleaning, chunking, and embedding generation—can become a bottleneck. Kubeflow integrates with the [Spark Operator](/docs/components/spark-operator/overview/) to run distributed Spark jobs on Kubernetes, allowing you to:
+Preprocessing massive document collections for RAG pipelines—text cleaning, chunking, and embedding generation—can become a bottleneck. Kubeflow integrates with the [Spark Operator](https://spark.kubeflow.org/en/latest/overview/) to run distributed Spark jobs on Kubernetes, allowing you to:
 
 - Ingest & Process Raw Documents: Read text files or PDFs from cloud storage (S3, GCS) or databases.
 - Text Chunking: Normalize, tokenize, and split content into fixed-size passages with overlap.
