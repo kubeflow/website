@@ -25,5 +25,5 @@ The Kubernetes Operator for Apache Spark aims to make specifying and running Spa
 
 
 ## Next Steps
-1. Follow the [Getting Started Guide](https://spark.kubeflow.org/en/latest/getting-started/index.html) to deploy the Spark Operator into your Kubernetes cluster.
-2. Read the [User Guide](https://spark.kubeflow.org/en/latest/user-guide/index.html) (including [Writing a SparkApplication](https://spark.kubeflow.org/en/latest/user-guide/writing-a-spark-application.html)) to learn how to write, configure, and submit your first `SparkApplication` manifest.
+1. Follow the [Getting Started Guide](https://spark.kubeflow.org/en/latest/getting-started/) to deploy the Spark Operator into your Kubernetes cluster.
+2. Read the [User Guide](https://spark.kubeflow.org/en/latest/user-guide/) (including [Writing a SparkApplication](https://spark.kubeflow.org/en/latest/user-guide/writing-sparkapplication.html)) to learn how to write, configure, and submit your first `SparkApplication` manifest.
