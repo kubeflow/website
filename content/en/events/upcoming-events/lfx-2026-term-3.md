@@ -52,7 +52,7 @@ Here are the key dates for LFX Mentorship 2026 Term 3, the [full timeline](https
    - Review the [Architecture Overview](/docs/started/architecture/)
    - Consider [trying out Kubeflow](/docs/started/installing-kubeflow/)
 4. Review the [projects](#projects) below to decide which ones you are interested in.
-5. Apply through the [LFX Mentorship portal](https://mentorship.lfx.linuxfoundation.org/) with your resume, cover letter, and a 1-2 page project proposal outlining your approach to the deliverables.
+5. Apply through the [LFX Mentorship portal](https://mentorship.lfx.linuxfoundation.org/) with following the prerequisites listed on respective LFX project.
 
 ## Projects
 
@@ -75,7 +75,7 @@ Improve the Kubeflow Pipelines (KFP) user experience by surfacing Kubernetes pod
 
 **Links:**
 
-- [LFX Mentorship Project](https://mentorship.lfx.linuxfoundation.org/project/6a3ba49c-5202-4231-b86f-90b798e84997)
+- [LFX Mentorship Project](https://mentorship.lfx.linuxfoundation.org/project/aba3293b-593c-4afd-a22d-27d70fc50ff8)
 - [Proposal Issue: cncf/mentoring#1928](https://github.com/cncf/mentoring/issues/1928)
 
 ### Project 2: Evolve SparkClient into Kubeflow's Unified Data Processing Layer
@@ -120,5 +120,5 @@ Build the next-generation Hyperparameter Optimization runtime for Kubeflow Train
 
 **Links:**
 
-- [LFX Mentorship Project](https://mentorship.lfx.linuxfoundation.org/project/aba3293b-593c-4afd-a22d-27d70fc50ff8)
+- [LFX Mentorship Project](https://mentorship.lfx.linuxfoundation.org/project/6a3ba49c-5202-4231-b86f-90b798e84997)
 - [Proposal Issue: cncf/mentoring#2013](https://github.com/cncf/mentoring/issues/2013)
