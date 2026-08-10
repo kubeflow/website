@@ -12,7 +12,7 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 {{% /alert %}}
 
 The [Kubeflow Pipelines 
-SDK](https://kubeflow-pipelines.readthedocs.io/en/stable/source/html)
+SDK](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/index.html)
 provides a set of Python packages that you can use to specify and run your 
 machine learning (ML) workflows. A *pipeline* is a description of an ML 
 workflow, including all of the *components* that make up the steps in the 
