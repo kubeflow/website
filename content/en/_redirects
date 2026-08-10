@@ -469,26 +469,25 @@ docs/started/requirements/                    /docs/started/getting-started/
 
 # Kubeflow Spark Operator docs moved to https://spark.kubeflow.org/en/latest/
 
-/docs/components/spark-operator/developer-guide.md             https://spark.kubeflow.org/en/latest/contributor-guide/
-/docs/components/spark-operator/getting-started.md             https://spark.kubeflow.org/en/latest/getting-started/
+/docs/components/spark-operator/                             https://spark.kubeflow.org/en/latest/
+/docs/components/spark-operator/developer-guide/             https://spark.kubeflow.org/en/latest/contributor-guide/
+/docs/components/spark-operator/getting-started/             https://spark.kubeflow.org/en/latest/getting-started/
+/docs/components/spark-operator/performance/                 https://spark.kubeflow.org/en/latest/performance/
+/docs/components/spark-operator/performance/benchmarking/    https://spark.kubeflow.org/en/latest/performance/benchmarking.html
+/docs/components/spark-operator/reference/                   https://spark.kubeflow.org/en/latest/reference/
+/docs/components/spark-operator/reference/api-docs/          https://spark.kubeflow.org/en/latest/reference/api-docs.html
 
-/docs/components/spark-operator/performance/                   https://spark.kubeflow.org/en/latest/performance/
-/docs/components/spark-operator/performance/benchmarking.md    https://spark.kubeflow.org/en/latest/performance/benchmarking.html
-
-/docs/components/spark-operator/reference/                     https://spark.kubeflow.org/en/latest/reference/
-/docs/components/spark-operator/reference/api-docs.md          https://spark.kubeflow.org/en/latest/reference/api-docs.html
-
-/docs/components/spark-operator/user-guide/                                                 https://spark.kubeflow.org/en/latest/user-guide/
-/docs/components/spark-operator/user-guide/customizing-spark-operator.md                    https://spark.kubeflow.org/en/latest/user-guide/customizing-spark-operator.html
-/docs/components/spark-operator/user-guide/gcp.md                                           https://spark.kubeflow.org/en/latest/user-guide/gcp.html
-/docs/components/spark-operator/user-guide/leader-election.md                               https://spark.kubeflow.org/en/latest/user-guide/leader-election.html
-/docs/components/spark-operator/user-guide/monitoring-with-jmx-and-prometheus.md            https://spark.kubeflow.org/en/latest/user-guide/monitoring-with-jmx-and-prometheus.html
-/docs/components/spark-operator/user-guide/notebooks-spark-operator.md                      https://spark.kubeflow.org/en/latest/user-guide/notebooks-spark-operator.html
-/docs/components/spark-operator/user-guide/resource-quota-enforcement.md                    https://spark.kubeflow.org/en/latest/user-guide/resource-quota-enforcement.html
-/docs/components/spark-operator/user-guide/running-multiple-instances-of-the-operator.md    https://spark.kubeflow.org/en/latest/user-guide/running-multiple-instances-of-the-operator.html   
-/docs/components/spark-operator/user-guide/running-sparkapplication-on-schedule.md          https://spark.kubeflow.org/en/latest/user-guide/running-sparkapplication-on-schedule.html
-/docs/components/spark-operator/user-guide/using-sparkapplication.md                        https://spark.kubeflow.org/en/latest/user-guide/using-sparkapplication.html
-/docs/components/spark-operator/user-guide/volcano-integration.md                           https://spark.kubeflow.org/en/latest/user-guide/volcano-integration.html
-/docs/components/spark-operator/user-guide/working-with-sparkapplication.md                 https://spark.kubeflow.org/en/latest/user-guide/working-with-sparkapplication.html
-/docs/components/spark-operator/user-guide/writing-sparkapplication.md                      https://spark.kubeflow.org/en/latest/user-guide/writing-sparkapplication.html
-/docs/components/spark-operator/user-guide/yunikorn-integration.md                          https://spark.kubeflow.org/en/latest/user-guide/yunikorn-integration.html
+/docs/components/spark-operator/user-guide/                                              https://spark.kubeflow.org/en/latest/user-guide/
+/docs/components/spark-operator/user-guide/customizing-spark-operator/                   https://spark.kubeflow.org/en/latest/user-guide/customizing-spark-operator.html
+/docs/components/spark-operator/user-guide/gcp/                                          https://spark.kubeflow.org/en/latest/user-guide/gcp.html
+/docs/components/spark-operator/user-guide/leader-election/                              https://spark.kubeflow.org/en/latest/user-guide/leader-election.html
+/docs/components/spark-operator/user-guide/monitoring-with-jmx-and-prometheus/           https://spark.kubeflow.org/en/latest/user-guide/monitoring-with-jmx-and-prometheus.html
+/docs/components/spark-operator/user-guide/notebooks-spark-operator/                     https://spark.kubeflow.org/en/latest/user-guide/notebooks-spark-operator.html
+/docs/components/spark-operator/user-guide/resource-quota-enforcement/                   https://spark.kubeflow.org/en/latest/user-guide/resource-quota-enforcement.html
+/docs/components/spark-operator/user-guide/running-multiple-instances-of-the-operator/   https://spark.kubeflow.org/en/latest/user-guide/running-multiple-instances-of-the-operator.html
+/docs/components/spark-operator/user-guide/running-sparkapplication-on-schedule/         https://spark.kubeflow.org/en/latest/user-guide/running-sparkapplication-on-schedule.html
+/docs/components/spark-operator/user-guide/using-sparkapplication/                       https://spark.kubeflow.org/en/latest/user-guide/using-sparkapplication.html
+/docs/components/spark-operator/user-guide/volcano-integration/                          https://spark.kubeflow.org/en/latest/user-guide/volcano-integration.html
+/docs/components/spark-operator/user-guide/working-with-sparkapplication/                https://spark.kubeflow.org/en/latest/user-guide/working-with-sparkapplication.html
+/docs/components/spark-operator/user-guide/writing-sparkapplication/                     https://spark.kubeflow.org/en/latest/user-guide/writing-sparkapplication.html
+/docs/components/spark-operator/user-guide/yunikorn-integration/                         https://spark.kubeflow.org/en/latest/user-guide/yunikorn-integration.html

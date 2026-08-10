@@ -15,12 +15,11 @@ The Kubernetes Operator for Apache Spark aims to make specifying and running Spa
 * **Native Cron Scheduling:** Provides built-in cron support for running recurring Spark jobs on scheduled intervals ([User Guide: Running Spark Applications on a Schedule](https://spark.kubeflow.org/en/latest/user-guide/running-sparkapplication-on-schedule.html)).
 * **Advanced Pod Customization:** Utilizes a mutating admission webhook to perform pod customizations beyond Spark's native capabilities, such as mounting ConfigMaps and volumes or configuring pod affinity/anti-affinity ([Overview: Mutating Admission Webhook](https://spark.kubeflow.org/en/latest/overview/index.html#mutating-admission-webhook) and [User Guide: Customizing Spark Operator](https://spark.kubeflow.org/en/latest/user-guide/customizing-spark-operator.html)).
 * **Failure Handling & Auto-Restart:** Supports configurable restart policies, automatic re-submissions upon spec updates, and submission retries with configurable linear back-off ([Overview: Handling Application Restart And Failures](https://spark.kubeflow.org/en/latest/overview/index.html#handling-application-restart-and-failures)).
-* **Prometheus Observability:** Native support for collecting and exporting application-level, driver, and executor metrics directly to Prometheus ([User Guide: Monitoring Spark Applications](https://spark.kubeflow.org/en/latest/user-guide/monitoring.html)).
-
+* **Prometheus Observability:** Native support for collecting and exporting application-level, driver, and executor metrics directly to Prometheus ([User Guide: Monitoring Spark Applications](https://spark.kubeflow.org/en/latest/user-guide/monitoring-with-jmx-and-prometheus.html)).
 
 ## Architecture
 
-<img src="https://spark.kubeflow.org/en/latest/_images/sparkoperator-arch.jpg"
+<img src="https://raw.githubusercontent.com/kubeflow/spark-operator/master/docs/website/overview/sparkoperator-arch.jpg"
   alt="Kubeflow Spark Operator overview diagram">
 
 
