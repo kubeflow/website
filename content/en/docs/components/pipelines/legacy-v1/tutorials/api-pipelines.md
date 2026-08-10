@@ -7,7 +7,7 @@ weight = 20
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -39,7 +39,7 @@ wget -O ${PIPELINE_FILE} ${PIPELINE_URL}
 dsl-compile --py ${PIPELINE_FILE} --output ${PIPELINE_NAME}.tar.gz
 ```
 
-After running the commands above, you should get two files in your current directory: `sequential.py` and `sequential.tar.gz`. Run the following command to deploy the generated `.tar.gz` file as you would do using the [Kubeflow Pipelines UI](/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/#run-pipeline---kfp-dashboard), but this time using the REST API.
+After running the commands above, you should get two files in your current directory: `sequential.py` and `sequential.tar.gz`. Run the following command to deploy the generated `.tar.gz` file as you would do using the [Kubeflow Pipelines UI](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/run-a-pipeline.html#run-pipeline---kfp-dashboard), but this time using the REST API.
 
 ```
 SVC=localhost:8888
@@ -143,4 +143,4 @@ The response should be similar to the following one:
 }
 ```
 
-Read [Kubeflow Pipelines API Reference](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/) to learn more about how to use the API.
+Read [Kubeflow Pipelines API Reference](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/api/kubeflow-pipeline-api-spec.html) to learn more about how to use the API.

@@ -7,7 +7,7 @@ weight = 10
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -112,11 +112,11 @@ The Kubeflow Pipelines SDK includes the following packages:
 
 * [`kfp.Client`](https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html)
   contains the Python client libraries for the [Kubeflow Pipelines 
-  API](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/).
+  API](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/api/kubeflow-pipeline-api-spec.html).
   Methods in this package include, but are not limited to, the following:
 
   * `kfp.Client.create_experiment` creates a pipeline 
-    [experiment](/docs/components/pipelines/concepts/experiment/) and returns an
+    [experiment](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/experiment.html) and returns an
     experiment object.
   * `kfp.Client.run_pipeline` runs a pipeline and returns a run object.
   * `kfp.Client.create_run_from_pipeline_func` compiles a pipeline function and submits it

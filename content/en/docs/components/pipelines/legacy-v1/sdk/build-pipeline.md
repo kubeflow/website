@@ -6,7 +6,7 @@ weight = 30
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -227,7 +227,7 @@ when designing a pipeline.
     into a single file.
 
 [container-op]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/dsl.html#kfp.dsl.ContainerOp
-[component-spec]: /docs/components/pipelines/reference/component-spec/
+[component-spec]: https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/component-spec.html
 [python-function-component]: /docs/components/pipelines/legacy-v1/sdk/python-function-components/
 [component-dev]: /docs/components/pipelines/legacy-v1/sdk/component-development/
 [python-function-component-data-passing]: /docs/components/pipelines/legacy-v1/sdk/python-function-components/#understanding-how-data-is-passed-between-components
@@ -428,7 +428,7 @@ See the guide to [getting started with the UI][quickstart].
 1.  Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client
-[connect-api]: /docs/components/pipelines/user-guides/core-functions/connect-api
+[connect-api]: https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/connect-api.html
 
 
 ```python

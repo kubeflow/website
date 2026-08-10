@@ -7,7 +7,7 @@ weight = 140
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -29,12 +29,12 @@ adding the `TektonCompiler` and the `TektonClient`:
     can process. The Kubeflow Pipelines service converts the static 
     configuration into a set of Kubernetes resources for execution.
 
-* `kfp_tekton.TektonClient` contains the Python client libraries for the [Kubeflow Pipelines API](/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/).
+* `kfp_tekton.TektonClient` contains the Python client libraries for the [Kubeflow Pipelines API](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/api/kubeflow-pipeline-api-spec.html).
   Methods in this package include, but are not limited to, the following:
 
   * `kfp_tekton.TektonClient.upload_pipeline` uploads a local file to create a new pipeline in Kubeflow Pipelines.
   * `kfp_tekton.TektonClient.create_experiment` creates a pipeline
-    [experiment](/docs/components/pipelines/concepts/experiment/) and returns an
+    [experiment](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/experiment.html) and returns an
     experiment object.
   * `kfp_tekton.TektonClient.run_pipeline` runs a pipeline and returns a run object.
   * `kfp_tekton.TektonClient.create_run_from_pipeline_func` compiles a pipeline

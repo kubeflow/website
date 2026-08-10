@@ -6,7 +6,7 @@ weight = 80
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -38,9 +38,9 @@ improvements can make it the default executor that most people should use going 
 * Security: more secure
   * No `privileged` access.
   * Cannot escape the privileges of the pod's service account.
-* Migration: `command` must be specified in [Kubeflow Pipelines component specification](/docs/components/pipelines/reference/component-spec/).
+* Migration: `command` must be specified in [Kubeflow Pipelines component specification](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/component-spec.html).
 
-  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](/docs/components/pipelines/user-guides/migration/), refer to
+  Note, the same migration requirement is required by [Kubeflow Pipelines v2 compatible mode](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html), refer to
   [known caveats & breaking changes](https://github.com/kubeflow/pipelines/issues/6133).
 
 #### Migrate to Emissary Executor
@@ -111,7 +111,7 @@ existing clusters.
 ##### Migrate pipeline components to run on emissary executor
 
 Some pipeline components require manual updates to run on emissary executor.
-For [Kubeflow Pipelines component specification](/docs/components/pipelines/reference/component-spec/) YAML,
+For [Kubeflow Pipelines component specification](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/component-spec.html) YAML,
 the `command` field must be specified.
 
 Step by step component migration tutorial:

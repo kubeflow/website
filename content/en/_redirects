@@ -16,7 +16,7 @@
 /docs/guides/pipelines/deploy-pipelines-service/  /docs/components/pipelines/pipelines-quickstart/
 
 # https://github.com/kubeflow/website/pull/3786
-/docs/components/pipelines/legacy-v1/overview/multi-user    /docs/components/pipelines/operator-guides/multi-user
+/docs/components/pipelines/legacy-v1/overview/multi-user    /docs/components/pipelines/legacy-v1/overview/
 
 # Merged duplicate page pipelines-samples.md into build-pipeline.md
 /docs/pipelines/pipelines-samples/	   /docs/components/pipelines/legacy-v1/sdk/build-pipeline/
@@ -219,6 +219,61 @@ docs/started/requirements/                    /docs/started/getting-started/
 # redirect kserve pages to kserve website
 /docs/external-add-ons/kserve/first_isvc_kserve/ https://kserve.github.io/website/latest/get_started/first_isvc/
 /docs/external-add-ons/kserve/migration/         https://kserve.github.io/website/latest/admin/migration/
+
+# Kubeflow Pipelines v2 documentation now lives on Read the Docs.
+/docs/components/pipelines/concepts/                                                         https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/index.html
+/docs/components/pipelines/concepts/component/                                               https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/component.html
+/docs/components/pipelines/concepts/experiment/                                              https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/experiment.html
+/docs/components/pipelines/concepts/graph/                                                   https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/graph.html
+/docs/components/pipelines/concepts/ir-yaml/                                                 https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/ir-yaml.html
+/docs/components/pipelines/concepts/metadata/                                                https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/metadata.html
+/docs/components/pipelines/concepts/output-artifact/                                         https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/output-artifact.html
+/docs/components/pipelines/concepts/pipeline-root/                                           https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/pipeline-root.html
+/docs/components/pipelines/concepts/pipeline/                                                https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/pipeline.html
+/docs/components/pipelines/concepts/run-trigger/                                             https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/run-trigger.html
+/docs/components/pipelines/concepts/run/                                                     https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/run.html
+/docs/components/pipelines/concepts/step/                                                    https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/step.html
+/docs/components/pipelines/getting-started/                                                  https://kubeflow-pipelines.readthedocs.io/en/latest/guides/getting-started.html
+/docs/components/pipelines/interfaces/                                                       https://kubeflow-pipelines.readthedocs.io/en/latest/guides/interfaces.html
+/docs/components/pipelines/operator-guides/                                                  https://kubeflow-pipelines.readthedocs.io/en/latest/guides/operator-guides/index.html
+/docs/components/pipelines/operator-guides/configure-object-store/                           https://kubeflow-pipelines.readthedocs.io/en/latest/guides/operator-guides/configure-object-store.html
+/docs/components/pipelines/operator-guides/installation/                                     https://kubeflow-pipelines.readthedocs.io/en/latest/guides/operator-guides/installation/index.html
+/docs/components/pipelines/operator-guides/multi-user/                                       https://kubeflow-pipelines.readthedocs.io/en/latest/guides/operator-guides/multi-user.html
+/docs/components/pipelines/operator-guides/server-config/                                    https://kubeflow-pipelines.readthedocs.io/en/latest/guides/operator-guides/server-config.html
+/docs/components/pipelines/overview/                                                         https://kubeflow-pipelines.readthedocs.io/en/latest/guides/overview.html
+/docs/components/pipelines/reference/                                                        https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/index.html
+/docs/components/pipelines/reference/api/kubeflow-pipeline-api-spec/                         https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/api/kubeflow-pipeline-api-spec.html
+/docs/components/pipelines/reference/community-and-support/                                  https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/community-and-support.html
+/docs/components/pipelines/reference/component-spec/                                         https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/component-spec.html
+/docs/components/pipelines/reference/kfp-kubernetes/                                         https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/kfp-kubernetes.html
+/docs/components/pipelines/reference/sdk/                                                    https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/sdk.html
+/docs/components/pipelines/reference/version-compatibility/                                  https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/version-compatibility.html
+/docs/components/pipelines/user-guides/                                                      https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/index.html
+/docs/components/pipelines/user-guides/components/                                           https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/index.html
+/docs/components/pipelines/user-guides/components/additional-functionality/                  https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/additional-functionality.html
+/docs/components/pipelines/user-guides/components/compose-components-into-pipelines/         https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/compose-components-into-pipelines.html
+/docs/components/pipelines/user-guides/components/container-components/                      https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/container-components.html
+/docs/components/pipelines/user-guides/components/containerized-python-components/           https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/containerized-python-components.html
+/docs/components/pipelines/user-guides/components/importer-component/                        https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/importer-component.html
+/docs/components/pipelines/user-guides/components/lightweight-python-components/             https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/lightweight-python-components.html
+/docs/components/pipelines/user-guides/components/load-and-share-components/                 https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/load-and-share-components.html
+/docs/components/pipelines/user-guides/components/notebook-component/                        https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/components/notebook-component.html
+/docs/components/pipelines/user-guides/core-functions/                                       https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/index.html
+/docs/components/pipelines/user-guides/core-functions/build-advanced-pipeline/               https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/build-advanced-pipeline.html
+/docs/components/pipelines/user-guides/core-functions/caching/                               https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/caching.html
+/docs/components/pipelines/user-guides/core-functions/cli/                                   https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/cli.html
+/docs/components/pipelines/user-guides/core-functions/compile-a-pipeline/                    https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/compile-a-pipeline.html
+/docs/components/pipelines/user-guides/core-functions/connect-api/                           https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/connect-api.html
+/docs/components/pipelines/user-guides/core-functions/control-flow/                          https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/control-flow.html
+/docs/components/pipelines/user-guides/core-functions/execute-kfp-pipelines-locally/         https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/execute-kfp-pipelines-locally.html
+/docs/components/pipelines/user-guides/core-functions/platform-specific-features/            https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/platform-specific-features.html
+/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/                        https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/run-a-pipeline.html
+/docs/components/pipelines/user-guides/data-handling/                                        https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/data-handling/index.html
+/docs/components/pipelines/user-guides/data-handling/artifacts/                              https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/data-handling/artifacts.html
+/docs/components/pipelines/user-guides/data-handling/data-types/                             https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/data-handling/data-types.html
+/docs/components/pipelines/user-guides/data-handling/parameters/                             https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/data-handling/parameters.html
+/docs/components/pipelines/user-guides/data-handling/pipeline-root/                          https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/data-handling/pipeline-root.html
+/docs/components/pipelines/user-guides/migration/                                            https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html
 
 # ===============
 # IMPORTANT NOTE:

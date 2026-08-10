@@ -7,14 +7,14 @@ weight = 40
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
 ## Before you start
 
 This guide tells you the basic concepts of Kubeflow Pipelines step caching and how to use it. 
-This guide assumes that you already have Kubeflow Pipelines installed or want to use options in the [Kubeflow Pipelines deployment guide](/docs/components/pipelines/operator-guides/installation/) to deploy Kubeflow Pipelines.
+This guide assumes that you already have Kubeflow Pipelines installed or want to use options in the [Kubeflow Pipelines deployment guide](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/operator-guides/installation/index.html) to deploy Kubeflow Pipelines.
 
 ## What is step caching?
 

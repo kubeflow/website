@@ -7,7 +7,7 @@ weight = 3
 {{% alert title="Old Version" color="warning" %}}
 This page is about **Kubeflow Pipelines V1**, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -20,7 +20,7 @@ For example, if you host Kubeflow at `https://kubeflow.example.com`, the API wil
 
 {{% alert title="Tip" color="info" %}}
 We recommend using the [Kubeflow Pipelines Python SDK](/docs/components/pipelines/legacy-v1/reference/sdk/) as it provides a more user-friendly interface.
-See the [Connect SDK to the API](/docs/components/pipelines/user-guides/core-functions/connect-api/) guide for more information.
+See the [Connect SDK to the API](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/connect-api.html) guide for more information.
 {{% /alert %}}
 
 ### Authentication

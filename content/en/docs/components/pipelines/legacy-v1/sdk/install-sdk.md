@@ -7,7 +7,7 @@ weight = 20
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -124,4 +124,4 @@ The response should be something like this:
 * [See how to use the SDK](/docs/components/pipelines/legacy-v1/sdk/sdk-overview/).
 * [Build a component and a pipeline](/docs/components/pipelines/legacy-v1/sdk/component-development/).
 * [Get started with the UI](/docs/components/pipelines/legacy-v1/overview/quickstart).
-* [Understand pipeline concepts](/docs/components/pipelines/concepts/).
+* [Understand pipeline concepts](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/concepts/index.html).

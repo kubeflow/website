@@ -6,7 +6,7 @@ weight = 50
 {{% alert title="Old Version" color="warning" %}}
 This page is about __Kubeflow Pipelines V1__, please see the [V2 documentation](/docs/components/pipelines) for the latest information.
 
-Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](/docs/components/pipelines/user-guides/migration).
+Note, while the V2 backend is able to run pipelines submitted by the V1 SDK, we strongly recommend [migrating to the V2 SDK](https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/migration.html).
 For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.org/project/kfp/1.8.22/), and its reference documentation is [available here](https://kubeflow-pipelines.readthedocs.io/en/1.8.22/).
 {{% /alert %}}
 
@@ -53,7 +53,7 @@ Python function-based components make it easier to iterate quickly by letting yo
 component code as a Python function and generating the [component specification][component-spec] for you.
 This document describes how to build Python function-based components and use them in your pipeline.
 
-[component-spec]: /docs/components/pipelines/reference/component-spec/
+[component-spec]: https://kubeflow-pipelines.readthedocs.io/en/latest/guides/reference/component-spec.html
 
 ## Before you begin
 
@@ -76,7 +76,7 @@ from kfp.components import create_component_from_func
 3. Create an instance of the [`kfp.Client` class][kfp-client] following steps in [connecting to Kubeflow Pipelines using the SDK client][connect-api].
 
 [kfp-client]: https://kubeflow-pipelines.readthedocs.io/en/stable/source/client.html#kfp.Client
-[connect-api]: /docs/components/pipelines/user-guides/core-functions/connect-api
+[connect-api]: https://kubeflow-pipelines.readthedocs.io/en/latest/guides/user-guides/core-functions/connect-api.html
 
 
 ```python
