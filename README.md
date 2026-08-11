@@ -96,25 +96,16 @@ Follow the usual GitHub workflow of forking the repository on GitHub and then cl
 3. Initialize the Docsy submodule:
 
    ```bash
-   git submodule update --init --recursive
+   make setup
    ```
 
-4. Install Docsy dependencies:
+4. Start your local Hugo server:
 
    ```bash
-   # install the node packages (at the root of the repo)
-   # NOTE: ensure you have node 18 installed, possibly using nvm
-   npm install
+   make serve
    ```
 
-5. Start your local Hugo server:
-
-   ```bash
-   # NOTE: You should ensure that you are in the root directory of the repository.
-   hugo server -D
-   ```
-
-6. You can access your website at [http://localhost:1313/](http://localhost:1313/)
+5. You can access your website at [http://localhost:1313/](http://localhost:1313/)
 
 ### Useful docs
 
