@@ -14,7 +14,7 @@ The MLflow UI is a powerful interface for organizing, querying, and visualizing 
 ## Integration Overview
 
 This integration allows users to register KFP pipeline runs in MLflow, with the following features:
-- Track pipeline runs as MLflow experiments
+- Track pipeline runs as MLflow runs, organized under MLflow experiments
 - Use [MLflow Autolog](https://mlflow.org/docs/latest/ml/tracking/autolog/) in pipeline components to automatically log metrics, parameters, and models
 - View pipeline parameters and metrics in the MLflow UI
 - Organize related runs under custom experiments
@@ -24,7 +24,6 @@ This integration bridges the gap between pipeline orchestration and experiment t
 All tracked data is viewable in the MLflow UI, organized by experiments. You can specify a custom experiment name for each run, or use the default experiment configured by a cluster administrator.
 
 The following pipeline view in the KFP console:
-![Demo Pipeline View in KFP Console](/images/demo-pipeline-kfp-console.png)
 ![Demo Pipeline View in KFP Console](/images/demo-pipeline-kfp-console.png)
 
 Is displayed in the MLflow console as:
@@ -36,6 +35,7 @@ This page provides detailed instructions on how to set up the MLflow plugin for 
 
 ### MLflow Experiments
 MLflow experiments are a logical grouping of related runs. A run will always belong to exactly one experiment. If no experiment is specified, runs are logged to the default experiment (typically `"KFP-Default"` unless configured otherwise [by a cluster administrator](/docs/components/pipelines/operator-guides/mlflow-plugin/#mlflow-experiments)).
+
 ### MLflow Workspaces
 Organize your corresponding MLflow runs further by enabling and utilizing [MLflow workspaces](/docs/components/pipelines/operator-guides/mlflow-plugin/#mlflow-workspaces) at either the API server level or namespace-level.
 
@@ -59,8 +59,8 @@ MLflow environment variable injection has end-user code applications beyond `aut
 - `MLFLOW_TRACKING_USERNAME` and `MLFLOW_TRACKING_PASSWORD`: Credentials (when using basic auth)
 
 ### Visualize KFP Run Parameters and Metrics in MLflow
-This integration provides support for scalar metric [artifacts](/docs/components/pipelines/user-guides/data-handling/artifacts/), referred to as simply "metrics" in the MLflow console,
-as well as KFP pipeline run parameters. Users can visualize these values in the console as displayed below:
+This integration automatically logs scalar metric [artifacts](/docs/components/pipelines/user-guides/data-handling/artifacts/) (referred to as "metrics" in the MLflow console)
+and KFP pipeline run parameters to MLflow. These values are automatically visualized in the MLflow console as displayed below:
 
 ![Run Metrics View in MLflow Console](/images/run-metrics-mlflow-console.png)
 
@@ -79,5 +79,5 @@ Note: These overrides are only available through direct API calls, not through t
 
 ### Cached Pipeline Runs and MLflow
 Pipeline component caching allows users to reuse the results of a previous pipeline run, if the results are available in the cache.
-When a pipeline component run is retrieved from the cache, this integration will create a new MLflow run for the cached component, 
-as it normally would. There is no changed MLflow behavior for a run retrieved from a cache, than a run completed in live time. 
+When a pipeline component run is retrieved from the cache, this integration will create a new MLflow run for the cached component,
+as it normally would. Cached runs and normally executed runs are represented the same way in MLflow. 

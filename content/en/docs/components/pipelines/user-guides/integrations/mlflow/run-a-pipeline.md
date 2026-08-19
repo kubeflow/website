@@ -13,7 +13,7 @@ Follow the steps below to submit a pipeline run to the KFP API server and view t
 
 ### Add run-level MLflow config overrides
 You can specify [run-level MLflow config overrides](/docs/components/pipelines/user-guides/integrations/mlflow/overview/#run-level-mlflow-config-overrides) on your pipeline run.
-Note that run-level MLflow config overrides are not supported in the KFP UI, and to apply these configs, you must submit the run through a cURL request to the KFP API server.
+Note that run-level MLflow config overrides are not supported in the KFP UI, and to apply these configs, you must submit the run through a direct HTTP request to the KFP API server.
 See the following example for correct formatting. Execute the request and skip ahead to step 2 below.
 ```shell
 curl -X POST "http://localhost:3000/apis/v2beta1/runs" \
