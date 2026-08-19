@@ -64,5 +64,5 @@ def parent():
     task = child()
 
 ```
-
+Note that the intermediary, "child" pipeline is represented as a separate MLflow run:
 ![Nested Pipeline View in MLflow Console](/images/nested-pipeline-mlflow-console.png)
