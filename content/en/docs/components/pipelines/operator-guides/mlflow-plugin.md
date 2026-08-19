@@ -28,12 +28,12 @@ For **basic-auth** and **bearer** authentication, credentials are provided via a
 
 ## Security
 
-The KFP MLflow plugin uses TLS to secure communication with the MLflow server. Configure the following TLS settings in your [API server configuration](#configuring-the-kfp-mlflow-plugin):
+The KFP MLflow plugin supports TLS to secure communication with the MLflow server. When using HTTPS endpoints, configure the following TLS settings in your [API server configuration](#configuring-the-kfp-mlflow-plugin):
 
 - **caBundlePath**: Path to the CA certificate bundle used to verify the MLflow server's certificate
 - **insecureSkipVerify**: Defaults to `false` to enforce certificate verification
 
-For production deployments, always use valid TLS certificates and keep `insecureSkipVerify` set to `false`.
+For production deployments, it is strongly recommended to use HTTPS with valid TLS certificates and keep `insecureSkipVerify` set to `false`.
 
 ### CA Certificate Configuration
 
@@ -63,7 +63,7 @@ volumeMounts:
 3. Set `plugins.mlflow.tls.caBundlePath` to the mounted path (e.g., `/kfp/certs/ca.crt`) in your API server configuration.
 
 4. For driver/launcher pods, ensure the CA certificate is trusted using one of these methods:
-   - Use cluster-wide CA injection mechanisms
+   - Use cluster-wide CA injection mechanisms via environment variables (e.g., `CABUNDLE_SECRET_NAME` or `CABUNDLE_CONFIGMAP_NAME`)
    - Mount the same ConfigMap in driver/launcher pods via platform-specific configuration
    - Use a base image that includes your organization's CA certificates
 
@@ -79,7 +79,7 @@ Note that if a name is specified for an experiment that does not exist, KFP will
 
 ## MLflow Workspaces
 
-MLflow workspaces provide an optional organizational layer for multi-tenant deployments. When using the **kubernetes** authentication type with the [Kubeflow/MLflow Integration](https://github.com/kubeflow/mlflow-integration#mlflow-kubeflow-integration) extension, workspaces can be automatically mapped to Kubernetes namespaces for consistent multi-tenancy across KFP and MLflow.
+[MLflow workspaces](https://mlflow.org/docs/latest/self-hosting/workspaces/) provide an optional organizational layer for multi-tenant deployments. When using the **kubernetes** authentication type with the [Kubeflow/MLflow Integration](https://github.com/kubeflow/mlflow-integration#mlflow-kubeflow-integration) extension, workspaces can be automatically mapped to Kubernetes namespaces for consistent multi-tenancy across KFP and MLflow.
 
 **Workspace Configuration:**
 - When `authType` is set to `kubernetes`, workspaces are **enabled by default**
@@ -116,12 +116,12 @@ Replace the placeholder values with your deployment-specific values:
 - **tls**: TLS configuration for MLflow communication
   - **insecureSkipVerify**: Set to `true` to skip TLS certificate verification (not recommended for production)
   - **caBundlePath**: Path to the CA certificate bundle for your MLflow server. See [CA Certificate Configuration](#ca-certificate-configuration) for setup instructions.
-- **settings**: See the [user guide](/docs/components/pipelines/user-guides/integrations/mlflow/overview/) for a complete list of MLflow plugin settings
+- **settings**: See [Plugin Optional Settings](#plugin-optional-settings) below for a complete list of MLflow plugin settings
 
 ### Plugin Optional Settings
 | Field               | Description                                                                                                                                                                                                                              |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| authType            | Authentication method for the MLflow server. Supported: `kubernetes`, `bearer`, `basic-auth`, `none`. Default: `none`                                                                                                                    |
+| authType            | Authentication method for the MLflow server. Supported: `kubernetes`, `bearer`, `basic-auth`, `none`. Default: `kubernetes`                                                                                                                    |
 | credentialSecretRef | When using `bearer` or `basic-auth`, create a Secret named `kfp-mlflow-credentials` in each run namespace. Set `credentialSecretRef.tokenKey` for bearer authentication, or `credentialSecretRef.usernameKey` and `credentialSecretRef.passwordKey` for basic authentication, to the corresponding Secret data keys. The Secret name is fixed and cannot be configured.                                                |
 | workspacesEnabled    | Enable [MLflow workspaces](/docs/components/pipelines/operator-guides/mlflow-plugin/#mlflow-workspaces) for multi-tenancy in organizations. When `authType` is `kubernetes`, this defaults to `true`. Otherwise, it defaults to `false`. |
 | defaultExperimentName | Default experiment name when none is specified for a pipeline run. Defaults to `"KFP-Default"`.                                                                                                                                          |
@@ -134,7 +134,7 @@ Replace the placeholder values with your deployment-specific values:
 
 ### MLflow Plugin Configuration in Multi-User Mode
 
-For multi-user mode deployments, you can apply namespace-specific MLflow configuration using a `kfp-launcher` ConfigMap. This allows different namespaces to connect to different MLflow instances or use different authentication methods:
+For multi-user mode deployments, you can apply namespace-specific MLflow configuration using a `kfp-launcher` ConfigMap. This allows different namespaces to customize plugin settings. When using `basic-auth` or `bearer` authentication configured at the API server level, this ConfigMap is required to specify the credential secret reference so that the namespace has access to the MLflow auth credentials:
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -145,11 +145,10 @@ data:
   defaultPipelineRoot: "minio://mlpipeline/v2/artifacts"
   plugins.mlflow: |
     {
-      "endpoint": "https://mlflow.internal.example.com",
-      "timeout": "30s",
       "settings": {
-        "workspacesEnabled": false,
-        "authType": "basic-auth",
+        "experimentDescription": "Custom experiment description for this namespace",
+        "defaultExperimentName": "namespace-specific-experiment",
+        "injectUserEnvVars": true,
         "credentialSecretRef": {
           "usernameKey": "username",
           "passwordKey": "password"
@@ -157,7 +156,7 @@ data:
       }
     }
 ```
-The example above configures basic authentication for the MLflow server. When using `basic-auth` or `bearer` authentication, you must create a secret named `kfp-mlflow-credentials` in the same namespace:
+The example above shows namespace-specific plugin settings. When using `basic-auth` or `bearer` authentication (configured at the API server level), you must create a secret named `kfp-mlflow-credentials` in the same namespace:
 
 ```yaml
 apiVersion: v1
@@ -181,9 +180,11 @@ stringData:
   token: "<bearer-token>"
 ```
 
-### Restart the API Server
+### Applying Configuration Changes
 
-After updating the configuration, restart the KFP API server to apply the changes:
+**Note:** This restart is only required for changes to the API server's `config.json`. Changes to namespace-level `kfp-launcher` ConfigMaps take effect automatically without requiring an API server restart.
+
+After updating the API server configuration, restart the KFP API server to apply the changes:
 
 ```bash
 kubectl rollout restart deployment/ml-pipeline -n kubeflow
