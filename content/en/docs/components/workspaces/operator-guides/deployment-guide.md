@@ -9,7 +9,7 @@ weight: 10
 This guide describes how to deploy Kubeflow Workspaces (Kubeflow Notebooks v2). Choose the
 installation method that matches your environment.
 
-## Install Kubeflow Workspaces standalone
+## 1. Standalone installation
 
 {{% alert title="Coming soon" color="info" %}}
 Standalone installation will be included in a future release, subscribe to the related epic [kubeflow/notebooks#1336](https://github.com/kubeflow/notebooks/issues/1336) for more information.
@@ -17,7 +17,7 @@ Standalone installation will be included in a future release, subscribe to the r
 
 <!-- TODO: document standalone install once standalone mode is supported -->
 
-## Install Kubeflow Workspaces alongside the Kubeflow Community Distribution
+## 2. Community Distribution installation
 
 ### Step 1: Install the Kubeflow Community Distribution
 
