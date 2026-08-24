@@ -64,6 +64,7 @@ Below is a table of organizations that contribute to Kubeflow and offer commerci
 | Aranui Solutions             | [Aranui Solutions](https://www.aranui.solutions/services)                                                                                                       |
 | Canonical                    | [Charmed Kubeflow](https://ubuntu.com/kubeflow)                                                                                                     |
 | Freelancer Julius von Kohout | [LinkedIn](https://de.linkedin.com/in/juliusvonkohout/), [Slack](https://cloud-native.slack.com/team/U06LW431SJF), [GitHub](https://github.com/juliusvonkohout) |
+| RAICS.AI                     | [RAICS.AI](https://raics.ai/) |
 | Red Hat                      | [Red Hat](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai)                                                                        |
 | Other Providers              | Please reach out to the Kubeflow Steering Committee with proof of significant contributions to the Kubeflow open source project                                 |
 
