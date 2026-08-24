@@ -9,3 +9,28 @@
 // chroma (code highlighter)
 // --------------------------------------------------
 @import "chroma/tango";
+
+// --------------------------------------------------
+// announcement banner (translucent light over content)
+// --------------------------------------------------
+.kf-announcement-banner {
+  background-color: rgba(255, 255, 255, 0.35);
+  color: $kf-darkblue;
+  border-bottom: 1px solid rgba(0, 40, 170, 0.15);
+
+  a {
+    color: $kf-darkblue;
+  }
+
+  // pages with a dark cover image (homepage): keep the banner dark
+  // regardless of theme, so it doesn't sit as a pale strip on the cover
+  &--cover {
+    background-color: rgba(13, 19, 33, 0.45);
+    color: $white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    a {
+      color: $white;
+    }
+  }
+}

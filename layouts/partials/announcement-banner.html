@@ -1,0 +1,37 @@
+{{ $cover := and
+    (.HasShortcode "blocks/cover")
+    (not .Site.Params.ui.navbar_translucent_over_cover_disable)
+-}}
+{{ with .Site.Params.announcement }}{{ if .enable }}
+<style>
+  :root {
+    --kf-banner-height: 2.25rem;
+  }
+</style>
+<div class="kf-announcement-banner {{ if $cover }}kf-announcement-banner--cover{{ end }}" id="kf-announcement-banner">
+  <a href="{{ .url }}" target="_blank" rel="noopener">{{ .text }}</a>
+  <button class="kf-announcement-banner__close" id="kf-announcement-banner-close" aria-label="Dismiss announcement">&times;</button>
+</div>
+<script>
+  (function () {
+    var key = "kf-banner-dismissed:" + {{ .url | jsonify }};
+    var banner = document.getElementById("kf-announcement-banner");
+    var dismiss = function () {
+      banner.style.display = "none";
+      document.documentElement.style.setProperty("--kf-banner-height", "0rem");
+    };
+    try {
+      if (localStorage.getItem(key)) {
+        dismiss();
+        return;
+      }
+    } catch (e) {}
+    document.getElementById("kf-announcement-banner-close").addEventListener("click", function () {
+      try {
+        localStorage.setItem(key, "1");
+      } catch (e) {}
+      dismiss();
+    });
+  })();
+</script>
+{{ end }}{{ end }}

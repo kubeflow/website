@@ -110,13 +110,13 @@
     .td-sidebar {
       padding-left: 0;
       padding-right: 0.25rem;
-      padding-top: 7rem;
+      padding-top: calc(7rem + var(--kf-banner-height, 0rem));
       padding-bottom: 0;
 
       .td-sidebar__inner {
         position: sticky;
-        top: 7rem;
-        height: calc(100vh - 7rem);
+        top: calc(7rem + var(--kf-banner-height, 0rem));
+        height: calc(100vh - 7rem - var(--kf-banner-height, 0rem));
 
         padding-left: 0;
         padding-right: 0;
@@ -125,7 +125,7 @@
 
     // main content area
     main {
-      padding-top: 7rem;
+      padding-top: calc(7rem + var(--kf-banner-height, 0rem));
       padding-bottom: 3rem;
     }
 
@@ -134,7 +134,7 @@
       height: unset;
       padding-left: 0;
       padding-right: 0;
-      padding-top: 7rem;
+      padding-top: calc(7rem + var(--kf-banner-height, 0rem));
       padding-bottom: 0;
 
       // the default theme makes the outer div stickey, but we use the inner div
@@ -144,8 +144,8 @@
 
       .td-sidebar-toc__inner {
         position: sticky;
-        top: 7rem;
-        height: calc(100vh - 7rem);
+        top: calc(7rem + var(--kf-banner-height, 0rem));
+        height: calc(100vh - 7rem - var(--kf-banner-height, 0rem));
 
         padding-left: 1rem;
         padding-right: 1.5rem;
@@ -384,6 +384,60 @@ nav.foldable-nav {
 }
 
 // --------------------------------------------------
+// site-wide announcement banner above the navbar
+// height flows through --kf-banner-height (set by the partial);
+// colors are per theme in light/_styles.scss and dark/_styles.scss
+// --------------------------------------------------
+.kf-announcement-banner {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  font-size: 0.875rem;
+  padding: 0.4rem 2.5rem;
+  position: relative;
+
+  a {
+    font-weight: 600;
+    text-decoration: underline;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+    height: 100%;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0 0.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 34; // above .td-navbar (32)
+    height: var(--kf-banner-height, 0rem);
+    line-height: calc(var(--kf-banner-height, 0rem) - 0.8rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// --------------------------------------------------
 // custom navbar with larger logo, dropdown on mobile
 // --------------------------------------------------
 .navbar-bg-onscroll {
@@ -394,6 +448,11 @@ nav.foldable-nav {
   min-height: auto;
 
   background-color: $navbar-bg;
+
+  // sits below the announcement banner (docsy sets top: 0)
+  @include media-breakpoint-up(md) {
+    top: var(--kf-banner-height, 0rem);
+  }
 
   .vr {
     display: inline-block;

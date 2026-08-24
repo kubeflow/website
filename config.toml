@@ -61,11 +61,11 @@ ignoreFiles = []
 ###############################################################################
 [menu]
   [[menu.main]]
-    name = "🎉 Kubeflow is now CNCF Graduated, Read more here"
-    weight = -1000
-    pre = ""
-    post = ""
-    url = "https://www.cncf.io/announcements/2026/08/17/cncf-announces-kubeflows-graduation-solidifying-the-standard-for-cloud-native-ai-operations/"
+    name = "Join us at KubeCon NA"
+    weight = -999
+    pre = "<i class='fas fa-calendar-days pr-2'></i>"
+    post = "<br><span class='badge badge-warning'>November 9-12, Salt Lake City, Utah</span>"
+    url = "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/"
 #  [[menu.main]]
 #      name = "" 
 #      weight = -999
@@ -132,6 +132,14 @@ section = [ "HTML" ]
 ###############################################################################
 [params.drawio]
 enable = true
+
+###############################################################################
+# Site-wide announcement banner (shown above the top navbar)
+###############################################################################
+[params.announcement]
+  enable = true
+  text = "🎉 Kubeflow is now a CNCF graduated project — Read more"
+  url = "https://www.cncf.io/announcements/2026/08/17/cncf-announces-kubeflows-graduation-solidifying-the-standard-for-cloud-native-ai-operations/"
 
 ###############################################################################
 # Docsy - Image processing configuration

@@ -36,7 +36,7 @@ footer {
   .td-offset-anchor:target {
     display: block;
     position: relative;
-    top: -4rem;
+    top: calc(-4rem - var(--kf-banner-height, 0rem));
     visibility: hidden;
   }
 
@@ -46,8 +46,8 @@ footer {
   h5[id]:before {
     display: block;
     content: " ";
-    margin-top: -5rem;
-    height: 5rem;
+    margin-top: calc(-5rem - var(--kf-banner-height, 0rem));
+    height: calc(5rem + var(--kf-banner-height, 0rem));
     visibility: hidden;
   }
 }
