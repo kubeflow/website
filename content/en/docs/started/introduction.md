@@ -8,7 +8,7 @@ weight = 1
 
 [Kubeflow](https://www.kubeflow.org/) is the Cloud Native AI platform
 
-Kubeflow is composed of modular, open source projects that form The Kubernetes-native stack
+Kubeflow is composed of modular, open source projects that form the Kubernetes-native stack
 for Data & AI workloads. Whether you are an AI practitioner, a platform administrator, or a
 decision-maker, Kubeflow offers modular, scalable, and extensible tools to support your
 HPC, Data, and AI use-cases.
