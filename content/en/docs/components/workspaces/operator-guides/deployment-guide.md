@@ -168,9 +168,9 @@ kubectl annotate storageclass standard \
 Start from the upstream samples, which include ready-to-use `WorkspaceKind` definitions and adjust
 them for your usecase and cluster resources:
 
-- [JupyterLab](https://github.com/kubeflow/notebooks/blob/{{% kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/codeserver_v1beta1_workspacekind.yaml) (contains a lot of comments/explanations)
+- [JupyterLab](https://github.com/kubeflow/notebooks/blob/{{% kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/jupyterlab_v1beta1_workspacekind.yaml) (contains a lot of comments/explanations)
 - [VSCode (code-server)](https://github.com/kubeflow/notebooks/blob/{{% kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/codeserver_v1beta1_workspacekind.yaml)
-- [RStudio](https://github.com/kubeflow/notebooks/blob/{{% kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/codeserver_v1beta1_workspacekind.yaml)
+- [RStudio](https://github.com/kubeflow/notebooks/blob/{{% kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/rstudio_v1beta1_workspacekind.yaml)
 
 ```bash
 # Apply the sample WorkspaceKinds (and an example Workspace)
