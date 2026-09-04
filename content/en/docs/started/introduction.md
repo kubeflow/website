@@ -11,19 +11,21 @@ weight = 1
 Kubeflow is composed of modular, open source projects that form the Kubernetes-native stack
 for data & AI workloads. Whether you are an AI practitioner, a platform administrator, or a
 decision-maker, Kubeflow offers modular, scalable, and extensible tools to support your
-HPC, data, ML, and AI use-cases.
+data, AI/ML, and HPC use-cases.
 
 ## Kubeflow Mission
 
 Kubeflow's mission is to bridge the Data, AI, and Cloud Native ecosystems. We enable teams to
 deliver more models, agents, and AI applications into production with well-lit paths across
 [the AI lifecycle](/docs/started/architecture/#kubeflow-landscape-in-the-ai-lifecycle). By bringing
-together the skills and expertise of a diverse global community, our goal is to be the standard for
-Data & AI workloads on Kubernetes.
+together the skills and expertise of an open global community, our goal is to be the standard for
+data & AI workloads on Kubernetes.
+
+The Kubeflow Community and Subprojects embrace the following core principles:
 
 - **Simple**: Run workloads at any scale without becoming a Kubernetes expert
-- **Portable**: Run the same code on a local laptop, on premises, or in any cloud
-- **Scalable**: Scale from large training jobs to high-throughput AI agents
+- **Portable**: Use the same code on a local laptop, on-premises, or in any cloud
+- **Scalable**: Manage hyperscale training jobs and high-throughput AI agents
 - **Composable**: Mix and match tools across the AI lifecycle
 
 ## Kubeflow Subprojects
