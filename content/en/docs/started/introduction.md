@@ -17,16 +17,14 @@ HPC, data, ML, and AI use-cases.
 
 Kubeflow's mission is to bridge the Data, AI, and Cloud Native ecosystems. We enable teams to
 deliver more models, agents, and AI applications into production with well-lit paths across
-[the AI lifecycle](/docs/started/architecture/#kubeflow-landscape-in-the-ai-lifecycle). By working
-across these diverse global communities and bringing together different skills and expertise, our
-goal is to standardize AI workloads on Kubernetes.
+[the AI lifecycle](/docs/started/architecture/#kubeflow-landscape-in-the-ai-lifecycle). By bringing
+together the skills and expertise of a diverse global community, our goal is to be the standard for
+Data & AI workloads on Kubernetes.
 
-The Kubeflow community delivers on this mission by building every project around the same core principles:
-
-- **Simple**: Run workloads at any scale without becoming a Kubernetes expert.
-- **Portable**: Run the same code on a local laptop, on premises, or in any cloud.
-- **Scalable**: Scale from large training jobs to high-throughput AI agents.
-- **Composable**: Mix and match tools across the AI lifecycle.
+- **Simple**: Run workloads at any scale without becoming a Kubernetes expert
+- **Portable**: Run the same code on a local laptop, on premises, or in any cloud
+- **Scalable**: Scale from large training jobs to high-throughput AI agents
+- **Composable**: Mix and match tools across the AI lifecycle
 
 ## Kubeflow Subprojects
 
