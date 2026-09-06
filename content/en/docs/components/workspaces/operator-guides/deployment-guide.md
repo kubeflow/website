@@ -56,13 +56,13 @@ repository. We reference them directly with Kustomize's remote-base support, so 
 **not** depend on the Community Distribution manifests being checked out locally.
 
 Pin the deployment to a released **v2** tag so the install is reproducible. This guide targets `{{%
-kf-workspaces-version %}}` and the commands below default to it. To use a different release, export
+workspaces/kf-workspaces-version %}}` and the commands below default to it. To use a different release, export
 `KUBEFLOW_WORKSPACE_TAG` (find the latest tag on the [releases
 page](https://github.com/kubeflow/notebooks/releases)):
 
 ```bash
-# Optional: override the pinned tag (defaults to {{% kf-workspaces-version %}}).
-export KUBEFLOW_WORKSPACE_TAG={{% kf-workspaces-version %}}
+# Optional: override the pinned tag (defaults to {{% workspaces/kf-workspaces-version %}}).
+export KUBEFLOW_WORKSPACE_TAG={{% workspaces/kf-workspaces-version %}}
 ```
 
 Create a self-contained `kustomization.yaml` that pulls the backend, controller, and frontend
@@ -81,9 +81,9 @@ kind: Kustomization
 # See this for the current status:
 # https://www.kubeflow.org/docs/components/notebooks/notebooks-v2-pre-ga-banner
 resources:
-- "github.com/kubeflow/notebooks//workspaces/backend/manifests/kustomize/overlays/istio?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% kf-workspaces-version %}}}"
-- "github.com/kubeflow/notebooks//workspaces/controller/manifests/kustomize/overlays/istio?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% kf-workspaces-version %}}}"
-- "github.com/kubeflow/notebooks//workspaces/frontend/manifests/kustomize/overlays/istio?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% kf-workspaces-version %}}}"
+- "github.com/kubeflow/notebooks//workspaces/backend/manifests/kustomize/overlays/istio?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% workspaces/kf-workspaces-version %}}}"
+- "github.com/kubeflow/notebooks//workspaces/controller/manifests/kustomize/overlays/istio?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% workspaces/kf-workspaces-version %}}}"
+- "github.com/kubeflow/notebooks//workspaces/frontend/manifests/kustomize/overlays/istio?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% workspaces/kf-workspaces-version %}}}"
 EOF
 kubectl apply --kustomize .
 ```
@@ -168,13 +168,13 @@ kubectl annotate storageclass standard \
 Start from the upstream samples, which include ready-to-use `WorkspaceKind` definitions and adjust
 them for your usecase and cluster resources:
 
-- [JupyterLab](https://github.com/kubeflow/notebooks/blob/{{% kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/jupyterlab_v1beta1_workspacekind.yaml) (contains a lot of comments/explanations)
-- [VSCode (code-server)](https://github.com/kubeflow/notebooks/blob/{{% kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/codeserver_v1beta1_workspacekind.yaml)
-- [RStudio](https://github.com/kubeflow/notebooks/blob/{{% kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/rstudio_v1beta1_workspacekind.yaml)
+- [JupyterLab](https://github.com/kubeflow/notebooks/blob/{{% workspaces/kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/jupyterlab_v1beta1_workspacekind.yaml) (contains a lot of comments/explanations)
+- [VSCode (code-server)](https://github.com/kubeflow/notebooks/blob/{{% workspaces/kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/codeserver_v1beta1_workspacekind.yaml)
+- [RStudio](https://github.com/kubeflow/notebooks/blob/{{% workspaces/kf-workspaces-version %}}/workspaces/controller/manifests/kustomize/samples/rstudio_v1beta1_workspacekind.yaml)
 
 ```bash
 # Apply the sample WorkspaceKinds (and an example Workspace)
-kubectl apply --kustomize "github.com/kubeflow/notebooks/workspaces/controller/manifests/kustomize/samples?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% kf-workspaces-version %}}}"
+kubectl apply --kustomize "github.com/kubeflow/notebooks/workspaces/controller/manifests/kustomize/samples?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% workspaces/kf-workspaces-version %}}}"
 ```
 
 <!-- TODO: Should we strip the WS & common resources from the samples? -->
