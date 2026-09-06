@@ -15,7 +15,7 @@ Everything else is configured by the user at session creation time — see the
 
 ## Prerequisites
 
-- Kubeflow Workspaces `{{% kf-workspaces-version %}}` or later
+- Kubeflow Workspaces `{{% workspaces/kf-workspaces-version %}}` or later
 - [Kubeflow Spark Operator](https://spark.kubeflow.org/) with the `SparkConnect` CRD
   installed and the operator watching your user namespaces
 - The aggregated `kubeflow-spark-edit` ClusterRole present in the cluster
