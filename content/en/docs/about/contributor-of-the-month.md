@@ -18,3 +18,4 @@ Sponsors will be submitting the nominations in the following [link](https://form
 | Date     | Name             | GitHub Handle                                          |
 | -------- | ---------------- | ------------------------------------------------------ |
 | Jul 2026 | Christian Heusel |[@christian-heusel](https://github.com/christian-heusel)|
+| Aug 2026 | Siddhant Jain    |[@Raakshass](https://github.com/Raakshass)              |
