@@ -662,7 +662,7 @@ nav.foldable-nav {
     margin: 0 0 1.5em 1.5em;
   }
 
-  #overview, #pageContent, #cncf, #community, #adopters {
+  #overview, #mission, #pageContent, #cncf, #community, #adopters {
     padding: 4rem 0 4rem 0 !important;
   }
 
@@ -726,6 +726,7 @@ nav.foldable-nav {
   }
 
   #overview p,
+  #mission p,
   #community p {
     font-size: 1.125em;
   }
@@ -811,6 +812,43 @@ nav.foldable-nav {
     max-width: 70rem;
   }
 
+  #mission {
+    .value-card {
+      width: 100%;
+      padding: 1.75rem 1.25rem;
+      border-radius: 0.5rem;
+      background: $home-card-body-bg;
+      border: 1px solid rgba($kf-blue, 0.3);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba($kf-blue, 0.2);
+        border-color: $kf-blue;
+      }
+
+      .value-icon {
+        font-size: 2rem;
+        line-height: 1;
+        color: $home-card-body-title-color;
+        margin-bottom: 0.9rem;
+      }
+
+      .value-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: $home-card-body-title-color;
+        margin-bottom: 0.5rem;
+      }
+
+      .value-text {
+        font-size: 1rem;
+        color: $home-card-body-color;
+        margin-bottom: 0;
+      }
+    }
+  }
+
   #community {
     border-top: 0.1rem solid $home-section-border-color;
     border-bottom: 0.1rem solid $home-section-border-color;
@@ -844,6 +882,7 @@ nav.foldable-nav {
 
   @include media-breakpoint-up(sm) {
     #overview,
+    #mission,
     #community {
       font-size: 1.125em;
     }

@@ -6,23 +6,34 @@ weight = 1
 
 ## What is Kubeflow
 
-[Kubeflow](https://www.kubeflow.org/) is the foundation of tools for AI Platforms on Kubernetes.
+[Kubeflow](https://www.kubeflow.org/) is _the_ Cloud Native AI platform
 
-AI platform teams can build on top of Kubeflow by using each subproject independently or deploying the
-entire Kubeflow Community Distribution to meet their specific needs. The Kubeflow Community Distribution
-is composable, modular, portable, and scalable, backed by an ecosystem of Kubernetes-native
-projects that cover every stage of the [AI lifecycle](https://www.kubeflow.org/docs/started/architecture/#kubeflow-landscape-in-the-ai-lifecycle).
+Kubeflow is composed of modular, open source projects that form the Kubernetes-native stack
+for data & AI workloads. Whether you are an AI practitioner, a platform administrator, or a
+decision-maker, Kubeflow offers modular, scalable, and extensible tools to support your
+data, AI/ML, and HPC use-cases.
 
-Whether you’re an AI practitioner, a platform administrator, or a team of developers, Kubeflow
-offers modular, scalable, and extensible tools to support your AI use cases.
+## Kubeflow Mission
+
+Kubeflow's mission is to bridge the Data, AI, and Cloud Native ecosystems. We enable teams to
+deliver more models, agents, and AI applications into production with well-lit paths across
+[the AI lifecycle](/docs/started/architecture/#kubeflow-landscape-in-the-ai-lifecycle). By bringing
+together the skills and expertise of an open global community, our goal is to be the standard for
+data & AI workloads on Kubernetes.
+
+The Kubeflow Community and Subprojects embrace the following core principles:
+
+- **Simple**: Run workloads at any scale without becoming a Kubernetes expert
+- **Portable**: Use the same code on a local laptop, on-premises, or in any cloud
+- **Scalable**: Manage hyperscale training jobs and high-throughput AI agents
+- **Composable**: Mix and match tools across the AI lifecycle
 
 ## Kubeflow Subprojects
 
-Kubeflow is composed of multiple open source projects that address different aspects
-of the AI lifecycle. These projects are designed to be usable both independently and as part of the
+Kubeflow subprojects are designed to be usable both independently and as part of the
 Kubeflow Distribution. This provides flexibility for users who may not need the full
-end-to-end AI platform capabilities but want to leverage specific functionalities, such as model
-training or model serving.
+end-to-end AI platform capabilities but want to leverage specific functionalities, such as
+data processing, model training, or agentic workloads.
 
 You can find list of Kubeflow subprojects in [the installation page](/docs/started/installing-kubeflow/#kubeflow-subprojects).
 
@@ -32,7 +43,7 @@ If you are interested to become Kubeflow subproject,
 ## Kubeflow Ecosystem
 
 Kubeflow has always fostered a strong community-driven culture and actively supports projects
-that build on, integrate with, or complement Kubeflow sub-projects. As part of this effort,
+that build on, integrate with, or complement Kubeflow subprojects. As part of this effort,
 the Kubeflow community established the Kubeflow Ecosystem to highlight projects that are valuable
 to the broader community and demonstrate maturity, sustainability, and excellence within their respective domains.
 
@@ -66,28 +77,7 @@ Watch the following video which provides an introduction to Kubeflow.
 
 {{< youtube id="cTZArDgbIWw" title="Introduction to Kubeflow">}}
 
-## The Kubeflow Mission
-
-Our goal is to make scaling AI models and deploying them to
-production as simple as possible, by letting Kubernetes do what it's great at:
-
-- Easy, repeatable, portable deployments on a diverse infrastructure
-  (for example, experimenting on a laptop, then moving to an on-premises
-  cluster or to the cloud).
-- Deploying and managing loosely-coupled microservices.
-- Scaling based on demand.
-
-Because AI practitioners use a diverse set of tools, one of the key goals is to
-customize the stack based on user requirements (within reason) and let the
-system take care of the "boring stuff". While we have started with a narrow set
-of technologies, we are working with many different projects to include
-additional tooling.
-
-Ultimately, we want to have a set of simple manifests that give you an easy to
-use AI stack _anywhere_ Kubernetes is already running, and that can self
-configure based on the cluster it deploys into.
-
-## History
+## Kubeflow History
 
 Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/)
 internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/).
