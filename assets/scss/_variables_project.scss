@@ -6,6 +6,23 @@ html.smooth-scroll {
   scroll-behavior: smooth;
 }
 
+// `.td-navbar` is `position: fixed` only from Bootstrap's `md` breakpoint up, so
+// only reserve room for it there. Without this, following an in-page anchor or a
+// table of contents entry scrolls the target heading underneath the navbar. The
+// navbar is 109px tall between `md` and `lg` and 106px above that; the extra 1rem
+// keeps the heading off it.
+//
+// This has to live in this file. `_docsy_main.scss` and `_styles_project.scss` are
+// imported inside the `[data-theme=...]` blocks in `main.scss`, so an `html` rule
+// there would compile to `[data-theme=light] html` and never match. This file is
+// imported before Bootstrap's mixins, hence the written-out breakpoint rather than
+// `media-breakpoint-up(md)`.
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 125px;
+  }
+}
+
 // Bootstrap container-max-widths
 // NOTE: we increase the max-widths to make the content wider compared to the Bootstrap defaults
 $container-max-widths: (
