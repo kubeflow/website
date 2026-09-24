@@ -55,6 +55,14 @@ Kubeflow Pipelines can be deployed with pod-to-pod TLS enabled. The API server s
 
 Deploy KFP on a KinD cluster with pod-to-pod TLS enabled using the Makefile target [here](https://github.com/kubeflow/pipelines/blob/master/backend/Makefile). The corresponding manifests can be manually accessed [here](https://github.com/kubeflow/pipelines/tree/master/manifests/kustomize/env/cert-manager/platform-agnostic-standalone-tls). 
 
+## Deploying Kubeflow Pipelines with PostgreSQL
+
+PostgreSQL configuration is available only for development and evaluation; it is not supported for production KFP 2.18 deployments. KFP 2.18 still depends on ML Metadata (MLMD), whose PostgreSQL backend has a [known concurrency limitation](https://github.com/kubeflow/pipelines/issues/14353): concurrent first-time metadata type creation can fail runs and leave duplicate metadata type records. Use the default MySQL-backed deployment for production.
+
+For development or evaluation, KFP components and manifests can be configured with PostgreSQL using the `pgx` driver through the `platform-agnostic-postgresql` and `platform-agnostic-multi-user-postgresql` overlays. The available overlays require the execution cache enabled, with proxy and pod-to-pod TLS disabled.
+
+For development and evaluation instructions, see [Database Configuration](/docs/components/pipelines/operator-guides/configure-database/).
+
 ## Accessing the Kubeflow Pipelines UI
 
 The Kubeflow Pipelines deployment requires approximately 3 minutes to complete.
