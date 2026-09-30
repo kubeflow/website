@@ -8,8 +8,77 @@ weight = 89
 We are transitioning to a Calendar Versioning model to provide a more predictable and automated release schedule. For more details on the upcoming phases, please refer to the [Release Handbook](https://github.com/kubeflow/manifests/blob/master/releases/kubeflow-ai-reference-platform-release-handbook.md).
 {{% /alert %}}
 
+{{% alert title="Note" color="info" %}}
+This page covers all releases in the 26.03 series, including patch release 26.03.1. Use the tabs in each section below to switch between release versions; changing the version in one section switches all sections on this page.
+{{% /alert %}}
+
 ## Kubeflow Community Distribution 26.03
 
+{{< tabpane >}}
+{{< tab header="26.03.1" lang="v26031" text=true >}}
+<div class="table-responsive">
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="table-light">Release Date</th>
+      <td>
+        2026-06-15
+      </td>
+    </tr>
+    <tr>
+      <th class="table-light">Media</th>
+      <td>
+        <b>Blog:</b>
+          <a href="https://blog.kubeflow.org/kubeflow-26.03-release/">Kubeflow Community Distribution 26.03.1 Release Announcement</a>
+      </td>
+    </tr>
+    <tr>
+      <th class="table-light">Manifests</th>
+      <td>
+        <b>Release:</b>
+          <a href="https://github.com/kubeflow/manifests/releases/26.03.1">26.03.1</a>
+        <br>
+        <b>Branch:</b>
+          <a href="https://github.com/kubeflow/community-distribution/tree/26.03.1">26.03.1</a>
+      </td>
+    </tr>
+    <tr>
+      <th class="table-light">Release Team</th>
+      <td>
+        <b>Release Manager: </b> Tarek Abouzeid (<a href="https://github.com/tarekabouzeid">@tarekabouzeid</a>)
+        <br>
+        <b>Release Manager Shadow: </b> Dominik Kawka (<a href="https://github.com/dominikkawka">@dominikkawka</a>)
+        <br>
+        <b>Release Manager Shadow: </b> Milind Dethe (<a href="https://github.com/milinddethe15">@milinddethe15</a>)
+        <br>
+        <b>Release Manager Shadow: </b> Dhanisha Phadate (<a href="https://github.com/dhanishaphadate">@dhanishaphadate</a>)
+        <br>
+        <b>Release Manager Shadow: </b> Alok Dangre (<a href="https://github.com/alokdangre">@alokdangre</a>)
+        <br>
+        <b>Product Manager: </b> Dhanisha Phadate (<a href="https://github.com/dhanishaphadate">@dhanishaphadate</a>)
+        <br>
+        <b>AutoML/Katib and Training WG Liaison: </b> Anya Kramar (<a href="https://github.com/kramaranya">@kramaranya</a>)
+        <br>
+        <b>Notebooks/Central Dashboard WG Liaison: </b> Andy Stoneberg (<a href="https://github.com/andyatmiami">@andyatmiami</a>)
+        <br>
+        <b>Platform WG Liaison: </b> Tarek Abouzeid (<a href="https://github.com/tarekabouzeid">@tarekabouzeid</a>)
+        <br>
+        <b>Pipelines WG Liaison: </b> Alyssa Goins (<a href="https://github.com/alyssacgoins">@alyssacgoins</a>)
+        <br>
+        <b>Spark Operator WG: </b> Milos Grubjesic (<a href="https://github.com/milosjava">@milosjava</a>)
+        <br>
+        <b>Model Registry WG: </b> Matteo Mortari (<a href="https://github.com/tarilabs">@tarilabs</a>)
+        <br>
+        <b>Model Registry WG: </b> Adysen Rothman (<a href="https://github.com/adysenrothman">@adysenrothman</a>)
+        <br>
+        <b>KServe Liaison: </b> Vraj Bhatt (<a href="https://github.com/vrajjbhatt">@vrajjbhatt</a>)
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+{{< /tab >}}
+{{< tab header="26.03" lang="v2603" text=true >}}
 <div class="table-responsive">
 <table class="table table-bordered">
   <tbody>
@@ -22,14 +91,14 @@ We are transitioning to a Calendar Versioning model to provide a more predictabl
     <tr>
       <th class="table-light">Media</th>
       <td>
-        <b>Blog:</b> 
-          <a href="https://blog.kubeflow.org/kubeflow-26.03-release/">Kubeflow Community Distribution 26.03.1 Release Announcement</a>
+        <b>Blog:</b>
+          <a href="https://blog.kubeflow.org/kubeflow-26.03-release/">Kubeflow Community Distribution 26.03 Release Announcement</a>
       </td>
     </tr>
     <tr>
       <th class="table-light">Manifests</th>
       <td>
-        <b>Release:</b> 
+        <b>Release:</b>
           <a href="https://github.com/kubeflow/manifests/releases/tag/26.03">26.03</a>
         <br>
         <b>Branch:</b>
@@ -62,18 +131,127 @@ We are transitioning to a Calendar Versioning model to provide a more predictabl
         <b>Spark Operator WG: </b> Milos Grubjesic (<a href="https://github.com/milosjava">@milosjava</a>)
         <br>
         <b>Model Registry WG: </b> Matteo Mortari (<a href="https://github.com/tarilabs">@tarilabs</a>)
-        <br> 
+        <br>
         <b>Model Registry WG: </b> Adysen Rothman (<a href="https://github.com/adysenrothman">@adysenrothman</a>)
-        <br> 
+        <br>
         <b>KServe Liaison: </b> Vraj Bhatt (<a href="https://github.com/vrajjbhatt">@vrajjbhatt</a>)
       </td>
     </tr>
   </tbody>
 </table>
 </div>
+{{< /tab >}}
+{{< /tabpane >}}
 
 ### Component Versions
 
+{{< tabpane >}}
+{{< tab header="26.03.1" lang="v26031" text=true >}}
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Maintainers</th>
+        <th>Component Name</th>
+        <th>Version</th>
+      </tr>
+    </thead>
+  <tbody>
+      <!-- ======================= -->
+      <!-- AutoML Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="2" class="align-middle">AutoML Working Group</td>
+        <td>Katib</td>
+        <td>
+          <a href="https://github.com/kubeflow/katib/releases/tag/v0.19.0">v0.19.0</a>
+        </td>
+        </tr>
+        <tr>
+        <td>Kubeflow SDK</td>
+        <td>
+          <a href="https://github.com/kubeflow/sdk/releases/tag/0.4.0">v0.4.0</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Notebooks Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="3" class="align-middle">Notebooks Working Group</td>
+        <td>Kubeflow Dashboard</td>
+        <td>
+          <a href="https://github.com/kubeflow/dashboard/tree/v2.0.0/">v2.0.0</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow Notebooks</td>
+        <td>
+          <a href="https://github.com/kubeflow/notebooks/tree/v1.11.0/">v1.11.0</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Kubeflow Workspaces</td>
+        <td>
+          <a href="https://github.com/kubeflow/notebooks/tree/v2.0.0-alpha.1">v2.0.0-alpha.1</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Pipelines Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">Pipelines Working Group</td>
+        <td>Kubeflow Pipelines</td>
+        <td>
+          <a href="https://github.com/kubeflow/pipelines/releases/tag/2.16.1">v2.16.1</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Serving Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="1" class="align-middle">Serving Working Group</td>
+        <td>KServe</td>
+        <td>
+          <a href="https://github.com/kserve/kserve/tree/v0.18.0">v0.18.0</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Training Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="2" class="align-middle">Training Working Group</td>
+        <td>Training Operator</td>
+        <td>
+          <a href="https://github.com/kubeflow/training-operator/releases/tag/v1.9.2">v1.9.2</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Trainer</td>
+        <td>
+          <a href="https://github.com/kubeflow/trainer/releases/tag/v2.2.0">v2.2.0</a>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Data Working Group -->
+      <!-- ======================= -->
+      <tr>
+        <td rowspan="2" class="align-middle">Data Working Group</td>
+        <td>Kubeflow Hub (Model Registry)</td>
+        <td>
+          <a href="https://github.com/kubeflow/hub/releases/tag/v0.3.9">v0.3.9</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Spark Operator</td>
+        <td>
+          <a href="https://github.com/kubeflow/spark-operator/tree/v2.5.0">v2.5.0</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+{{< /tab >}}
+{{< tab header="26.03" lang="v2603" text=true >}}
 <div class="table-responsive">
 <table class="table table-bordered">
     <thead class="thead-light">
@@ -213,6 +391,8 @@ We are transitioning to a Calendar Versioning model to provide a more predictabl
   </tbody>
 </table>
 </div>
+{{< /tab >}}
+{{< /tabpane >}}
 
 ### Dependency Versions (Manifests)
 
@@ -220,6 +400,101 @@ We are transitioning to a Calendar Versioning model to provide a more predictabl
 This information is only for the manifests found in the <a href="https://github.com/kubeflow/manifests">kubeflow/manifests</a> repository, packaged distributions may have different requirements or supported versions.
 {{% /alert %}}
 
+{{< tabpane >}}
+{{< tab header="26.03.1" lang="v26031" text=true >}}
+<div class="table-responsive">
+<table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Dependency</th>
+        <th>Validated or Included Version(s)</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+  <tbody>
+      <!-- ======================= -->
+      <!-- Kubernetes -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://kubernetes.io/">Kubernetes</a>
+        </td>
+        <td>1.34+</td>
+        <td rowspan="4" class="align-middle">
+          <i>Other versions may work, but have not been validated by the <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Kubeflow Manifests Working Group</a>.</i>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Istio -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://istio.io/">Istio</a>
+        </td>
+        <td>1.30.1</td>
+      </tr>
+      <!-- ======================= -->
+      <!-- cert-manager  -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://cert-manager.io/">cert-manager</a>
+        </td>
+        <td>1.20.2</td>
+      </tr>
+      <!-- ======================= -->
+      <!-- dex  -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://dexidp.io/">dex</a>
+        </td>
+        <td>2.45.1</td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Kustomize  -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://kustomize.io/">Kustomize</a>
+        </td>
+        <td>5.8.1</td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Knative Serving -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://knative.dev/docs/">Knative</a>
+        </td>
+        <td>1.22.0</td>
+        <td rowspan="1" class="align-middle">
+          <i>Knative is only needed when using the optional <a href="https://kserve.github.io/website/">KServe Component</a>.</i>
+        </td>
+      </tr>
+      <!-- ======================= -->
+      <!-- OAuth2-proxy -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://github.com/oauth2-proxy/oauth2-proxy/releases/tag/v7.15.2">OAuth2 Proxy</a>
+        </td>
+        <td>7.15.2</td>
+      </tr>
+      <!-- ======================= -->
+      <!-- Argo Workflows -->
+      <!-- ======================= -->
+      <tr>
+        <td>
+          <a href="https://argo-workflows.readthedocs.io/en/release-3.7/">Argo Workflows</a>
+        </td>
+        <td>3.7.4</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+{{< /tab >}}
+{{< tab header="26.03" lang="v2603" text=true >}}
 <div class="table-responsive">
 <table class="table table-bordered">
     <thead class="thead-light">
@@ -311,3 +586,5 @@ This information is only for the manifests found in the <a href="https://github.
   </tbody>
 </table>
 </div>
+{{< /tab >}}
+{{< /tabpane >}}
