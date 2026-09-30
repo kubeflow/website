@@ -20,6 +20,9 @@ Currently, the only KFP SDK platform-specific plugin library is [`kfp-kubernetes
 
 For more information, see the [`kfp-kubernetes` documentation ][kfp-kubernetes-docs].
 
+To request GPUs and other resources managed through Kubernetes Dynamic Resource
+Allocation (DRA), see [Use Kubernetes Dynamic Resource Allocation][dra-guide].
+
 ### **Kubernetes PersistentVolumeClaims**
 
 In this example we will use `kfp-kubernetes` to create a [PersistentVolumeClaim (PVC)][persistent-volume], use the PVC to pass data between tasks, and then delete the PVC.
@@ -128,6 +131,7 @@ For the full pipeline and more information, see a [similar example][full-example
 [kfp-kubernetes-pypi]: https://pypi.org/project/kfp-kubernetes/
 [task-level-config-methods]: /docs/components/pipelines/user-guides/components/compose-components-into-pipelines/#task-configurations
 [kfp-kubernetes-docs]: https://kfp-kubernetes.readthedocs.io/
+[dra-guide]: /docs/components/pipelines/user-guides/core-functions/dynamic-resource-allocation/
 [persistent-volume]: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 [storage-class]: https://kubernetes.io/docs/concepts/storage/storage-classes/
 [access-mode]: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
