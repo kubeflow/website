@@ -5,7 +5,7 @@ weight = 20
 aliases = ["/docs/contributing/"]
 +++
 
-This document is the single source of truth for how to contribute to the code base.
+This document is the single source of truth for how to contribute to Kubeflow.
 We'd love to accept your patches and contributions to this project.
 There are just a few small guidelines you need to follow.
 
@@ -15,7 +15,8 @@ There are just a few small guidelines you need to follow.
 
 Kubeflow uses Developer Certificate of Origin ([DCO](https://github.com/apps/dco/)).
 
-Check <https://github.com/kubeflow/community/tree/master/dco-signoff-hook#signing-off-commits> to learn how to sign off your contributions.
+Check [this page](https://github.com/kubeflow/community/tree/master/dco-signoff-hook#signing-off-commits)
+to learn how to sign off your contributions.
 
 ### Follow the code of conduct
 
@@ -24,15 +25,15 @@ and [inclusivity document](https://github.com/kubeflow/community/blob/master/INC
 
 ## Membership
 
-Details about the different types of Kubeflow members as well as membership criteria can be found at [Community Membership](/docs/about/membership/)
+Details about the different types of Kubeflow members as well as membership requirements and privileges
+can be found at [the community membership document](https://github.com/kubeflow/community/blob/master/community-membership.md).
 
 **Note**: Anyone can contribute to Kubeflow, joining the Kubeflow organization is not a mandatory step.
 
 ### Companies/organizations
 
-If you would like your company or organization to be acknowledged for contributing to Kubeflow, or participating in the community (being a user counts), please send a PR adding the relevant info to [member_organizations.yaml](https://github.com/kubeflow/community/blob/master/member_organizations.yaml).
-
-Additionally, if your company has adopted Kubeflow internally, we encouraage you to add yourself to [ADOPTERS.md](https://github.com/kubeflow/community/blob/master/ADOPTERS.md)!
+If your company has adopted Kubeflow internally, we encourage you to add
+yourself to [ADOPTERS.md](https://github.com/kubeflow/community/blob/master/ADOPTERS.md)!
 
 If you want your employee's GitHub contributions to be attributed to your company,
 please ask them to set the company field in their GitHub profile.
@@ -59,7 +60,6 @@ To find Kubeflow issues that make good entry points:
   - [kubeflow/hub](https://github.com/kubeflow/hub/issues?q=is:issue+label:%22good+first+issue%22+is:open)
   - [kubeflow/notebooks](https://github.com/kubeflow/notebooks/issues?q=is:issue+label:%22good+first+issue%22+is:open)
 - For issues that require deeper knowledge of one or more technical aspects, look at issues labeled **help wanted**.
-  For example, see these issues in the [kubeflow/kubeflow repository](https://github.com/kubeflow/kubeflow/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 - Examine the issues in any of the [Kubeflow repositories](https://github.com/kubeflow).
 
 ### Issue assignment and PR etiquette
@@ -94,6 +94,15 @@ To ensure smooth collaboration and avoid duplicate work, please follow these gui
   - A maintainer has explicitly asked for additional contributions
 
 Following these guidelines helps maintain a collaborative and efficient community, reduces wasted effort, and ensures everyone's contributions are valued.
+
+### Contributions outside the Kubeflow components (including non-technical contributions)
+
+- **Documentation**: Contribute to technical documentation by improving the accuracy and clarity of Kubeflow technical documentation and/or fixing stale information and ensuring all new content follows the standards set in the [Kubeflow Documentation Style Guide](style-guide.md).
+- **Blog posts**: Write about Kubeflow for the Kubeflow blog or CNCF publications to help the community learn more about the project. Topics can include lessons from real-world use cases, Kubeflow integrations, release news, contribution stories, or practical guidance.
+- **Event outreach**: Raise awareness of Kubeflow by speaking at events, representing Kubeflow at community booths or tables, helping organize events, or serving on program committees or as a program chair.
+- **Community engagement**: Engage with end users and contributors in the Kubeflow community by participating in or leading community meetings, managing or promoting social media, and discussing ways to enrich the Kubeflow ecosystem.
+- **Technical content**: Create webinars, demos, tutorials, publications, e-books, books, and white papers that showcase Kubeflow use cases, integrations, and solution architectures.
+- **Website contributions**: Contribute to website design, create new content, maintain the website, or review PRs.
 
 ## Owners files and PR workflow
 
@@ -206,7 +215,7 @@ GitHub usernames and aliases listed in OWNERS files are case-insensitive.
   - If the code changes look good to them, a **reviewer** types `/lgtm` in a PR comment or review;
     if they change their mind, they `/lgtm cancel`
   - Once a **reviewer** has `/lgtm`'ed, [prow](https://prow.k8s.io)
-    ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) applies an `lgtm` label to the PR
+    ([@google-oss-prow](https://github.com/apps/google-oss-prow)) applies an `lgtm` label to the PR
 - Phase 2: Humans approve the PR
   - The PR **author** `/assign`'s all suggested **approvers** to the PR, and optionally notifies
     them (eg: "pinging @foo for approval")
@@ -216,20 +225,17 @@ GitHub usernames and aliases listed in OWNERS files are case-insensitive.
     forwards/backwards compatibility, API and flag definitions, etc
   - If the code changes look good to them, an **approver** types `/approve` in a PR comment or
     review; if they change their mind, they `/approve cancel`
-  - [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) updates its
+  - [prow](https://prow.k8s.io) ([@google-oss-prow](https://github.com/apps/google-oss-prow)) updates its
     comment in the PR to indicate which **approvers** still need to approve
   - Once all **approvers** (one from each of the previously identified OWNERS files) have approved,
-    [prow](https://prow.k8s.io) ([@k8s-ci-robot](https://github.com/k8s-ci-robot/)) applies an
+    [prow](https://prow.k8s.io) ([@google-oss-prow](https://github.com/apps/google-oss-prow)) applies an
     `approved` label
 - Phase 3: Automation merges the PR:
-
   - If all of the following are true:
-
     - All required labels are present (eg: `lgtm`, `approved`)
     - Any blocking labels are missing (eg: there is no `do-not-merge/hold`, `needs-rebase`)
 
   - And if any of the following are true:
-
     - there are no presubmit prow jobs configured for this repo
     - there are presubmit prow jobs configured for this repo, and they all pass after automatically
       being re-run one last time
@@ -278,12 +284,12 @@ is the state of today.
 
 ## Automation using OWNERS files
 
-### [`prow`](https://git.k8s.io/test-infra/prow)
+### [`prow`](https://github.com/kubernetes-sigs/prow)
 
 Prow receives events from GitHub, and reacts to them. It is effectively stateless. The following
 pieces of prow are used to implement the code review process above.
 
-- [cmd: tide](https://git.k8s.io/test-infra/prow/cmd/tide)
+- [cmd: tide](https://github.com/kubernetes-sigs/prow/tree/main/cmd/tide)
   - per-repo configuration:
     - `labels`: list of labels required to be present for merge (eg: `lgtm`)
     - `missingLabels`: list of labels required to be missing for merge (eg: `do-not-merge/hold`)
@@ -295,10 +301,10 @@ pieces of prow are used to implement the code review process above.
   - merges PR's once they meet the appropriate criteria as configured above
   - if there are any presubmit prow jobs for the repo the PR is against, they will be re-run one
     final time just prior to merge
-- [plugin: assign](https://git.k8s.io/test-infra/prow/plugins/assign)
+- [plugin: assign](https://prow.k8s.io/command-help#assign)
   - assigns GitHub users in response to `/assign` comments on a PR
   - unassigns GitHub users in response to `/unassign` comments on a PR
-- [plugin: approve](https://git.k8s.io/test-infra/prow/plugins/approve)
+- [plugin: approve](https://prow.k8s.io/command-help#approve)
   - per-repo configuration:
     - `issue_required`: defaults to `false`; when `true`, require that the PR description link to
       an issue, or that at least one **approver** issues a `/approve no-issue`
@@ -308,12 +314,12 @@ pieces of prow are used to implement the code review process above.
     OWNERS files has `/approve`'d
   - comments as required OWNERS files are satisfied
   - removes outdated approval status comments
-- [plugin: blunderbuss](https://git.k8s.io/test-infra/prow/plugins/blunderbuss)
+- [plugin: blunderbuss](https://github.com/kubernetes-sigs/prow/tree/main/pkg/plugins/blunderbuss)
   - determines **reviewers** and requests their reviews on PR's
-- [plugin: lgtm](https://git.k8s.io/test-infra/prow/plugins/lgtm)
+- [plugin: lgtm](https://prow.k8s.io/command-help#lgtm)
   - adds the `lgtm` label when a **reviewer** comments `/lgtm` on a PR
   - the **PR author** may not `/lgtm` their own PR
-- [pkg: k8s.io/test-infra/prow/repoowners](https://git.k8s.io/test-infra/prow/repoowners/repoowners.go)
+- [pkg: k8s.io/test-infra/prow/repoowners](https://github.com/kubernetes-sigs/prow/tree/main/pkg/repoowners)
   - parses OWNERS and OWNERS_ALIAS files
   - if the `no_parent_owners` option is encountered, parent owners are excluded from having
     any influence over files adjacent to or underneath of the current OWNERS file

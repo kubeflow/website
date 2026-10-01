@@ -6,7 +6,7 @@ weight = 2
 
 
 By default, you can use Kubeflow Pipelines deployment manifests as provided,
-which aim to offer a standard configuration for most use cases. At the meantime,
+which aim to offer a standard configuration for most use cases. At the same time,
 customizations are available for more advanced usage.
 
 When deploying Kubeflow Pipelines servers, you can pass various environment variables
@@ -84,4 +84,54 @@ spec:
           value: http://squid.squid.svc.cluster.local:3128
         - name: NO_PROXY
           value: localhost,127.0.0.1,.svc.cluster.local,kubernetes.default.svc,metadata-grpc-service,0,1,2,3,4,5,6,7,8,9
+```
+
+## Custom CA Bundle
+
+You can configure the Kubeflow Pipelines API server to use a custom Certificate Authority (CA) bundle for pipeline workloads by providing the CA certificate through a Kubernetes Secret or ConfigMap.
+
+The following environment variables are available:
+
+* **`CABUNDLE_SECRET_NAME`**: The name of the Kubernetes Secret containing the custom CA certificate.
+* **`CABUNDLE_CONFIGMAP_NAME`**: The name of the Kubernetes ConfigMap containing the custom CA certificate.
+* **`CABUNDLE_KEY_NAME`**: The key containing the CA certificate in the Secret or ConfigMap. The default value is `ca.crt`.
+
+`CABUNDLE_SECRET_NAME` takes precedence over `CABUNDLE_CONFIGMAP_NAME`. If `CABUNDLE_SECRET_NAME` is set, KFP uses the specified Secret even if `CABUNDLE_CONFIGMAP_NAME` is also set. If neither is set, KFP does not configure a custom CA bundle.
+
+The CA certificate is mounted into the pipeline workload at `/kfp/certs/ca.crt`.
+
+### Example using a Kubernetes Secret
+
+The following example configures KFP to use a CA certificate from a Kubernetes Secret named `my-ca-secret`:
+
+```yaml
+- name: CABUNDLE_SECRET_NAME
+  value: my-ca-secret
+```
+
+By default, KFP looks for the certificate in the `ca.crt` key of the Secret. If the certificate is stored under a different key, set `CABUNDLE_KEY_NAME` to that key:
+
+```yaml
+- name: CABUNDLE_SECRET_NAME
+  value: my-ca-secret
+- name: CABUNDLE_KEY_NAME
+  value: my-custom-ca
+```
+
+### Example using a Kubernetes ConfigMap
+
+To use a CA certificate stored in a ConfigMap, set `CABUNDLE_CONFIGMAP_NAME`:
+
+```yaml
+- name: CABUNDLE_CONFIGMAP_NAME
+  value: my-ca-configmap
+```
+
+By default, KFP looks for the certificate in the `ca.crt` key. If the certificate is stored under a different key, configure `CABUNDLE_KEY_NAME`:
+
+```yaml
+- name: CABUNDLE_CONFIGMAP_NAME
+  value: my-ca-configmap
+- name: CABUNDLE_KEY_NAME
+  value: my-custom-ca
 ```

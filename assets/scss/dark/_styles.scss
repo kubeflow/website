@@ -11,6 +11,25 @@
 @import "chroma/nordic";
 
 // --------------------------------------------------
+// announcement banner (translucent dark over content)
+// --------------------------------------------------
+.kf-announcement-banner {
+  // translucent navbar-blue: still visible over the near-black docs
+  // background, blends with the dark homepage cover
+  background-color: rgba(33, 61, 122, 0.45);
+  color: $white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+  a {
+    color: $white;
+  }
+
+  &--cover {
+    background-color: rgba(13, 19, 33, 0.45);
+  }
+}
+
+// --------------------------------------------------
 // swagger-ui
 // --------------------------------------------------
 #swagger-ui-container {

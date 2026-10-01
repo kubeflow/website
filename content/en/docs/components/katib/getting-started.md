@@ -33,10 +33,10 @@ If you install Katib standalone, make sure that you
 [configure local `kubeconfig`](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#programmatic-access-to-the-api)
 to access your Kubernetes cluster where you installed Katib control plane.
 
-If you install Katib as part of Kubeflow Platform, you can open a new
+If you install Katib as part of Kubeflow Community Distribution (KCD), you can open a new
 [Kubeflow Notebook](/docs/components/notebooks/quickstart-guide/) to run this script.
 
-**Note**. If you use Katib within Kubeflow Platform to run this example, you need to use this
+**Note**. If you use Katib within KCD to run this example, you need to use this
 namespace: `KatibClient(namespace="kubeflow-user-example-com")`.
 
 **Note**. The `kubeflow` namespace is pre-configured with the required label 

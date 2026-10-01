@@ -16,7 +16,7 @@ This page describes how to optimize hyperparameters (HPs) in the process of fine
 
 You need to install the following Katib components to run code in this guide:
 
-- Training Operator control plane – [install](/docs/components/trainer/legacy-v1/installation/#installing-the-control-plane)
+- Training Operator control plane – [install](https://trainer.kubeflow.org/en/latest/legacy-v1/installation.html#installing-the-control-plane)
 - Katib control plane – [install](/docs/components/katib/installation/#installing-control-plane)
 - Katib Python SDK with LLM Hyperparameter Optimization Support – [install](/docs/components/katib/installation/#installing-python-sdk)
 
@@ -41,20 +41,20 @@ from kubeflow.storage_initializer.hugging_face import (
 ```
 
 {{% alert title="Note" color="info" %}}
-The detailed descriptions of these parameter classes have been moved to the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#dataset-and-model-parameter-classes). This page provides a brief overview of how to use these classes with Katib for hyperparameter optimization.
+The detailed descriptions of these parameter classes have been moved to the [Training Operator fine-tuning guide](https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/fine-tuning.html#dataset-and-model-parameter-classes). This page provides a brief overview of how to use these classes with Katib for hyperparameter optimization.
 {{% /alert %}}
 
 #### HuggingFaceModelParams
 
-The `HuggingFaceModelParams` dataclass holds configuration parameters for initializing Hugging Face models. For detailed documentation and examples, see the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#huggingfacemodelparams).
+The `HuggingFaceModelParams` dataclass holds configuration parameters for initializing Hugging Face models. For detailed documentation and examples, see the [Training Operator fine-tuning guide](https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/fine-tuning.html#huggingfacemodelparams).
 
 #### HuggingFaceDatasetParams
 
-The `HuggingFaceDatasetParams` class holds configuration parameters for loading datasets from Hugging Face. For detailed documentation and examples, see the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#huggingfacedatasetparams).
+The `HuggingFaceDatasetParams` class holds configuration parameters for loading datasets from Hugging Face. For detailed documentation and examples, see the [Training Operator fine-tuning guide](https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/fine-tuning.html#huggingfacedatasetparams).
 
 #### HuggingFaceTrainerParams
 
-The `HuggingFaceTrainerParams` class is used to define parameters for the training process in the Hugging Face framework. For detailed documentation and examples, see the [Training Operator fine-tuning guide](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#huggingfacetrainerparams).
+The `HuggingFaceTrainerParams` class is used to define parameters for the training process in the Hugging Face framework. For detailed documentation and examples, see the [Training Operator fine-tuning guide](https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/fine-tuning.html#huggingfacetrainerparams).
 
 {{% alert title="Note" color="info" %}}
 Currently, only parameters within `training_parameters` and `lora_config` can be tuned using Katib's search API. Other fields are static and cannot be tuned.
@@ -107,7 +107,7 @@ In addition to Hugging Face, you can integrate with S3-compatible object storage
 load datasets. To work with S3, use the `S3DatasetParams` class to define your dataset 
 parameters.
 
-For loading datasets from S3-compatible object storage, see the [S3DatasetParams documentation](/docs/components/trainer/legacy-v1/user-guides/fine-tuning/#s3datasetparams) in the Training Operator fine-tuning guide.
+For loading datasets from S3-compatible object storage, see the [S3DatasetParams documentation](https://trainer.kubeflow.org/en/latest/legacy-v1/user-guides/fine-tuning.html#s3datasetparams) in the Training Operator fine-tuning guide.
 
 ## Optimizing Hyperparameters of Large Language Models
 

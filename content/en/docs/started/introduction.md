@@ -6,71 +6,70 @@ weight = 1
 
 ## What is Kubeflow
 
-[Kubeflow](https://www.kubeflow.org/) is the foundation of tools for AI Platforms on Kubernetes.
+[Kubeflow](https://www.kubeflow.org/) is _the_ Cloud Native AI platform
 
-AI platform teams can build on top of Kubeflow by using each project independently or deploying the
-entire AI reference platform to meet their specific needs. The Kubeflow AI reference platform is
-composable, modular, portable, and scalable, backed by an ecosystem of Kubernetes-native
-projects that cover every stage of the [AI lifecycle](https://www.kubeflow.org/docs/started/architecture/#kubeflow-projects-in-the-ai-lifecycle).
+Kubeflow is composed of modular, open source projects that form the Kubernetes-native stack
+for data & AI workloads. Whether you are an AI practitioner, a platform administrator, or a
+decision-maker, Kubeflow offers modular, scalable, and extensible tools to support your
+data, AI/ML, and HPC use-cases.
 
-Whether you’re an AI practitioner, a platform administrator, or a team of developers, Kubeflow
-offers modular, scalable, and extensible tools to support your AI use cases.
+## Kubeflow Mission
 
-## What are Kubeflow Projects
+Kubeflow's mission is to bridge the Data, AI, and Cloud Native ecosystems. We enable teams to
+deliver more models, agents, and AI applications into production with well-lit paths across
+[the AI lifecycle](/docs/started/architecture/#kubeflow-landscape-in-the-ai-lifecycle). By bringing
+together the skills and expertise of an open global community, our goal is to be the standard for
+data & AI workloads on Kubernetes.
 
-Kubeflow is composed of multiple open source projects that address different aspects
-of the AI lifecycle. These projects are designed to be usable both independently and as part of the
-Kubeflow AI reference platform. This provides flexibility for users who may not need the full
-end-to-end AI platform capabilities but want to leverage specific functionalities, such as model
-training or model serving.
+The Kubeflow Community and Subprojects embrace the following core principles:
 
-| Kubeflow Project                                                                    | Source Code                                                             |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/)                     | [`kubeflow/kale`](https://github.com/kubeflow/kale)                     |
-| [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [`kubeflow/katib`](https://github.com/kubeflow/katib)                   |
-| [Kubeflow Hub](https://www.kubeflow.org/docs/components/hub/)                       | [`kubeflow/hub`](https://github.com/kubeflow/hub)                       |
-| [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | [`kubeflow/notebooks`](https://github.com/kubeflow/notebooks)           |
-| [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)           | [`kubeflow/pipelines`](https://github.com/kubeflow/pipelines)           |
-| [Kubeflow SDK](https://www.kubeflow.org/docs/components/sdk/)                       | [`kubeflow/sdk`](https://github.com/kubeflow/sdk)                       |
-| [Kubeflow Spark Operator](https://www.kubeflow.org/docs/components/spark-operator/) | [`kubeflow/spark-operator`](https://github.com/kubeflow/spark-operator) |
-| [Kubeflow Trainer](https://www.kubeflow.org/docs/components/trainer/)               | [`kubeflow/trainer`](https://github.com/kubeflow/trainer)               |
+- **Simple**: Run workloads at any scale without becoming a Kubernetes expert
+- **Portable**: Use the same code on a local laptop, on-premises, or in any cloud
+- **Scalable**: Manage hyperscale training jobs and high-throughput AI agents
+- **Composable**: Mix and match tools across the AI lifecycle
 
-## What is the Kubeflow AI Reference Platform
+## Kubeflow Subprojects
 
-The Kubeflow AI reference platform refers to the full suite of Kubeflow projects bundled together
-with additional integration and management tools. Kubeflow AI reference platform deploys the
-comprehensive toolkit for the entire AI lifecycle. The Kubeflow AI reference platform can be
-installed via [Packaged Distributions](https://www.kubeflow.org/docs/started/installing-kubeflow/#packaged-distributions)
-or [Kubeflow Manifests](https://www.kubeflow.org/docs/started/installing-kubeflow/#kubeflow-manifests).
+Kubeflow subprojects are designed to be usable both independently and as part of the
+Kubeflow Distribution. This provides flexibility for users who may not need the full
+end-to-end AI platform capabilities but want to leverage specific functionalities, such as
+data processing, model training, or agentic workloads.
 
-| Kubeflow AI Reference Platform Tool                                                                 | Source Code                                                   |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [Central Dashboard](https://www.kubeflow.org/docs/components/central-dash/)                         | [`kubeflow/dashboard`](https://github.com/kubeflow/dashboard) |
-| [Profile Controller](https://www.kubeflow.org/docs/components/central-dash/profiles/)               | [`kubeflow/dashboard`](https://github.com/kubeflow/dashboard) |
-| [Kubeflow Manifests](https://www.kubeflow.org/docs/started/installing-kubeflow/#kubeflow-manifests) | [`kubeflow/manifests`](https://github.com/kubeflow/manifests) |
+You can find list of Kubeflow subprojects in [the installation page](/docs/started/installing-kubeflow/#kubeflow-subprojects).
 
-## What is Kubeflow Ecosystem
+If you are interested to become Kubeflow subproject,
+[this process guidelines](https://github.com/kubeflow/community/tree/master/subprojects).
+
+## Kubeflow Ecosystem
 
 Kubeflow has always fostered a strong community-driven culture and actively supports projects
-that build on, integrate with, or complement Kubeflow sub-projects. As part of this effort,
+that build on, integrate with, or complement Kubeflow subprojects. As part of this effort,
 the Kubeflow community established the Kubeflow Ecosystem to highlight projects that are valuable
 to the broader community and demonstrate maturity, sustainability, and excellence within their respective domains.
 
 You can find the list of Kubeflow Ecosystem projects [in this page](/docs/ecosystem/).
 
 If you are interested in joining the Kubeflow Ecosystem, please refer to
-[the contribution guidelines](https://github.com/kubeflow/community/tree/master/how-to/join-kubeflow-ecosystem.md)
+[this process guidelines](https://github.com/kubeflow/community/tree/master/ecosystem).
 
-## Kubeflow Overview Diagram
+## Kubeflow Distribution
 
-The following diagram shows the Kubeflow projects to cover each stage of the AI lifecycle
-on top of Kubernetes. Read the [architecture overview](/docs/started/architecture/) to
-learn how Kubeflow projects fit in AI lifecycle.
+The Kubeflow Distribution is a vendor-provided and supported deployment of Kubeflow subprojects and
+integrations designed to run on specific infrastructure or platform environments. Distributions may
+include additional tooling, integrations, operational features, and commercial support tailored
+to the vendor ecosystem.
 
-<img src="/docs/started/images/kubeflow-overview.drawio.svg" 
-     alt="Kubeflow Overview Diagram"
-     class="mt-3 mb-3 border rounded bg-white">
-</img>
+The Kubeflow Distribution can be
+installed via [Packaged Distributions](/docs/started/installing-kubeflow/#packaged-distributions)
+or [Kubeflow Community Distribution](/docs/started/installing-kubeflow/#kubeflow-community-distribution).
+
+### Kubeflow Community Distribution
+
+Kubeflow Community Distribution (KCD) is community-maintained reference for deploying Kubeflow
+subprojects and ecosystem integrations in a vendor neutral package.
+
+The development of the KCD is directed by the neutral [Kubeflow Distribution Committee (KDC)](/docs/about/governance/#4-kubeflow-distribution-committee)
+which is made up of representatives for each Kubeflow subproject and KCD maintainers.
 
 ## Kubeflow Video Introduction
 
@@ -78,28 +77,7 @@ Watch the following video which provides an introduction to Kubeflow.
 
 {{< youtube id="cTZArDgbIWw" title="Introduction to Kubeflow">}}
 
-## The Kubeflow Mission
-
-Our goal is to make scaling AI models and deploying them to
-production as simple as possible, by letting Kubernetes do what it's great at:
-
-- Easy, repeatable, portable deployments on a diverse infrastructure
-  (for example, experimenting on a laptop, then moving to an on-premises
-  cluster or to the cloud).
-- Deploying and managing loosely-coupled microservices.
-- Scaling based on demand.
-
-Because AI practitioners use a diverse set of tools, one of the key goals is to
-customize the stack based on user requirements (within reason) and let the
-system take care of the "boring stuff". While we have started with a narrow set
-of technologies, we are working with many different projects to include
-additional tooling.
-
-Ultimately, we want to have a set of simple manifests that give you an easy to
-use AI stack _anywhere_ Kubernetes is already running, and that can self
-configure based on the cluster it deploys into.
-
-## History
+## Kubeflow History
 
 Kubeflow started as an open sourcing of the way Google ran [TensorFlow](https://www.tensorflow.org/)
 internally, based on a pipeline called [TensorFlow Extended](https://www.tensorflow.org/tfx/).
@@ -108,30 +86,15 @@ a foundation of tools for running AI workloads on Kubernetes.
 
 The [Kubeflow logo represents](https://github.com/kubeflow/kubeflow/issues/187#issuecomment-375194419) the letters `K` and `F` inside the heptagon of the Kubernetes logo, which represent two communities: `Kubernetes` (cloud-native) and `flow` (Machine Learning). In this context, `flow` is not only indicating `TensorFlow`, but also all ML frameworks which make use of Dataflow Graph as the normal form for model/algorithm implementation.
 
-## Roadmaps
-
-Kubeflow projects have individual roadmaps which established by project maintainers:
-
-- [Kubeflow Pipelines roadmap](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)
-- [Kubeflow Katib roadmap](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)
-- [Kubeflow Hub roadmap](https://github.com/kubeflow/hub/blob/main/ROADMAP.md)
-- [Kubeflow Spark Operator roadmap](https://github.com/kubeflow/spark-operator/blob/master/ROADMAP.md)
-- [Kubeflow Trainer roadmap](https://github.com/kubeflow/trainer/blob/master/ROADMAP.md)
-- [Kubeflow SDK roadmap](https://github.com/kubeflow/sdk/blob/main/ROADMAP.md)
-
-To see what's coming up in future versions of Kubeflow AI reference platform, refer to the
-[Kubeflow AI reference platform](https://github.com/kubeflow/kubeflow/blob/master/ROADMAP.md).
-
 ## Kubeflow Community
 
-Kubeflow is a community-led project maintained by the
-[Kubeflow Working Groups](/docs/about/governance/#4-working-groups)
-under the guidance of the [Kubeflow Steering Committee](/docs/about/governance/#2-kubeflow-steering-committee-ksc).
+Kubeflow is a community-led project maintained by the Kubeflow Working Groups under the guidance
+of the Kubeflow Outreach Committee, Kubeflow Distribution Committee, and Kubeflow Steering Committee.
 
-We encourage you to learn about the [Kubeflow Community](/docs/about/community/)
-and how to [contribute](/docs/about/contributing/) to the project!
+We encourage you to learn about the [Kubeflow Community](https://www.kubeflow.org/docs/about/community/)
+and how to [contribute](https://www.kubeflow.org/docs/about/contributing/) to the project!
 
 ## Next Steps
 
-- Follow [the installation guide](/docs/started/installing-kubeflow) to deploy Kubeflow projects or
-  Kubeflow AI reference platform.
+- Follow [the installation guide](/docs/started/installing-kubeflow) to deploy Kubeflow subprojects or
+  Kubeflow Community Distribution.

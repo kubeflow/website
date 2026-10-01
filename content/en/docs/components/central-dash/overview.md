@@ -4,8 +4,6 @@ description = "Overview of the Kubeflow Central Dashboard"
 weight = 10
 +++
 
-{{% stable-status %}}
-
 ## What is the Kubeflow Central Dashboard?
 
 The _Kubeflow Central Dashboard_ provides an authenticated web interface for Kubeflow and ecosystem components.

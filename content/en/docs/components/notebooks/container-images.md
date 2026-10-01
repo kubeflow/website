@@ -32,11 +32,9 @@ graph TD
 
   Jupyter --> PyTorchCuda[PyTorch CUDA]
   Jupyter --> TensorFlowCuda[TensorFlow CUDA]
-  Jupyter --> PyTorchGaudi[PyTorch Gaudi]
 
   PyTorchCuda --> PyTorchCudaFull[PyTorch CUDA Full]
   TensorFlowCuda --> TensorFlowCudaFull[TensorFlow CUDA Full]
-  PyTorchGaudi --> PyTorchGaudiFull[PyTorch Gaudi Full]
 
   click Base "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/base"
   click Jupyter "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter"
@@ -53,8 +51,6 @@ graph TD
   click TensorFlowCuda "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-cuda"
   click PyTorchCudaFull "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-cuda-full"
   click TensorFlowCudaFull "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-cuda-full"
-  click PyTorchGaudi "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-gaudi"
-  click PyTorchGaudiFull "https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-gaudi-full"
 ```
 
 ### Base Images
@@ -85,8 +81,6 @@ Dockerfile | Container Registry | Notes
 [`./jupyter-tensorflow-full`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-full) | JupyterLab + TensorFlow + Common Packages
 [`./jupyter-tensorflow-cuda`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-cuda) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda) | JupyterLab + TensorFlow + CUDA
 [`./jupyter-tensorflow-cuda-full`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-tensorflow-cuda-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-tensorflow-cuda-full) | JupyterLab + TensorFlow + CUDA + Common Packages
-[`./jupyter-pytorch-gaudi`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-gaudi) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi) | JupyterLab + PyTorch + Gaudi
-[`./jupyter-pytorch-gaudi-full`](https://github.com/kubeflow/notebooks/tree/notebooks-v1/components/example-notebook-servers/jupyter-pytorch-gaudi-full) | [`ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi-full`](https://ghcr.io/kubeflow/kubeflow/notebook-servers/jupyter-pytorch-gaudi-full) | JupyterLab + PyTorch + Gaudi + Common Packages
 
 ## Package Installation
 
