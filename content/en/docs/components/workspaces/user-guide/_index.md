@@ -8,4 +8,4 @@ weight: 25
 
 Guides for data scientists and developers using Kubeflow Workspaces.
 
-- [KubeRay Integration](/docs/components/workspaces/user-guide/kuberay/): Learn how to provision and interact with Ray clusters from Kubeflow Workspaces using KubeRay.
+- [KubeRay Integration](/docs/components/workspaces/user-guide/kuberay/): Learn how to submit distributed Ray jobs and interact with Ray clusters from Kubeflow Workspaces using KubeRay.
