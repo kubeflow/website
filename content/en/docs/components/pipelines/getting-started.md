@@ -44,13 +44,19 @@ You can submit the YAML file to a KFP-conformant backend for execution. If you h
 ```python
 from kfp.client import Client
 
-client = Client(host='<MY-KFP-ENDPOINT>')
+client = Client(host='http://localhost:3000')
 run = client.create_run_from_pipeline_package(
     'pipeline.yaml',
     arguments={
         'recipient': 'World',
     },
 )
+```
+
+Replace `http://localhost:3000` with the endpoint for your Kubeflow Pipelines deployment. For a local standalone deployment, port-forward the `ml-pipeline-ui` service first:
+
+```sh
+kubectl port-forward --namespace kubeflow svc/ml-pipeline-ui 3000:80
 ```
 
 The client will print a link to view the pipeline execution graph and logs in the UI. In this case, the pipeline has one task that prints and returns `'Hello, World!'`.
