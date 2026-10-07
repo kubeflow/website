@@ -25,12 +25,34 @@ in the repository, which walks through setting up the [tilt](https://docs.tilt.d
 
 ## Planning process
 
-We track our work in a hierarchy of GitHub issues: **Epics**, **Features** and
-**Tasks**, see [How We Plan](/docs/components/workspaces/contributor-guides/planning-process/) for the
-full breakdown and filter links.
-
 A good overview over the current task can be obtained via the [Kubeflow Workspaces Project
 Board](https://github.com/orgs/kubeflow/projects/62).
+
+The planned tasks in the project board are of the following types and organized
+in this hierarchy:
+
+- **Task**: A Task is a concrete unit of work that moves a Feature forward. A
+  good Task provides enough context for someone to pick it up and deliver it
+  and has its own acceptance criteria. Each Task is assigned to a single
+  contributor who is responsible for delivering it, though they may collaborate
+  with others. Please only assign yourself to a task after coordinating with
+  the project maintainers on the issue or in the Slack channel.
+  ([➡️ Browse open Tasks](https://github.com/kubeflow/notebooks/issues?q=is%3Aissue%20state%3Aopen%20label%3Akind%2Fplan-task))
+
+- **Feature**: A Feature is a functional, often times user-facing unit of work
+  that lives under a single Epic. Unlike an Epic, a Feature is never perpetual:
+  it defines **acceptance criteria** and is closed once those criteria are met
+  (notably: not just when all tasks that happen to be defined at the time are
+  complete). Where applicable, a Feature may include mockups or design notes.
+  Each Feature has an **owner** who shepherds its delivery and decides who
+  takes on its sub-tasks.
+  ([➡️ Browse open Features](https://github.com/kubeflow/notebooks/issues?q=is%3Aissue%20state%3Aopen%20label%3Akind%2Fplan-feature))
+
+- **Epic**: An Epic represents a large, ongoing **area** of work, for example,
+  a complex user story or a core functional area of the project. Epics may be
+  long-lived and are intentionally high-level: they capture *what* we want to
+  achieve and *why*, without prescribing implementation details.
+  ([➡️ Browse open Epics](https://github.com/kubeflow/notebooks/issues?q=is%3Aissue%20state%3Aopen%20label%3Akind%2Fplan-epic))
 
 ## Contributor tracks
 
