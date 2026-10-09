@@ -11,7 +11,7 @@ This allows users to create, delete, and inspect the state of their Model Server
 
 ## Install as part of Kubeflow
 
-The web application has been [included as a part of the `kubeflow/manifests`](https://github.com/kubeflow/manifests/tree/master/applications/kserve/models-web-app) repository since  the Kubeflow 1.5 release.
+The web application has been [included as a part of the `kubeflow/manifests`](https://github.com/kubeflow/community-distribution/tree/master/applications/kserve/kserve-ui) repository since  the Kubeflow 1.5 release.
 
 It is exposed as a manu link in the Kubeflow Central Dashboard by default.
 
