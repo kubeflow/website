@@ -41,6 +41,8 @@ staging or development cluster.
 
 - Read the [Deployment Guide](/docs/components/workspaces/operator-guides/deployment-guide/)
   to install Kubeflow Workspaces.
+- Read the [Kubeflow Trainer Integration Guide](/docs/components/workspaces/integration-guide/trainer/)
+  to run interactive MPI jobs from your Workspace.
 - Want to help build it? See
   [Contribute to Kubeflow Workspaces](/docs/components/workspaces/contributor-guides/contribute/).
 - Explore the current [Kubeflow Notebooks](/docs/components/notebooks/) documentation.
