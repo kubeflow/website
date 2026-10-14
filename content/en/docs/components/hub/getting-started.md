@@ -32,6 +32,11 @@ To use Model Registry on a notebook you should first install the Python client:
 !pip install kserve=="0.13"
 ```
 
+The Kubeflow SDK also provides a Hub client at `kubeflow.hub.ModelRegistryClient`. See the
+[Kubeflow SDK Hub documentation](https://sdk.kubeflow.org/en/latest/hub/) for that
+client's API and setup instructions. This page uses the standalone `model_registry` client shown
+below.
+
 Note that depending on your environment there might be conflicting dependency versions for packages that depend on
 `pydantic`.
 
@@ -50,7 +55,8 @@ registry = ModelRegistry(
 
 <!-- TODO: missing link -->
 
-For more information on client setup and capabilities, refer to the Model Registry Python client documentation.
+For more information on setup and capabilities, refer to the [Model Registry Python client
+documentation](https://model-registry.readthedocs.io/en/latest/).
 
 ## Register metadata
 
