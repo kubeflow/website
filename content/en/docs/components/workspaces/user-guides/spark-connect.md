@@ -1,133 +1,76 @@
 ---
 title: Running Spark
-description: Start a Spark Connect session from inside your Workspace
+description: Start an interactive Spark session from a Workspace
 weight: 10
 ---
 
 {{< workspaces-beta-notice >}}
 
-You can run distributed Spark from a notebook in your Workspace without writing any
-Kubernetes manifests. The [Kubeflow SDK](https://sdk.kubeflow.org/en/latest/spark/index.html)
-creates the Spark cluster for you and hands back an ordinary PySpark session.
+[Spark Connect](https://spark.apache.org/docs/latest/spark-connect-overview.html) gives you
+a Spark session from inside a Workspace without running Spark in the Workspace pod. You
+write PySpark as usual; the [Spark Operator](/docs/components/spark-operator/) runs the
+driver and executors as separate pods, and only results come back over gRPC.
 
 ## Before you start
 
-Your administrator has to grant your WorkspaceKind access to Spark first — see the
-[operator guide](/docs/components/workspaces/operator-guides/spark-connect/). Confirm it is
-done from a Workspace terminal:
+Your Workspace needs permission to create Spark Connect sessions in your namespace. A
+platform administrator grants this on the WorkspaceKind — see
+[Spark Connect](/docs/components/workspaces/operator-guides/spark-connect/) in the
+operator guides. From a terminal in your Workspace:
 
-```bash
+```shell
 kubectl auth can-i create sparkconnects
 ```
 
-If this prints `no`, stop here and ask your administrator. Without the permission
-`connect()` does not fail immediately; it fails on a multi-minute Spark timeout.
-
-## Install the client
-
-If your Workspace image does not already ship it:
-
-```bash
-pip install "kubeflow[spark]"
-```
-
-Then pin `pyspark-connect` to the Spark version the SDK will provision. The `spark` extra
-installs a `pyspark-connect` release that does not currently match the SDK's
-`DEFAULT_SPARK_VERSION`, so this second step is required rather than belt-and-braces:
-
-```bash
-SPARK_VERSION="$(python -c \
-  'from kubeflow.spark.backends.kubernetes import constants; print(constants.DEFAULT_SPARK_VERSION)')"
-pip install "pyspark-connect==${SPARK_VERSION}"
-```
+If that prints `no`, stop here and ask your administrator.
 
 ## Start a session
 
+```shell
+pip install "kubeflow[spark]"
+```
+
 ```python
 from kubeflow.common.types import KubernetesBackendConfig
-from kubeflow.spark import Name, PodTemplateOverride, SparkClient
+from kubeflow.spark import Driver, Name, SparkClient
 
 client = SparkClient(backend_config=KubernetesBackendConfig(namespace="my-namespace"))
 
 spark = client.connect(
-    options=[
-        Name("my-spark-session"),
-        PodTemplateOverride(
-            role="driver",
-            template={
-                "metadata": {"labels": {"sidecar.istio.io/inject": "false"}},
-                "spec": {"serviceAccountName": "default-editor"},
-            },
-        ),
-        PodTemplateOverride(
-            role="executor",
-            template={
-                "metadata": {"labels": {"sidecar.istio.io/inject": "false"}},
-                "spec": {"containers": [{"name": "spark-kubernetes-executor"}]},
-            },
-        ),
-    ]
+    options=[Name("my-session")],
+    driver=Driver(service_account="default-editor"),
 )
+
+print(spark.version, spark.range(5).count())
 ```
 
-The two overrides are not optional. Each one works around something that would otherwise
-fail in a way that does not point at its cause:
+Pass your own profile namespace: the default is `default`, which is not where your
+permissions live. The driver runs as a ServiceAccount allowed to create executor pods —
+`default-editor` has those permissions in a Kubeflow profile namespace.
 
-`serviceAccountName: default-editor` — your Workspace ServiceAccount can create the
-`SparkConnect` resource, but the driver pod separately creates and watches its own executor
-pods, which that role does not cover. Without this, executors never appear.
-
-`sidecar.istio.io/inject: "false"` — the driver and executors exchange data on ports 7078
-and 7079, and that traffic does not survive the service mesh. Executors register with the
-driver, then fail fetching broadcast blocks, so tasks hang rather than error.
-
-`containers: [{"name": "spark-kubernetes-executor"}]` — Spark submits with
-`executor.podTemplateContainerName=spark-kubernetes-executor` and looks the container up by
-name, so the template must declare it even though the operator supplies the image.
-
-## Run a query
-
-From here it is ordinary PySpark:
-
-```python
-rows = (
-    spark.range(0, 100_000, numPartitions=4)
-    .selectExpr("id % 8 AS bucket")
-    .groupBy("bucket")
-    .count()
-    .collect()
-)
-```
-
-## Shut the session down
-
-The Spark cluster holds resources until you delete it:
+A session holds its driver and executor pods until you delete it, and it outlives the
+notebook kernel that created it. Release it when you are done:
 
 ```python
 spark.stop()
-client.delete_session("my-spark-session")
+client.delete_session("my-session")
 ```
 
-## Troubleshooting
+`client.list_sessions()` finds sessions you have lost track of.
 
-**`connect()` hangs, then times out.** Usually RBAC. Run the
-`kubectl auth can-i create sparkconnects` check above.
+## A working example
 
-**The session connects but no executors appear.** The driver override is missing or the
-driver ServiceAccount lacks pod permissions.
+The Kubeflow community distribution runs a Spark Connect session from a Workspace on
+every pull request, against the current SDK and Spark Operator releases. Follow that
+rather than a copy here — it is kept correct by CI:
 
-**Executors start, register, then tasks hang.** Istio. Check that both pod templates carry
-the `sidecar.istio.io/inject: "false"` label. Excluding ports 7078 and 7079 individually is
-not enough — the pods have to leave the mesh.
+- [`tests/spark_connect_from_workspace.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_from_workspace.py)
+  — the session itself
+- [`.github/workflows/workspaces_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/workspaces_spark_connect_test.yaml)
+  — the cluster it runs against
 
-**The driver exits with status 1.** Check the executor container is named exactly
-`spark-kubernetes-executor`.
-
-**Protocol errors on a session that started cleanly.** Client and server Spark versions have
-drifted. Compare `pyspark.__version__` against `spark.version` and re-pin.
-
-## Reference
-
-A complete working example runs in CI as the Workspaces Spark Connect test in
-[`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution/tree/master/tests)
-(`spark_connect_from_workspace.py`).
+Some clusters need extra per-session settings, such as keeping the Spark pods out of the
+service mesh. Those are platform concerns rather than things to configure per notebook;
+the test shows the current form, and the
+[operator guide](/docs/components/workspaces/operator-guides/spark-connect/) explains why
+they exist.
