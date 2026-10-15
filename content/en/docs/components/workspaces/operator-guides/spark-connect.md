@@ -59,4 +59,5 @@ WorkspaceKind with the Spark grant, and a session created from inside the Worksp
   — the cluster and the install order
 - [`tests/workspacekind.spark.test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/tests/workspacekind.spark.test.yaml)
   — a WorkspaceKind with the Spark grant
-- [`tests/spark_connect_from_workspace.py`](ht
+- [`tests/spark_connect_from_workspace.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_from_workspace.py)
+  — the session, including the current form of the mesh exclusion
