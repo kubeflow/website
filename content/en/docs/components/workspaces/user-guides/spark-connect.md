@@ -24,6 +24,19 @@ kubectl auth can-i create sparkconnects
 
 If that prints `no`, stop here and ask your administrator.
 
+## Install a matching Spark client
+
+The Spark Connect client in your Workspace must match the Spark version of the server
+the SDK starts. The SDK's `spark` extra and its default server version can differ, so
+install the SDK, then pin the client to the version the SDK will actually provision:
+
+```shell
+pip install --upgrade "kubeflow[spark]" && pip install "pyspark-connect==$(python -c 'from kubeflow.spark.backends.kubernetes import constants; print(constants.DEFAULT_SPARK_VERSION)')"
+```
+
+This is the same step the community distribution runs in CI; see
+[`tests/workspaces_spark_connect_test.sh`](https://github.com/kubeflow/community-distribution/blob/master/tests/workspaces_spark_connect_test.sh).
+
 ## Start a session
 
 ```shell
