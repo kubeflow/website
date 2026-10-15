@@ -491,3 +491,6 @@ docs/started/requirements/                    /docs/started/getting-started/
 /docs/components/spark-operator/user-guide/working-with-sparkapplication/                https://spark.kubeflow.org/en/latest/user-guide/working-with-sparkapplication.html
 /docs/components/spark-operator/user-guide/writing-sparkapplication/                     https://spark.kubeflow.org/en/latest/user-guide/writing-sparkapplication.html
 /docs/components/spark-operator/user-guide/yunikorn-integration/                         https://spark.kubeflow.org/en/latest/user-guide/yunikorn-integration.html
+
+# The Workspaces planning-process page was merged into the contribute page, redirect to its Planning process section
+/docs/components/workspaces/contributor-guides/planning-process/  /docs/components/workspaces/contributor-guides/contribute/#planning-process
