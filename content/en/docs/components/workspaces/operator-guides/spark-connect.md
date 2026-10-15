@@ -1,96 +1,62 @@
 ---
-title: Enabling Spark
-description: How to let Workspace users start Spark Connect sessions
-weight: 20
+title: Spark Connect
+description: Let Workspace users run interactive Spark sessions
+weight: 30
 ---
 
 {{< workspaces-beta-notice >}}
 
-This guide is for platform administrators. It covers the one change you must make so that
-Workspace users can start a Spark Connect session with the
-[Kubeflow SDK](https://sdk.kubeflow.org/en/latest/spark/index.html).
-
-Everything else is configured by the user at session creation time — see the
-[user guide](/docs/components/workspaces/user-guides/spark-connect/).
-
-## Prerequisites
-
-- Kubeflow Workspaces `{{% workspaces/kf-workspaces-version %}}` or later
-- [Kubeflow Spark Operator](https://spark.kubeflow.org/) with the `SparkConnect` CRD
-  installed and the operator watching your user namespaces
-- The aggregated `kubeflow-spark-edit` ClusterRole present in the cluster
+[Spark Connect](https://spark.apache.org/docs/latest/spark-connect-overview.html) lets a
+Workspace user hold a Spark session without a Spark runtime in the Workspace pod: the
+[Spark Operator](/docs/components/spark-operator/) runs the driver and executors as
+separate pods. This page covers what a platform administrator puts in place. The
+user-facing side is [Running Spark](/docs/components/workspaces/user-guides/spark-connect/).
 
 ## Grant the Workspace access to Spark
 
-Each Workspace runs under its own ServiceAccount, `ws-{WORKSPACE_NAME}`.
-
-Since Workspaces `v2.0.0-beta.0` this ServiceAccount **no longer inherits the Kubeflow
-ClusterRoles** the way the old shared `default-editor` did. Until you grant it explicitly,
-a Workspace cannot create `SparkConnect` resources.
-
-Bind the Spark role on the WorkspaceKind:
+A Workspace runs as its own ServiceAccount, `ws-{WORKSPACE_NAME}`. As of Workspaces
+v2.0.0-beta.0 that ServiceAccount is no longer granted the Kubeflow ClusterRoles
+automatically, so a WorkspaceKind whose users need Spark has to ask for the grant:
 
 ```yaml
+apiVersion: kubeflow.org/v1beta1
+kind: WorkspaceKind
 spec:
   podTemplate:
     serviceAccount:
       clusterRoles:
-        # create/get/list/delete sparkconnects and sparkapplications
         - name: "kubeflow-spark-edit"
 ```
 
-Bind `kubeflow-spark-edit`, not `kubeflow-edit`. The Spark role grants only what is needed
-to manage `SparkApplication` and `SparkConnect` resources; `kubeflow-edit` is far broader
-and reintroduces exactly the permissions the per-Workspace ServiceAccount change removed.
+Bind `kubeflow-spark-edit` rather than the much broader `kubeflow-edit`: it carries only
+the Spark resources. Verify after applying:
 
-That is the only WorkspaceKind change required.
-
-## Verify
-
-```bash
+```shell
 kubectl auth can-i create sparkconnects \
-  --as="system:serviceaccount:${NAMESPACE}:ws-${WORKSPACE_NAME}" \
-  -n "${NAMESPACE}"
+  --as="system:serviceaccount:${PROFILE}:ws-${WORKSPACE_NAME}" \
+  -n "${PROFILE}"
 ```
 
-If this returns `no`, fix the binding before users try to connect. Without the permission
-`connect()` does not fail fast — it fails on a multi-minute Spark timeout, well away from
-the actual cause.
+## Service mesh
 
-## What users still have to configure
+Spark's driver and executors talk to each other over their own RPC and block-manager
+ports, and the client reaches the server over gRPC. None of that survives an Istio
+sidecar: executors register with the driver and then fail to fetch broadcast blocks, so
+tasks hang rather than fail outright. This is an upstream Spark-on-Kubernetes limitation,
+tracked in [SPARK-42411](https://issues.apache.org/jira/browse/SPARK-42411).
 
-Three settings are supplied by the user in the `connect()` call rather than by you, because
-they apply per session. They are documented in the
-[user guide](/docs/components/workspaces/user-guides/spark-connect/), but they are worth
-knowing about when a user reports a broken session:
+Until that is resolved, Spark driver and executor pods have to be kept out of the mesh.
+Keep that decision with the platform: it is cluster-wide policy, not something to ask a
+notebook user to configure per session.
 
-**The driver needs a different ServiceAccount.** `kubeflow-spark-edit` lets the Workspace
-create the `SparkConnect` resource, but the Spark driver pod separately creates and watches
-its own executor pods. That is not covered by the Spark role, so the driver runs as
-`default-editor`.
+## Reference deployment
 
-**Spark pods must leave the Istio mesh.** The driver and executors exchange data on ports
-7078 and 7079. Executors register with the driver and then fail fetching broadcast blocks,
-so tasks never complete. Both pods set `sidecar.istio.io/inject: "false"`.
+Rather than reproducing the configuration here, where it would drift, read the setup the
+Kubeflow community distribution keeps green in CI — Spark Operator, Workspaces, a
+WorkspaceKind with the Spark grant, and a session created from inside the Workspace pod:
 
-**The executor container must be named `spark-kubernetes-executor`.** Spark submits with
-`executor.podTemplateContainerName=spark-kubernetes-executor` and looks the container up by
-that name, so a template must declare it even though the operator supplies the image.
-
-## Image requirements
-
-The Workspace image needs the Kubeflow SDK with its `spark` extra (`kubeflow[spark]`), plus
-a `pyspark-connect` release matching the Spark version the SDK provisions, which it exposes
-as `kubeflow.spark.backends.kubernetes.constants.DEFAULT_SPARK_VERSION`.
-
-Installing the extra alone is not enough: it pins a `pyspark-connect` release that does not
-currently match that constant. Build images against the constant rather than relying on the
-extra or choosing a Spark version independently — a mismatch surfaces as an opaque protocol
-error rather than a version complaint.
-
-## Reference
-
-The end-to-end setup is exercised in CI by the Workspaces Spark Connect test in
-[`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution/tree/master/tests):
-`workspaces_spark_connect_test.sh`, `workspacekind.spark.test.yaml`, and
-`spark_connect_from_workspace.py`. That test is the authoritative working example.
+- [`.github/workflows/workspaces_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/workspaces_spark_connect_test.yaml)
+  — the cluster and the install order
+- [`tests/workspacekind.spark.test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/tests/workspacekind.spark.test.yaml)
+  — a WorkspaceKind with the Spark grant
+- [`tests/spark_connect_from_workspace.py`](ht
