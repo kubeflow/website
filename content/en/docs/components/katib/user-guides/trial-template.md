@@ -276,7 +276,7 @@ object YAML in the Experiment's Trial template source spec.
 
 We appreciate your feedback on using various CRDs in Katib. It would be great, if you could let us
 know about your Experiments. The
-[developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md)
+[developer guide](https://github.com/kubeflow/katib/blob/master/CONTRIBUTING.md)
 is a good starting point to know how to contribute to the project.
 
 ## Next steps

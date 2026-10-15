@@ -123,7 +123,7 @@ Katib has the following components on the control plane to run Experiments:
   - (Optional) If certificate generator is enabled in
     [Katib Config](/docs/components/katib/user-guides/katib-config/), Katib controller deployment will create
     self-signed certificate for the Katib webhooks. Learn more about the cert generator in the
-    [developer guide](https://github.com/kubeflow/katib/blob/master/docs/developer-guide.md#katib-cert-generator).
+    [developer guide](https://github.com/kubeflow/katib/blob/master/CONTRIBUTING.md#katib-cert-generator).
 
 - `katib-ui` - the Katib user interface.
 

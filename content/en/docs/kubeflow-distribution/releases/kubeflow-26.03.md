@@ -5,7 +5,7 @@ weight = 89
 +++
 
 {{% alert title="Note" color="warning" %}}
-We are transitioning to a Calendar Versioning model to provide a more predictable and automated release schedule. For more details on the upcoming phases, please refer to the [Release Handbook](https://github.com/kubeflow/manifests/blob/master/releases/kubeflow-ai-reference-platform-release-handbook.md).
+We are transitioning to a Calendar Versioning model to provide a more predictable and automated release schedule. For more details on the upcoming phases, please refer to the [Release Handbook](https://github.com/kubeflow/community-distribution/blob/master/releases/kubeflow-community-distribution-release-handbook.md).
 {{% /alert %}}
 
 ## Kubeflow Community Distribution 26.03
