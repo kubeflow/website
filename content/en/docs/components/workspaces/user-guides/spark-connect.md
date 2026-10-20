@@ -77,7 +77,7 @@ The Kubeflow community distribution runs a Spark Connect session from a Workspac
 every pull request, against the current SDK and Spark Operator releases. Follow that
 rather than a copy here — it is kept correct by CI:
 
-- [`tests/spark_connect_from_workspace.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_from_workspace.py)
+- [`tests/spark_connect_session.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_session.py)
   — the session itself
 - [`.github/workflows/workspaces_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/workspaces_spark_connect_test.yaml)
   — the cluster it runs against
