@@ -136,7 +136,7 @@ kubectl get configmap dashboard-config --namespace kubeflow -o jsonpath='{.data.
 ### Step 4: Enable a StorageClass for Workspaces
 
 Workspaces provision their home and data volumes from a `StorageClass`. The backend only offers
-users the StorageClasses that are explicitly opted in with the `notebooks.kubeflow.org/can-use=true`
+users the StorageClasses that are explicitly opted in with the `workspaces.kubeflow.org/can-use=true`
 label, so you must enable at least one.
 
 The example below uses `standard`, the default StorageClass on a [kind](https://kind.sigs.k8s.io/)
@@ -146,13 +146,13 @@ storageclass`):
 ```bash
 # Allow Workspaces to use this StorageClass.
 kubectl label storageclass standard \
-  "notebooks.kubeflow.org/can-use=true" \
+  "workspaces.kubeflow.org/can-use=true" \
   --overwrite
 
 # Optional: give it a friendly name and description shown in the UI.
 kubectl annotate storageclass standard \
-  "notebooks.kubeflow.org/display-name=Standard (Local Path)" \
-  "notebooks.kubeflow.org/description=Local path provisioner for development. Data is stored on the node and not replicated." \
+  "workspaces.kubeflow.org/display-name=Standard (Local Path)" \
+  "workspaces.kubeflow.org/description=Local path provisioner for development. Data is stored on the node and not replicated." \
   --overwrite
 ```
 
