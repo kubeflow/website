@@ -26,10 +26,10 @@ using community or package distributions. KCD includes Katib.
 
 You can install Katib as a standalone component.
 
-Run the following command to install the stable release of Katib control plane: `v0.17.0`
+Run the following command to install the stable release of Katib control plane: `v0.19.0`
 
 ```shell
-kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=v0.17.0"
+kubectl apply -k "github.com/kubeflow/katib.git/manifests/v1beta1/installs/katib-standalone?ref=v0.19.0"
 ```
 
 Run the following command to install the latest changes of Katib control plane:
