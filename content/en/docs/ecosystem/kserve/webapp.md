@@ -214,7 +214,7 @@ Both in _standalone_ and in _kubeflow_ setups the user needs to be able to selec
 
 In _standalone_ mode the web app will show a dropdown that will show all the namespaces to the user and allow them to select any of them.
 The backend will make a LIST request to the API Server to get all the namespaces.
-In this case the only authorization check that takes place is in the K8s API Server that ensures the [web app Pod's ServiceAccount](https://github.com/kserve/models-web-app/blob/release-0.7/config/base/rbac.yaml) has permissions to list namespaces.
+In this case the only authorization check that takes place is in the K8s API Server that ensures the [web app Pod's ServiceAccount](https://github.com/kserve/models-web-app/blob/v0.7.0/config/base/rbac.yaml) has permissions to list namespaces.
 
 In _kubeflow_ mode the [Central Dashboard](/docs/components/central-dash/overview/) is responsible for the Namespace selection.
 Once the user selects a namespace then the Dashboard will inform the iframed Models web app about the newly selected namespace.
