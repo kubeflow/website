@@ -8,13 +8,7 @@ weight = 40
 
 ## Before you start
 
-A notebook pod runs as the `default-editor` ServiceAccount, which a Kubeflow Profile already binds to `kubeflow-edit`. The aggregated `kubeflow-spark-edit` ClusterRole carries the Spark resources, so no extra setup is needed. From a terminal in your notebook:
-
-```shell
-kubectl auth can-i create sparkconnects
-```
-
-If that prints `no`, the Spark Operator is not installed or the aggregated Spark roles are missing — ask your platform administrator.
+Nothing to set up. A notebook pod already has permission to create Spark Connect sessions in your own namespace. If the session below fails with a permissions error, that is a platform configuration problem — raise it with your administrator.
 
 ## Start a session
 
