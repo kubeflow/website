@@ -31,7 +31,9 @@ the SDK starts. The SDK's `spark` extra and its default server version can diffe
 install the SDK, then pin the client to the version the SDK will actually provision:
 
 ```shell
-pip install --upgrade "kubeflow[spark]" && pip install "pyspark-connect==$(python -c 'from kubeflow.spark.backends.kubernetes import constants; print(constants.DEFAULT_SPARK_VERSION)')"
+pip install --upgrade "kubeflow[spark]" && \
+SPARK_VERSION="$(python -c 'from kubeflow.spark.backends.kubernetes import constants; print(constants.DEFAULT_SPARK_VERSION)')" && \
+pip install "pyspark-connect==${SPARK_VERSION}"
 ```
 
 This is the same step the community distribution runs in CI; see
@@ -39,9 +41,8 @@ This is the same step the community distribution runs in CI; see
 
 ## Start a session
 
-```shell
-pip install "kubeflow[spark]"
-```
+Create the session with `SparkClient`, then use the `SparkSession` it returns exactly as
+you would a local one:
 
 ```python
 from kubeflow.common.types import KubernetesBackendConfig
@@ -83,7 +84,7 @@ rather than a copy here — it is kept correct by CI:
   — the cluster it runs against
 
 Some clusters need extra per-session settings, such as keeping the Spark pods out of the
-service mesh. Those are platform concerns rather than things to configure per notebook;
+service mesh. Those are platform concerns rather than things to configure per session;
 the test shows the current form, and the
 [operator guide](/docs/components/workspaces/operator-guides/spark-connect/) explains why
 they exist.
