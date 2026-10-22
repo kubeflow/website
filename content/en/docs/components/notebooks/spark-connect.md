@@ -8,7 +8,7 @@ weight = 40
 
 ## Before you start
 
-Nothing to set up. A notebook pod already has permission to create Spark Connect sessions in your own namespace. If the session below fails with a permissions error, that is a platform configuration problem — raise it with your administrator.
+Nothing to set up. A notebook pod already has permission to create Spark Connect sessions in your own namespace. If the session below fails with a permissions error, that is a platform configuration problem — raise it with your platform administrator.
 
 ## Start a session
 
