@@ -10,11 +10,21 @@ weight = 40
 
 Nothing to set up. A notebook pod already has permission to create Spark Connect sessions in your own namespace. If the session below fails with a permissions error, that is a platform configuration problem — raise it with your platform administrator.
 
-## Start a session
+## Install a matching Spark client
+
+The Spark Connect client in your notebook must match the Spark version of the server the SDK starts. The SDK's `spark` extra and its default server version can differ, so install the SDK, then pin the client to the version the SDK will actually provision:
 
 ```shell
-pip install "kubeflow[spark]"
+pip install --upgrade "kubeflow[spark]" && \
+SPARK_VERSION="$(python -c 'from kubeflow.spark.backends.kubernetes import constants; print(constants.DEFAULT_SPARK_VERSION)')" && \
+pip install "pyspark-connect==${SPARK_VERSION}"
 ```
+
+This is the same step the community distribution runs in CI; see [`tests/notebooks_spark_connect_test.sh`](https://github.com/kubeflow/community-distribution/blob/master/tests/notebooks_spark_connect_test.sh).
+
+## Start a session
+
+Create the session with `SparkClient`, then use the `SparkSession` it returns exactly as you would a local one:
 
 ```python
 from kubeflow.common.types import KubernetesBackendConfig
