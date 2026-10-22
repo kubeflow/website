@@ -36,9 +36,11 @@ After the steps in this section, every workspace created from the configured `Wo
 
 Follow the official [KubeRay Operator Installation Guide](https://docs.ray.io/en/latest/cluster/kubernetes/getting-started/kuberay-operator-installation.html) (for example, using Helm). The on-demand job workflow uses `RayJob` `InteractiveMode`, which requires KubeRay **v1.3 or later**.
 
+If you deploy the [Kubeflow Community Distribution](https://github.com/kubeflow/community-distribution), you can alternatively install KubeRay using its [`experimental/ray` Kustomize overlay](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) (or by uncommenting `../experimental/ray/kuberay-operator/overlays/kubeflow` in [`example/kustomization.yaml`](https://github.com/kubeflow/community-distribution/blob/master/example/kustomization.yaml)). Note that the community distribution overlay installs a broader `kubeflow-kuberay-edit` role (which grants full `ray.io/*` access, including `RayCluster` creation, to `kubeflow-edit`); if you want the least-privilege setup described below where workspace users cannot create unmanaged `RayCluster`s, do not bind `kubeflow-edit` to the `WorkspaceKind` and bind `ray-job-edit` instead.
+
 ### Step 2: Grant Workspaces Permission to Use Ray
 
-Each workspace pod runs as a dedicated `ServiceAccount` (`ws-<workspace-name>`). Instead of binding roles per workspace, define a `ClusterRole` once and attach it to the `WorkspaceKind`; the Workspaces controller then binds it for every workspace of that kind.
+Each workspace pod runs as a dedicated `ServiceAccount` (`ws-<workspace-name>-<suffix>`). Instead of binding roles per workspace, define a `ClusterRole` once and attach it to the `WorkspaceKind`; the Workspaces controller then binds it for every workspace of that kind.
 
 The role below follows least privilege:
 
@@ -85,7 +87,24 @@ spec:
         - name: ray-job-edit
 ```
 
-To append the role to an existing `WorkspaceKind` without overwriting roles that are already listed:
+To set `clusterRoles` on an existing `WorkspaceKind` (such as the upstream `jupyterlab` sample, where `clusterRoles` is commented out by default):
+
+```bash
+kubectl patch workspacekind jupyterlab --type=merge -p='{
+  "spec": {
+    "podTemplate": {
+      "serviceAccount": {
+        "clusterRoles": [
+          {"name": "kubeflow-edit"},
+          {"name": "ray-job-edit"}
+        ]
+      }
+    }
+  }
+}'
+```
+
+If `spec.podTemplate.serviceAccount.clusterRoles` already has entries that you want to preserve without overwriting, append with a JSON patch instead:
 
 ```bash
 kubectl patch workspacekind jupyterlab --type=json -p='[
@@ -95,12 +114,12 @@ kubectl patch workspacekind jupyterlab --type=json -p='[
 
 ### Step 3: Provide a Shared Ray Cluster for Interactive Use
 
-Interactive users connect to a long-lived `RayCluster` that you manage in their namespace. Users can't create one themselves. To create one, see the [RayCluster Quickstart](https://docs.ray.io/en/latest/cluster/kubernetes/getting-started/raycluster-quick-start.html), and remember to set the Istio label described [below](#things-to-keep-in-mind). Tell users the cluster's name and the Ray version it runs. Enabling autoscaling with `minReplicas: 0` keeps idle workers from holding resources.
+Interactive users connect to a long-lived `RayCluster` that you manage in their namespace. Users can't create one themselves. To create one, see the [RayCluster Quickstart](https://docs.ray.io/en/latest/cluster/kubernetes/getting-started/raycluster-quick-start.html), and configure Istio as described [below](#things-to-keep-in-mind). Tell users the cluster's name and the Ray version it runs. Enabling autoscaling with `minReplicas: 0` keeps idle workers from holding resources.
 
 ### Things to Keep in Mind
 
 - **Version matching:** Ray Client requires the **same Ray version and Python minor version** on the client and the cluster. Choose a Ray image (for example, `rayproject/ray:2.58.0-py312`) that matches the Python version of your workspace images, and publish the Ray version users should install.
-- **Istio sidecars:** Kubeflow enables Istio sidecar injection in user namespaces. The Envoy sidecar intercepts Ray's internal gRPC traffic between head and worker nodes, so the `RayCluster` never becomes ready. Ray pods must carry the `sidecar.istio.io/inject: "false"` label. Set it on your shared clusters; the users' `RayJob` code in this guide already sets it.
+- **Istio sidecars:** Kubeflow enables Istio sidecar injection in user namespaces. By default, the Envoy sidecar intercepts Ray's internal gRPC traffic between head and worker nodes, preventing an unconfigured `RayCluster` from becoming ready. The simplest fix—used by the `RayJob` code in this guide—is to set `sidecar.istio.io/inject: "false"` on Ray pod templates. If your cluster policy requires Istio sidecars on all pods, you can instead configure a headless service, custom Ray ports, `node-ip-address`, and an `AuthorizationPolicy` (for an example on a static `RayCluster`, see [`experimental/ray/raycluster_example.yaml`](https://github.com/kubeflow/community-distribution/blob/master/experimental/ray/raycluster_example.yaml) in the Kubeflow Community Distribution).
 - **Quotas:** Users can create `RayJob`s freely, so consider a [`ResourceQuota`](https://kubernetes.io/docs/concepts/policy/resource-quotas/) per namespace to cap CPU, memory, and GPU usage.
 
 ---
@@ -121,8 +140,11 @@ Install the Ray SDK and the KubeRay Python client, using the Ray version from yo
 ```bash
 RAY_VERSION="2.58.0"
 
+# kuberay-client is installed through the git repo until the official package is published to PyPI
+# (install via `pip install kuberay-client` once available; see https://github.com/kuberay-project/kuberay/pull/5346):
+
 pip install "ray[default,client]==${RAY_VERSION}" \
-  "git+https://github.com/ray-project/kuberay.git#subdirectory=clients/python-client"
+  "git+https://github.com/kuberay-project/kuberay.git#subdirectory=clients/kuberay-client"
 ```
 
 If you install packages from inside a running notebook, restart the kernel afterward (**Kernel ➔ Restart Kernel**).
@@ -151,13 +173,16 @@ Use this workflow to run notebook cells on the shared Ray cluster while you expl
 If your administrator didn't give you a cluster name, list the shared clusters in your namespace. Temporary clusters created by `RayJob`s are filtered out:
 
 ```python
-from python_client import kuberay_cluster_api
+from kuberay_client import kuberay_cluster_api
 
 items = kuberay_cluster_api.RayClusterApi().list_ray_clusters(k8s_namespace=NAMESPACE).get("items", [])
 clusters = [
-    c["metadata"]["name"]
-    for c in items
-    if not any(o.get("kind") == "RayJob" for o in c["metadata"].get("ownerReferences", []))
+    cluster["metadata"]["name"]
+    for cluster in items
+    if not any(
+        owner_ref.get("kind") == "RayJob"
+        for owner_ref in cluster["metadata"].get("ownerReferences", [])
+    )
 ]
 print(f"Shared Ray clusters: {clusters}")
 ```
@@ -214,8 +239,8 @@ import sys
 import uuid
 
 import ray
-from python_client import kuberay_job_api
-from python_client.utils.kuberay_cluster_builder import ClusterBuilder
+from kuberay_client import kuberay_job_api
+from kuberay_client.utils.kuberay_cluster_builder import ClusterBuilder
 
 
 def create_ray_job_spec(
@@ -262,9 +287,9 @@ def create_ray_job_spec(
         "metadata": {"name": job_name, "namespace": namespace},
         "spec": {
             "submissionMode": "InteractiveMode",           # you submit the code from this notebook
-            "shutdownAfterJobFinishes": True,              # delete the cluster when the job ends
-            "ttlSecondsAfterFinished": 300,                # remove the finished RayJob after 5 minutes
-            "activeDeadlineSeconds": max_runtime_seconds,  # hard time limit for the whole job
+            "shutdownAfterJobFinishes": True,              # delete the RayCluster when the job ends
+            "ttlSecondsAfterFinished": 300,                # wait 5 minutes after completion before deleting the RayCluster
+            "activeDeadlineSeconds": max_runtime_seconds,  # time limit while initializing or running
             "rayClusterSpec": cluster_spec,
         },
     }
@@ -285,7 +310,7 @@ The parameters you can adjust:
 - `num_workers`: Number of Ray worker nodes, in addition to the head node.
 - `worker_cpu`, `worker_memory`: Resources for each worker node. Your code runs mostly on the workers, so size these for your workload.
 - `head_cpu`, `head_memory`: Resources for the head node, which coordinates the cluster and runs your entrypoint script. The defaults are usually enough; increase memory if your entrypoint loads large data itself.
-- `max_runtime_seconds`: A time limit for the whole job. It counts from this request, so it includes cluster startup as well as your code's run time. When it runs out, KubeRay stops the job and deletes its cluster, even if your code is still running. This keeps a forgotten or stuck job from holding compute indefinitely. Set it comfortably above your expected run time (the default is 1 hour).
+- `max_runtime_seconds`: A time limit (measured from `RayJob` creation) enforced while the cluster is initializing and while your submitted job is running. When it runs out, KubeRay stops the job and deletes its `RayCluster` (after `ttlSecondsAfterFinished`), even if your code is still running. Note that in KubeRay v1.3+, `activeDeadlineSeconds` is not evaluated while the `RayJob` is in the `Waiting` state (after the cluster is ready, before you submit and link `job_id` in Step 3); if you decide not to submit a job, delete the `RayJob` explicitly as shown in [Cancelling a Job](#cancelling-a-job) (or, on KubeRay v1.6+, set `preRunningDeadlineSeconds` in `spec` to expire unsubmitted jobs automatically). Set `max_runtime_seconds` comfortably above your expected startup plus run time (the default is 1 hour).
 
 #### Step 2: Wait Until the Cluster Is Ready
 
@@ -347,7 +372,7 @@ print(f"Submitted job {job_id}")
 ```
 
 {{% alert title="Don't skip the last call" color="warning" %}}
-Linking the `job_id` to the `RayJob` is what triggers automatic cleanup. Without it, the cluster stays up until `max_runtime_seconds` expires.
+Linking the `job_id` to the `RayJob` transitions the `RayJob` from `Waiting` to `Running` and enables automatic cleanup when your code finishes (or when `activeDeadlineSeconds` expires). If you skip this patch—or if your notebook stops before running it—the `RayJob` stays in `Waiting` and its `RayCluster` keeps running until you delete the `RayJob` with `job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)` (unless `preRunningDeadlineSeconds` is configured on KubeRay v1.6+).
 {{% /alert %}}
 
 #### Step 4: Follow the Logs
