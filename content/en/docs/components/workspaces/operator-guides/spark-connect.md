@@ -12,6 +12,13 @@ Workspace user hold a Spark session without a Spark runtime in the Workspace pod
 separate pods. This page covers what a platform administrator puts in place. The
 user-facing side is [Running Spark](/docs/components/workspaces/user-guides/spark-connect/).
 
+## Prerequisites
+
+The cluster needs the [Spark Operator](/docs/components/spark-operator/) v2.5.0 or later.
+It provides the `SparkConnect` custom resource and the controller that acts on it;
+granting the permissions below does not install either, and earlier versions do not
+handle the session shape these guides use.
+
 ## Grant the Workspace access to Spark
 
 A Workspace runs as its own ServiceAccount, `ws-{WORKSPACE_NAME}`. As of Workspaces
@@ -32,6 +39,9 @@ Bind `kubeflow-spark-edit` rather than the much broader `kubeflow-edit`: it carr
 the Spark resources. Verify after applying:
 
 ```shell
+PROFILE=kubeflow-user-example-com
+WORKSPACE_NAME=my-workspace
+
 kubectl auth can-i create sparkconnects \
   --as="system:serviceaccount:${PROFILE}:ws-${WORKSPACE_NAME}" \
   -n "${PROFILE}"
@@ -45,9 +55,21 @@ sidecar: executors register with the driver and then fail to fetch broadcast blo
 tasks hang rather than fail outright. This is an upstream Spark-on-Kubernetes limitation,
 tracked in [SPARK-42411](https://issues.apache.org/jira/browse/SPARK-42411).
 
-Until that is resolved, Spark driver and executor pods have to be kept out of the mesh.
-Keep that decision with the platform: it is cluster-wide policy, not something to ask a
-notebook user to configure per session.
+Until that is resolved, Spark driver and executor pods have to be kept out of the mesh,
+and that belongs with the platform rather than with each session.
+
+The Spark Operator labels every pod it launches with
+`sparkoperator.k8s.io/launched-by-spark-operator: "true"`, on the driver and the
+executors alike, so one cluster-wide exemption covers all Spark workloads. With Istio,
+add that label to the sidecar injector's
+[`neverInjectSelector`](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#controlling-the-injection-policy),
+which the Kubeflow community distribution ships empty.
+
+Without an exemption, a namespace with automatic injection leaves Spark pods in the mesh
+and distributed queries hang rather than fail. Sessions can also opt out individually —
+[`tests/spark_connect_session.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_session.py)
+does this — but that puts an infrastructure concern in front of the user, so prefer the
+cluster-wide exemption.
 
 ## Reference deployment
 
