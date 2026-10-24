@@ -13,6 +13,9 @@ driver and executors as separate pods, and only results come back over gRPC.
 
 ## Before you start
 
+Your cluster needs the Spark Operator v2.5.0 or later. If you are not sure, ask your
+platform administrator.
+
 Your Workspace needs permission to create Spark Connect sessions in your namespace. A
 platform administrator grants this on the WorkspaceKind — see
 [Spark Connect](/docs/components/workspaces/operator-guides/spark-connect/) in the
