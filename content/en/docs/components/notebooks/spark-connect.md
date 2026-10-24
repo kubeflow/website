@@ -8,7 +8,7 @@ weight = 40
 
 ## Before you start
 
-Nothing to set up. A notebook pod already has permission to create Spark Connect sessions in your own namespace. If the session below fails with a permissions error, that is a platform configuration problem — raise it with your platform administrator.
+Your cluster needs the Spark Operator v2.5.0 or later, which provides Spark Connect — if you are not sure, ask your platform administrator. Beyond that there is nothing to set up: a notebook pod already has permission to create Spark Connect sessions in your own namespace. If the session below fails with a permissions error, that is a platform configuration problem — raise it with your platform administrator.
 
 ## Install a matching Spark client
 
