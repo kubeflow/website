@@ -37,9 +37,7 @@ spec:
 
 `kubeflow-edit` is what a Kubeflow Profile binds to `default-editor`, so a Workspace user
 ends up with the same permissions as a Notebook user, and the Spark rules come with it —
-`kubeflow-spark-edit` aggregates into `kubeflow-edit`. Bind `kubeflow-spark-edit` instead
-if the WorkspaceKind is Spark-only and you want nothing else granted. Verify after
-applying:
+`kubeflow-spark-edit` aggregates into `kubeflow-edit`. Verify after applying:
 
 ```shell
 PROFILE=kubeflow-user-example-com
