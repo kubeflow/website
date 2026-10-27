@@ -23,3 +23,4 @@ Sponsors & applicants will be submitting the nominations via the following form:
 | -------- | ---------------- | ------------------------------------------------------ |
 | Jul 2026 | Christian Heusel |[@christian-heusel](https://github.com/christian-heusel)|
 | Aug 2026 | Siddhant Jain    |[@Raakshass](https://github.com/Raakshass)              |
+| Sep 2026 | Danish Siddiqui  |[@danish9039](https://github.com/danish9039)            |

@@ -151,7 +151,7 @@ Katib supports the following algorithm settings for DARTS:
         <td>w_momentum</td>
         <td>float</td>
         <td>0.9</td>
-        <td>Momentum for training training model weights.</td>
+        <td>Momentum for training model weights.</td>
       </tr>
       <tr>
         <td>w_weight_decay</td>
