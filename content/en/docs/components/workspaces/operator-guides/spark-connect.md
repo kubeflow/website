@@ -19,6 +19,10 @@ It provides the `SparkConnect` custom resource and the controller that acts on i
 granting the permissions below does not install either, and earlier versions do not
 handle the session shape these guides use.
 
+Install it from the Kubeflow community distribution rather than the upstream Helm chart
+alone: the aggregated `kubeflow-spark-*` ClusterRoles that carry the Spark rules into
+`kubeflow-edit` ship with the distribution, not with the operator itself.
+
 ## Grant the Workspace access to Spark
 
 A Workspace runs as its own ServiceAccount, `ws-{WORKSPACE_NAME}`. As of Workspaces
