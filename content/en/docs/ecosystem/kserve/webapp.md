@@ -1,5 +1,5 @@
 +++
-title = "Kserve UI"
+title = "KServe UI"
 description = "An overview of the KServe UI"
 weight = 2
 +++
@@ -9,7 +9,8 @@ weight = 2
 The [KServe UI](https://github.com/kserve/models-web-app) is a component of KServe that provides a user-friendly way to handle the lifecycle of `InferenceService` CRs in a Kubeflow cluster.
 This allows users to create, delete, and inspect the state of their Model Servers without needing to interact with Kubernetes resources directly.
 The UI is [included as a part of the `kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution/tree/master/applications/kserve/kserve-ui).
-It is exposed as a manu link in the Kubeflow Central Dashboard by default.
+It is exposed as a menu link in the Kubeflow Central Dashboard by default.
+To see how the UI is installed and verified, refer to the [`tests/kserve_install.sh`](https://github.com/kubeflow/community-distribution/blob/master/tests/kserve_install.sh) script, which the [`Test KServe`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/kserve_test.yaml) workflow runs in CI.
 
 ## Usage
 
