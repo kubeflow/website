@@ -127,6 +127,7 @@ The outputs provided to `dsl.OneOf` must be of the same type and cannot be other
 ## Loops
 
 Kubeflow Pipelines supports loops which cause fan-out and fan-in of tasks.
+If you need tasks to run one after another, see [sequential loops](#sequential-loops).
 
 ### **dsl.ParallelFor**
 
@@ -229,6 +230,107 @@ def my_pipeline() -> List[Model]:
     ) as epochs:
         train_model_task = train_model(epochs=epochs)
     return dsl.Collected(train_model_task.outputs['model'])
+```
+
+### Sequential loops
+
+There is no `dsl` loop where each iteration uses the output of the previous one, for example training a model one epoch at a time.
+
+You also can't use a Python `for` loop over a pipeline input.
+The pipeline function only runs when the pipeline is compiled, so `epochs` below is a placeholder and not an `int` yet.
+This pipeline fails with `TypeError: 'PipelineParameterChannel' object cannot be interpreted as an integer`:
+
+```python
+from kfp import dsl
+from kfp.dsl import Input, Model, Output
+
+#@dsl.component
+#def make_model(model: Output[Model]):
+#    ...
+
+#@dsl.component
+#def train_one_epoch(model_in: Input[Model], model: Output[Model]):
+#    ...
+
+@dsl.pipeline
+def my_pipeline(epochs: int):
+    model_task = make_model()
+    for _ in range(epochs):  # fails: epochs is not an int at compile time
+        model_task = train_one_epoch(model_in=model_task.outputs['model'])
+```
+
+Here are a few ways to get a sequential loop instead.
+
+#### **Example:** Loop a fixed number of times
+
+If you know the number of iterations when you write the pipeline, a Python `for` loop over a constant works.
+The loop is unrolled at compile time, so each iteration becomes a separate task that uses the output of the one before it.
+
+In the following pipeline, `train_one_epoch` runs three times, one after another:
+
+```python
+from kfp import dsl
+from kfp.dsl import Input, Model, Output
+
+#@dsl.component
+#def make_model(model: Output[Model]):
+#    ...
+
+#@dsl.component
+#def train_one_epoch(model_in: Input[Model], model: Output[Model]):
+#    ...
+
+@dsl.pipeline
+def my_pipeline():
+    model_task = make_model()
+    for _ in range(3):
+        model_task = train_one_epoch(model_in=model_task.outputs['model'])
+```
+
+This is fine for a few iterations, but the pipeline gets big if the number is large.
+
+#### **Example:** Run independent iterations one at a time
+
+If the iterations don't need each other's outputs and you just want them to run one at a time, use `dsl.ParallelFor` with `parallelism=1`.
+The items can be a pipeline input, so you can pass a different list on each run.
+
+In the following pipeline, `train_model` runs once for each value in `epochs_list`, one at a time:
+
+```python
+from typing import List
+
+from kfp import dsl
+
+#@dsl.component
+#def train_model(epochs: int) -> Model:
+#    ...
+
+@dsl.pipeline
+def my_pipeline(epochs_list: List[int] = [1, 5, 10]):
+    with dsl.ParallelFor(
+        items=epochs_list,
+        parallelism=1
+    ) as epochs:
+        train_model(epochs=epochs)
+```
+
+#### **Example:** Loop inside a component
+
+If each iteration needs the previous result and the number of iterations is only known at runtime, put the loop inside a component.
+The loop then runs inside one task, so you won't see each iteration as its own task in the UI and it won't be cached separately.
+
+```python
+from kfp import dsl
+from kfp.dsl import Model, Output
+
+@dsl.component
+def train_model(epochs: int, model: Output[Model]):
+    for epoch in range(epochs):
+        ...  # train one epoch
+
+@dsl.pipeline
+def my_pipeline(epochs: int):
+    train_model(epochs=epochs)
 ```
 
 ## Exit handling
