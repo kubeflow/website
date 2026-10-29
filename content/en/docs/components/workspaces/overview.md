@@ -41,8 +41,10 @@ staging or development cluster.
 
 - Read the [Deployment Guide](/docs/components/workspaces/operator-guides/deployment-guide/)
   to install Kubeflow Workspaces.
-- Read the [KubeRay Integration Guide](/docs/components/workspaces/integration-guide/kuberay/)
+- Read [How to use Ray with Kubeflow Workspaces](/docs/components/workspaces/user-guides/ray/)
   to run distributed workloads from your workspace.
+- Read [How to enable Ray for Workspaces](/docs/components/workspaces/operator-guides/kuberay/)
+  to enable Ray access for workspace users.
 - Want to help build it? See
   [Contribute to Kubeflow Workspaces](/docs/components/workspaces/contributor-guides/contribute/).
 - Explore the current [Kubeflow Notebooks](/docs/components/notebooks/) documentation.
