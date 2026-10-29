@@ -117,6 +117,7 @@
         position: sticky;
         top: calc(7rem + var(--kf-banner-height, 0rem));
         height: calc(100vh - 7rem - var(--kf-banner-height, 0rem));
+        overflow-y: auto;
 
         padding-left: 0;
         padding-right: 0;
@@ -146,6 +147,7 @@
         position: sticky;
         top: calc(7rem + var(--kf-banner-height, 0rem));
         height: calc(100vh - 7rem - var(--kf-banner-height, 0rem));
+        overflow-y: auto;
 
         padding-left: 1rem;
         padding-right: 1.5rem;
