@@ -38,7 +38,7 @@ in this hierarchy:
   with others. Please only assign yourself to a task after coordinating with
   the project maintainers on the issue or in the Slack channel.
 
-  [➡️ Browse open Tasks](https://github.com/kubeflow/notebooks/ssues?q=is%3Aissue%20state%3Aopen%20label%3Akind%2Fplan-task)
+  [➡️ Browse open Tasks](https://github.com/kubeflow/notebooks/issues?q=is%3Aissue%20state%3Aopen%20label%3Akind%2Fplan-task)
 
 - **Feature**: A Feature is a functional, often times user-facing unit of work
   that lives under a single Epic. Unlike an Epic, a Feature is never perpetual:
