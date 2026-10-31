@@ -84,7 +84,7 @@ Follow the official [KubeRay Operator Installation Guide](https://docs.ray.io/en
 
 ### Option B: Install via Kubeflow Community Distribution
 
-If you deploy the [Kubeflow Community Distribution](https://github.com/kubeflow/community-distribution), you can install KubeRay using its [`experimental/ray` Kustomize overlay](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) (or by uncommenting `../experimental/ray/kuberay-operator/overlays/kubeflow` in [`example/kustomization.yaml`](https://github.com/kubeflow/community-distribution/blob/master/example/kustomization.yaml)).
+If you deploy the [Kubeflow Community Distribution](https://github.com/kubeflow/community-distribution), you can install KubeRay using the [community distribution](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) (or by uncommenting `../experimental/ray/kuberay-operator/overlays/kubeflow` in [`example/kustomization.yaml`](https://github.com/kubeflow/community-distribution/blob/master/example/kustomization.yaml)). Then you also get proper support for Istio sidecars by default.
 
 ### Verify the Installation
 
@@ -186,7 +186,7 @@ To create a `RayCluster`, follow the official [RayCluster Quickstart](https://do
 When provisioning a shared Ray cluster for workspace users, keep the following in mind:
 
 - **Autoscaling**: Set `minReplicas: 0` in `workerGroupSpecs` so idle worker pods automatically scale down to zero when users are not actively executing distributed tasks.
-- **Istio sidecar bypass**: Add `sidecar.istio.io/inject: "false"` to the labels of both head and worker pod templates to prevent Istio from intercepting Ray's internal gRPC communication (see [Handling Istio Sidecars with Ray](#1-handling-istio-sidecars-with-ray)).
+- **Istio sidecar bypass**: If you have not installed via the [community distribution](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) then you do not have full Istio support and need to add `sidecar.istio.io/inject: "false"` to the labels of both head and worker pod templates to prevent Istio from intercepting Ray's internal gRPC communication (see [Handling Istio Sidecars with Ray](#1-handling-istio-sidecars-with-ray)).
 - **Version matching**: Select a Ray container image whose Ray version and Python minor version match your workspace images.
 
 ### What to Communicate to Workspace Users
@@ -203,7 +203,7 @@ Once provisioned, inform your workspace users of:
 
 ### 1. Handling Istio Sidecars with Ray
 
-Kubeflow profiles enable Istio sidecar injection by default in user namespaces. By default, Envoy sidecars intercept and buffer internal gRPC communication between the Ray head and worker nodes, which causes Ray cluster initialization to fail or hang indefinitely.
+Kubeflow profiles enable Istio sidecar injection by default in user namespaces. Envoy sidecars intercept and buffer internal gRPC communication between the Ray head and worker nodes. If you have installed via the [community distribution](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) then you have proper Istio support. If not you have to disable the mesh integration since otherwise the Ray cluster initialization will fail or hang indefinitely.
 
 | Approach | When to Use | How to Implement |
 | :--- | :--- | :--- |
@@ -253,7 +253,7 @@ Ray Client requires that the **Ray minor version** and **Python minor version** 
 
 ### Symptom: Ray Clusters Remain in `Pending` or Head Pod Never Becomes Ready
 
-* **Likely Cause 1 (Istio)**: The Envoy sidecar is intercepting Ray's internal gRPC ports. Verify whether `sidecar.istio.io/inject: "false"` is present in the head and worker pod templates.
+* **Likely Cause 1 (Istio)**: You have installed without proper Istio support and the Envoy sidecar is intercepting Ray's internal gRPC ports. Verify whether `sidecar.istio.io/inject: "false"` is present in the head and worker pod templates.
 * **Likely Cause 2 (Resources)**: The cluster lacks available CPU, memory, or GPU capacity to schedule the requested pods, or the requested resources exceed the namespace `ResourceQuota`. Check `kubectl describe raycluster <name> -n <namespace>` and `kubectl get events -n <namespace>`.
 
 ---
