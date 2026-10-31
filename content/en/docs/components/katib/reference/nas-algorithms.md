@@ -4,6 +4,8 @@ description = "Overview for the Neural Architecture Search algorithms in Katib"
 weight = 20
 +++
 
+{{< katib-deprecation-notice >}}
+
 This page describes how Neural Architecture Search (NAS) algorithms work in Katib.
 
 ## Efficient Neural Architecture Search (ENAS)

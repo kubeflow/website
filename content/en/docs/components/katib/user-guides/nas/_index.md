@@ -4,6 +4,8 @@ description = "User guides to run Neural Architecture Search Experiments"
 weight = 20
 +++
 
+{{< katib-deprecation-notice >}}
+
 {{% alert title="Alpha version" color="warning" %}}
 Neural architecture search is currently in <b>alpha</b> with limited support. The Kubeflow team is
 interested in any feedback you may have, in particular with regards to usability

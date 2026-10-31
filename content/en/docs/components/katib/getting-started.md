@@ -6,6 +6,8 @@ weight = 30
 mathjax = true
 +++
 
+{{< katib-deprecation-notice >}}
+
 This guide describes how to get started with Katib and run a few examples.
 
 ## Prerequisites

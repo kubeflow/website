@@ -4,6 +4,8 @@ description = "Early Stopping overview for Katib Experiments"
 weight = 50
 +++
 
+{{< katib-deprecation-notice >}}
+
 This guide shows how you can use [early stopping](https://en.wikipedia.org/wiki/Early_stopping)
 to optimize cost for your Katib Experiments. Early stopping allows you to avoid overfitting when you
 train your model during Katib Experiments. It also helps by saving computing resources and reducing

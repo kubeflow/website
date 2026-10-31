@@ -4,6 +4,8 @@ description = "How to modify running Experiments and resume completed Experiment
 weight = 70
 +++
 
+{{< katib-deprecation-notice >}}
+
 This guide describes how to modify running Experiments and restart completed Experiments.
 You will learn about changing the Experiment execution process and use various
 resume policies for the Katib Experiment.
