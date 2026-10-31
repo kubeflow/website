@@ -195,7 +195,7 @@ The workflow consists of four steps:
 
 ### Step 1: Define and Request a Dedicated RayJob Cluster
 
-The helper function below defines a `RayJob` specification matching your workspace's Ray and Python versions, with Istio sidecar injection disabled for cluster stability:
+The helper function below defines a `RayJob` specification matching your workspace's Ray and Python versions, with Istio sidecar injection disabled (if you installed without proper Istio support):
 
 ```python
 import sys
