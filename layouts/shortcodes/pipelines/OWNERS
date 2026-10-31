@@ -1,8 +1,15 @@
+# Keep aligned with https://github.com/kubeflow/pipelines/blob/master/OWNERS
 approvers:
   - chensun
-  - IronPan
-  - james-jwu
-  - zijianjoy
+  - droctothorpe
+  - HumairAK
+  - jeffspahr
+  - mprahl
+  - zazulam
 reviewers:
   - chensun
-  - zijianjoy
+  - droctothorpe
+  - HumairAK
+  - jeffspahr
+  - mprahl
+  - zazulam
