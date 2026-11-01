@@ -28,9 +28,11 @@ Users can only see profiles to which they have owner, contributor (read + write)
 
 Kubeflow supports automatic profile creation for users who log into Kubeflow for the first time.
 
-The `CD_REGISTRATION_FLOW` environment variable on the central-dashboard Deployment controls whether automatic profile creation is enabled.
+The `REGISTRATION_FLOW` environment variable on the `dashboard` Deployment in the `kubeflow` namespace controls whether automatic profile creation is enabled.
+The Central Dashboard manifests set this variable from the `REGISTRATION_FLOW` key in their `params.env` file.
+Kubeflow Community Distribution releases before 26.03.1 name the Deployment `centraldashboard` and use the `CD_REGISTRATION_FLOW` key instead.
 By default, automatic profile creation is disabled.
-When `CD_REGISTRATION_FLOW` is `true`, if a user logs into Kubeflow, and is not already a profile owner, they will be prompted to create a profile.
+When `REGISTRATION_FLOW` is `true`, if a user logs into Kubeflow, and is not already a profile owner, they will be prompted to create a profile.
 
 {{% alert title="Warning" color="warning" %}}
 Automatic profile creation may not be suitable for all use cases.
