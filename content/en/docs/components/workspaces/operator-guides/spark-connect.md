@@ -25,9 +25,10 @@ alone: the aggregated `kubeflow-spark-*` ClusterRoles that carry the Spark rules
 
 ## Grant the Workspace access to Spark
 
-A Workspace runs as its own ServiceAccount, `ws-{WORKSPACE_NAME}`. As of Workspaces
-v2.0.0-beta.0 that ServiceAccount is no longer granted the Kubeflow ClusterRoles
-automatically, so a WorkspaceKind whose users need Spark has to ask for the grant:
+A Workspace runs as its own ServiceAccount, which the controller creates and names after
+the Workspace. As of Workspaces v2.0.0-beta.0 that ServiceAccount is no longer granted
+the Kubeflow ClusterRoles automatically, so a WorkspaceKind whose users need Spark has to
+ask for the grant:
 
 ```yaml
 apiVersion: kubeflow.org/v1beta1
@@ -46,9 +47,11 @@ ends up with the same permissions as a Notebook user, and the Spark rules come w
 ```shell
 PROFILE=kubeflow-user-example-com
 WORKSPACE_NAME=my-workspace
+WORKSPACE_SERVICE_ACCOUNT="$(kubectl -n "${PROFILE}" get workspace "${WORKSPACE_NAME}" \
+  -o jsonpath='{.status.podTemplatePod.serviceAccountName}')"
 
 kubectl auth can-i create sparkconnects \
-  --as="system:serviceaccount:${PROFILE}:ws-${WORKSPACE_NAME}" \
+  --as="system:serviceaccount:${PROFILE}:${WORKSPACE_SERVICE_ACCOUNT}" \
   -n "${PROFILE}"
 ```
 
