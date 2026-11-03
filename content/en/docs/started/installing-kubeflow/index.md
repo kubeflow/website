@@ -72,11 +72,12 @@ technical implementation details, and planned use-cases for the projects.
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Kubeflow Subproject               | Roadmap     |
-| --------------------------------- | ----------- |
-| Kubeflow MLflow Integration       | Progressing |
-| Kubeflow MCP Server               | Progressing |
-| Kubeflow MCP Spark History Server | Progressing |
+| Kubeflow Subproject                                                         | Roadmap     |
+| --------------------------------------------------------------------------- | ----------- |
+| Kubeflow MLflow Integration                                                 | Progressing |
+| Kubeflow MCP Server                                                         | Progressing |
+| Kubeflow MCP Spark History Server                                           | Progressing |
+| [Kubeflow Semantic Operator](https://kubeflow.github.io/semantic-operator/) | Progressing |
 
 ### Deprecated Projects
 
