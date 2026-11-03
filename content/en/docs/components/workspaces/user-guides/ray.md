@@ -209,7 +209,7 @@ The workflow consists of four steps:
 
 ### Step 1: Define and Request a Dedicated RayJob Cluster
 
-The helper function below defines a `RayJob` specification matching your workspace's Ray and Python versions, with Istio sidecar injection disabled (if you installed without proper Istio support):
+The helper function below defines a `RayJob` specification matching your workspace's Ray and Python versions, with an option to disable Istio sidecar injection (enabled by default for clusters without full Istio mesh support):
 
 ```python
 import sys
@@ -229,6 +229,7 @@ def create_ray_job_spec(
     head_cpu: str = "1",
     head_memory: str = "4G",
     max_runtime_seconds: int | None = 3600,
+    disable_istio: bool = True,
 ) -> dict:
     """Construct an on-demand RayJob custom resource specification."""
     ray_version = ray.__version__
@@ -253,11 +254,12 @@ def create_ray_job_spec(
         .get_cluster()["spec"]
     )
 
-    # Disable Istio sidecar injection to avoid gRPC buffering issues
-    istio_label = {"sidecar.istio.io/inject": "false"}
-    cluster_spec["headGroupSpec"]["template"].setdefault("metadata", {})["labels"] = istio_label
-    for group in cluster_spec["workerGroupSpecs"]:
-        group["template"].setdefault("metadata", {})["labels"] = istio_label
+    # Disable Istio sidecar injection if requested (recommended unless using mesh integration)
+    if disable_istio:
+        istio_label = {"sidecar.istio.io/inject": "false"}
+        cluster_spec["headGroupSpec"]["template"].setdefault("metadata", {})["labels"] = istio_label
+        for group in cluster_spec["workerGroupSpecs"]:
+            group["template"].setdefault("metadata", {})["labels"] = istio_label
 
     spec = {
         "submissionMode": "InteractiveMode",           # Code submitted from this workspace
@@ -299,6 +301,7 @@ print(f"Successfully requested RayJob cluster: {JOB_NAME}")
 * `num_workers`: Number of worker nodes to provision in addition to the head node.
 * `worker_cpu` / `worker_memory`: Compute resources allocated to each worker pod.
 * `head_cpu` / `head_memory`: Compute resources allocated to the Ray head node.
+* `disable_istio`: (Default: `True`) When `True`, adds `sidecar.istio.io/inject: "false"` to the head and worker pod templates to bypass Istio sidecar interception. Set to `False` if your cluster is deployed with Istio service mesh support (such as via the Kubeflow Community Distribution).
 * `ttlSecondsAfterFinished`: (Default: `300` seconds / 5 minutes) The delay before KubeRay deletes the underlying `RayCluster` and its worker pods after job completion. Compute remains allocated during this 5-minute grace period so you can inspect logs and metrics before pods are removed. Note that this setting delays deletion of the `RayCluster` pods, not the `RayJob` custom resource itself.
 * `max_runtime_seconds`: Enforced as `activeDeadlineSeconds` on the `RayJob`. **Important**: This is a hard safety deadline evaluated while the job is in `Initializing` and `Running` states. When it expires, KubeRay terminates the job and tears down the Ray cluster (after `ttlSecondsAfterFinished`), **even if your code is not finished yet**. To allow the job to run indefinitely until completion, set `max_runtime_seconds=None` (which omits `activeDeadlineSeconds` from the specification). The default in this helper is `3600` (1 hour). **Note**: In KubeRay v1.3+, `activeDeadlineSeconds` is **not** evaluated while the `RayJob` is in InteractiveMode's `Waiting` state (after the cluster is ready, before submitting and linking `jobId` in Step 3). If your notebook kernel crashes or you abandon the session before linking `jobId`, the cluster retains compute indefinitely; you must explicitly delete abandoned requests using `job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)`.
 
