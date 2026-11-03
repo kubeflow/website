@@ -57,7 +57,7 @@ flowchart TD
 A common operational pitfall is granting workspace pods full permissions to create unmanaged `RayCluster` resources. Because a `RayCluster` created directly from an interactive notebook has no lifecycle link to the workspace pod, any crash, closed browser tab, or forgotten workspace leaves expensive worker nodes (including GPUs) running indefinitely.
 
 To prevent resource leaks and maximize cluster utilization, the RBAC model configured below enforces:
-- **`RayJob`: full lifecycle access (`create`, `update`, `patch`, `delete`, `get`, `list`, `watch`).** Users can launch on-demand training and batch jobs. The KubeRay operator automatically cleans up the underlying `RayCluster` and worker pods when the job finishes. Note that in KubeRay v1.3+, `activeDeadlineSeconds` is enforced during `Initializing` and `Running` states, but not in InteractiveMode's `Waiting` state; unsubmitted requests should be deleted explicitly or pruned by an automated policy.
+- **`RayJob`: full lifecycle access (`create`, `update`, `patch`, `delete`, `get`, `list`, `watch`).** Users can launch on-demand training and batch jobs. The KubeRay operator automatically cleans up the underlying `RayCluster` and worker pods when the job finishes. Note that in KubeRay before v1.6, `activeDeadlineSeconds` is enforced during `Initializing` and `Running` states, but not in InteractiveMode's `Waiting` state; unsubmitted requests should be deleted explicitly or pruned by an automated policy.
 - **`RayCluster`: read-only access (`get`, `list`, `watch`).** Users can discover and connect to pre-provisioned shared clusters, but cannot spin up untracked, unmanaged `RayCluster` instances directly.
 
 ---
@@ -269,6 +269,16 @@ spec:
 Ray Client requires that the **exact Ray version** (including patch version, e.g., `2.58.0`) and **Python minor version** (e.g., `3.12`) match identically between the client (the workspace image) and the server (the Ray head/worker image). While Python allows different patch versions (e.g., Python 3.12.1 vs 3.12.2), Ray Client checks the full Ray version string and raises a version-mismatch error at `ray.init()` if the versions differ.
 - Ensure your `WorkspaceKind` container images and the Ray cluster images use the identical Ray version (e.g., Ray 2.58.0) and the same Python minor version (e.g., Python 3.12).
 - Publish standard image tags for users (e.g., `rayproject/ray:2.58.0-py312`).
+
+### 4. Managing Abandoned InteractiveMode RayJobs
+
+When workspace users request on-demand jobs via `RayJob` `InteractiveMode`, KubeRay provisions the cluster and places the `RayJob` into the `Waiting` state until the user submits code and links `spec.jobId`.
+
+In **KubeRay before v1.6**, `activeDeadlineSeconds` is only evaluated while the job is in `Initializing` or `Running` states—**not** while in `Waiting`. If a user abandons a workspace session or their notebook crashes before submitting code, the provisioned `RayCluster` will remain running in `Waiting` state indefinitely unless cleaned up:
+
+* **Client-side explicit cleanup**: Workspace users are instructed to call `job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)`.
+* **Server-side automatic expiry (`preRunningDeadlineSeconds`)**: Starting in **KubeRay v1.6.0**, administrators can configure `spec.preRunningDeadlineSeconds` on the `RayJob` (or inject it via an admission webhook). If the job remains in `Waiting` (or `Initializing`) longer than this threshold, KubeRay marks the job as `Failed` with reason `PreRunningDeadlineExceeded` and automatically tears down the associated cluster.
+* **Server-side cron garbage collection (KubeRay before v1.6)**: Administrators can deploy a scheduled CronJob or garbage-collection controller to delete `RayJob` resources that have remained in the `Waiting` state past a set duration (e.g., 30 or 60 minutes).
 
 ---
 
