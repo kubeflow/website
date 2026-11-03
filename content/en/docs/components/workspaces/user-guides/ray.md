@@ -59,7 +59,7 @@ flowchart TD
 Before creating your workspace or running code, ask your platform administrator for:
 
 1. **Which `WorkspaceKind` to select**: Your workspace must be created from a `WorkspaceKind` (for example, `jupyterlab`) configured with Ray RBAC permissions (`ray-job-edit`). If created from an unconfigured kind, your workspace will not have permission to interact with Ray.
-2. **The Ray and Python versions**: The exact Ray version (e.g., `2.58.0`) and Python minor version (e.g., `3.12`) running on the cluster. Ray Client requires identical Ray and Python minor versions between your workspace environment and the Ray cluster.
+2. **The Ray and Python versions**: The exact Ray version (e.g., `2.58.0`) and Python minor version (e.g., `3.12`) running on the cluster. Ray Client requires an identical Ray version (including patch release) and Python minor version between your workspace environment and the Ray cluster.
 3. **The name of the shared Ray cluster**: If you plan to use [Workflow 1: Interactive Computing](#workflow-1-interactive-computing-on-a-shared-ray-cluster). (If unknown, you can also [discover it programmatically](#step-1-discover-available-shared-ray-clusters)).
 
 ---
@@ -112,7 +112,15 @@ from kuberay_client import kuberay_cluster_api
 
 # Query all RayCluster resources in your current namespace
 cluster_api = kuberay_cluster_api.RayClusterApi()
-items = cluster_api.list_ray_clusters(k8s_namespace=NAMESPACE).get("items", [])
+response = cluster_api.list_ray_clusters(k8s_namespace=NAMESPACE)
+
+if response is None:
+    raise RuntimeError(
+        f"Failed to list Ray clusters in namespace '{NAMESPACE}'. "
+        "Verify that your workspace ServiceAccount has the ray-job-edit role."
+    )
+
+items = response.get("items", [])
 
 # Filter out ephemeral clusters spawned by RayJobs
 clusters = [
@@ -135,6 +143,12 @@ Connect your notebook session to the Ray cluster head service:
 
 ```python
 import ray
+
+if not clusters:
+    raise RuntimeError(
+        f"No shared Ray clusters found in namespace '{NAMESPACE}'. "
+        "Ask your administrator to provision a shared RayCluster or use Workflow 2 for on-demand jobs."
+    )
 
 CLUSTER_NAME = clusters[0]  # or the specific name provided by your admin
 
@@ -248,7 +262,7 @@ def create_ray_job_spec(
     spec = {
         "submissionMode": "InteractiveMode",           # Code submitted from this workspace
         "shutdownAfterJobFinishes": True,              # Clean up cluster when job terminates
-        "ttlSecondsAfterFinished": 300,                # Wait 5 minutes before deleting pods
+        "ttlSecondsAfterFinished": 300,                # Wait 5 minutes before deleting RayCluster pods
         "rayClusterSpec": cluster_spec,
     }
 
@@ -269,10 +283,15 @@ JOB_NAME = f"rayjob-{uuid.uuid4().hex[:6]}"
 
 # Submit the RayJob request to Kubernetes
 job_api = kuberay_job_api.RayjobApi()
-job_api.submit_job(
+result = job_api.submit_job(
     k8s_namespace=NAMESPACE,
     job=create_ray_job_spec(job_name=JOB_NAME, namespace=NAMESPACE, num_workers=2),
 )
+if result is None:
+    raise RuntimeError(
+        f"Failed to submit RayJob '{JOB_NAME}' in namespace '{NAMESPACE}'. "
+        "Check that your workspace ServiceAccount has permission to create rayjobs."
+    )
 print(f"Successfully requested RayJob cluster: {JOB_NAME}")
 ```
 
@@ -280,7 +299,8 @@ print(f"Successfully requested RayJob cluster: {JOB_NAME}")
 * `num_workers`: Number of worker nodes to provision in addition to the head node.
 * `worker_cpu` / `worker_memory`: Compute resources allocated to each worker pod.
 * `head_cpu` / `head_memory`: Compute resources allocated to the Ray head node.
-* `max_runtime_seconds`: Enforced as `activeDeadlineSeconds` on the `RayJob`. **Important**: This is a hard safety deadline. When it expires, KubeRay terminates the job and tears down the Ray cluster (after `ttlSecondsAfterFinished`), **even if your code is not finished yet**. To disable the deadline and allow the job to run indefinitely (infinity) until completion, set `max_runtime_seconds=None` (which omits `activeDeadlineSeconds` from the specification). The default in this helper is `3600` (1 hour). Note that in KubeRay v1.3+, `activeDeadlineSeconds` is not evaluated while the `RayJob` is in the `Waiting` state (after the cluster is ready, before you submit and link `jobId` in Step 3).
+* `ttlSecondsAfterFinished`: (Default: `300` seconds / 5 minutes) The delay before KubeRay deletes the underlying `RayCluster` and its worker pods after job completion. Compute remains allocated during this 5-minute grace period so you can inspect logs and metrics before pods are removed. Note that this setting delays deletion of the `RayCluster` pods, not the `RayJob` custom resource itself.
+* `max_runtime_seconds`: Enforced as `activeDeadlineSeconds` on the `RayJob`. **Important**: This is a hard safety deadline evaluated while the job is in `Initializing` and `Running` states. When it expires, KubeRay terminates the job and tears down the Ray cluster (after `ttlSecondsAfterFinished`), **even if your code is not finished yet**. To allow the job to run indefinitely until completion, set `max_runtime_seconds=None` (which omits `activeDeadlineSeconds` from the specification). The default in this helper is `3600` (1 hour). **Note**: In KubeRay v1.3+, `activeDeadlineSeconds` is **not** evaluated while the `RayJob` is in InteractiveMode's `Waiting` state (after the cluster is ready, before submitting and linking `jobId` in Step 3). If your notebook kernel crashes or you abandon the session before linking `jobId`, the cluster retains compute indefinitely; you must explicitly delete abandoned requests using `job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)`.
 
 ---
 
@@ -345,7 +365,12 @@ print(f"Submitted Ray job: {job_id} linked to {JOB_NAME}")
 ```
 
 {{% alert title="Always Link the jobId" color="warning" %}}
-Patching `spec.jobId` transitions the `RayJob` from `Waiting` to `Running`. This link enables KubeRay to track your code's lifecycle and trigger automatic deletion of the cluster when the job finishes. If you skip this call, the cluster will remain running until deleted manually.
+Patching `spec.jobId` transitions the `RayJob` from `Waiting` to `Running`. This link enables KubeRay to track your code's lifecycle and trigger automatic deletion of the cluster when the job finishes.
+
+**Warning on Abandoned Requests**: On the supported KubeRay v1.3 baseline, `activeDeadlineSeconds` is checked in `Initializing` and `Running`, but not in InteractiveMode's `Waiting` state. If the kernel stops, or the `spec.jobId` patch is skipped or fails, the cluster retains compute indefinitely. Always explicitly delete abandoned requests:
+```python
+job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)
+```
 {{% /alert %}}
 
 ---
@@ -361,7 +386,7 @@ async for lines in client.tail_job_logs(job_id):
 print(f"\nFinal Job Status: {client.get_job_status(job_id)}")
 ```
 
-Once the job terminates, KubeRay automatically cleans up the dedicated Ray cluster after the configured `ttlSecondsAfterFinished` period.
+Once the job terminates, KubeRay automatically deletes the dedicated RayCluster and worker pods after the configured `ttlSecondsAfterFinished` period, releasing compute resources. Note that `ttlSecondsAfterFinished` cleans up the cluster pods, not the `RayJob` custom resource; the completed `RayJob` remains in Kubernetes for status tracking until explicitly deleted.
 
 ---
 
@@ -372,7 +397,7 @@ To stop an ongoing job early:
 client.stop_job(job_id)
 ```
 
-If you created a `RayJob` but never submitted code to it, explicitly delete the resource so it does not hold cluster resources:
+If you created a `RayJob` but never submitted code to it, or wish to remove the completed `RayJob` custom resource:
 ```python
 job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)
 ```

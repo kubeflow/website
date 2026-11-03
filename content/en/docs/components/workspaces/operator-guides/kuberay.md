@@ -57,7 +57,7 @@ flowchart TD
 A common operational pitfall is granting workspace pods full permissions to create unmanaged `RayCluster` resources. Because a `RayCluster` created directly from an interactive notebook has no lifecycle link to the workspace pod, any crash, closed browser tab, or forgotten workspace leaves expensive worker nodes (including GPUs) running indefinitely.
 
 To prevent resource leaks and maximize cluster utilization, the RBAC model configured below enforces:
-- **`RayJob`: full access (`create`, `update`, `patch`, `delete`, `get`, `list`, `watch`).** Users can launch on-demand training and batch jobs. The KubeRay operator automatically cleans up the underlying `RayCluster` and pods when the job finishes.
+- **`RayJob`: full lifecycle access (`create`, `update`, `patch`, `delete`, `get`, `list`, `watch`).** Users can launch on-demand training and batch jobs. The KubeRay operator automatically cleans up the underlying `RayCluster` and worker pods when the job finishes. Note that in KubeRay v1.3+, `activeDeadlineSeconds` is enforced during `Initializing` and `Running` states, but not in InteractiveMode's `Waiting` state; unsubmitted requests should be deleted explicitly or pruned by an automated policy.
 - **`RayCluster`: read-only access (`get`, `list`, `watch`).** Users can discover and connect to pre-provisioned shared clusters, but cannot spin up untracked, unmanaged `RayCluster` instances directly.
 
 ---
@@ -116,8 +116,11 @@ rules:
     verbs: ["get", "list", "watch"]
   # Self-service, self-cleaning on-demand jobs (full lifecycle access)
   - apiGroups: ["ray.io"]
-    resources: ["rayjobs", "rayjobs/status"]
+    resources: ["rayjobs"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["ray.io"]
+    resources: ["rayjobs/status"]
+    verbs: ["get"]
   # Pod status checks and log streaming
   - apiGroups: [""]
     resources: ["pods", "pods/log", "services", "events"]
@@ -149,15 +152,7 @@ spec:
 
 #### Patch an Existing WorkspaceKind
 
-To add `ray-job-edit` to an existing `WorkspaceKind` (such as the default upstream `jupyterlab` sample):
-
-```bash
-kubectl patch workspacekind jupyterlab --type=json -p='[
-  {"op": "add", "path": "/spec/podTemplate/serviceAccount/clusterRoles/-", "value": {"name": "ray-job-edit"}}
-]'
-```
-
-Or, if `clusterRoles` is currently empty, use a merge patch:
+If `serviceAccount` or `clusterRoles` is not yet defined on your `WorkspaceKind` (such as the default upstream `jupyterlab` sample), initialize `clusterRoles` using a merge patch:
 
 ```bash
 kubectl patch workspacekind jupyterlab --type=merge -p='{
@@ -173,6 +168,14 @@ kubectl patch workspacekind jupyterlab --type=merge -p='{
 }'
 ```
 
+If `serviceAccount.clusterRoles` already exists and you want to append `ray-job-edit` without replacing existing grants, use a JSON patch (note that this requires `serviceAccount.clusterRoles` to already be present as an array):
+
+```bash
+kubectl patch workspacekind jupyterlab --type=json -p='[
+  {"op": "add", "path": "/spec/podTemplate/serviceAccount/clusterRoles/-", "value": {"name": "ray-job-edit"}}
+]'
+```
+
 ---
 
 ## Step 3: Provision Shared Ray Clusters for Interactive Prototyping
@@ -185,9 +188,9 @@ To create a `RayCluster`, follow the official [RayCluster Quickstart](https://do
 
 When provisioning a shared Ray cluster for workspace users, keep the following in mind:
 
-- **Autoscaling**: Set `minReplicas: 0` in `workerGroupSpecs` so idle worker pods automatically scale down to zero when users are not actively executing distributed tasks.
+- **Autoscaling**: Enable Ray's autoscaler by setting `spec.enableInTreeAutoscaling: true` on the `RayCluster` and set `minReplicas: 0` in `workerGroupSpecs` so idle worker pods automatically scale down to zero when users are not actively executing distributed tasks. Note that setting `minReplicas: 0` alone does not enable autoscaling; without `enableInTreeAutoscaling: true`, worker replicas remain running while idle. For details, see the KubeRay [RayCluster Autoscaler documentation](https://docs.ray.io/en/latest/cluster/kubernetes/user-guides/kuberay-autoscaler.html).
 - **Istio sidecar bypass**: If you have not installed via the [community distribution](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) then you do not have full Istio support and need to add `sidecar.istio.io/inject: "false"` to the labels of both head and worker pod templates to prevent Istio from intercepting Ray's internal gRPC communication (see [Handling Istio Sidecars with Ray](#1-handling-istio-sidecars-with-ray)).
-- **Version matching**: Select a Ray container image whose Ray version and Python minor version match your workspace images.
+- **Version matching**: Select a Ray container image whose exact Ray version and Python minor version match your workspace images.
 
 ### What to Communicate to Workspace Users
 
@@ -208,7 +211,38 @@ Kubeflow profiles enable Istio sidecar injection by default in user namespaces. 
 | Approach | When to Use | How to Implement |
 | :--- | :--- | :--- |
 | **Bypass Injection (Recommended)** | Standard Kubeflow deployments where internal Ray cluster traffic does not require mutual TLS. | Add label `sidecar.istio.io/inject: "false"` to the pod templates of `RayCluster` and `RayJob`. |
-| **Service Mesh Integration** | Clusters with strict security policies requiring mTLS on all pods across the cluster. | Configure headless Kubernetes services, explicit Ray ports, `node-ip-address`, and Istio `AuthorizationPolicy`. See [`experimental/ray/raycluster_example.yaml`](https://github.com/kubeflow/community-distribution/blob/master/experimental/ray/raycluster_example.yaml) for a complete example. |
+| **Service Mesh Integration** | Clusters with strict security policies requiring mTLS on all pods across the cluster. | Configure headless Kubernetes services, explicit Ray ports, `node-ip-address`, and Istio `AuthorizationPolicy`. See [`experimental/ray/raycluster_example.yaml`](https://github.com/kubeflow/community-distribution/blob/master/experimental/ray/raycluster_example.yaml) for a starting configuration. |
+
+{{% alert title="Allowing Workspace Principals in AuthorizationPolicy" color="info" %}}
+The example [`experimental/ray/raycluster_example.yaml`](https://github.com/kubeflow/community-distribution/blob/master/experimental/ray/raycluster_example.yaml) allows `default-editor` and internal Ray cluster ports.
+
+When Kubeflow Workspaces use dedicated service accounts (`ws-<workspace-name>-<suffix>`), workspace requests to Ray Client (port `10001`) and Ray Dashboard (port `8265`) will be denied by default. You must update or augment the `AuthorizationPolicy` to permit workspace service account principals on those ports while retaining access for Ray's own pods:
+
+```yaml
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ray-cluster-workspace-access
+  namespace: <user-namespace>
+spec:
+  selector:
+    matchLabels:
+      ray.io/node-type: head
+  action: ALLOW
+  rules:
+    # Allow Ray worker pods and operator
+    - from:
+        - source:
+            principals: ["cluster.local/ns/<user-namespace>/sa/<ray-head-worker-sa>"]
+    # Allow workspace service accounts on Ray Client and Dashboard ports
+    - from:
+        - source:
+            principals: ["cluster.local/ns/<user-namespace>/sa/ws-*"]
+      to:
+        - operation:
+            ports: ["10001", "8265"]
+```
+{{% /alert %}}
 
 ### 2. Enforcing Namespace Resource Quotas
 
@@ -232,8 +266,8 @@ spec:
 
 ### 3. Python and Ray Version Matching Policy
 
-Ray Client requires that the **Ray minor version** and **Python minor version** match identically between the client (the workspace image) and the server (the Ray head/worker image).
-- Ensure your `WorkspaceKind` container images and the Ray cluster images use the same Python minor version (e.g., Python 3.12).
+Ray Client requires that the **exact Ray version** (including patch version, e.g., `2.58.0`) and **Python minor version** (e.g., `3.12`) match identically between the client (the workspace image) and the server (the Ray head/worker image). While Python allows different patch versions (e.g., Python 3.12.1 vs 3.12.2), Ray Client checks the full Ray version string and raises a version-mismatch error at `ray.init()` if the versions differ.
+- Ensure your `WorkspaceKind` container images and the Ray cluster images use the identical Ray version (e.g., Ray 2.58.0) and the same Python minor version (e.g., Python 3.12).
 - Publish standard image tags for users (e.g., `rayproject/ray:2.58.0-py312`).
 
 ---
