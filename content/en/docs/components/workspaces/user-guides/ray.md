@@ -25,7 +25,7 @@ Depending on your task, you can interact with Ray using two distinct workflows:
 | Workflow | Best For | Cluster Management | Resource Cleanup |
 | :--- | :--- | :--- | :--- |
 | **[Workflow 1: Interactive Computing](#workflow-1-interactive-computing-on-a-shared-ray-cluster)** | Exploratory analysis, step-by-step notebook debugging, prototyping | Connect to an existing, long-lived `RayCluster` managed by your administrator | The cluster remains running for you and other users |
-| **[Workflow 2: On-Demand Jobs](#workflow-2-on-demand-jobs-with-rayjob)** | Batch training, large pipelines, parameter sweeps needing dedicated compute | Ephemeral cluster provisioned automatically via a `RayJob` custom resource | **Automatic** when the job is linked and finishes; unlinked/abandoned requests require explicit deletion |
+| **[Workflow 2: On-Demand Jobs](#workflow-2-on-demand-jobs-with-rayjob)** | Batch training, large pipelines, parameter sweeps needing dedicated compute | Ephemeral cluster provisioned automatically via a `RayJob` custom resource | **Automatic**: KubeRay deletes the cluster when the job finishes |
 
 ```mermaid
 flowchart TD
@@ -197,7 +197,7 @@ ray.shutdown()
 
 ## Workflow 2: On-Demand Jobs with `RayJob`
 
-Use this workflow for long-running batch jobs, model training, or hyperparameter sweeps that require dedicated resources. KubeRay provisions a dedicated Ray cluster for your job, runs your script, and **automatically deletes the cluster when the job finishes** (provided the submission is linked to the `RayJob`).
+Use this workflow for long-running batch jobs, model training, or hyperparameter sweeps that require dedicated resources. KubeRay provisions a dedicated Ray cluster for your job, runs your script, and **automatically deletes the cluster when the job finishes**. (Note: On-demand jobs utilize `RayJob` `InteractiveMode`, which requires **KubeRay v1.3 or later**).
 
 The workflow consists of four steps:
 1. Request a cluster spec for your job.
@@ -268,8 +268,7 @@ def create_ray_job_spec(
         "rayClusterSpec": cluster_spec,
     }
 
-    # activeDeadlineSeconds enforces a hard time limit once execution begins (Initializing or Running).
-    # Note: On KubeRay before v1.6, it does not expire a cluster sitting in Waiting state before code is submitted.
+    # Optional safety timeout: terminates the job if execution exceeds this limit
     if max_runtime_seconds is not None:
         spec["activeDeadlineSeconds"] = max_runtime_seconds
 
@@ -303,9 +302,8 @@ print(f"Successfully requested RayJob cluster: {JOB_NAME}")
 * `worker_cpu` / `worker_memory`: Compute resources allocated to each worker pod.
 * `head_cpu` / `head_memory`: Compute resources allocated to the Ray head node.
 * `disable_istio`: (Default: `True`) When `True`, adds `sidecar.istio.io/inject: "false"` to the head and worker pod templates to bypass Istio sidecar interception. Set to `False` if your cluster is deployed with Istio service mesh support (such as via the Kubeflow Community Distribution).
-* `ttlSecondsAfterFinished`: (Default: `300` seconds / 5 minutes) The delay before KubeRay deletes the underlying `RayCluster` and its worker pods after job completion. Compute remains allocated during this 5-minute grace period so you can inspect logs and metrics before pods are removed. Note that this setting delays deletion of the `RayCluster` pods, not the `RayJob` custom resource itself.
-* `max_runtime_seconds`: Enforced as `activeDeadlineSeconds` on the `RayJob`. **Important**: This is a hard safety deadline evaluated only while the job is in `Initializing` and `Running` states. When it expires, KubeRay terminates the job and tears down the Ray cluster (after `ttlSecondsAfterFinished`), **even if your code is not finished yet**. To allow the job to run indefinitely until completion, set `max_runtime_seconds=None` (which omits `activeDeadlineSeconds` from the specification). The default in this helper is `3600` (1 hour).
-  * **Warning on Waiting state**: In KubeRay before v1.6, `activeDeadlineSeconds` is **not** evaluated while the `RayJob` is in InteractiveMode's `Waiting` state (after the cluster is ready, but before you submit code and link `jobId` in Step 3). If your notebook kernel crashes, or if you request a cluster without submitting or linking a job, the cluster will **retain compute indefinitely**. You must explicitly delete abandoned requests using `job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)`. (If automatic server-side expiry during `Waiting` is required, administrators can configure `spec.preRunningDeadlineSeconds`, available in **KubeRay v1.6.0 or later**).
+* `ttlSecondsAfterFinished`: (Default: `300` seconds / 5 minutes) Grace period before KubeRay deletes the underlying worker pods after job completion.
+* `max_runtime_seconds`: (Default: `3600` seconds / 1 hour) Enforced as `activeDeadlineSeconds` on the `RayJob`. If the running job exceeds this duration, KubeRay terminates it even if code is still executing. Set to `None` to run without a deadline.
 
 ---
 
@@ -337,13 +335,12 @@ def wait_for_ray_dashboard(job_name: str, namespace: str, timeout_seconds: int =
     raise TimeoutError(f"Ray cluster for '{job_name}' was not ready within {timeout_seconds} seconds.")
 
 
-dashboard_url = wait_for_ray_dashboard(JOB_NAME, NAMESPACE)
-```
-
-If readiness times out or fails (for example, if the cluster lacks resources to schedule pods), explicitly delete the `RayJob` request to release any allocated compute:
-
-```python
-job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)
+try:
+    dashboard_url = wait_for_ray_dashboard(JOB_NAME, NAMESPACE)
+except Exception:
+    # Automatically clean up the RayJob request if readiness times out or fails
+    job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)
+    raise
 ```
 
 ---
@@ -376,13 +373,7 @@ print(f"Submitted Ray job: {job_id} linked to {JOB_NAME}")
 ```
 
 {{% alert title="Always Link the jobId" color="warning" %}}
-Patching `spec.jobId` transitions the `RayJob` from `Waiting` to `Running`. This link enables KubeRay to track your code's lifecycle and trigger automatic deletion of the cluster when the job finishes.
-
-**Warning on Abandoned Requests**: In KubeRay before v1.6, `activeDeadlineSeconds` is checked in `Initializing` and `Running`, but not in InteractiveMode's `Waiting` state. If the kernel stops, or the `spec.jobId` patch is skipped or fails, the cluster retains compute indefinitely. Always explicitly delete abandoned requests:
-```python
-job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)
-```
-If automatic server-side expiry while waiting is required, administrators can configure `spec.preRunningDeadlineSeconds` (supported in KubeRay v1.6.0+).
+Patching `spec.jobId` transitions the `RayJob` from `Waiting` to `Running`, which tells KubeRay your job has started. If you decide not to submit code after requesting a cluster, remember to delete it using `job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)`.
 {{% /alert %}}
 
 ---
@@ -398,19 +389,21 @@ async for lines in client.tail_job_logs(job_id):
 print(f"\nFinal Job Status: {client.get_job_status(job_id)}")
 ```
 
-Once the job terminates, KubeRay automatically deletes the dedicated RayCluster and worker pods after the configured `ttlSecondsAfterFinished` period, releasing compute resources. Note that `ttlSecondsAfterFinished` cleans up the cluster pods, not the `RayJob` custom resource; the completed `RayJob` remains in Kubernetes for status tracking until explicitly deleted.
+Once the job terminates, KubeRay automatically deletes the dedicated `RayCluster` and worker pods after the configured `ttlSecondsAfterFinished` period (5 minutes by default).
 
 ---
 
-### Cancelling or Deleting an On-Demand Job
+### Cancelling Early or Cleaning Up After Failures
 
-To stop an ongoing job early:
+Because KubeRay automatically cleans up the cluster when a linked job finishes, you do not need to delete it under normal execution.
+
+However, if your notebook kernel crashes or you cancel before submitting code, explicitly delete the `RayJob` request so compute resources do not remain reserved:
+
 ```python
+# To stop an ongoing job early:
 client.stop_job(job_id)
-```
 
-If you created a `RayJob` but never submitted code to it, or wish to remove the completed `RayJob` custom resource:
-```python
+# If the session crashed, timed out, or was abandoned before submission:
 job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)
 ```
 
