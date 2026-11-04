@@ -44,6 +44,8 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Spark on Kubernetes               | [#kubeflow-spark-on-kubernetes](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG)     |
 | Kubeflow Trainer and MPI Operator | [#kubeflow-trainer](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)                 |
 | Kubeflow MCP Server               | [#kubeflow-mcp-server](https://app.slack.com/client/T08PSQ7BQ/C0BSRBPNDHP)              |
+| Kubeflow Semantic Operator        | [#kubeflow-semantic-operator](https://app.slack.com/client/T08PSQ7BQ/C0CFDCC66EL)       |
+| Agents Working Group              | [#kubeflow-wg-agents](https://app.slack.com/client/T08PSQ7BQ/C0BQQRSPK6Z)               |
 
 </div>
 </div>
