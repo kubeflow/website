@@ -5,7 +5,7 @@ weight = 50
 +++
 
 {{% alert title="Ownership" color="info" %}}
-These projects are <strong>not governed by</strong> by the Kubeflow community, they are developed
+These projects are <strong>not governed by</strong> the Kubeflow community, they are developed
 and supported by their respective maintainers.
 {{% /alert %}}
 
