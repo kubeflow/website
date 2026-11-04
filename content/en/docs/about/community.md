@@ -34,6 +34,7 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Announcements                     | [#kubeflow-announcements](https://app.slack.com/client/T08PSQ7BQ/C01EV0FV154)           |
 | Contributors                      | [#kubeflow-contributors](https://app.slack.com/client/T08PSQ7BQ/C0742LBR5BM)            |
 | Outreach                          | [#kubeflow-outreach](https://app.slack.com/client/T08PSQ7BQ/C078ZMRQPB6)                |
+| Events                            | [#kubeflow-events](https://app.slack.com/client/T08PSQ7BQ/C08EPKXFCSY)                  |
 | Katib                             | [#kubeflow-katib](https://app.slack.com/client/T08PSQ7BQ/C073N7AS48P)                   |
 | ML experience                     | [#kubeflow-ml-experience](https://app.slack.com/client/T08PSQ7BQ/C08KJBVDH5H)           |
 | Hub (formerly Model Registry)     | [#kubeflow-hub](https://app.slack.com/client/T08PSQ7BQ/C073N7B6K3R)                     |
@@ -43,6 +44,8 @@ The following table lists official Kubeflow channels which are hosted on the **C
 | Spark on Kubernetes               | [#kubeflow-spark-on-kubernetes](https://app.slack.com/client/T08PSQ7BQ/C074588U7EG)     |
 | Kubeflow Trainer and MPI Operator | [#kubeflow-trainer](https://app.slack.com/client/T08PSQ7BQ/C0742LDFZ4K)                 |
 | Kubeflow MCP Server               | [#kubeflow-mcp-server](https://app.slack.com/client/T08PSQ7BQ/C0BSRBPNDHP)              |
+| Kubeflow Semantic Operator        | [#kubeflow-semantic-operator](https://app.slack.com/client/T08PSQ7BQ/C0CFDCC66EL)       |
+| Agents Working Group              | [#kubeflow-wg-agents](https://app.slack.com/client/T08PSQ7BQ/C0BQQRSPK6Z)               |
 
 </div>
 </div>
