@@ -13,8 +13,8 @@ For legacy Kubeflow Training Operator V1 documentation, check [these guides](htt
 ## What is Kubeflow Trainer
 
 Kubeflow Trainer is a Kubernetes-native distributed AI platform for scalable large language model
-(LLM) fine-tuning and training of AI models across a wide range of frameworks, including
-PyTorch, MLX, HuggingFace, DeepSpeed, JAX, XGBoost, and more.
+(LLM) fine-tuning, hyperparameter optimization, and training of AI models across a wide range of frameworks,
+including PyTorch, MLX, HuggingFace, DeepSpeed, Megatron-LM, JAX, XGBoost, and more.
 
 Kubeflow Trainer brings MPI to Kubernetes, orchestrating multi-node, multi-GPU distributed
 jobs efficiently across high-performance computing (HPC) clusters. This enables high-throughput
@@ -23,8 +23,13 @@ ultra-fast synchronization between GPUs nodes.
 
 Kubeflow Trainer seamlessly integrates with the Cloud Native AI ecosystem, including
 [Kueue](https://kueue.sigs.k8s.io/docs/tasks/run/trainjobs/) for topology-aware scheduling and
-multi-cluster job dispatching, as well as [JobSet](https://github.com/kubernetes-sigs/jobset) and
-[LeaderWorkerSet](https://github.com/kubernetes-sigs/lws) for AI workload orchestration.
+multi-cluster job dispatching, [Slurm Bridge](https://github.com/SlinkyProject/slurm-bridge) for
+scheduling on hybrid Kubernetes and Slurm clusters, and [KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler) for
+GPU aware scheduling.
+
+Kubeflow Trainer reuses existing Kubernetes-native building blocks like
+[JobSet](https://github.com/kubernetes-sigs/jobset) and [LeaderWorkerSet](https://github.com/kubernetes-sigs/lws)
+for AI workload orchestration.
 
 Kubeflow Trainer provides a distributed data cache designed to stream large-scale data with zero-copy
 transfer directly to GPU nodes. This ensures memory-efficient training jobs while maximizing
@@ -33,28 +38,26 @@ GPU utilization.
 With [the Kubeflow Python SDK](https://github.com/kubeflow/sdk), AI practitioners can effortlessly
 develop and fine-tune LLMs while leveraging the Kubeflow Trainer APIs: TrainJob and Runtimes.
 
-<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/trainer-tech-stack.drawio.svg"
+<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/trainer-overview.drawio.png"
   alt="Kubeflow Trainer Tech Stack"
   class="mt-3 mb-3 border rounded p-3 bg-white"
-  style="width: 100%; max-width: 30em">
+  style="width: 100%; max-width: 90em">
 
-## Who is this for
+## Kubeflow Trainer Introduction
 
-Checkout following KubeCon + CloudNativeCon talks for Kubeflow Trainer capabilities:
+Watch the following KubeCon + CloudNativeCon 2024 talk which provides an overview of Kubeflow Trainer:
 
-<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/user-personas.drawio.svg"
-  alt="Kubeflow Trainer Personas"
-  class="mt-3 mb-3 border rounded p-3 bg-white"
-  style="width: 100%; max-width: 30em">
+{{< youtube id="Lgy4ir1AhYw" title="Kubeflow Trainer V2">}}
 
-Additional talks:
+### Additional Talks
 
 - [From High Performance Computing To AI Workloads on Kubernetes: MPI Runtime in Kubeflow TrainJob](https://youtu.be/Fnb1a5Kaxgo)
 - [Streamline LLM Fine-tuning on Kubernetes With Kubeflow LLM Trainer](https://youtu.be/O7cNlaz3Hqs)
 
 ### User Personas
 
-Kubeflow Trainer documentation is separated between these user personas:
+[Kubeflow Trainer documentation](https://trainer.kubeflow.org/en/latest/user-guides/index.html)
+is separated between these user personas:
 
 - [AI Practitioners](https://trainer.kubeflow.org/en/latest/user-guides/): ML engineers and data scientists who
   develop AI models using the Kubeflow Python SDK and TrainJob.
@@ -63,11 +66,10 @@ Kubeflow Trainer documentation is separated between these user personas:
 - [Contributors](https://trainer.kubeflow.org/en/latest/contributor-guides/): open source contributors working on
   [Kubeflow Trainer project](https://github.com/kubeflow/trainer).
 
-## Kubeflow Trainer Introduction
-
-Watch the following KubeCon + CloudNativeCon 2024 talk which provides an overview of Kubeflow Trainer:
-
-{{< youtube id="Lgy4ir1AhYw" title="Kubeflow Trainer V2">}}
+<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/user-personas.drawio.svg"
+  alt="Kubeflow Trainer Personas"
+  class="mt-3 mb-3 border rounded p-3 bg-white"
+  style="width: 100%; max-width: 30em">
 
 ## Why use Kubeflow Trainer
 
