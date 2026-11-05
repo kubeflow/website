@@ -33,7 +33,7 @@ GPU utilization.
 With [the Kubeflow Python SDK](https://github.com/kubeflow/sdk), AI practitioners can effortlessly
 develop and fine-tune LLMs while leveraging the Kubeflow Trainer APIs: TrainJob and Runtimes.
 
-<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/trainer-tech-stack.drawio.svg"
+<img src="/docs/components/trainer/images/trainer-overview.drawio.png"
   alt="Kubeflow Trainer Tech Stack"
   class="mt-3 mb-3 border rounded p-3 bg-white"
   style="width: 100%; max-width: 30em">
@@ -42,7 +42,7 @@ develop and fine-tune LLMs while leveraging the Kubeflow Trainer APIs: TrainJob 
 
 Checkout following KubeCon + CloudNativeCon talks for Kubeflow Trainer capabilities:
 
-<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/user-personas.drawio.svg"
+<img src="/docs/components/trainer/images/user-personas.drawio.svg"
   alt="Kubeflow Trainer Personas"
   class="mt-3 mb-3 border rounded p-3 bg-white"
   style="width: 100%; max-width: 30em">
@@ -74,7 +74,7 @@ Watch the following KubeCon + CloudNativeCon 2024 talk which provides an overvie
 The Kubeflow Trainer supports key phases on the [AI lifecycle](/docs/started/architecture/#kubeflow-landscape-in-the-ai-lifecycle),
 including model training and LLMs fine-tuning, as shown in the diagram below:
 
-<img src="https://raw.githubusercontent.com/kubeflow/trainer/master/docs/images/ai-lifecycle-trainer.drawio.svg"
+<img src="/docs/components/trainer/images/ai-lifecycle-trainer.drawio.svg"
   alt="AI Lifecycle Trainer"
   class="mt-3 mb-3 border rounded p-3 bg-white">
 
