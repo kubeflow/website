@@ -1,0 +1,15 @@
+<!-- Reusable deprecation notice for Kubeflow Katib. Edit here to update it everywhere. -->
+<div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">Deprecated</h4>
+    <p><strong>The Katib project is deprecated.</strong> Users should migrate to the
+    <a href="https://trainer.kubeflow.org/en/latest/user-guides/optimizationjob.html">OptimizationJob APIs</a>,
+    which are released as part of the <a href="https://github.com/kubeflow/trainer">Kubeflow Trainer</a> project under alpha feature gate.</p>
+
+    <p>OptimizationJob is the next step for hyperparameter optimization in Kubeflow. It is natively
+    integrated with the TrainJob API, so every trial can use Trainer runtimes and distributed
+    training features out of the box. Metrics are pushed through the Kubeflow SDK and Trainer status
+    server, so you no longer need a separate database or a metrics collector sidecar.</p>
+
+    <p>Work on the remaining features is tracked in
+    <a href="https://github.com/kubeflow/trainer/issues/3562">kubeflow/trainer#3562</a>.</p>
+</div>

@@ -4,6 +4,8 @@ description = "How to access and use Katib UI"
 weight = 30
 +++
 
+{{< katib-deprecation-notice >}}
+
 This page describes how to access and use Katib UI. Follow
 [the installation page](/docs/components/katib/installation/#installing-katib) to install Katib
 control plane before accessing Katib UI.

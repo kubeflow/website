@@ -4,6 +4,8 @@ description = "API description of LLMs Hyperparameter Optimization using Katib"
 weight = 20
 +++
 
+{{< katib-deprecation-notice >}}
+
 {{% alert title="Warning" color="warning" %}}
 This feature is in **alpha** stage and the Kubeflow community is looking for your feedback. Please
 share your experience using the [#kubeflow-katib Slack channel](https://cloud-native.slack.com/archives/C073N7AS48P)
