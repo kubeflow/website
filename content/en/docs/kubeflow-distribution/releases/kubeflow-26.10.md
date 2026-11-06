@@ -12,7 +12,7 @@ weight = 88
     <tr>
       <th class="table-light">Release Date</th>
       <td>
-        2026-11-XX
+        2026-11-06
       </td>
     </tr>
     <tr>
@@ -123,7 +123,7 @@ weight = 88
       <!-- Serving Working Group -->
       <!-- ======================= -->
 <tr>
-        <td rowspan="2" class="align-middle">Training Working Group</td>
+        <td rowspan="2" class="align-middle">Serving Working Group</td>
         <td>KServe</td>
         <td>
           <a href="https://github.com/kserve/kserve/tree/v0.21.0">v0.21.0</a>
@@ -140,7 +140,7 @@ weight = 88
       <!-- ======================= -->
       <tr>
         <td class="align-middle">Training Working Group</td>
-        <td>Katib</td>
+        <td>Trainer</td>
         <td>
           <a href="https://github.com/kubeflow/trainer/releases/tag/v2.4.0">v2.4.0</a>
         </td>
