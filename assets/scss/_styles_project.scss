@@ -20,8 +20,53 @@
 // --------------------------------------------------
 // mermaid (diagrams)
 // --------------------------------------------------
-.td-content pre.mermaid {
+.td-content pre.mermaid,
+.td-content .mermaid {
   background-color: $code-block-bg;
+
+  // Fix Mermaid subgraph title and cluster label contrast in both light and dark themes
+  .cluster rect {
+    fill: none !important;
+  }
+
+  .cluster text,
+  .cluster span,
+  .cluster-label {
+    fill: $body-color !important;
+    color: $body-color !important;
+  }
+
+  // Ensure edge paths, arrows, and marker arrowheads are clearly visible in both light and dark themes
+  .edgePath path,
+  .edgePaths path,
+  .flowchart-link {
+    stroke: $body-color !important;
+  }
+
+  .arrowheadPath,
+  .arrowMarkerPath,
+  marker path,
+  marker polygon,
+  marker circle {
+    fill: $body-color !important;
+    stroke: $body-color !important;
+  }
+
+  // Ensure edge labels adapt to theme
+  .edgeLabel {
+    color: $body-color !important;
+    fill: $body-color !important;
+    background-color: transparent !important;
+
+    span, p, div {
+      color: $body-color !important;
+      background-color: $code-block-bg !important;
+    }
+
+    text {
+      fill: $body-color !important;
+    }
+  }
 }
 
 // --------------------------------------------------
@@ -1032,11 +1077,45 @@ nav.foldable-nav {
 // code styling
 // --------------------------------------------------
 .td-content {
-  // set the background color of inline code
+  // Inline code styling: applies to all inline code (paragraphs, lists,
+  // tables, headings, alerts, etc.), including code nested within <strong>, <b>, <em>, or <a>
+  code:not(pre code),
   p code,
-  li > code,
-  table code {
+  li code,
+  table code,
+  blockquote code,
+  .alert code,
+  h1 code,
+  h2 code,
+  h3 code,
+  h4 code,
+  h5 code,
+  h6 code {
+    color: inherit;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    word-break: normal;
     background-color: $code-inline-bg;
+    border-radius: $border-radius;
+  }
+
+  // Ensure bold monospace retains strong font weight
+  strong code,
+  b code {
+    font-weight: 700;
+  }
+
+  // Reset code block styles inside pre
+  pre code,
+  pre > code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    background-color: inherit !important;
+    border: 0;
+    border-radius: 0;
   }
 
   // set the background color of code blocks
@@ -1045,8 +1124,9 @@ nav.foldable-nav {
   }
 
   // ensure links with code in them have the correct color
-  a > code {
-    color: unset;
+  a > code,
+  a code {
+    color: inherit;
   }
 }
 
