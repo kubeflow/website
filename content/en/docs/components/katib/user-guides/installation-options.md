@@ -4,6 +4,8 @@ description = "Overview of the ways to install Katib control plane"
 weight = 90
 +++
 
+{{< katib-deprecation-notice >}}
+
 Katib offers a few installation options to install control plane. This page describes the options
 and the features available with each option. Check
 [the installation guide](/docs/components/katib/installation/#installing-control-plane) to

@@ -4,6 +4,8 @@ description = "How does Katib work?"
 weight = 10
 +++
 
+{{< katib-deprecation-notice >}}
+
 This page describes Katib concepts and architectures.
 
 ## Hyperparameter Tuning

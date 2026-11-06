@@ -4,6 +4,8 @@ description = "Katib Experiment specification for hyperparameter tuning"
 weight = 10
 +++
 
+{{< katib-deprecation-notice >}}
+
 This guide describes how to configure Katib Experiment for hyperparameter (HP) tuning.
 
 ## Create Image for Training Code

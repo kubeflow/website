@@ -4,6 +4,8 @@ description = "List of environment variables accepted by Katib components"
 weight = 80
 +++
 
+{{< katib-deprecation-notice >}}
+
 This guide describes environment variables for each Katib component. If you want to change your
 Katib installation, you can modify some of these variables.
 

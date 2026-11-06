@@ -98,10 +98,9 @@ See the following links for more information about each Kubeflow project:
   data science to experiment with your AI workflows.
 
 - [Kubeflow Trainer](/docs/components/trainer/) can be used for large-scale distributed
-  training or LLMs fine-tuning.
-
-- [Kubeflow Katib](/docs/components/katib/) can be used for model optimization and hyperparameter
-  tuning using various AutoML algorithms.
+  training or LLMs fine-tuning. Its
+  [OptimizationJob APIs](https://trainer.kubeflow.org/en/latest/user-guides/optimizationjob.html)
+  can be used for model optimization and hyperparameter tuning.
 
 - [Kubeflow Hub](/docs/components/hub/) can be used to store ML metadata, model artifacts, and
   preparing models for production serving.

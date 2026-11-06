@@ -4,6 +4,8 @@ description = "Trial template parameters overview and how use CRDs with Katib Tr
 weight = 35
 +++
 
+{{< katib-deprecation-notice >}}
+
 This guide describes how to configure Trial template parameters and use custom
 [Kubernetes CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 in Katib Trials. You will learn about changing Trial template specification, how to use
