@@ -4,6 +4,8 @@ description = "How to install Katib"
 weight = 20
 +++
 
+{{< katib-deprecation-notice >}}
+
 This guide describes how to install Katib on your Kubernetes cluster.
 
 ## Prerequisites

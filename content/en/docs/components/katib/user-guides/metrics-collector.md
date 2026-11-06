@@ -4,6 +4,8 @@ description = "Overview of Katib metrics collector and how to configure it"
 weight = 40
 +++
 
+{{< katib-deprecation-notice >}}
+
 This guide describes how Katib metrics collector works.
 
 ## Prerequisites

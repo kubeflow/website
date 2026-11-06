@@ -4,6 +4,8 @@ description = "An overview for Katib"
 weight = 10
 +++
 
+{{< katib-deprecation-notice >}}
+
 ## What is Katib ?
 
 Katib is a Kubernetes-native project for automated machine learning (AutoML).

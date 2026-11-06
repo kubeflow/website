@@ -4,6 +4,8 @@ description = "List of supported algorithms for hyperparameter tuning"
 weight = 20
 +++
 
+{{< katib-deprecation-notice >}}
+
 This page describes hyperparameter (HP) tuning algorithms that Katib supports and how to configure
 them.
 

@@ -4,6 +4,8 @@ description = "List of supported algorithms for neural architecture search"
 weight = 20
 +++
 
+{{< katib-deprecation-notice >}}
+
 This page describes neural architecture search (NAS) algorithms that Katib supports and how to configure
 them.
 

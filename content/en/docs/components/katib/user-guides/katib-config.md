@@ -4,6 +4,8 @@ description = "Katib configuration overview and how to update values"
 weight = 80
 +++
 
+{{< katib-deprecation-notice >}}
+
 This guide describes
 [the Katib Config](https://github.com/kubeflow/katib/blob/19268062f1b187dde48114628e527a2a35b01d64/manifests/v1beta1/installs/katib-standalone/katib-config.yaml) —
 the main configuration file for every Katib component. We use Kubernetes

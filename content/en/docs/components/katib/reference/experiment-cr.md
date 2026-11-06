@@ -4,6 +4,8 @@ description = "What happens after an Experiment is created"
 weight = 10
 +++
 
+{{< katib-deprecation-notice >}}
+
 ## Katib Experiment Lifecycle
 
 When user creates an Experiment, Katib Experiment controller,

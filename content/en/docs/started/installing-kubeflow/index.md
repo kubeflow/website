@@ -44,7 +44,6 @@ following the defined feature lifecycle for the project.
 | Kubeflow Subproject                                                                 | Roadmap                                                                      |
 | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [Kubeflow Hub](https://www.kubeflow.org/docs/components/hub/)                       | [Roadmap](https://github.com/kubeflow/hub/blob/main/ROADMAP.md)              |
-| [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/)                   | [Roadmap](https://github.com/kubeflow/katib/blob/master/ROADMAP.md)          |
 | [Kubeflow Notebooks](https://www.kubeflow.org/docs/components/notebooks/)           | [Roadmap](https://github.com/kubeflow/notebooks/blob/main/ROADMAP.md)        |
 | [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)           | [Roadmap](https://github.com/kubeflow/pipelines/blob/master/ROADMAP.md)      |
 | [Kubeflow Spark Operator](https://www.kubeflow.org/docs/components/spark-operator/) | [Roadmap](https://github.com/kubeflow/spark-operator/blob/master/ROADMAP.md) |
@@ -58,10 +57,10 @@ functionality is stable, it is still maturing toward a final release.
 <div class="table-responsive">
 <div class="table table-bordered">
 
-| Kubeflow Subproject                                             | Roadmap                                                         |
-| --------------------------------------------------------------- | --------------------------------------------------------------- |
+| Kubeflow Subproject                                             | Roadmap                                                          |
+| --------------------------------------------------------------- | ---------------------------------------------------------------- |
 | [Kubeflow Kale](https://www.kubeflow.org/docs/components/kale/) | [Roadmap](https://github.com/kubeflow/kale/blob/main/ROADMAP.md) |
-| [Kubeflow SDK](https://sdk.kubeflow.org/en/latest/)             | [Roadmap](https://github.com/kubeflow/sdk/blob/main/ROADMAP.md) |
+| [Kubeflow SDK](https://sdk.kubeflow.org/en/latest/)             | [Roadmap](https://github.com/kubeflow/sdk/blob/main/ROADMAP.md)  |
 
 ### Experimental Projects
 
@@ -85,7 +84,12 @@ Development of this project is halted and no new versions are planned. New issue
 be worked on except for critical security issues. Projects assets that are included in the releases
 are expected to exist for at least **two minor releases** or **one year**, whichever happens later.
 
-Currently, Kubeflow doesn't have any deprecated projects.
+<div class="table-responsive">
+<div class="table table-bordered">
+
+| Kubeflow Subproject                                               | Deprecation Date | Archiving Date |
+| ----------------------------------------------------------------- | ---------------- | -------------- |
+| [Kubeflow Katib](https://www.kubeflow.org/docs/components/katib/) | Nov 1st, 2026    | Nov 1st, 2027  |
 
 ## Kubeflow Distributions
 
