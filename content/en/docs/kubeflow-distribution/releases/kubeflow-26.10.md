@@ -168,7 +168,7 @@ weight = 88
 ### Dependency Versions (Manifests)
 
 {{% alert title="Note" color="warning" %}}
-This information is only for the manifests found in the <a href="https://github.com/kubeflow/community-distribution">kubeflow/community-distribution</a> repository, packaged distributions may have different requirements or supported versions.
+This information is only for the manifests found in the <a href="https://github.com/kubeflow/community-distribution">kubeflow/community-distribution</a> repository. Packaged distributions may define their own dependency requirements and supported versions.
 {{% /alert %}}
 
 <div class="table-responsive">
