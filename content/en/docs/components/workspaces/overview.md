@@ -15,6 +15,13 @@ resources, and security that back those environments.
 Kubeflow Workspaces is the next generation of [Kubeflow Notebooks](/docs/components/notebooks/),
 replacing the original Notebooks controller with a more flexible and extensible architecture.
 
+Kubeflow Workspaces changes the configuration model from the PodSpec-based approach in Notebooks v1
+to an option-based model. Platform administrators define reusable environment, image, and compute
+options, while users select those options when creating or updating a `Workspace`.
+
+Learn more about how these pieces fit together in
+[Workspaces Concepts](/docs/components/workspaces/concepts/).
+
 ## Core Features
 
 - **Interactive development environments on Kubernetes**: run your IDE next to your data and
