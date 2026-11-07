@@ -72,12 +72,6 @@ cat <<EOF > kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-# --> DANGER: Workspaces (Notebooks v2) is still pre-GA <--
-#
-# !!! DO NOT DEPLOY THIS TO A PRODUCTION CLUSTER !!!
-#
-# See this for the current status:
-# https://www.kubeflow.org/docs/components/notebooks/notebooks-v2-pre-ga-banner
 resources:
 - "github.com/kubeflow/notebooks//workspaces/backend/manifests/kustomize/overlays/istio?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% workspaces/kf-workspaces-version %}}}"
 - "github.com/kubeflow/notebooks//workspaces/controller/manifests/kustomize/overlays/istio?ref=${KUBEFLOW_WORKSPACE_TAG:-{{% workspaces/kf-workspaces-version %}}}"
@@ -156,12 +150,12 @@ kubectl annotate storageclass standard \
 
 ### Step 5: Create WorkspaceKinds
 
-**Concepts**:
+A **`WorkspaceKind`** is an administrator-defined template that describes an available
+environment and the configuration options available to its users. Users create a **`Workspace`**
+from a `WorkspaceKind` through the Workspaces frontend.
 
-- A **`WorkspaceKind`** is an administrator-defined template that describes an available
-  environment: its base images, available resources and pod configuration.
-- Users create a **`Workspace`** from a `WorkspaceKind` via a guided setup in the Workspaces
-  Frontend.
+For more information about WorkspaceKinds, configuration options, Filter Rules, Option Redirects,
+and Activity Rules, see [Workspaces Concepts](/docs/components/workspaces/concepts/).
 
 Start from the upstream samples, which include ready-to-use `WorkspaceKind` definitions and adjust
 them for your usecase and cluster resources:
