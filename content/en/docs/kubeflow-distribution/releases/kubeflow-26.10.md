@@ -94,7 +94,7 @@ Katib will not be included in future Community Distribution releases.
         </td>
       </tr>
       <tr>
-        <td>Kubeflow Notebooks v1 (Depreciated)</td>
+        <td>Kubeflow Notebooks v1 (deprecated)</td>
         <td>
           <a href="https://github.com/kubeflow/notebooks/releases/tag/v1.11.1">v1.11.1</a>
         </td>
