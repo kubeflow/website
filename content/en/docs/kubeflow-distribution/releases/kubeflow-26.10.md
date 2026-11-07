@@ -67,6 +67,12 @@ weight = 88
 
 ### Component Versions
 
+{{% alert title="Note" color="info" %}}
+The Katib project is deprecated. Users should migrate to the OptimizationJob APIs, which are released as part of the Kubeflow Trainer project under alpha feature gate.
+
+Katib will not be included in future Community Distribution releases.
+{{% /alert %}}
+
 <div class="table-responsive">
 <table class="table table-bordered">
     <thead class="thead-light">
@@ -78,27 +84,17 @@ weight = 88
     </thead>
   <tbody>
       <!-- ======================= -->
-      <!-- AutoML Working Group -->
-      <!-- ======================= -->
-      <tr>
-        <td class="align-middle">AutoML Working Group</td>
-        <td>Katib</td>
-        <td>
-          <a href="https://github.com/kubeflow/katib/releases/tag/v0.19.0">v0.19.0</a>
-        </td>
-        </tr>
-      <!-- ======================= -->
       <!-- Notebooks Working Group -->
       <!-- ======================= -->
       <tr>
         <td rowspan="3" class="align-middle">Notebooks Working Group</td>
-        <td>Kubeflow Dashboards (Notebooks v2)</td>
+        <td>Kubeflow Workspaces (Notebooks v2)</td>
         <td>
           <a href="https://github.com/kubeflow/notebooks/releases/tag/v2.0.0">v2.0.0</a>
         </td>
       </tr>
       <tr>
-        <td>Kubeflow Notebooks</td>
+        <td>Kubeflow Notebooks v1 (Depreciated)</td>
         <td>
           <a href="https://github.com/kubeflow/notebooks/releases/tag/v1.11.1">v1.11.1</a>
         </td>
@@ -120,10 +116,10 @@ weight = 88
         </td>
       </tr>
       <!-- ======================= -->
-      <!-- Serving Working Group -->
+      <!-- Kubeflow Ecosystem -->
       <!-- ======================= -->
 <tr>
-        <td rowspan="2" class="align-middle">Serving Working Group</td>
+        <td rowspan="2" class="align-middle">Kubeflow Ecosystem</td>
         <td>KServe</td>
         <td>
           <a href="https://github.com/kserve/kserve/tree/v0.21.0">v0.21.0</a>
@@ -139,10 +135,16 @@ weight = 88
       <!-- Training Working Group -->
       <!-- ======================= -->
       <tr>
-        <td class="align-middle">Training Working Group</td>
+        <td class="align-middle" rowspan="2">Training Working Group</td>
         <td>Trainer</td>
         <td>
           <a href="https://github.com/kubeflow/trainer/releases/tag/v2.4.0">v2.4.0</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Katib</td>
+        <td>
+          <a href="https://github.com/kubeflow/katib/releases/tag/v0.19.0">v0.19.0</a>
         </td>
         </tr>
       <!-- ======================= -->
