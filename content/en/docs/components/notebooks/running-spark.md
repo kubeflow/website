@@ -30,17 +30,19 @@ Create the session with `SparkClient`, then use the `SparkSession` it returns ex
 from kubeflow.common.types import KubernetesBackendConfig
 from kubeflow.spark import Driver, Name, SparkClient
 
+# Use your own profile namespace -- the default is "default", which is not
+# where your permissions live.
 client = SparkClient(backend_config=KubernetesBackendConfig(namespace="my-namespace"))
 
 spark = client.connect(
     options=[Name("my-session")],
+    # The driver creates and watches executor pods, so it needs a ServiceAccount
+    # allowed to do that; "default-editor" has those permissions in a profile namespace.
     driver=Driver(service_account="default-editor"),
 )
 
 print(spark.version, spark.range(5).count())
 ```
-
-Pass your own profile namespace: the default is `default`, which is not where your permissions live. The driver creates and watches executor pods, so it runs as a ServiceAccount allowed to do that — `default-editor` has those permissions in a profile namespace.
 
 A session holds its driver and executor pods until you delete it, and it outlives the notebook kernel that created it. Release it when you are done:
 
