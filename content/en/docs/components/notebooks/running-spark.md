@@ -20,7 +20,7 @@ SPARK_VERSION="$(python -c 'from kubeflow.spark.backends.kubernetes import const
 pip install "pyspark-connect==${SPARK_VERSION}"
 ```
 
-This is the same step the community distribution runs in CI; see [`tests/notebooks_spark_connect_test.sh`](https://github.com/kubeflow/community-distribution/blob/master/tests/notebooks_spark_connect_test.sh).
+This is the same step the Kubeflow Community Distribution runs in CI; see [`tests/notebooks_spark_connect_test.sh`](https://github.com/kubeflow/community-distribution/blob/master/tests/notebooks_spark_connect_test.sh).
 
 ## Start a session
 
@@ -53,7 +53,7 @@ client.delete_session("my-session")
 
 ## A working example
 
-The Kubeflow community distribution runs a Spark Connect session from a notebook on every pull request, against the current SDK and Spark Operator releases. Follow that rather than a copy here — it is kept correct by CI:
+The Kubeflow Community Distribution runs a Spark Connect session from a notebook on every pull request, against the current SDK and Spark Operator releases. Follow that rather than a copy here — it is kept correct by CI:
 
 - [`tests/spark_connect_session.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_session.py) — the session itself, shared with the Workspaces test
 - [`.github/workflows/notebooks_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/notebooks_spark_connect_test.yaml) — the cluster it runs against
