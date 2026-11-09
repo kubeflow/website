@@ -65,7 +65,7 @@ print(spark.version, spark.range(5).count())
 ```
 
 A session holds its driver and executor pods until you delete it, and it outlives the
-notebook kernel that created it. Release it when you are done:
+kernel or terminal that created it. Release it when you are done:
 
 ```python
 spark.stop()
@@ -80,10 +80,10 @@ The Kubeflow Community Distribution runs a Spark Connect session from a Workspac
 every pull request, against the current SDK and Spark Operator releases. Follow that
 rather than a copy here — it is kept correct by CI:
 
-- [`tests/spark_connect_session.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_session.py)
-  — the session itself
-- [`.github/workflows/workspaces_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/workspaces_spark_connect_test.yaml)
-  — the cluster it runs against
+- **Example session code**:
+  [`tests/spark_connect_session.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_session.py)
+- **Cluster setup and install order**:
+  [`.github/workflows/workspaces_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/workspaces_spark_connect_test.yaml)
 
 Some clusters need extra per-session settings, such as keeping the Spark pods out of the
 service mesh. Those are platform concerns rather than things to configure per session;

@@ -57,8 +57,8 @@ client.delete_session("my-session")
 
 The Kubeflow Community Distribution runs a Spark Connect session from a notebook on every pull request, against the current SDK and Spark Operator releases. Follow that rather than a copy here — it is kept correct by CI:
 
-- [`tests/spark_connect_session.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_session.py) — the session itself, shared with the Workspaces test
-- [`.github/workflows/notebooks_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/notebooks_spark_connect_test.yaml) — the cluster it runs against
+- **Example session code, shared with the Workspaces test**: [`tests/spark_connect_session.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_session.py)
+- **Cluster setup and install order**: [`.github/workflows/notebooks_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/notebooks_spark_connect_test.yaml)
 
 Some clusters need extra per-session settings. The driver and executors exchange data over their own ports and do not survive a service mesh sidecar, so those pods have to be excluded from injection — an upstream Spark-on-Kubernetes limitation tracked in [SPARK-42411](https://issues.apache.org/jira/browse/SPARK-42411). That is a platform-level decision rather than something to configure per notebook; the linked test shows the current form.
 
