@@ -23,7 +23,8 @@ operator guides. From a terminal in your Workspace:
 kubectl auth can-i create sparkconnects
 ```
 
-If that prints `no`, stop here and ask your administrator.
+If the above command prints `no`, stop here and ask your administrator to complete the
+setup as described in the operator guide.
 
 ## Install a matching Spark client
 
@@ -37,7 +38,7 @@ SPARK_VERSION="$(python -c 'from kubeflow.spark.backends.kubernetes import const
 pip install "pyspark-connect==${SPARK_VERSION}"
 ```
 
-This is the same step the community distribution runs in CI; see
+This is the same step the Kubeflow Community Distribution runs in CI; see
 [`tests/workspaces_spark_connect_test.sh`](https://github.com/kubeflow/community-distribution/blob/master/tests/workspaces_spark_connect_test.sh).
 
 ## Start a session
@@ -75,7 +76,7 @@ client.delete_session("my-session")
 
 ## A working example
 
-The Kubeflow community distribution runs a Spark Connect session from a Workspace on
+The Kubeflow Community Distribution runs a Spark Connect session from a Workspace on
 every pull request, against the current SDK and Spark Operator releases. Follow that
 rather than a copy here — it is kept correct by CI:
 
