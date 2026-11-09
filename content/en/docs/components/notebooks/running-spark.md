@@ -60,4 +60,4 @@ The Kubeflow community distribution runs a Spark Connect session from a notebook
 
 Some clusters need extra per-session settings. The driver and executors exchange data over their own ports and do not survive a service mesh sidecar, so those pods have to be excluded from injection — an upstream Spark-on-Kubernetes limitation tracked in [SPARK-42411](https://issues.apache.org/jira/browse/SPARK-42411). That is a platform-level decision rather than something to configure per notebook; the linked test shows the current form.
 
-Running Spark from a Kubeflow Workspace works the same way — see [Running Spark](/docs/components/workspaces/user-guides/spark-connect/) in the Workspaces guides, which also covers the one permission change an administrator has to make there.
+Running Spark from a Kubeflow Workspace works the same way — see [Running Spark](/docs/components/workspaces/user-guides/running-spark/) in the Workspaces guides, which also covers the one permission change an administrator has to make there.

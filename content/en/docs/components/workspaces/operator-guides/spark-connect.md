@@ -1,6 +1,6 @@
 ---
 title: Spark Connect
-description: Let Workspace users run interactive Spark sessions
+description: Configure Kubeflow Workspaces to run interactive Spark sessions
 weight: 30
 ---
 
@@ -8,7 +8,7 @@ weight: 30
 Workspace user hold a Spark session without a Spark runtime in the Workspace pod: the
 [Spark Operator](/docs/components/spark-operator/) runs the driver and executors as
 separate pods. This page covers what a platform administrator puts in place. The
-user-facing side is [Running Spark](/docs/components/workspaces/user-guides/spark-connect/).
+user-facing side is [Running Spark](/docs/components/workspaces/user-guides/running-spark/).
 
 ## Prerequisites
 
@@ -17,16 +17,17 @@ It provides the `SparkConnect` custom resource and the controller that acts on i
 granting the permissions below does not install either, and earlier versions do not
 handle the session shape these guides use.
 
-Install it from the Kubeflow community distribution rather than the upstream Helm chart
-alone: the aggregated `kubeflow-spark-*` ClusterRoles that carry the Spark rules into
-`kubeflow-edit` ship with the distribution, not with the operator itself.
+We recommend installing the Spark Operator from the Kubeflow Community Distribution
+rather than its upstream Helm chart: the distribution also ships the aggregated
+`kubeflow-spark-*` ClusterRoles that the grant below relies on, and the operator's own
+chart does not.
 
 ## Grant the Workspace access to Spark
 
 A Workspace runs as its own ServiceAccount, which the controller creates and names after
-the Workspace. As of Workspaces v2.0.0-beta.0 that ServiceAccount is no longer granted
-the Kubeflow ClusterRoles automatically, so a WorkspaceKind whose users need Spark has to
-ask for the grant:
+the Workspace. That ServiceAccount is no longer granted the `kubeflow-edit` ClusterRole
+automatically, so a WorkspaceKind whose users need Spark needs these roles to be
+explicitly added to its definition:
 
 ```yaml
 apiVersion: kubeflow.org/v1beta1
@@ -69,7 +70,7 @@ The Spark Operator labels every pod it launches with
 executors alike, so one cluster-wide exemption covers all Spark workloads. With Istio,
 add that label to the sidecar injector's
 [`neverInjectSelector`](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#controlling-the-injection-policy),
-which the Kubeflow community distribution ships empty.
+which the Kubeflow Community Distribution ships with an empty value by default.
 
 Without an exemption, a namespace with automatic injection leaves Spark pods in the mesh
 and distributed queries hang rather than fail. Sessions can also opt out individually —
@@ -79,13 +80,14 @@ cluster-wide exemption.
 
 ## Reference deployment
 
-Rather than reproducing the configuration here, where it would drift, read the setup the
-Kubeflow community distribution keeps green in CI — Spark Operator, Workspaces, a
-WorkspaceKind with the Spark grant, and a session created from inside the Workspace pod:
+Rather than reproducing the configuration here, where it could potentially drift, feel
+free to take inspiration from the setup as showcased in the test suite of the Kubeflow
+Community Distribution: Spark Operator, Workspaces, a WorkspaceKind with the Spark grant,
+and a session created from inside the Workspace pod:
 
-- [`.github/workflows/workspaces_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/workspaces_spark_connect_test.yaml)
-  — the cluster and the install order
-- [`tests/workspacekind.spark.test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/tests/workspacekind.spark.test.yaml)
-  — a WorkspaceKind with the Spark grant
-- [`tests/spark_connect_session.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_session.py)
-  — the session, including the current form of the mesh exclusion
+- **Cluster setup and install order**:
+  [`.github/workflows/workspaces_spark_connect_test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/.github/workflows/workspaces_spark_connect_test.yaml)
+- **Example WorkspaceKind with Spark permissions**:
+  [`tests/workspacekind.spark.test.yaml`](https://github.com/kubeflow/community-distribution/blob/master/tests/workspacekind.spark.test.yaml)
+- **Example session code and Istio mesh exclusion**:
+  [`tests/spark_connect_session.py`](https://github.com/kubeflow/community-distribution/blob/master/tests/spark_connect_session.py)
