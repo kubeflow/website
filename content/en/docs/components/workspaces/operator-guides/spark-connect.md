@@ -41,18 +41,16 @@ spec:
 
 `kubeflow-edit` is what a Kubeflow Profile binds to `default-editor`, so a Workspace user
 ends up with the same permissions as a Notebook user, and the Spark rules come with it —
-`kubeflow-spark-edit` aggregates into `kubeflow-edit`. Verify after applying:
+`kubeflow-spark-edit` aggregates into `kubeflow-edit`. To verify, create a Workspace from
+this kind, open a terminal in it, and run:
 
 ```shell
-PROFILE=kubeflow-user-example-com
-WORKSPACE_NAME=my-workspace
-WORKSPACE_SERVICE_ACCOUNT="$(kubectl -n "${PROFILE}" get workspace "${WORKSPACE_NAME}" \
-  -o jsonpath='{.status.podTemplatePod.serviceAccountName}')"
-
-kubectl auth can-i create sparkconnects \
-  --as="system:serviceaccount:${PROFILE}:${WORKSPACE_SERVICE_ACCOUNT}" \
-  -n "${PROFILE}"
+kubectl auth can-i create sparkconnects
 ```
+
+Run from inside the Workspace, this tests the Workspace's own ServiceAccount. Run from
+an administrator's own kubeconfig it tests your permissions instead, and will pass
+whether or not the grant worked.
 
 ## Service mesh
 
