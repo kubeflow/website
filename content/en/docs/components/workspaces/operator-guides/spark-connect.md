@@ -4,8 +4,6 @@ description: Let Workspace users run interactive Spark sessions
 weight: 30
 ---
 
-{{< workspaces-beta-notice >}}
-
 [Spark Connect](https://spark.apache.org/docs/latest/spark-connect-overview.html) lets a
 Workspace user hold a Spark session without a Spark runtime in the Workspace pod: the
 [Spark Operator](/docs/components/spark-operator/) runs the driver and executors as

@@ -4,8 +4,6 @@ description: Start an interactive Spark session from a Workspace
 weight: 10
 ---
 
-{{< workspaces-beta-notice >}}
-
 [Spark Connect](https://spark.apache.org/docs/latest/spark-connect-overview.html) gives you
 a Spark session from inside a Workspace without running Spark in the Workspace pod. You
 write PySpark as usual; the [Spark Operator](/docs/components/spark-operator/) runs the
