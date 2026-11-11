@@ -101,9 +101,7 @@ You can use one of the following methods to install the
 See the definition for Kubeflow Community Distribution [in the overview page](../introduction#kubeflow-community-distribution)
 
 If you want a stable / conservative experience we recommend to use the
-[latest stable release](https://github.com/kubeflow/community-distribution/releases):
-
-- [`v26.03.1 branch`](https://github.com/kubeflow/community-distribution/tree/release-26.03.1)
+[latest stable release](https://github.com/kubeflow/community-distribution/releases)
 
 You can also install the master branch of
 [`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution)
