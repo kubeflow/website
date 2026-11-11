@@ -15,8 +15,6 @@ resources, and security that back those environments.
 Kubeflow Workspaces is the next generation of [Kubeflow Notebooks](/docs/components/notebooks/),
 replacing the original Notebooks controller with a more flexible and extensible architecture.
 
-{{< workspaces-beta-notice >}}
-
 ## Core Features
 
 - **Interactive development environments on Kubernetes**: run your IDE next to your data and
