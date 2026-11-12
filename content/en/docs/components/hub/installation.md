@@ -71,8 +71,10 @@ kubectl get pods -n $PROFILE_NAME -w
 Finally, configure a Model Registry link in the Kubeflow Dashboard:
 
 ```sh
-kubectl get configmap centraldashboard-config -n kubeflow -o json | jq '.data.links |= (fromjson | .menuLinks += [{"icon": "assignment", "link": "/model-registry/", "text": "Model Registry", "type": "item"}] | tojson)' | kubectl apply -f - -n kubeflow
+kubectl get configmap dashboard-config -n kubeflow -o json | jq '.data.links |= (fromjson | .menuLinks += [{"icon": "assignment", "link": "/model-registry/", "text": "Model Registry", "type": "item"}] | tojson)' | kubectl apply -f - -n kubeflow
 ```
+
+If you installed a KCD release before 26.03.1, replace `dashboard-config` with `centraldashboard-config` in this command.
 
 ### Standalone installation
 

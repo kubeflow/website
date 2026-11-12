@@ -19,12 +19,14 @@ For example, the below image shows the Kubeflow Central Dashboard with a custom 
 
 The Kubeflow Central Dashboard is configured using a Kubernetes [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/).
 
-The `CD_CONFIGMAP_NAME` environment variable on the central-dashboard Deployment specifies the name of the ConfigMap (`centraldashboard-config` by default).
+The `DASHBOARD_CONFIGMAP` environment variable on the `dashboard` Deployment in the `kubeflow` namespace specifies the name of the ConfigMap (`dashboard-config` by default).
+Kubeflow Community Distribution releases before 26.03.1 name the Deployment `centraldashboard` and the ConfigMap `centraldashboard-config`.
+If you use one of these releases, replace `dashboard-config` with `centraldashboard-config` in the examples on this page.
 
 You can find examples of the ConfigMap in the following locations:
 
-- [Default](https://github.com/kubeflow/kubeflow/blob/v1.9.0/components/centraldashboard/manifests/base/configmap.yaml)
-- [Default + KServe](https://github.com/kubeflow/kubeflow/blob/v1.9.0/components/centraldashboard/manifests/overlays/kserve/patches/configmap.yaml)
+- [Default](https://github.com/kubeflow/dashboard/blob/v2.0.0/components/centraldashboard/manifests/kustomize/base/configmap.yaml)
+- [Default + KServe](https://github.com/kubeflow/dashboard/blob/v2.0.0/components/centraldashboard/manifests/kustomize/overlays/kserve/patches/configmap.yaml)
 
 ## External Links
 
@@ -47,7 +49,7 @@ For example, the below ConfigMap adds a link to the Kubeflow website:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: centraldashboard-config
+  name: dashboard-config
   namespace: kubeflow
 data:
   settings: |-
@@ -91,7 +93,7 @@ For example, the below ConfigMap adds a link to the Kubeflow website documentati
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: centraldashboard-config
+  name: dashboard-config
   namespace: kubeflow
 data:
   settings: |-
@@ -192,7 +194,7 @@ For example, the below ConfigMap adds the ["my-app" application](#create-virtual
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: centraldashboard-config
+  name: dashboard-config
   namespace: kubeflow
 data:
   settings: |-
