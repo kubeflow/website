@@ -4,8 +4,6 @@ description: How to deploy Kubeflow Workspaces
 weight: 10
 ---
 
-{{< workspaces-beta-notice >}}
-
 This guide describes how to deploy Kubeflow Workspaces (Kubeflow Notebooks v2). Choose the
 installation method that matches your environment.
 
