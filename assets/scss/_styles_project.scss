@@ -60,7 +60,7 @@
 
     span, p, div {
       color: $body-color !important;
-      background-color: $code-block-bg !important;
+      background: linear-gradient($code-block-bg, $code-block-bg) $body-bg !important;
     }
 
     text {
@@ -1084,7 +1084,7 @@ nav.foldable-nav {
   li code,
   table code,
   blockquote code,
-  .alert code,
+  .alert code:not(pre code),
   h1 code,
   h2 code,
   h3 code,

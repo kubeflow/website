@@ -24,8 +24,12 @@ Integrating Kubeflow Workspaces with KubeRay supports two primary workload patte
 
 | Workload Pattern | Description | Cluster Lifecycle | Security / RBAC Boundary |
 | :--- | :--- | :--- | :--- |
-| **Interactive Prototyping** | Connect from a notebook to a shared `RayCluster` for exploratory data analysis, interactive debugging, and distributed development. | Long-lived, shared cluster managed by the administrator. | **Read-only** access to `RayCluster` resources (discover and connect; cannot create or delete). |
+| **Interactive Prototyping** | Connect from a notebook to a shared `RayCluster` for exploratory data analysis, interactive debugging, and distributed development. | Long-lived, shared cluster managed by the administrator. | **Read-only** Kubernetes RBAC on `RayCluster` resources (discover only; cannot create or delete). Ray Client connections still execute code inside the Ray pods. |
 | **On-Demand Batch Jobs** | Submit an on-demand distributed training or data processing run via a `RayJob` custom resource. | Ephemeral cluster provisioned automatically per job and deleted upon job completion. | **Full access** to `RayJob` custom resources (create, update, delete, watch). |
+
+{{% alert title="Shared Cluster Isolation Boundary" color="warning" %}}
+Read-only Kubernetes RBAC on `RayCluster` (`get`, `list`, `watch`) does **not** make Ray Client (`ray.init()`) access read-only. Any user who can connect to a shared `RayCluster` executes arbitrary code inside its Ray pods and can access the pods' `ServiceAccount` credentials and data. Only share a `RayCluster` among mutually trusted users with a minimally privileged Ray `ServiceAccount`, and provision separate clusters or namespaces where users require isolation.
+{{% /alert %}}
 
 ```mermaid
 flowchart TD
@@ -56,9 +60,9 @@ flowchart TD
 
 A common operational pitfall is granting workspace pods full permissions to create unmanaged `RayCluster` resources. Because a `RayCluster` created directly from an interactive notebook has no lifecycle link to the workspace pod, any crash, closed browser tab, or forgotten workspace leaves expensive worker nodes (including GPUs) running indefinitely.
 
-To prevent resource leaks and maximize cluster utilization, the RBAC model configured below enforces:
-- **`RayJob`: full lifecycle access (`create`, `update`, `patch`, `delete`, `get`, `list`, `watch`).** Users can launch on-demand training and batch jobs. The KubeRay operator automatically cleans up the underlying `RayCluster` and worker pods when the job finishes.
-- **`RayCluster`: read-only access (`get`, `list`, `watch`).** Users can discover and connect to pre-provisioned shared clusters, but cannot spin up untracked, unmanaged `RayCluster` instances directly.
+To reduce resource leaks and improve cluster utilization, the RBAC model configured below separates permissions as follows:
+- **`RayJob`: full lifecycle access (`create`, `update`, `patch`, `delete`, `get`, `list`, `watch`).** Users can launch on-demand training and batch jobs. When a `RayJob` sets `shutdownAfterJobFinishes: true` (as in the user guide's helper), the KubeRay operator cleans up the underlying `RayCluster` and worker pods when the job finishes. Note that RBAC alone does not enforce this setting: a user can omit `shutdownAfterJobFinishes` or set it to `false`, leaving the cluster running after completion. If preventing resource leaks is a hard operator requirement, enforce `shutdownAfterJobFinishes`, `ttlSecondsAfterFinished`, and `activeDeadlineSeconds` via a Kubernetes admission policy (such as `ValidatingAdmissionPolicy`, Kyverno, or OPA Gatekeeper) or configure a KubeRay deletion strategy.
+- **`RayCluster`: read-only access (`get`, `list`, `watch`).** Users can discover pre-provisioned shared clusters, but cannot spin up untracked, unmanaged `RayCluster` instances directly.
 
 ---
 
@@ -84,7 +88,7 @@ Follow the official [KubeRay Operator Installation Guide](https://docs.ray.io/en
 
 ### Option B: Install via Kubeflow Community Distribution
 
-If you deploy the [Kubeflow Community Distribution](https://github.com/kubeflow/community-distribution), you can install KubeRay using the [community distribution](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) (or by uncommenting `../experimental/ray/kuberay-operator/overlays/kubeflow` in [`example/kustomization.yaml`](https://github.com/kubeflow/community-distribution/blob/master/example/kustomization.yaml)). Then you also get proper support for Istio sidecars by default.
+If you deploy the [Kubeflow Community Distribution](https://github.com/kubeflow/community-distribution), you can install KubeRay using the [community distribution](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) (or by uncommenting `../experimental/ray/kuberay-operator/overlays/kubeflow` in [`example/kustomization.yaml`](https://github.com/kubeflow/community-distribution/blob/master/example/kustomization.yaml)). That directory also includes an example `RayCluster` and `AuthorizationPolicy` showing how to configure per-cluster networking for Istio sidecars.
 
 ### Verify the Installation
 
@@ -101,6 +105,10 @@ kubectl get pods -A -l app.kubernetes.io/name=kuberay-operator
 Each workspace pod created by Kubeflow Workspaces runs as a dedicated `ServiceAccount` (`ws-<workspace-name>-<suffix>`). Rather than manually binding roles per workspace or user, define a `ClusterRole` once and attach it to the `WorkspaceKind`. The Workspaces controller then binds it automatically for every workspace created from that kind.
 
 ### 1. Create the `ray-job-edit` ClusterRole
+
+{{% alert title="Pod Template Security" color="warning" %}}
+Creating or patching a `RayJob` allows the caller to specify head and worker pod templates (`rayClusterSpec.headGroupSpec.template` and `workerGroupSpecs[].template`), including `serviceAccountName` and `Secret` volume mounts. Without admission-policy restrictions on these templates, the KubeRay operator can start pods using namespace credentials that the workspace `ServiceAccount` cannot access directly. Either enforce admission policies restricting `RayJob` pod templates or limit `ray-job-edit` to fully trusted users.
+{{% /alert %}}
 
 Apply the following `ClusterRole` manifest:
 
@@ -121,9 +129,9 @@ rules:
   - apiGroups: ["ray.io"]
     resources: ["rayjobs/status"]
     verbs: ["get"]
-  # Pod status checks and log streaming
+  # Pod status checks and service discovery (job logs are streamed via Ray Dashboard)
   - apiGroups: [""]
-    resources: ["pods", "pods/log", "services", "events"]
+    resources: ["pods", "services", "events"]
     verbs: ["get", "list", "watch"]
 ```
 
@@ -189,7 +197,7 @@ To create a `RayCluster`, follow the official [RayCluster Quickstart](https://do
 When provisioning a shared Ray cluster for workspace users, keep the following in mind:
 
 - **Autoscaling**: Enable Ray's autoscaler by setting `spec.enableInTreeAutoscaling: true` on the `RayCluster` and set `minReplicas: 0` in `workerGroupSpecs` so idle worker pods automatically scale down to zero when users are not actively executing distributed tasks. Note that setting `minReplicas: 0` alone does not enable autoscaling; without `enableInTreeAutoscaling: true`, worker replicas remain running while idle. For details, see the KubeRay [RayCluster Autoscaler documentation](https://docs.ray.io/en/latest/cluster/kubernetes/user-guides/kuberay-autoscaler.html).
-- **Istio sidecar bypass**: If you have not installed via the [community distribution](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) then you do not have full Istio support and need to add `sidecar.istio.io/inject: "false"` to the labels of both head and worker pod templates to prevent Istio from intercepting Ray's internal gRPC communication (see [Handling Istio Sidecars with Ray](#1-handling-istio-sidecars-with-ray)).
+- **Istio sidecar bypass**: Unless your `RayCluster` specs and supporting services are explicitly configured for Istio service mesh (see [Handling Istio Sidecars with Ray](#1-handling-istio-sidecars-with-ray)), add `sidecar.istio.io/inject: "false"` to the labels of both head and worker pod templates to prevent Istio from intercepting Ray's internal gRPC communication, and enforce `NetworkPolicy` ingress isolation on the Ray pods.
 - **Version matching**: Select a Ray container image whose exact Ray version and Python minor version match your workspace images.
 
 ### What to Communicate to Workspace Users
@@ -206,17 +214,21 @@ Once provisioned, inform your workspace users of:
 
 ### 1. Handling Istio Sidecars with Ray
 
-Kubeflow profiles enable Istio sidecar injection by default in user namespaces. Envoy sidecars intercept and buffer internal gRPC communication between the Ray head and worker nodes. If you have installed via the [community distribution](https://github.com/kubeflow/community-distribution/tree/master/experimental/ray) then you have proper Istio support. If not you have to disable the mesh integration since otherwise the Ray cluster initialization will fail or hang indefinitely.
+Kubeflow profiles enable Istio sidecar injection by default in user namespaces. Envoy sidecars intercept and buffer internal gRPC communication between the Ray head and worker nodes. Unless your `RayCluster` and `RayJob` manifests and supporting Kubernetes services are explicitly configured for the Istio service mesh (as shown in [`experimental/ray/raycluster_example.yaml`](https://github.com/kubeflow/community-distribution/blob/master/experimental/ray/raycluster_example.yaml)), you must disable sidecar injection on Ray pods; otherwise Ray cluster initialization will fail or hang indefinitely.
 
 | Approach | When to Use | How to Implement |
 | :--- | :--- | :--- |
-| **Bypass Injection (Recommended)** | Standard Kubeflow deployments where internal Ray cluster traffic does not require mutual TLS. | Add label `sidecar.istio.io/inject: "false"` to the pod templates of `RayCluster` and `RayJob`. |
+| **Bypass Injection (Recommended with NetworkPolicy)** | Deployments where per-cluster Istio mesh networking is not configured on Ray clusters and internal Ray traffic does not require mutual TLS. | Add label `sidecar.istio.io/inject: "false"` to the pod templates of `RayCluster` and `RayJob`, **and** enforce Kubernetes `NetworkPolicy` ingress rules. |
 | **Service Mesh Integration** | Clusters with strict security policies requiring mTLS on all pods across the cluster. | Configure headless Kubernetes services, explicit Ray ports, `node-ip-address`, and Istio `AuthorizationPolicy`. See [`experimental/ray/raycluster_example.yaml`](https://github.com/kubeflow/community-distribution/blob/master/experimental/ray/raycluster_example.yaml) for a starting configuration. |
+
+{{% alert title="Network Isolation Required When Bypassing Istio" color="warning" %}}
+Bypassing sidecar injection (`sidecar.istio.io/inject: "false"`) also bypasses Istio `AuthorizationPolicy` enforcement on the Ray head pod. Without an enforced network restriction, any reachable pod in the cluster can use the unauthenticated Ray Client (`10001`) and Dashboard (`8265`) endpoints to execute code on the Ray cluster. Before enabling this bypass, enforce Kubernetes `NetworkPolicy` ingress isolation so only trusted workspace pods, Ray cluster pods, and the KubeRay operator can reach the Ray head pod.
+{{% /alert %}}
 
 {{% alert title="Allowing Workspace Principals in AuthorizationPolicy" color="info" %}}
 The example [`experimental/ray/raycluster_example.yaml`](https://github.com/kubeflow/community-distribution/blob/master/experimental/ray/raycluster_example.yaml) allows `default-editor` and internal Ray cluster ports.
 
-When Kubeflow Workspaces use dedicated service accounts (`ws-<workspace-name>-<suffix>`), workspace requests to Ray Client (port `10001`) and Ray Dashboard (port `8265`) will be denied by default. You must update or augment the `AuthorizationPolicy` to permit workspace service account principals on those ports while retaining access for Ray's own pods:
+When Kubeflow Workspaces use dedicated service accounts (`ws-<workspace-name>-<suffix>`), workspace requests to Ray Client (port `10001`) and Ray Dashboard (port `8265`) will be denied by default. In addition, the separately deployed KubeRay operator needs access to the Ray Dashboard (port `8265`) to track `RayJob` completion and perform cleanup. Update or augment the `AuthorizationPolicy` to permit Ray's own pods, the KubeRay operator (which must carry an Istio mTLS identity via an injected sidecar for principal matching to succeed), and workspace service account principals:
 
 ```yaml
 apiVersion: security.istio.io/v1beta1
@@ -230,10 +242,17 @@ spec:
       ray.io/node-type: head
   action: ALLOW
   rules:
-    # Allow Ray worker pods and operator
+    # Allow Ray worker/head pods
     - from:
         - source:
             principals: ["cluster.local/ns/<user-namespace>/sa/<ray-head-worker-sa>"]
+    # Allow KubeRay operator on Ray Dashboard port for RayJob tracking and cleanup
+    - from:
+        - source:
+            principals: ["cluster.local/ns/<kuberay-operator-namespace>/sa/<kuberay-operator-sa>"]
+      to:
+        - operation:
+            ports: ["8265"]
     # Allow workspace service accounts on Ray Client and Dashboard ports
     - from:
         - source:
@@ -283,11 +302,11 @@ Ray Client requires that the **exact Ray version** (including patch version, e.g
     --as=system:serviceaccount:<namespace>:ws-<workspace-name>-<id> \
     -n <namespace>
   ```
-* **Resolution**: Ensure `ray-job-edit` is added to `spec.podTemplate.serviceAccount.clusterRoles` in the `WorkspaceKind` and re-create the workspace pod.
+* **Resolution**: Ensure `ray-job-edit` is added to `spec.podTemplate.serviceAccount.clusterRoles` in the `WorkspaceKind` and wait for the Workspaces controller to reconcile the workspace's `RoleBinding` (existing workspace pods do not need to be recreated).
 
 ### Symptom: Ray Clusters Remain in `Pending` or Head Pod Never Becomes Ready
 
-* **Likely Cause 1 (Istio)**: You have installed without proper Istio support and the Envoy sidecar is intercepting Ray's internal gRPC ports. Verify whether `sidecar.istio.io/inject: "false"` is present in the head and worker pod templates.
+* **Likely Cause 1 (Istio)**: Istio sidecar injection is enabled on the Ray pods without the required per-cluster service mesh configuration, and the Envoy sidecar is intercepting Ray's internal gRPC ports. Verify whether `sidecar.istio.io/inject: "false"` is present in the head and worker pod templates (or whether full mesh networking is configured).
 * **Likely Cause 2 (Resources)**: The cluster lacks available CPU, memory, or GPU capacity to schedule the requested pods, or the requested resources exceed the namespace `ResourceQuota`. Check `kubectl describe raycluster <name> -n <namespace>` and `kubectl get events -n <namespace>`.
 
 ---

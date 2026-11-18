@@ -59,7 +59,7 @@ flowchart TD
 Before creating your workspace or running code, ask your platform administrator for:
 
 1. **Which `WorkspaceKind` to select**: Your workspace must be created from a `WorkspaceKind` (for example, `jupyterlab`) configured with Ray RBAC permissions (`ray-job-edit`). If created from an unconfigured kind, your workspace will not have permission to interact with Ray.
-2. **The Ray and Python versions**: The exact Ray version (e.g., `2.58.0`) and Python minor version (e.g., `3.12`) running on the cluster. Ray Client requires an identical Ray version (including patch release) and Python minor version between your workspace environment and the Ray cluster.
+2. **The Ray and Python versions**: The exact Ray version (e.g., `2.58.0`) and Python minor version (e.g., `3.12`) running on the cluster. Ray Client requires an identical Ray version (including patch release) and Python minor version between your workspace environment and the Ray cluster. In addition, the `kuberay-client` package installed below requires **Python 3.11 or later** (`^3.11`) in your workspace.
 3. **The name of the shared Ray cluster**: If you plan to use [Workflow 1: Interactive Computing](#workflow-1-interactive-computing-on-a-shared-ray-cluster). (If unknown, you can also [discover it programmatically](#step-1-discover-available-shared-ray-clusters)).
 
 ---
@@ -122,12 +122,12 @@ if response is None:
 
 items = response.get("items", [])
 
-# Filter out ephemeral clusters spawned by RayJobs
+# Filter out ephemeral clusters spawned by RayJobs or RayServices
 clusters = [
     cluster["metadata"]["name"]
     for cluster in items
     if not any(
-        owner_ref.get("kind") == "RayJob"
+        owner_ref.get("kind") in ("RayJob", "RayService")
         for owner_ref in cluster["metadata"].get("ownerReferences", [])
     )
 ]
@@ -139,18 +139,19 @@ print(f"Available Shared Ray Clusters: {clusters}")
 
 ### Step 2: Connect via Ray Client
 
-Connect your notebook session to the Ray cluster head service:
+Connect your notebook session to the shared Ray cluster head service using the cluster name confirmed by your administrator (or select only a cluster explicitly labeled for shared interactive use):
 
 ```python
 import ray
 
-if not clusters:
-    raise RuntimeError(
-        f"No shared Ray clusters found in namespace '{NAMESPACE}'. "
-        "Ask your administrator to provision a shared RayCluster or use Workflow 2 for on-demand jobs."
-    )
+CLUSTER_NAME = "<shared-cluster-name>"  # Replace with the name provided by your admin
 
-CLUSTER_NAME = clusters[0]  # or the specific name provided by your admin
+if CLUSTER_NAME not in clusters:
+    raise RuntimeError(
+        f"Shared Ray cluster '{CLUSTER_NAME}' not found in namespace '{NAMESPACE}'. "
+        f"Available clusters: {clusters}. Ask your administrator to provision a shared RayCluster "
+        "or use Workflow 2 for on-demand jobs."
+    )
 
 # Connect to the Ray head service using Kubernetes in-cluster DNS
 ray.init(f"ray://{CLUSTER_NAME}-head-svc.{NAMESPACE}.svc.cluster.local:10001")
@@ -254,7 +255,8 @@ def create_ray_job_spec(
         .get_cluster()["spec"]
     )
 
-    # Disable Istio sidecar injection if requested (recommended unless using mesh integration)
+    # Disable Istio sidecar injection if requested (requires NetworkPolicy ingress isolation
+    # for trusted workspaces, Ray traffic, and the KubeRay operator)
     if disable_istio:
         istio_label = {"sidecar.istio.io/inject": "false"}
         cluster_spec["headGroupSpec"]["template"].setdefault("metadata", {})["labels"] = istio_label
@@ -301,9 +303,9 @@ print(f"Successfully requested RayJob cluster: {JOB_NAME}")
 * `num_workers`: Number of worker nodes to provision in addition to the head node.
 * `worker_cpu` / `worker_memory`: Compute resources allocated to each worker pod.
 * `head_cpu` / `head_memory`: Compute resources allocated to the Ray head node.
-* `disable_istio`: (Default: `True`) When `True`, adds `sidecar.istio.io/inject: "false"` to the head and worker pod templates to bypass Istio sidecar interception. Set to `False` if your cluster is deployed with Istio service mesh support (such as via the Kubeflow Community Distribution).
+* `disable_istio`: (Default: `True`) When `True`, adds `sidecar.istio.io/inject: "false"` to the head and worker pod templates to bypass Istio sidecar interception. Keep this enabled unless your administrator has configured per-cluster Istio mesh networking (headless services, explicit ports, `node-ip-address`, and `AuthorizationPolicy`) for the generated `RayJob` specs; installing the Community Distribution operator alone does not add these resources in `ClusterBuilder`. Because bypassing Istio also bypasses Istio authorization on the Ray head, ensure your administrator has enforced `NetworkPolicy` ingress isolation for trusted workspaces, Ray traffic, and the KubeRay operator.
 * `ttlSecondsAfterFinished`: (Default: `300` seconds / 5 minutes) Grace period before KubeRay deletes the underlying worker pods after job completion.
-* `max_runtime_seconds`: (Default: `3600` seconds / 1 hour) Enforced as `activeDeadlineSeconds` on the `RayJob`. If the running job exceeds this duration, KubeRay terminates it even if code is still executing. Set to `None` to run without a deadline.
+* `max_runtime_seconds`: (Default: `3600` seconds / 1 hour) Enforced as `activeDeadlineSeconds` on the `RayJob`. Note two limits: (1) the timer starts at `RayJob` initialization rather than script execution, so cluster provisioning and notebook delays reduce available script runtime; and (2) `activeDeadlineSeconds` is not checked in `InteractiveMode`'s `Waiting` state on KubeRay v1.3, so a failed submission or `spec.jobId` patch can leave the cluster allocated indefinitely unless you delete the `RayJob` explicitly or your administrator configures a pre-submission cleanup mechanism. Set to `None` to run without a deadline.
 
 ---
 
@@ -337,8 +339,8 @@ def wait_for_ray_dashboard(job_name: str, namespace: str, timeout_seconds: int =
 
 try:
     dashboard_url = wait_for_ray_dashboard(JOB_NAME, NAMESPACE)
-except Exception:
-    # Automatically clean up the RayJob request if readiness times out or fails
+except (Exception, KeyboardInterrupt):
+    # Automatically clean up the RayJob request if readiness times out, fails, or is interrupted
     job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)
     raise
 ```
@@ -347,7 +349,11 @@ except Exception:
 
 ### Step 3: Submit Code and Link for Automatic Cleanup
 
-Submit your script using Ray's `JobSubmissionClient`. Ray packages your local code directory (`working_dir`), installs any necessary pip dependencies, and begins execution:
+Submit your script using Ray's `JobSubmissionClient`. Ray packages your local code directory (`working_dir`), installs any necessary pip dependencies, and begins execution.
+
+{{% alert title="Persist Job Outputs Externally" color="warning" %}}
+`working_dir` only uploads your project directory to Ray; it does **not** copy files produced by `train.py` back to your workspace. Because `RayJob` pods use ephemeral storage, locally written checkpoints and results are lost when automatic cleanup deletes the cluster. Write all outputs to durable object storage (such as S3 or GCS) or a mounted persistent volume before the job completes.
+{{% /alert %}}
 
 ```python
 from ray.job_submission import JobSubmissionClient
@@ -397,13 +403,16 @@ Once the job terminates, KubeRay automatically deletes the dedicated `RayCluster
 
 Because KubeRay automatically cleans up the cluster when a linked job finishes, you do not need to delete it under normal execution.
 
-However, if your notebook kernel crashes or you cancel before submitting code, explicitly delete the `RayJob` request so compute resources do not remain reserved:
+However, if you need to stop an ongoing job early or delete an abandoned `RayJob` request (for example, if your notebook kernel crashed or you cancelled before submitting code), use the appropriate cleanup command below:
 
 ```python
-# To stop an ongoing job early:
+# Path 1: Stop an ongoing submitted job early (when client and job_id exist)
 client.stop_job(job_id)
+```
 
-# If the session crashed, timed out, or was abandoned before submission:
+```python
+# Path 2: Unconditionally delete the RayJob request (e.g., if crashed, timed out,
+# or abandoned before submission)
 job_api.delete_job(name=JOB_NAME, k8s_namespace=NAMESPACE)
 ```
 
