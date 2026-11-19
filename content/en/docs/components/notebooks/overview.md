@@ -7,9 +7,16 @@ weight = 5
 
 ## What is Kubeflow Notebooks?
 
+{{% alert title="Kubeflow Workspaces" color="info" %}}
+Kubeflow Workspaces is the next generation of Kubeflow Notebooks.
+For the new **Workspace** and **WorkspaceKind** based experience, see the
+[Workspaces documentation](/docs/components/workspaces/).
+{{% /alert %}}
+
 Kubeflow Notebooks runs interactive development environments for AI, ML, and Data workloads on Kubernetes.
 
 Some key features include:
+
 - Native support for [JupyterLab](https://github.com/jupyterlab/jupyterlab), [RStudio](https://github.com/rstudio/rstudio), and [Visual Studio Code (code-server)](https://github.com/cdr/code-server).
 - Users can create notebook containers directly in the cluster, rather than locally on their workstations.
 - Admins can provide standard notebook images for their organization with required packages pre-installed.
