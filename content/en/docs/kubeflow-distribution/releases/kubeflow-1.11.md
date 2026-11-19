@@ -229,7 +229,7 @@ This information is only for the manifests found in the <a href="https://github.
         </td>
         <td>1.32</td>
         <td rowspan="4" class="align-middle">
-          <i>Other versions may work, but have not been validated by the <a href="https://github.com/kubeflow/community/tree/master/wg-manifests">Kubeflow Manifests Working Group</a>.</i>
+          <i>Other versions may work, but have not been validated by the <a href="https://github.com/kubeflow/community/tree/5c46a88facc496137b6ab7d596ea7e879229b3d8/wg-manifests">Kubeflow Manifests Working Group</a>.</i>
         </td>
       </tr>
       <!-- ======================= -->
