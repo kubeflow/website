@@ -173,3 +173,5 @@ print("-------- END: RUNS ----------")
 The following resources do not currently support isolation and are shared without access control:
 
 * Artifacts, Executions, and other metadata entities in [Machine Learning Metadata (MLMD)](https://www.tensorflow.org/tfx/guide/mlmd).
+
+In KFP 2.18.2, the frontend proxy and Istio route again expose the shared MLMD service so that Artifacts, Executions, lineage, and Compare Runs work as in 2.18.0. Any tenant client that can reach either route can read or modify another profile's metadata. If your deployment requires isolation between tenants, keep the 2.18.1 restrictions on both routes when upgrading, including in custom overlays. This limits the affected UI features. [Security advisory](https://github.com/kubeflow/pipelines/security/advisories/GHSA-j53r-x5f5-j4hr) · [2.18.2 release notes](https://github.com/kubeflow/pipelines/releases/tag/2.18.2)

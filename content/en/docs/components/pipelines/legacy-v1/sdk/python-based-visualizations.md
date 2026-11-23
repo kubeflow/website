@@ -13,6 +13,8 @@ For reference, the final release of the V1 SDK was [`kfp==1.8.22`](https://pypi.
 {{% alert title="Deprecated" color="warning" %}}
 Python based visualization is deprecated. We recommend fetching data via
 Kubeflow Pipelines SDK and visualizing from your own notebook instead.
+
+In KFP 2.18.2, the legacy Python visualization service is disabled by default and available by opt-in. It will be removed in the following 2.18 release. Migrate integrations that call its generation API before upgrading again. V2 Run Details artifact viewers work independently of this service. [Visualization compatibility guide](https://github.com/kubeflow/pipelines/blob/2.18.2/docs/operator-guides/upgrade-2.18.md#legacy-python-visualization-compatibility)
 {{% /alert %}}
 
 This page describes Python based visualizations, how to create them, and how to
